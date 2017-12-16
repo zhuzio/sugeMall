@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>订单</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/order.css" />
+		<link rel="stylesheet" href="css/a.css">
+		<style>
+			.sport p:first-child {
+				padding-left: 0;
+			}
+			
+			.z-ref {
+				display: inline-block;
+				font-size: 2.4rem;
+				position: absolute;
+				right: 4%;
+				top: 12.0rem;
+				color: #d81e05;
+				/*display: none;*/
+			}
+		</style>
+	</head>
+	<div class="kong2"></div>
+
+	<body>
+		<div class="head">
+			<div class="d_header">
+				<a class="back" href="javascript:history.go(-1)">
+					<p class="p1">
+						<img src="images/back.png" alt="返回首页">
+					</p>
+
+				</a>
+				<p class="p1" style="width:100%;text-align:center;">商家订单</p>
+			</div>
+		</div>
+		<!-- 第一部分商城订单 -->
+		<div class="part1">
+			<div class="kong3"></div>
+			<ul class="menu">
+				<li class="mlis" data-status="">全部</li>
+				<li data-status="11">待付款</li>
+				<li data-status="20">待发货</li>
+				<li data-status="30">待收货</li>
+				<li data-status="40" class="p1lis">已完成</li>
+			</ul>
+			<ul class="content1 content"></ul>
+			<div class="key">
+				<div class="k-header">
+					<div class="k-left"><img src="images/wk-x.png" alt="返回首页"></div>
+					<div class="k-right">
+						<p>输入支付密码</p>
+					</div>
+				</div>
+				<div class="k-center">
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li class="kc-last"></li>
+					</ul>
+				</div>
+				<div class="forget">
+					<a href="#">忘记密码?</a>
+				</div>
+				<div class="k-footer">
+					<ul class="fistline">
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+					<ul class="fistline">
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+					</ul>
+					<ul class="fistline">
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+					</ul>
+					<ul>
+						<li class="k-lastline"></li>
+						<li class="fistlines">0</li>
+						<li class="k-lastline"><img src="images/wk-12_03.png" alt=""></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<!-- <script type="text/javascript" src="js/order.js"></script> -->
+	<script>
+		$(function() {
+			var status = '';
+			var status_change = false;
+			//显示删除   取消div
+			var tokens = localStorage.getItem("token");
+			var num1;
+			var pages1 = 1; //当前页的页码
+			var allpage1 = num1; //总页码，会从后台获取
+			var sc1 = false;
+			var tfz = true;
+			var tfzs = true;
+			var arrs1 = [false, true, true, true, true];
+			var arrs = [true, false, false, false, false];
+
+			$('.img_s_q').on('click', function() {
+					$('.bianji1').show();
+				})
+				//显示删除   取消div
+			$('.img_s_q2').on('click', function() {
+					$('.bianji2').show();
+				})
+				//点击取消隐藏
+			$('.b_btn2').on('click', function() {
+					$('.bianji1').hide();
+				})
+				//点击取消隐藏
+			$('.b_btn2').on('click', function() {
+					$('.bianji2').hide();
+				})
+				//点击删除将div   li1_h隐藏     kong_h1下面的kong  div
+			$('.bianji1 .b_btn1').on('click', function() {
+					$('.li1_h').hide();
+					$('.kong_h1').hide();
+				})
+				//点击删除将div   li1_h隐藏     kong_h2下面的kong  div
+			$('.bianji2 .b_btn1').on('click', function() {
+				$('.li2_h').hide();
+				$('.sport_h').hide();
+				$('.kong_h2').hide();
+			})
+
+			//显示key键盘
+			$('.pay_key').on('click', function() {
+				$('.key').show();
+			})
+
+			$('.k-header').on('click', function() {
+				$('.key').hide();
+			})
+
+			showAjax1();
+			scorder1();
+
+			function tfarr() {
+				for(var i = 0; i < arrs.length; i++) {
+					arrs[i] = false;
+				}
+			}
+			$(".menu li").on("click", function() {
+				status = $(this).attr('data-status');
+				status_change = true;
+				pages1 = 1;
+				$(".mlis").removeClass("mlis");
+				$(this).addClass("mlis");
+				var indexs = $(this).index();
+				//$(".content1").css("display","none");
+				//$(".content1").eq($(this).index()).css("display","block");
+				tfarr();
+				arrs[indexs] = true;
+				if(indexs == 1) {
+					if(arrs1[indexs]) {
+						arrs1[indexs] = false;
+					}
+
+				}
+				if(indexs == 2) {
+					if(arrs1[indexs]) {
+						arrs1[indexs] = false;
+					}
+
+				}
+				if(indexs == 3) {
+					if(arrs1[indexs]) {
+						arrs1[indexs] = false;
+					}
+
+				}
+				if(indexs == 4) {
+					if(arrs1[indexs]) {
+						arrs1[indexs] = false;
+					}
+				}
+				showAjax1();
+			})
+			$(".left").on("click", function() {
+				var src = $(this).find("img").attr("src");
+				if(src == "images/circle1.png") {
+					$(this).find("img").attr("src", "images/circle2.png");
+				} else {
+					$(this).find("img").attr("src", "images/circle1.png");
+				}
+			})
+
+			function scorder1() {
+				// $(window).bind("scroll",scrollFn1);//绑定滚动事件
+				$(window).on("scroll", function() {
+					scrollFn1();
+
+				});
+			}
+
+			function showAjax1() {
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=order&f=storeorderonline",
+					data: {
+						token: tokens,
+						page: pages1,
+						status: status
+					},
+					success: function(data) {
+						console.log(data);
+						var htmls = "";
+						var stst="";
+						var datas = data.data;
+						allpage1 = data.totalpage;
+						num1 = data.totalpage;
+						if(pages1 < allpage1) {
+							sc1 = true;
+						}
+						if(status_change) {
+							$(".content1 ").eq(0).html('');
+						}
+						for(var i = 0; i < datas.length; i++) {
+							var st = '';
+							var sport_html = '<div class="sport">';
+							if(datas[i].status == "40") {
+								st = "交易成功";
+								sport_html += '<p class="detail_order" data-oid="' + datas[i].order_id + '">查看订单</p>';
+							} else if(datas[i].status == "30") {
+								st = "卖家已发货";
+								sport_html += '<p class="edit_shipping" data-oid="' + datas[i].order_id + '">修改单号</p><p class="cancel_order" data-oid="' + datas[i].order_id + '">取消订单</p><p class="detail_order" data-oid="' + datas[i].order_id + '">查看订单</p>';
+							} else if(datas[i].status == "20") {
+								st = "买家已付款，等待卖家发货";
+								sport_html += '<p class="send_order" data-oid="' + datas[i].order_id + '">发货</p><p class="cancel_order" data-oid="' + datas[i].order_id + '">取消订单</p><p class="detail_order" data-oid="' + datas[i].order_id + '">查看订单</p>';
+							} else if(datas[i].status == "11") {
+								st = "等待买家付款";
+								sport_html += '<p class="money_order" data-oid="' + datas[i].order_id + '">收到货款</p><p class="cancel_order" data-oid="' + datas[i].order_id + '">取消订单</p><p class="detail_order data-oid="' + datas[i].order_id + '">查看订单</p>';
+							} else if(datas[i].status == "0") {
+								st = "交易已取消";
+							} else if(datas[i].status == "10") {
+								st = "货到付款，卖家即将发货";
+								sport_html += '<p class="send_order" data-oid="' + datas[i].order_id + '">发货</p><p class="cancel_order" data-oid="' + datas[i].order_id + '">取消订单</p><p class="detail_order" data-oid="' + datas[i].order_id + '">查看订单</p>';
+							}
+							sport_html += '</div>';
+							//htmls+= '<li><p class="p2_p1"><span class="p2_p1_sp1">订单号：'+datas[i].order_sn+'</span><span class="p2_p1_sp2">'+st+'</span></p><div><p class="d_p1">商家：'+datas[i].classname+'</p><p class="d_p2"><a href="tel:'+datas[i].phone_mob+'"><img src="images/tely.png" alt=""><span>'+datas[i].phone_mob+'</span></a></p></div><div><p class="d_p1">商品：<span>'+datas[i].seller_name+'</span></p><p class="d_p2"></p></div><p class="p2_p3">价格：<span>￥'+datas[i].goods_amount+'元</span></p></li>';
+							htmls +=
+								'<li style="height:100%;">' +
+								'<div class="right" style="height:100%;position:relative;">' +
+								'<p class="goods">' +
+								'<span>' + datas[i].seller_name + '</span>' +
+								'<button>' + st + '</button>' +
+								'</p>';
+							goodsList = datas[i].goods;
+							for(j = 0; j < goodsList.length; j++) {
+								img = 'images/d_bag.png';
+								if(goodsList[j].goods_image) {
+									img = Url + goodsList[j].goods_image;
+								}
+								console.log(goodsList[j].refund_status)
+								if(goodsList[j].refund_status == "已退款"){
+								   stst = "已退款";
+								}else{
+									stst = ""
+								}
+								amount = parseFloat(goodsList[j].price) * parseInt(goodsList[j].quantity);
+								htmls +=
+									'<div class="detail">' +
+									'<p class="imgs">' +
+									'<img src="' + img + '" alt="">' +
+									'<span>订单号：' + datas[i].order_sn + '</span>' +
+									'</p>' +
+									'<p class="about">' +
+									'<span class="a_sp1">' + goodsList[j].goods_name + '</span><br>' +
+									'<span class="a_sp2">' + goodsList[j].specification + '</span>' +
+									//'<span class="a_sp3">尺码: M</span>' +
+									'</p>' +
+									'<p class="price">￥ ' + amount + '</p>' + '<span class="z-ref">' + stst + '</span>'
+								'</div>';
+//								console.log(goodsList[j].refund_status)
+							}
+							htmls += //'<div class="pay" style="right: 0;background-color:red;">未付款</div>' +
+								'</div>' +
+								// sport_html + 
+								'<div class="kong"></div>' +
+								'</li>';
+						}
+						$(".content1 ").eq(0).append(htmls);
+						status_change = false;
+						$('.cancel_order').on('click', function() {
+							order_id = $(this).attr('data-oid');
+							// console.log(this);
+							$.ajax({
+								url: Url + 'api/index.php?n=order&f=orderstate',
+								type: 'POST',
+								data: {
+									token: tokens,
+									order_id: order_id
+								},
+								dataType: 'JSON',
+								success: function(data) {
+									if(data.ret == 'ok') {
+										alert('取消成功');
+									}
+
+								}
+							})
+						});
+					},
+					error: function(data) {
+						// console.log(data);
+					}
+				})
+			}
+
+			function scrollFn1() {
+				if(status_change) {
+					return;
+				}
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+					if(sc1) {
+						sc1 = false;
+						pages1++;
+						if(pages1 <= num1) {
+							showAjax1();
+						}
+					}
+				}
+			}
+
+		});
+	</script>
+
+</html>

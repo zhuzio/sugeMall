@@ -1,0 +1,116 @@
+.zdul{
+	width: 100%;
+	margin-top: 9.0rem;
+}
+.zdul div{
+	background-color: #fff;
+	/*border-bottom: 1.5rem solid #efeff4;*/
+}
+.zdul li{
+	margin: 0 3rem;
+	position: relative;
+}
+.lp1{
+	line-height: 6rem;
+	height: 6rem;
+	margin-top: 2rem;
+	font-size: 3rem;
+	color: #666;
+	/*text-align: center;*/
+	width: 100%;
+}
+.zdul img{
+	margin-right: 1rem;
+	vertical-align: middle;
+}
+.lp1 img{
+	width: 3.0rem;
+	height: 3.0rem;
+}
+.lp1r{
+	color: #ff3f25;	
+}
+.is-check{
+	display: inline-block;
+	width: 25%;
+	/*height: 5.5rem;*/
+	position: absolute;
+	top: 5.0rem;
+	left: 70%;
+}
+.is-check img{
+	width: 100%;
+}
+.lp2{
+	line-height: 8rem;
+	height: 8rem;
+	font-size: 3rem;
+	color: #666;
+	/*text-align: center;*/
+	width: 100%;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+.lp3{
+	line-height: 7rem;
+	height: 7rem;
+	font-size: 2.4rem;
+	color: #666;
+}
+.lp4{
+	line-height: 7rem;
+	height: 7rem;
+	font-size: 2.4rem;
+	color: #666;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+.lp4 img{
+	width: 2.6rem;
+	vertical-align: top;
+	margin-top: 2.2rem;
+}
+.lp5{
+	line-height: 6rem;
+	height: 6rem;
+	font-size: 2.8rem;
+	color: #666;
+	position: absolute;
+	top: 15.5rem;
+	right: 0;
+	width: 50%;
+	text-align: right;
+}
+.lp5 span{
+	font-size: 3rem;
+	line-height: 6rem;
+}
+.lp5 font{
+	line-height: 5rem;
+}
+.lp5 img{
+	width: 2rem;
+	vertical-align: top;
+	margin-top: 2rem;
+}
+.lp6{
+	line-height: 6rem;
+	height: 6rem;
+	font-size: 2.8rem;
+	color: #666;
+	position: absolute;
+	top: 9rem;
+	right: 0;
+	width: 50%;
+	text-align: right;
+}
+.lp6 span{
+	font-size: 3rem;
+	line-height: 6rem;
+}
+.lp6 img{
+	width: 2.3rem;
+	vertical-align: top;
+	margin-top: 1.4rem;
+}

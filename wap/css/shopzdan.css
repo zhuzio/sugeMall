@@ -1,0 +1,172 @@
+body{
+	background-color: #efeff4;
+}
+.d_header{
+	height: 8.8rem;
+	background-color: #efeff4;
+	position: relative;
+	border-bottom: 1px solid #d5d5d5;
+	
+}
+.d_header a{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.d_header button{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width:11rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3.4rem;
+	color: #333;
+	text-align: right;
+	background-color: #f0f0f0;
+}
+.zdul{
+	width: 100%;
+	background-color: #fff;
+}
+.zdul li{
+	height: 15rem;
+	overflow: hidden;
+	position: relative;
+	/*width: 100%;*/
+	background-color: #fff;
+	/*border-bottom: 2rem solid #f1f1f1;*/
+	border-left: 1rem solid #e43481;
+	/*15C294*/
+	box-sizing:border-box;
+}
+.zdul .cla{
+	border-left: 1rem solid #3FD9BF;
+}
+.di{
+	height: 2rem;
+	background-color: #f1f1f1;
+}
+.zdul li div{
+	margin: 0 3rem;
+	height: 100%;
+	
+	
+	overflow: hidden;
+	/*text-align: center;
+	line-height: 11.5rem;
+	color: #cb251c;
+	font-size: 2.2rem;*/
+
+}
+/*.zdul li .zd_reduce{
+	color: #39b054;
+}*/
+.zp0{
+	height: 0.5rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	width: 100%;
+	text-align: center;
+	line-height: 4.5rem;
+	color: #333;
+	font-size: 2.6rem;
+	text-indent: 0.5rem;
+}
+.zp1{
+	height: 4.5rem;
+	width: 100%;
+	text-align: left;
+	line-height: 4.5rem;
+	color: #333;
+	font-size: 2.2rem;
+	text-indent: 0.5rem;
+	position: relative;
+}
+.zp1 span{
+	position: absolute;
+	width: 50%;
+	right: 0;
+	height: 4.5rem;
+	line-height: 4.5rem;
+	color: #333;
+	font-size: 2.4rem;
+	text-align: right;
+}
+/*.zdul span font{
+	color: #15C294 !important;
+}*/
+.zdul span .fon{
+	/*color: #11c353;*/
+	color: rgb(216, 30, 5);
+}
+.zp2{
+	height: 4.5rem;
+	width: 100%;
+	/*text-align: right;*/
+	line-height: 4.5rem;
+	color: #333;
+	font-size: 2.4rem;
+	border-bottom:1px solid #f1f1f1;
+	/*text-indent: 0.5rem;*/
+}
+.zp2s1{
+	float: left;
+	width: 50%;
+	text-align: right;
+	height: 4.5rem;
+}
+.zp2s2{
+	float: right;
+	width: 50%;
+	text-align: left;
+	text-indent: 3rem;
+	height: 4.5rem;
+}
+.zp3{
+	height: 3rem;
+	width: 100%;
+	text-align: right;
+	line-height: 3rem;
+	color: #333;
+	font-size: 1.8rem;
+	/*text-indent: 0.5rem;*/
+}
+.zp3 .zp3s1{
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+.zp3 .zp3s2{
+	float: right;
+	width: 50%;
+	height: 100%;
+}

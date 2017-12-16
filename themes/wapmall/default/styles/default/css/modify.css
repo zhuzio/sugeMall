@@ -1,0 +1,174 @@
+/*保存操作头部*/
+.header{
+}
+.header button{
+	position: absolute;
+	right: 10px;
+	top: 0;
+	width: 20%;
+	height: 44px;
+	font-size: 14px;
+	color: #666666;
+}
+.header button:hover{
+	background-color: #F3F3F3;
+}
+/*上传头像头部*/
+.header .portrait-up-download{
+	position: absolute;
+	right: 10px;
+	top: 0;
+	width: 15%;
+	height: 44px;
+	font-size: 14px;
+	color: #666666;
+}
+.portrait-up-download span{
+	width: 100%;
+	height: 100%;
+	display: block;
+	font-family: Muiicons;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    line-height:44px;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+}
+.portrait-up-download span:before{
+	content: '\e537';
+}
+.portrait-up-download span:hover{
+	background-color: #F3F3F3;
+}
+.up-download{
+	 overflow: hidden;
+	 position: fixed;
+	 z-index: 999;
+	 background: #FFFFFF;
+	 border: 1px solid #ECECEC;
+	 top: 30px;
+	 right: 10px;
+	 box-shadow: 0 1px 6px #CCCCCC;
+	 width: 40%;
+}
+.portrait-up{
+	position: relative;
+	width:100%;
+	height: 36px;
+	overflow: hidden;
+}
+.portrait-up:hover{
+	background-color: #F3F3F3;
+}
+.portrait-up p{
+	position: absolute;
+	line-height: 36px;
+	text-align: center;
+	width: 100%;
+	z-index: 1;
+	color: #666666;
+	font-size: 14px;
+}
+.portrait-up input{
+	position: absolute;
+	width: 100%;
+	height: 36px;
+	z-index: 3;
+	opacity: 0;
+}
+.portrait-download a{
+	display: block;
+	font-size: 14px;
+	line-height: 36px;
+	text-align: center;
+	color: #666666;
+}
+/*性别*/
+.Gender{ overflow: hidden;}
+.inf-prompt{
+	 margin: 0 10px;
+	 line-height: 36px;
+	 font-size: 12px;
+	 color: #999999;
+}
+.cender-input{
+	 background-color: #FFFFFF;
+	 overflow: hidden;
+	 display: block;
+	 border-bottom: 1px solid #ECECEC;
+	 border-top: 1px solid #ECECEC;
+	 margin-top: -1px;
+	 padding: 10px;
+}
+.cender-input label{
+	float: left;
+	font-size: 14px;
+	color: #666666;
+}
+.radio{
+	float: right;
+	overflow: hidden;
+	position: relative;
+	width: 20px;
+	height: 20px;
+	z-index: 1;
+}
+.radio input{
+	position: absolute;
+	z-index: 3;
+	opacity: 0;
+	width: 20px;
+	height: 20px;
+	top: 0;
+	left: 0;
+}
+.radio em{
+	 display: block;
+	 position: absolute;
+	 z-index: 2;
+	 background-image: url(../images/modify/radios.png);
+	 background-size:100%;
+	 width: 20px;
+	 height: 20px;
+	top: 0;
+	left: 0;
+}
+.radio em.activ{
+	background-image: url(../images/modify/radio.png);
+	background-size: 100%;
+}
+/*昵称*/
+.nickname{
+	margin-top: 10px;
+	background-color: #FFFFFF;
+	padding: 20px;
+}
+.nickname p{
+	 border-bottom: 2px solid #08a7a9;
+}
+.nickname p input{
+	 line-height: 32px;
+	 font-size: 14px;
+	 color: #666666;
+	 width: 100%;
+}
+/*头像*/
+.portrait{
+	background-color: #000000;
+	height: 100%;
+	min-height:600px;
+}
+.portrait img{
+	 margin-top: 100px;
+	 width: 100%;
+	 height: ;
+}
+.portrait p{
+	color: #FFFFFF;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 20px;
+}

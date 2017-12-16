@@ -1,0 +1,102 @@
+{include file="header.html"}
+<link href="{lib file=jquery.ui/themes/ui-lightness/jquery.ui.css}" rel="stylesheet" type="text/css" />
+<script src="{lib file=jquery.ui/jquery.ui.js}"></script>
+<script src="{lib file=layer/layer.js}"></script>
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#update_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#update_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+
+});
+</script>
+<div id="rightTop">
+    <p>用户请求</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="user" />
+                <input type="hidden" name="act" value="req" />
+                <select class="querySelect" name="field">{html_options options=$search_options selected=$smarty.get.field}
+                </select>:<input class="queryInput" type="text" name="search_name" value="{$query.search_name|escape}" />
+                <select class="querySelect" name="type">
+                    <option value="">升级类型</option>
+                    {html_options options=$req_type_list selected=$query.status}
+                </select>
+                 <select class="querySelect" name="status">
+                     <option value="">请求状态</option>
+                     {html_options options=$req_status_list selected=$query.status}
+                 </select>
+                请求时间从:<input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+                至:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+                 操作时间从:<input class="queryInput2" type="text" value="{$query.update_time_from}" id="update_time_from" name="update_time_from" class="pick_date" />
+                 至:<input class="queryInput2" type="text" value="{$query.update_time_to}" id="update_time_to" name="update_time_to" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" onclick="$('[name=act]').val('req');"/>
+                <input type="submit" class="formbtn" value="导出" onclick="$('[name=act]').val('export');" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=user&act=req">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $list}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $list}-->
+        <tr class="tatr1">
+            <td width="15%" class="firstCell"><span ectype="order_by" fieldname="id">序号</span></td>
+            <td width="15%"><span>姓名|手机号</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="type">升级类型</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="status">状态</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="createtime">申请日期</span></td>
+            <td width="10%"><span >操作时间</span></td>
+            <td width="5%"><span >操作人</span></td>
+            <td>操作</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$list item=order}-->
+        <tr class="tatr2">
+            <td class="firstCell">{$order.id}</td>
+            <td class="firstCell">{$order.user.real_name}|{$order.user.phone_mob}</td>
+            <td>{$order.type_cn}</td>
+            <td>{$order.status_cn}</td>
+            <td>{$order.createtime}</td>
+            <td><!--{if $order.updatetime != 0}-->{$order.updatetime}<!--{/if}--></td>
+            <td><!--{if $order.opid != 0}-->{$order.oper.real_name}<!--{/if}--></td>
+            <td>
+                <!--{if $order.status == 1}-->
+                <a href="index.php?app=user&amp;act=req_accept&amp;id={$order.id}" onclick="return confirm('确定通过审核吗？');"><span style="color:green;">通过</span></a>
+                <a href="index.php?app=user&amp;act=req_cancle&amp;id={$order.id}" onclick="return confirm('确定驳回请求吗？');"><span style="color:red;">驳回</span></a>
+                <!--{/if}-->
+            </td>
+
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+
+    </table>
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {$mypage}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script>
+    function sendPoint(id){
+
+    }
+</script>
+{include file="footer.html"}

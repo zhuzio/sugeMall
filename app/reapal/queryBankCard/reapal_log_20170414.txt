@@ -1,0 +1,2 @@
+{"merchant_id":"100000001301142","card_no":"6226230020072524","version":"3.1.2","sign":"47d446abc9fd2945e300d2564352e143"}
+{"bank_card_type":"1","bank_code":"CMBC","bank_name":"民生银行","card_no":"6226230020072524","merchant_id":"100000001301142","result_code":"0000","result_msg":"查询成功"}

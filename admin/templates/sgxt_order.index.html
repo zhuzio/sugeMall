@@ -1,0 +1,129 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>购积分记录</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="sgxt_order" />
+                <input type="hidden" name="act" value="index" />
+                <select class="querySelect" name="field">{html_options options=$search_options selected=$smarty.get.field}
+                </select>:<input class="queryInput" type="text" name="search_name" value="{$query.search_name|escape}" />
+                 <select class="querySelect" name="paytype">
+                     <option value="">支付方式</option>
+                     {html_options options=$order_payment_list selected=$query.paytype}
+                 </select>
+                购买时间从:<input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+                至:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+                购买金额从:<input class="queryInput2" type="text" value="{$query.order_amount_from}" name="order_amount_from" />
+                至:<input class="queryInput2" type="text" style="width:60px;" value="{$query.order_amount_to}" name="order_amount_to" class="pick_date" />
+                 <select class="querySelect" name="province" data-next="city" onchange="changeArea(this,this.value)">
+                     <option value="">请选择省份</option>
+                     {html_options options=$provinceList selected=$query.province}
+                 </select>
+                 <select class="querySelect" id="city" name="city" data-next="area" onchange="changeArea(this,this.value)">
+                     <option value="">请选择城市</option>
+                     {html_options options=$cityList selected=$query.city}
+                 </select>
+                 <select class="querySelect" id="area" name="area" data-next="" onchange="changeArea(this,this.value)">
+                     <option value="">请选择县区</option>
+                     {html_options options=$areaList selected=$query.area}
+                 </select>
+                <input type="submit" class="formbtn" value="{$lang.query}" onclick="$('[name=act]').val('index');"/>
+                <input type="submit" class="formbtn" value="导出" onclick="$('[name=act]').val('export');" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=sgxt_order">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $orders}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $orders}-->
+        <tr class="tatr1">
+            <td width="10%"><span ectype="order_by" fieldname="id">序号</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="orderid">订单号</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="id">店铺名称</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="mobile">手机号码</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="truename">真实姓名</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="amount">购积分金额</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="paytype">购买方式</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="pay_createtime">购买时间</span></td>
+            <td width="10%">省市县</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$orders item=order}-->
+        <tr class="tatr2">
+            <td>{$order.id}</td>
+            <td>{$order.orderid}</td>
+            <td>{$order.store_name}</td>
+            <td>{$order.mobile}</td>
+            <td>{$order.truename}</td>
+            <td>{$order.amount}</td>
+            <td>{$order.pay_style}</td>
+            <td>{$order.pay_createtime}</td>
+            <td>{$order.region_name}</td>
+        </tr>
+        <!--{foreachelse}-->        
+        <tr class="no_data">
+            <td colspan="3">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+        <tr>
+            <td colspan="3" style="text-align:right;">合计：</td>
+            <td colspan="3" style="text-align:left;padding-left:10px;">{$total_amount}</td>
+
+        </tr>
+    </table>
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {if $orders}{include file=page.bottom.html}{/if}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script>
+    function changeArea(obj,pid){
+        var next = $(obj).attr('data-next');
+        if(next != ''){
+            getAreaChild(next,pid);
+        }
+    }
+    function getAreaChild(next,pid){
+        $.ajax({
+            url : 'index.php?app=user&act=getarea',
+            type : 'POST',
+            dataType : 'JSON',
+            data:{'pid':pid},
+            success : function(res){
+                //res = JSON.parse(res);
+                res=jQuery.parseJSON(res);
+                if(res.status == 0){
+                    str = next == 'city' ? '请选择城市' : '请选择县区';
+                    html = '<option value="">'+str+'</option>';
+                    $("#"+next).html();
+                    for(var i in res.data){
+                        html += '<option value="'+res.data[i].id+'">'+res.data[i].name+'</option>';
+                    }
+                    console.log(html);
+                    $("#"+next).html(html);
+                }
+            }
+        });
+    }
+</script>
+{include file="footer.html"}

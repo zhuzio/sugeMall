@@ -1,0 +1,75 @@
+/*input单选样式*/
+$(".Multiselect").children("input").click(
+			function(){
+				$(".Multiselect").children("span").removeClass("active");
+				$(this).prev("span").addClass("active");
+			}
+		);
+
+/*nav*/
+$("#pepas").show();
+$("#tbss").hide();
+$("#ashs").hide();
+$("#completes").hide();
+$(".bor-nav ul li").removeClass("active");
+$(".bor-nav ul").children("li").eq(0).addClass("active");
+$(".bor-nav ul").children("li").click(function(){
+	$(".bor-nav ul li").removeClass("active");
+	$(this).addClass("active");
+});
+$("#pepa").click(function(){
+	$("#pepas").show();
+	$("#tbss").hide();
+	$("#ashs").hide();
+	$("#completes").hide();
+});
+$("#tbs").click(function(){
+	$("#tbss").show();
+	$("#pepas").hide();
+	$("#ashs").hide();
+	$("#completes").hide();
+});
+$("#ash").click(function(){
+	$("#ashs").show();
+	$("#tbss").hide();
+	$("#pepas").hide();
+	$("#completes").hide();
+});
+$("#complete").click(function(){
+	$("#completes").show();
+	$("#tbss").hide();
+	$("#ashs").hide();
+	$("#pepas").hide();
+});
+/*发货*/
+$("#logistics").hide();
+$(".logistics").click(function(){
+	$("#logistics").show();
+});
+$("#log").click(function(){
+	$("#logistics").hide();
+});
+/*取消订单*/
+$("#cancel").hide();
+$(".cancel").click(function(){
+	$("#cancel").show();
+});
+$("#can").click(function(){
+	$("#cancel").hide();
+});
+/*费用调整*/
+$("#adjustment").hide();
+$(".adjustment").click(function(){
+	$("#adjustment").show();
+});
+$("#adj").click(function(){
+	$("#adjustment").hide();
+});
+/*收到货款*/
+$("#received").hide();
+$(".received").click(function(){
+	$("#received").show();
+});
+$("#rec").click(function(){
+	$("#received").hide();
+});

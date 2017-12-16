@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/profit.css}" />
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+	</head>
+	<body>
+		<header class="header">
+			<a  href="javascript:history.back" class="back"></a>
+			<h1 class="tit">收益</h1>
+		</header>
+		<div class="content mtop44">
+			<div class="profit-top">
+				<div class="profit-pic">
+					<span>
+						<img src="{res file=images/profit/profit.png}">
+					</span>
+				</div>
+				<div class="profit-cont">
+					<p class="pro-current">当前收益<span><!--{$earnings[current]}--></span></p>
+					<div class="pro-td">
+						<a href="#" class="pro-ifi">
+                            待转出收益
+							<span><!--{$earnings[freeze]}--></span>
+						</a>
+						<a href="#" class="pro-cum">
+							可转出收益
+							<span><!--{$earnings[thaw]}--></span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--
+            	时间：2016-06-16
+            	描述：收益top
+            -->
+            <div class="profit-details">
+            	<ul>
+            		 <!--{foreach from=$bander item=band}-->
+                    <li>
+                        <a href="<!--{$band[link]}-->">
+                            <p><!--{$band[money]}--></p>
+                            <span><!--{$band[name]}--></span>
+                        </a>
+                    </li>
+                <!--{/foreach}-->
+            	<!--	<li>
+            			<a href="#">
+            				<p>457</p>
+            				<span>自推商家收益</span>
+            			</a>
+            		</li>
+            		<li>
+            			<a href="#">
+            				<p>457</p>
+            				<span>推荐会员收益</span>
+            			</a>
+            		</li>
+            		<li>
+            			<a href="#">
+            				<p>457</p>
+            				<span>已提现收益</span>
+            			</a>
+            		</li>-->
+            	</ul>
+            </div>
+            <p class="thaw"><button>收益转出</button></p>
+		</div>
+        <!--解冻弹窗-->
+        <div class="Withdrawals" id="thaw" style="display:none">
+                <div class="withdra-box">
+                    <div class="thaw-inf">
+                        <div class="thaw-news">
+                            <p>会员名<span>{$real_name}</span></p>
+                            <p>可转出收益<span class="thaw-number">{$earnings[thaw]}</span></p>
+                        </div>
+                        <p class="impot">
+                            可转出<span><!--{$endtime}--></span>之前的收益
+                        </p>
+                    </div>
+                    <div class="pop-operation">
+                        <button id="th">取消</button>
+                        <button id = 'queding'>确定</button>
+                    </div>
+                </div>
+                <div class="withdra-bg"></div>
+            </div>
+            {include file="footer.html"}
+	</body>
+    <script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+    <script type="text/javascript" src="{res file=js/porfit-county.js}" ></script>
+    <script>
+        $('#queding').click(function(){
+             $.ajax({
+                      type: "post",
+                      url: "index.php?app=new_member&act=earningsUnfreeze",
+                      async: false,
+                      data: { data:'1' }
+                    }).done(function( msg ) {
+                      if(msg == '1'){
+                         alert('解冻收益成功');
+                         location.reload(); 
+                      }else{
+                        alert(msg);
+                        $('#th').click();
+                      }
+                });
+        });
+    </script>
+</html>

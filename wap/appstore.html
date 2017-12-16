@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>应用详情</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/appstore.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css" />
+	</head>
+
+	<body>
+		<div class="z-appstores">
+			<ul class="z-appstore">
+				<li><img src="images/z-store1.png" /></li>
+				<li>
+					<ul class="z-stor1">
+						<li>啥都行</li>
+						<li>43256次下载</li>
+						<li><img src="images/2331.png"/></li>
+						<li>
+							<ul class="z-stor2">
+								<li>官方</li>
+								<li>无广告</li>
+								<li>无病毒</li>
+								<li>人工复检</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<a class="z-load" href=""><span class="z-load1">下载</span></a>
+		</div>
+		<ul class="z-intro">
+			<li>介绍</li>
+			<!--<li></li>
+			<li></li>-->
+		</ul>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="images/z-intro0.jpg" /></div>
+				<div class="swiper-slide"><img src="images/z-intro1.jpg" /></div>
+				<div class="swiper-slide"><img src="images/z-intro2.jpg" /></div>
+				<div class="swiper-slide"><img src="images/z-intro3.jpg" /></div>
+				<div class="swiper-slide"><img src="images/z-intro4.jpg" /></div>
+			</div>
+		</div>
+		<ul class="z-neirong">
+			<li><span>资源</span><span>免费</span></li>
+			<li><span>大小</span><span>15M</span></li>
+			<li><span>版本</span><span>1.0</span></li>
+			<li><span>时间</span><span>2016/12/8</span></li>
+			<li><span>开发</span><span>北京啥都行生态科技发展有限公司</span></li>
+		</ul>
+		<div class="z-recom">
+			<span>小编推荐</span><br>
+			<span>啥都行商城是一个线上线下购物平台，通过购物可获得商家赠送的积分，让消费者在消费中最大限度的得到实惠。</span>
+		</div>
+		<div class="z-recom1">
+			<span>应用介绍</span><br>
+			<span>啥都行商城界面干净、清爽和直观；操作更加流畅和简单。通过在啥都行平台上注册会员可以升级各个区域代理和商家。也可以在啥都行平台上自在购物。</span>
+		</div>
+		<!--<div class="z-com">
+     	<a class="z-load" href=""><span>下载</span></a>
+     </div>-->
+		<div class="z-touming" style="display: none;">
+			<div class="z-choosed">
+				请在浏览器中打开
+			</div>
+			<img class="z-zimg" src="images/z-jian.png" />
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/swiper-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var mySwiper = new Swiper('.swiper-container', {
+				slidesPerView: 2,
+				slidesPerGroup: 2,
+			});
+
+			//接口调用
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=wendy&f=download",
+				dataType: "json",
+				data: {},
+				success: function(data) {
+					var datas = data.data;
+					console.log(datas);
+					$(".z-load").attr({
+						"href": datas
+					});
+				},
+				error: function(data) {}
+			});
+
+			//判断是否微信浏览器
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=wendy&f=is_weixin",
+				dataType: "json",
+				data: {},
+				success: function(data) {
+					var datas = data.data;
+					if(datas == 1){
+						$(".z-touming").show();
+					}
+					$(".z-touming").click(function(){
+						$(".z-touming").hide();
+					})
+				},
+				error: function(data) {}
+			});
+			
+		})
+	</script>
+
+</html>

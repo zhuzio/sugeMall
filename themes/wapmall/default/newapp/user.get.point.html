@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+
+
+    <head>
+
+
+
+        <meta charset="UTF-8">
+
+
+
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />   
+
+
+
+        <title></title>
+
+
+
+        <link rel="stylesheet" href="{res file=css/public.css}" />
+
+
+
+        <link rel="stylesheet" href="{res file=css/user-detailed.css}" />
+
+
+
+        <link rel="stylesheet" href="{res file=css/business-integral.css}" /><!--商家积分明细-->
+
+
+
+        <script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+
+
+
+    </head>
+
+
+
+    <body>
+
+
+
+        <header class="header">
+
+
+
+            <a href="javascript:history.go(-1);" class="back"></a>
+
+
+
+            <h1 class="tit">消费积分明细</h1>
+
+
+
+        </header>
+
+
+
+        <div class="content mtop44">
+
+
+
+            <div class="profit-top">
+
+
+
+                <div class="profit-pic">
+
+
+
+                    <span>
+
+
+
+                        <img src="{res file=images/user-detailed/Gold.png}">
+
+
+
+                    </span>
+
+
+
+                </div>
+
+
+
+                <div class="profit-cont">
+
+
+
+                    <p class="pro-current">结余积分<span>{$point[point]}</span></p>
+
+
+
+                    <div class="pro-td">
+
+
+
+                        <a href="#" class="pro-ifi">
+
+
+
+                                当前权
+
+
+
+                            <span>{$point[bean]}</span>
+
+
+
+                        </a>
+
+
+
+                        <a href="#" class="pro-cum">
+
+
+
+                            累计积分
+
+
+
+                            <span>{$point[allPoint]}</span>
+
+
+
+                        </a>
+                        {if $user_type.type gt 2}
+
+                        <a href="#" class="pro-cum">
+
+                            市场待转补贴
+
+                            <small style="color:#fff">{$point[agent_money]}</small>
+
+                        </a>
+                        {else}
+                        
+                        {/if}
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <!--
+
+
+
+                时间：2016-06-16
+
+
+
+                描述：收益top
+
+
+
+            -->
+
+
+
+            <div class="int-switch">
+
+
+
+                <!--<div class="switch">
+
+
+
+                    {if $action eq "bean"}
+
+
+
+                    <a href ="{url app=point&act=userGetPoint&action=bean}" ><span  class="on activ">权明细</span></a>
+
+
+
+                    <a href ="{url app=point&act=userGetPoint&action=point}" ><span  class="off">收积分明细</span></a>
+
+
+
+                    {elseif $action eq "point"}
+
+
+
+                    <a href ="{url app=point&act=userGetPoint&action=bean}" ><span  class="on ">权明细</span></a>
+
+
+
+                    <a href ="{url app=point&act=userGetPoint&action=point}" ><span  class="off  activ">收积分明细</span></a>
+
+
+
+                    {/if}
+
+
+
+                </div>-->
+
+
+
+            </div>
+
+
+
+            <div class="refine-details">
+
+
+
+            {if $action eq "bean"}
+
+
+
+                <ul id="bean" class="bean">
+
+
+
+                {foreach from=$beanList item=bean}
+
+
+
+                    <li>
+
+
+
+                        <div class="refine-plus">
+
+
+
+                            <span></span>
+
+
+
+                        </div>
+
+
+
+                        <div class="refine-re">
+
+
+
+                            <p class="ref-number">苏格号:<span>{$bean[bean_number]}</span></p>
+
+
+
+                            <div class="ref-event">
+
+
+
+                                <p>积分满{$bean[bean_price]}增加1颗受赠权</p>
+
+
+
+                                <span class="ref-date">{$bean[createtime]}</span>
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </li>
+
+
+
+                {/foreach}
+
+
+
+                </ul>
+
+
+
+                <div id="pager">
+
+
+
+                    {$showpage}
+
+
+
+                </div>
+
+
+
+             {elseif $action eq "point"}
+
+
+
+                <ul id="bean" class="bean">
+
+
+
+                {foreach from=$pointList item=points}
+
+
+
+                    <li class="bean-list">
+
+
+
+                        <div class="refine-reduce">
+
+
+
+                            <span style="background-image: url({res file=images/business-integral/plus.png});"></span>
+
+
+
+                        </div>
+
+
+
+                        <div class="refine-re">
+
+
+
+                            <div class="integral">
+
+
+
+                                <p>赠送<span>{$points[point]}</span>积分</p>
+
+
+
+                                <p>商家赠送<span>{$points[shops_point]}</span>积分</p>
+
+
+
+                                <p>苏格联盟赠送<span>{$points[system_point]}</span>积分</p>
+
+
+
+                            </div>
+
+
+
+                            <div class="Buyers">
+
+
+
+                                <span class="buyname">商家：{$points[sendname]}</span>
+
+
+
+                                <!--<p>联系电话<span>15248954845</span></p>-->
+
+
+
+                            </div>
+
+
+
+                            <div class="mall-list">
+
+
+
+                            {if $points[oto] eq "offline"}
+
+
+
+                                    <span>线下订单：</span>
+
+
+
+                                    <span>{$points[order_id]}</span>
+
+
+
+                                    <em></em>
+
+
+
+                            {elseif $points[oto] eq "online"}
+
+
+
+                                    <span>线上订单：</span>
+
+
+
+                                    <span>{$points[order_id]}</span>
+
+
+
+                                    <em></em>
+
+
+
+                            {/if}
+
+
+
+
+
+
+
+                                </div>
+
+
+
+                            <div class="number">
+
+
+
+                                <p>&nbsp;</p>
+
+
+
+                                <p class="time">
+
+
+
+                                    <span>{$points[createtime]}</span>
+
+
+
+                                    
+
+
+
+                                </p>
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </li>
+
+
+
+                {/foreach}
+
+
+
+                </ul>
+
+
+
+                 <div id="pager">
+
+
+
+                    
+
+
+
+                    {$showpage}
+
+
+
+
+
+
+
+                </div>
+
+
+
+                {/if}
+
+
+
+
+
+
+
+            </div> 
+
+
+
+           
+
+
+
+        </div>
+
+  {include file="footer.html"}
+
+    
+
+    </body>
+
+
+
+    <script type="text/javascript" src="{res file=js/user-detailed.js}" ></script>
+
+
+
+</html>
+
+
+

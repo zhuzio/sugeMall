@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>辖区商家收益</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/area-business1.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.d_header{
+			border-bottom: 1px solid #dcdcdc;
+		}
+		body{
+			background-color: #efeff4;
+		}
+	</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">辖区商家收益</p>
+		<!-- <span>批量操作</span> -->
+	</div>
+	<ul class="zdul">
+		<div>
+			<li>
+				<p class="lp1"><img src="images/sjsytb.png"> 商家名：李家豪</p>
+				<p class="lp2">
+					<img src="images/jlbz.png"> 备注：李家豪
+				</p>
+				<p class="lp3">订单号：123456</p>
+				<p class="lp4"><img src="images/xqtime.png">2016-08-09</p>
+				<p class="lp5"><img src="images/xqjia.png"><span>95</span> <font>收益</font></p>
+			</li>
+		</div>
+	</ul>
+</body>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/box.js"></script>
+<script src="js/url.js"></script>
+<script>
+	 var tokens=localStorage.getItem ("token");
+	 var times=localStorage.getItem ("times");
+	 var num;
+	 $.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + "api/index.php?n=profit&f=xq_earning_info",
+		     data: {
+		     	token:tokens,
+		     	type:5,
+		     	time:times,
+		     	},
+		    success: function(data){
+		    	console.log(data);
+				    	var count;
+				    	num=data.totalpage;
+				    	for (var j = 0; j < 100000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	var html="";
+				    	for (var i = 0; i < count; i++) {	
+				    		// var sto=data.data[i].store_name;
+				    		// console.log(sto.length);
+				    		if (data.data[i].store_name) {
+				    			if (data.data[i].store_name.length>10) {
+					    			var store_name=data.data[i].store_name.substr(0,10)+"..";
+					    		}else{
+					    			var store_name=data.data[i].store_name;
+					    		}
+				    		}else{
+				    			var store_name=""
+				    		}
+				    	
+				    		html+='<div><li><p class="lp1"><img src="images/sjsytb.png"> 商家名：'+store_name+'</p><p class="lp2"><img src="images/jlbz.png"> 备注：'+data.data[i].classname+'</p><p class="lp3">订单号：'+data.data[i].order_sn+'</p><p class="lp4"><img src="images/xqtime.png">'+data.data[i].createtime+'</p><p class="lp5"><img src="images/xqjia.png"><span>'+data.data[i].money+'</span> <font>收益</font></p></li></div>'
+				    	};
+				    	
+				    	$("ul").html(html);
+				   
+
+		    } ,
+		    error:function(data){
+		    }
+		});
+		var pages=1; //当前页的页码
+		var allpage=num; //总页码，会从后台获取
+		var sc=true;
+		function showAjax(){
+			$.ajax({
+				 type: 'POST',
+				 dataType: "json",
+				 url:Url + "api/index.php?n=profit&f=xq_earning_info",
+				 data: {
+				     	token:tokens,
+				     	type:5,
+		     			time:times,
+				     	page:pages,
+				     },
+				success:function(data){
+				    	var count;
+				    	var html="";
+				    	for (var j = 0; j < 10000000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	// console.log(count);
+				    	
+				    	for (var i = 0; i < count; i++) {
+				    		if (data.data[i].store_name) {
+				    			if (data.data[i].store_name.length>10) {
+					    			var store_name=data.data[i].store_name.substr(0,10)+"..";
+					    		}else{
+					    			var store_name=data.data[i].store_name;
+					    		}
+				    		}else{
+				    			var store_name=""
+				    		}
+				    		html+='<div><li><p class="lp1"><img src="images/sjsytb.png"> 商家名：'+store_name+'</p><p class="lp2"><img src="images/jlbz.png"> 备注：'+data.data[i].classname+'</p><p class="lp3">订单号：'+data.data[i].order_sn+'</p><p class="lp4"><img src="images/xqtime.png">'+data.data[i].createtime+'</p><p class="lp5"><img src="images/xqjia.png"><span>'+data.data[i].money+'</span> <font>收益</font></p></li></div>';
+				    		sc=true;
+	    		
+				    	};
+				    	// console.log(html);
+				    	$("ul").append(html);
+					// 分页加载/
+				}
+			})
+		}
+		function scrollFn(){
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+				if (sc) {
+				// alert(2);
+				// alert(pages+":"+allpage)
+				sc=false;
+				pages++;
+				if (pages<=num) {
+					// console.log(pages);
+					showAjax();
+					// alert(1);
+				}
+				
+			}
+		       }
+		}
+		$(window).bind("scroll",scrollFn);	//绑定滚动事件
+</script>
+</script>
+</html>

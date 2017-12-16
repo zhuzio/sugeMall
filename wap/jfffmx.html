@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>积分发放明细</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/jfffmx.css">
+		<link rel="stylesheet" href="css/a.css">
+		<style>
+			.ldtt {
+				position: fixed;
+				z-index: 1000;
+				height: 3.2rem;
+				text-align: center;
+				bottom: 3rem;
+				left: 0;
+				width: 100%;
+				display: none;
+			}
+			
+			.ldtt img {
+				width: 3.2rem;
+			}
+			.part1 ul li {
+				position: relative;
+			}
+			.part1 ul li img{
+				width: 10.8rem;
+				height: 4.2rem;
+				position: absolute;
+				right: 3rem;
+				/*top: 19rem;*/
+				bottom: 9rem;
+				transform:rotate(-10deg);
+				-ms-transform:rotate(-10deg); 	/* IE 9 */
+				-moz-transform:rotate(-10deg); 	/* Firefox */
+				-webkit-transform:rotate(-10deg); /* Safari 和 Chrome */
+				-o-transform:rotate(-10deg); 	/* Opera */
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="ldtt"><img src="images/add.gif" alt=""></div>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">积分发放明细</p>
+			<!-- <button>保存</button> -->
+		</div>
+		<div class="jf_count">
+			<p class="jc_p1">
+				￥
+			</p>
+			<p class="jc_p2">
+				当前积分
+			</p>
+			<p class="jc_p3">
+				<span class="jsp1">已发积分 <font></font></span>
+				<span class="jsp2">累计积分 <font></font></span>
+			</p>
+		</div>
+		<div class="tab">
+			<p>
+				<button class="tbtn1 tbtn">已赠积分</button>
+				<button class="tbtn2">已购积分</button>
+			</p>
+		</div>
+		<div class="jkong"></div>
+		<div class="part1 part">
+			<ul>
+			</ul>
+		</div>
+		<div class="part2 part">
+			<ul>
+
+			</ul>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script>
+		$(function() {
+			var tokens = localStorage.getItem("token");
+			var sc = true;
+			var num2;
+			 function getLocalTime(timestamp){
+			    	var d = new Date(timestamp * 1000);    //根据时间戳生成的时间对象
+				var date = (d.getFullYear()) + "-" + 
+				           (d.getMonth() + 1) + "-" +
+				           (d.getDate()) + " " + 
+				           (d.getHours()) + ":" + 
+				           (d.getMinutes()) + ":" + 
+				           (d.getSeconds());
+				          return date; 
+			    }
+			$(".tab button").on("click", function() {
+				$(".tbtn").removeClass("tbtn");
+				$(this).addClass("tbtn");
+				var num = $(this).index();
+				// console.log(num);
+				if(num) {
+					$(".part1").css("display", "none");
+					$(".part2").css("display", "block");
+					sc = false;
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=order&f=shopPointList",
+						dataType: "json",
+						data: {
+							token: tokens
+						},
+						success: function(data) {
+							// console.log(data);
+							// $(".header1 .yuan").html("￥"+data.summoney);
+							for(var j = 0; j < 10000000; j++) {
+								if(!data.data[j]) {
+									count = j;
+									break;
+								}
+							};
+							var html = "";
+							num2 = data.totalpage;
+							for(var i = 0; i < count; i++) {
+								if(data.data[i].paytype == "wx") {
+									var wx = "微信支付"
+								} else if(data.data[i].paytype == "balance") {
+									var wx = "货款支付"
+								} else if(data.data[i].paytype == "ll") {
+									var wx = "连连支付"
+								} else if(data.data[i].paytype == "zfb") {
+									var wx = "支付宝支付"
+								} else {
+									var wx = "";
+								}
+
+								
+								html += '<li><p class="p2_p3">订单号：<font>' + data.data[i].orderid + '</font></p><p class="p2_p1"><span class="p2p1sp1">购入积分：<font>' + data.data[i].num + '</font></span><!-- a --></p><p class="p2_p1"><span class="p2p1sp1">共计：￥<font>' + data.data[i].amount + '</font></span><span class="p2p1sp2">每积分：<font>1.00</font>元</span></p><p class="p2_p31">' + wx + '</p><p class="p2_p4"><span class="time">' + getLocalTime(data.data[i].pay_createtime) + '</span></p></li>';
+							}
+
+							$(".part2 ul").html(html);
+						},
+						error: function(data) {
+							console.log(data);
+						}
+					})
+
+				} else {
+					$(".part2").css("display", "none");
+					$(".part1").css("display", "block");
+					sc = true;
+				}
+			})
+			
+			var num1;
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=order&f=shopSendPointList",
+				dataType: "json",
+				data: {
+					token: tokens
+				},
+				success: function(data) {
+					// console.log(data);
+					// $(".header1 .yuan").html("￥"+data.summoney);
+					$(".jc_p1").html("￥" + data.newpoint);
+					$(".jsp1 font").html("￥" + data.summoney);
+					$(".jsp2 font").html("￥" + data.totalmoney);
+					for(var j = 0; j < 10000000; j++) {
+						if(!data.data[j]) {
+							count = j;
+							break;
+						}
+					};
+					var html = "";
+					num1 = data.totalpage;
+
+					
+					for(var i = 0; i < count; i++) {
+						if (data.data[i].is_pass=="0") {
+				    			var srcs="images/yz0.png";
+				    		}else if (data.data[i].is_pass=="1") {
+				    			var srcs="images/yz1.png";
+				    		}else if (data.data[i].is_pass=="2") {
+				    			var srcs="images/yz2.png";
+				    		}
+						html += '<li><img src="'+srcs+'"><p class="p1_p1"><span class="p1p1sp1">商家赠送积分：<font>' + data.data[i].shops_point + '</font></span><span class="p1p1sp2">平台赠送积分：<font>' + data.data[i].system_point + '</font></span></p><p class="p1_p2"><span class="p1p2sp1">用户名：<font>' + data.data[i].real_name + '</font></span><span class="p1p2sp2">电话：<font>' + data.data[i].user_name + '</font></span></p><p class="p1_p3">联盟订单：<font>' + data.data[i].order_sn + '</font></p><p class="p1_p4"><span></span> <span>' + getLocalTime(data.data[i].createtime) + '</span></p></li>';
+
+					}
+					$(".part1 ul").html(html);
+				},
+				error: function(data) {
+					console.log(data);
+				}
+			})
+			var pages1 = 1; //当前页的页码
+			var allpage1 = num1; //总页码，会从后台获取
+			var sc1 = true;
+
+			function showAjax1() {
+				$(".ldtt").css("display", "block");
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=order&f=shopSendPointList",
+					data: {
+						token: tokens,
+						page: pages1,
+					},
+					success: function(data) {
+						// console.log(data);
+						var count;
+						var html = "";
+						for(var j = 0; j < 10000000; j++) {
+
+							if(!data.data[j]) {
+								count = j;
+
+								break;
+							}
+						};
+						// console.log(count);
+						var html;
+						for(var i = 0; i < count; i++) {
+							// for(var i = 0; i < count; i++) {
+								if (data.data[i].is_pass=="0") {
+						    			var srcs="images/yz0.png";
+						    		}else if (data.data[i].is_pass=="1") {
+						    			var srcs="images/yz1.png";
+						    		}else if (data.data[i].is_pass=="2") {
+						    			var srcs="images/yz2.png";
+						    		}
+							html += '<li><img src="'+srcs+'"><p class="p1_p1"><span class="p1p1sp1">商家赠送积分：<font>' + data.data[i].shops_point + '</font></span><span class="p1p1sp2">平台赠送积分：<font>' + data.data[i].system_point + '</font></span></p><p class="p1_p2"><span class="p1p2sp1">用户名：<font>' + data.data[i].real_name + '</font></span><span class="p1p2sp2">电话：<font>' + data.data[i].user_name + '</font></span></p><p class="p1_p3">联盟订单：<font>' + data.data[i].order_sn + '</font></p><p class="p1_p4"><span></span> <span>' + getLocalTime(data.data[i].createtime)+ '</span></p></li>';
+
+						};
+						// console.log(html);
+						sc1 = true;
+						$(".part1 ul").append(html);
+						// 分页加载/
+						setTimeout(function() {
+							$(".ldtt").css("display", "none");
+						}, 300)
+					}
+				})
+			}
+
+			function scrollFn1() {
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+					if(sc1) {
+						// alert(2);
+						// alert(pages+":"+allpage)
+						sc1 = false;
+						pages1++;
+						if(pages1 <= num1) {
+							// console.log(pages1);
+							showAjax1();
+							// alert(1);
+						}
+
+					}
+				}
+			}
+			var pages2 = 1; //当前页的页码
+			var allpage2 = num2; //总页码，会从后台获取
+			var sc2 = true;
+
+			function showAjax2() {
+				$(".ldtt").css("display", "block");
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=order&f=shopPointList",
+					data: {
+						token: tokens,
+						page: pages2,
+					},
+					success: function(data) {
+						// console.log(data);
+						var count;
+						var html = "";
+						for(var j = 0; j < 10000000; j++) {
+
+							if(!data.data[j]) {
+								count = j;
+
+								break;
+							}
+						};
+						// console.log(count);
+						var html;
+						for(var i = 0; i < count; i++) {
+							if(data.data[i].paytype == "wx") {
+								var wx = "微信支付"
+							} else if(data.data[i].paytype == "balance") {
+								var wx = "货款支付"
+							} else if(data.data[i].paytype == "ll") {
+								var wx = "连连支付"
+							} else if(data.data[i].paytype == "zfb") {
+								var wx = "支付宝支付"
+							} else {
+								var wx = "";
+							}
+							html += '<li><p class="p2_p3">订单号：<font>' + data.data[i].orderid + '</font></p><p class="p2_p1"><span class="p2p1sp1">购入积分：<font>' + data.data[i].num + '</font></span><!-- a --></p><p class="p2_p1"><span class="p2p1sp1">共计：￥<font>' + data.data[i].amount + '</font></span><span class="p2p1sp2">每积分：<font>1.00</font>元</span></p><p class="p2_p31">' + wx + '</p><p class="p2_p4"><span class="time">' + getLocalTime(data.data[i].pay_createtime)+ '</span></p></li>';
+
+						};
+						// console.log(html);
+						sc2 = true;
+						$(".part2 ul").append(html);
+						// 分页加载/
+						setTimeout(function() {
+							$(".ldtt").css("display", "none");
+						}, 300)
+					}
+				})
+			}
+
+			function scrollFn2() {
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+					if(sc2) {
+						// alert(2);
+						// alert(pages+":"+allpage)
+						sc2 = false;
+						pages2++;
+						if(pages2 <= num2) {
+							// console.log(pages2);
+							showAjax2();
+							// alert(1);
+						}
+
+					}
+				}
+			}
+			$(window).on("scroll", function() {
+				if(sc) {
+					$(window).bind("scroll", scrollFn1); //绑定滚动事件
+
+				} else {
+					$(window).bind("scroll", scrollFn2);
+
+				}
+			})
+
+		})
+	</script>
+
+</html>

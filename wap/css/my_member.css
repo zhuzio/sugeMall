@@ -1,0 +1,237 @@
+.d_header{
+	height: 8.8rem;
+	background-color: #f0f0f0;
+	/*position: relative;*/
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	width: 100%;
+	
+}
+.d_header a{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.d_header button{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width:11rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3.4rem;
+	color: #333;
+	text-align: right;
+	background-color: #f0f0f0;
+}
+.searcher{
+	position: fixed;
+	z-index: 10;
+	top: 8.8rem;
+	width: 100%;
+	height: 9.5rem;
+	background-color: #fff;
+}
+.searcher span{
+	/*width: 9rem;*/
+	width: 15%;
+	height: 5.5rem;
+	line-height: 5.5rem;
+	text-align: center;
+	font-size: 2.4rem;
+	color: #999;
+	float: right;
+	margin-top: 2rem;
+	border: 2px solid #f1f1f1;
+	margin-right: 5%;
+}
+.search{
+	margin: 2rem 0 2rem 3rem ;
+	height: 5.5rem;
+	border: 2px solid #f1f1f1;
+	overflow: hidden;
+	width: 70%;
+	float: left;
+	
+}
+.search i{
+	height: 5.5rem;
+	width: 7.5rem;
+	float: left;
+	line-height: 5.5rem;
+	text-align: center;
+}
+.search i img{
+	vertical-align: middle;
+	width: 3.3rem;
+	height: 3.3rem;
+}
+.search input{
+	height: 5.5rem;
+	/*width: 30rem;*/
+	width: 70%;
+	border: none;
+	outline: none;
+	float: left;
+	color: #999;
+	font-size: 2.4rem;
+}
+ul{
+	width: 100%;
+}
+ul li{
+	width: 100%;
+	border-bottom: 1px solid #f1f1f1;
+	height: 20rem;
+	position: relative;
+}
+.con{
+	margin: 0 3rem;
+}
+.left{
+	width: 11.5rem;
+	height: 20rem;
+	float: left;
+	line-height: 20rem;
+
+}
+.left img{
+	vertical-align: middle;
+	width: 10rem;
+	height: 10rem;
+}
+.right{
+	height: 20rem;
+	float: left;
+	width: 30rem;
+	position: relative;
+	margin-left: 2rem;
+}
+.right i{
+	position: absolute;
+	list-style: none;
+	height: 20rem;
+	width: 4.4rem;
+	line-height: 20rem;
+	left: -0.5rem;
+}
+.right i img{
+	width: 4.4rem;
+	vertical-align: middle;
+}
+.rp1{
+	margin-top: 2.5rem;
+	height: 5rem;
+	line-height: 5rem;
+	font-size: 2.4rem;
+	color: #333;
+}
+.rp1 img{
+	vertical-align: middle;
+	width: 3.4rem;
+	height: 4rem;
+	opacity: 0;
+}
+.rp1 span{
+	margin-left: 2rem;
+}
+.rp2{
+	/*margin-top: 2.5rem;*/
+	height: 5rem;
+	line-height: 5rem;
+	font-size: 2.4rem;
+	color: #333;
+}
+.rp2 img{
+	vertical-align: middle;
+	width: 3.4rem;
+	height: 3.4rem;
+}
+.rp2 span{
+	margin-left: 5.4rem;
+}
+.rp3{
+	height: 5rem;
+	line-height: 5rem;
+	font-size: 2.4rem;
+	color: #999;
+	
+}
+.rp3 span{
+	margin-left: 5.4rem;
+}
+.kong{
+	height: 18.3rem;
+}
+.numk{
+	height: 8.8rem;
+}
+.num{
+	height: 8.8rem;
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	bottom: 0;
+	background-color: #ebebeb;
+	line-height: 8.8rem;
+	text-align: center;
+	font-size: 2.2rem;
+	color: #999;
+}
+.none{
+	position: fixed;
+	width: 100%;
+	height: 41rem;
+	z-index: 10;
+	top: 25rem;
+	text-align: center;
+	display: none;
+}
+.none img{
+	width: 44rem;
+	height: 41rem;
+	
+}
+.mmtel{
+	position: absolute;
+	width: 3.4rem;
+	height: 3.4rem;
+	right: 3rem;
+	top:50%;
+	margin-top: -1.7rem;
+}
+.mmtel img{
+	
+	width: 3.4rem;
+	height: 3.4rem;
+	
+}

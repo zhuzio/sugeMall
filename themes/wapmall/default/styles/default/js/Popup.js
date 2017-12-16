@@ -1,0 +1,45 @@
+/*! jQuery v1.8.3 jquery.com | jquery.org/license */ 
+/*体现弹窗*/
+$("#withdra-Popup").hide();
+$("#Withdrawals").click(function(){	
+	$("#withdra-Popup").show();
+});
+$("#withdra-cancel").click(function(){
+	$("#withdra-Popup").hide();
+});
+$("#withdra-close").click(function(){
+	$("#withdra-Popup").hide();
+});
+/*体现2弹窗*/
+$("#withdra-Popup").hide();
+$("#Withdrawal").click(function(){	
+	$("#withdra-Popup").show();
+});
+$("#withdra-cancel").click(function(){
+	$("#withdra-Popup").hide();
+});
+$("#withdra-close").click(function(){
+	$("#withdra-Popup").hide();
+});
+/*商家积分发放弹窗*/
+$("#hair-Popup").hide();
+$("#hair").click(function(){	
+	$("#hair-Popup").show();
+});
+$("#hair-cancel").click(function(){
+	$("#hair-Popup").hide();
+});
+$("#hair-close").click(function(){
+	$("#hair-Popup").hide();
+});
+/*商家购买积分弹窗*/
+$("#buy-Popup").hide();
+$("#buy").click(function(){	
+	$("#buy-Popup").show();
+});
+$("#buy-cancel").click(function(){
+	$("#buy-Popup").hide();
+});
+$("#buy-close").click(function(){
+	$("#buy-Popup").hide();
+});

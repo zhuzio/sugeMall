@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>会员奖励</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/hyjl.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">会员奖励</p>
+		<!-- <button>保存</button> -->
+	</div>
+	<ul class="zdul">
+	</ul>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+$(function(){
+	 var tokens=localStorage.getItem ("token");
+	var html="";
+	$.ajax({
+	     type: 'POST',
+	      dataType: "json",
+	      url:Url + "api/index.php?n=member_wealth&f=memberReward",
+	     data: {
+	     	token:tokens,
+	     	page:1,
+	     	},
+	    success: function(data){
+	    	// console.log(data);
+		    for (var k = 1; k < data.totalpage+1; k++) {
+		    $.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + "api/index.php?n=member_wealth&f=memberReward",
+		     data: {
+		     	token:tokens,
+		     	page:k,
+		     	},
+		    success: function(data){
+		    	// console.log(data);
+		    	var count;
+		    	for (var m= 0; m < 100000; m++) {
+		    		
+		    		if (!data.data[m]) {
+		    			count=m;
+		    			
+		    			break;
+		    		}
+		    	};
+		    	if (count==0) {
+		    		$(".zdul").append(html);
+		    	}else{
+		    		for (var n = 0; n < count; n++) {
+		    	html+="<li class='hyjl'><p class='lp1'>商城购物</p><p class='lp2'><span class='sp1'>会员："+data.data[n].from_username+"</span><span class='sp2'><font>"+data.data[n].real_point+"</font> 积分</span></p><p class='lp4'>"+data.data[n].createtime+"</p><p class='lp5'>手机号：<span>"+data.data[n].phone+"</span></p></li><div class='kong4'></div>";
+		    	// console.log(html);
+		    	}
+		    	}
+		    	// console.log(count);
+		    	$(".zdul").html(html);
+		    	
+
+			    } ,
+			    error:function(data){
+			    	// console.log(data);
+			    }
+			})
+			}
+			// console.log(html);
+			
+		    	// $(".zdul").append(html);
+		    	var font=document.getElementsByTagName('font');
+		    	var leng=font.length;
+			for(var j=0;j<leng;j++){
+				var valu=font[j].innerHTML;
+				if(valu<=0){
+					font[j].style.color="#11c353";
+				}else{
+					font[j].style.color="#d81e05";
+				}
+			}
+		
+		},
+		   
+		    error:function(data){
+		    	// console.log(data);
+		    }
+		})
+		})
+</script>
+</html>

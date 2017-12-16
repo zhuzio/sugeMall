@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>收益提现</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/sytx.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.tbank{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			z-index: 100;
+			background-color: rgba(0,0,0,0.2);
+			top: 0;
+			left: 0;
+			display: none;
+		}
+		.tbank p{
+			width: 70%;
+			height: 22rem;
+			background-color: #fff;
+			position: relative;
+			margin-top: 60%;
+			margin-left: 15%;
+		}
+		.tbank p span{
+			position: absolute;
+			height: 10rem;
+			width: 100%;
+			text-align: center;
+			font-size: 3.4rem;
+			color: #333;
+			line-height: 10rem;
+		}
+		.tbank p a{
+			position: absolute;
+			height: 7rem;
+			width: 40%;
+			text-align: center;
+			font-size: 3.4rem;
+			color: #fff;
+			background-color: #ffc600;
+			text-align: center;
+			line-height: 7rem;
+			border-radius: 1rem;
+			top: 11rem;
+			left: 30%;
+		}
+		.tbank2{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			z-index: 100;
+			background-color: rgba(0,0,0,0.2);
+			top: 0;
+			left: 0;
+			display: none;
+		}
+		.tbank2 p{
+			width: 70%;
+			height: 18rem;
+			background-color: #fff;
+			position: relative;
+			margin-top: 60%;
+			margin-left: 15%;
+			font-size: 3.4rem;
+			color: #333;
+			line-height: 10rem;
+			text-align: center;
+			border-radius: 1rem;
+		}
+		.ltan {
+				position: fixed;
+				z-index: 100000； left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.3);
+				display: none;
+			}
+			
+		.ltan p {
+			width: 70%;
+			height: 20rem;
+			margin-top: 60%;
+			margin-left: 15%;
+			line-height: 20rem;
+			font-size: 3.4rem;
+			color: #333;
+			text-align: center;
+			background-color: #fff;
+			border-radius: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" class="dha1">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">收益提现</p>
+		<a href="goodstixian.html" class="dha2">提现明细</a>
+		<!-- <button></button> -->
+	</div>
+	<div class="bank">
+		<div>
+			<img src="images/lbank8.png" alt="" class="imgs">
+			<p>
+				<span class="bank_sp1"></span><br>
+				<span class="bank_sp2"></span>
+			</p>
+		</div>
+		
+	</div>
+	<div class="txian">
+		<p class="tx_p1">提现金额</p>
+		<p class="tx_p2"><span>￥</span><input type="text"></p>
+		<div class="tkong"></div>
+		<p class="tx_p3"><span class="tx_sp1">可提现余额 <font>0.00元</font> </span><span class="tx_sp2">全部提现</span></p>
+		<!-- <p class="tx_p4"><input type="text" placeholder="请输入支付密码"></p> -->
+	</div>
+	<!-- <div class="ts1">支付密码错误，请重新输入</div> -->
+	<!-- <div class="about">当天24点前到账</div> -->
+	<div class="ensure"><p>确认提现</p></div>
+	<div class="cg">
+		<p>提现申请已提交</p>
+	</div>
+	<div class="key">
+			<div class="k-header">
+				<div class="k-left"><img src="images/wk-x.png" alt="返回首页"></div>
+				<div class="k-right"><p>输入支付密码</p></div>
+			</div>
+			<div class="k-center">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li class="kc-last"></li>
+				</ul>
+			</div>
+			<div class="forget">
+				<p>支付密码错误 请重新输入</p>
+				<a href="czzfmm.html">忘记密码?</a>
+			</div>
+			<div class="k-footer">
+				<ul class="fistline">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+				<ul class="fistline">
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+				</ul >
+				<ul class="fistline">
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+				</ul>
+				<ul>
+					<li class="k-lastline"></li>
+					<li class="fistlines">0</li>
+					<li class="k-lastline"><img src="images/wk-12_03.png" alt=""></li>
+				</ul>
+			</div>
+		</div>
+		<div class="tbank">
+			<p>
+				<span>还没有添加银行卡</span>
+				<a>添加银行卡</a>
+			</p>
+		</div>
+		<div class="tbank2">
+			<p>
+				提现不能小于200
+			</p>
+		</div>
+		<div class="ltan">
+			<p>
+				
+			</p>
+		</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+
+<script>
+	$(function(){
+		$(".bank").on("click",function(){
+			 localStorage.setItem('bank_tf',  "false");
+			location.href="bank.html";
+		})
+	
+	var banks=["中国建设银行","中国工商银行","中国邮政储蓄银行","中国交通银行","中国银行","中国招商银行","中国人民银行","中国农业银行"];
+	var count=8;
+	var s=false;
+
+$(".tbank a").on("click",function(){
+	 localStorage.setItem('bank_tf',  "false");
+	location.href="bank.html"
+})
+var tokens=localStorage.getItem ("token");
+	var html="";
+		$.ajax({
+     type: 'POST',
+      dataType: "json",
+      url:Url + "api/index.php?n=pay_balance&f=userDepositShow",
+     data: {
+     	token:tokens,
+     
+     	},
+    success: function(data){
+      	 // console.log(data);
+    	$(".tx_p2 input").on('input propertychange',function(){
+   			var mo=$(".tx_p2 input").val();
+   			console.log(mo);			
+   			if ($(this).val()){
+   				$(".ensure p").addClass("btn");
+   					s=true;
+   				if (data.data.maxMoney>=mo) {
+   					$(".ensure p").addClass("btn");
+   					s=true;
+   				}else{
+   					$(".btn").removeClass("btn");
+   					s=false;
+   				}
+   			}else{
+   				$(".btn").removeClass("btn");
+   				s=false;
+   			}
+		})
+		$(".tx_sp2").on("click",function(){
+			$(".tx_p2 input").val(data.data.maxMoney);
+			$(".ensure p").addClass("btn");
+			s=true;
+		})
+    	// $(".jf_p1").find("span").html(data.data.totalmoney);
+    	// $(".jf_p2").find("span").html(data.data.maxMoney);
+    	if (data.data.defaultCard) {
+    		// console.log(12);
+    		$(".bank_sp1").html(data.data.defaultCard.bank_name);
+    		$(".imgs").attr("src",Url+data.data.defaultCard.bank_logo);
+	    	var card= data.data.defaultCard.bank_num.substr(15,4);
+	    	// console.log(card);
+	    	$(".bank_sp2").html("尾号"+card+"储蓄卡");
+    	}else{
+    		$(".tbank").css("display","block")
+    	}
+    	
+
+    	// $(".bank").find("img").attr("src","/data/upload/images/bank_logo/bank_boc.png");获取银行卡的图标
+    	var llmax=data.data.maxMoney;
+    	$(".tx_sp1").find("font").html(llmax+"元");
+    	// $(".tx_sp2").on("click",function(){
+    	// 	$(".tx_p2 input").val(llmax);
+    	// 	$(".ensure p").addClass("btn");
+    	// 	s=true;
+    	// })
+    	
+  //   	for (var i = 0; i <banks.length; i++) {
+		// if ($(".bank_sp1").html()==banks[i]) {
+		// 	count=i;
+		// 	$(".imgs").attr("src","images/lbank"+count+".png");
+		// }else{
+		// 	$(".imgs").attr("src","images/lbank"+count+".png");
+		// }
+		// }
+
+    } ,
+    error:function(data){
+    	// console.log(data);
+    }
+});
+// $(".tx_p4 input").keyup(function(){
+// 		$(".ts1").css("display","none");
+// 	})
+
+$('.k-left').on('click',function(){
+		$('.key').hide();
+	})
+$(".ensure p").on("click",function(){
+	if (s) {
+
+		var lss=$(".tx_p2 input").val();
+		if (lss>=200) {
+			$(".key").css("display","block");
+		}else{
+			$(".tbank2").css("display","block");
+		}
+		
+	// 	var mon=$(".tx_p2 input").val();
+	// 	var paw=$(".tx_p4 input").val();
+	// $.ajax({
+	//      type: 'POST',
+	//       dataType: "json",
+	//       url:Url + "api/index.php?n=pay_balance&f=userDeposit",
+	//      data: {
+	//      	token:tokens,
+	//      	money:mon,
+	//      	pay_password:paw,
+	//      	},
+	//     success: function(data){
+	//     	console.log(data);
+	//     	if (data.msg=="支付密码错误") {
+	// 		    		$(".ts1").css("display","block");
+	// 		    	}else if(data.msg=="提现申请已提交"){
+	// 		    		setTimeout(function(){
+	// 		    			$(".cg").css("display","block");
+	// 		    		},0);
+	// 		    		setTimeout(function(){
+	// 		    			$(".cg").css("display","none");
+	// 		    		},1000);
+	// 		    	}
+	//     } ,
+	//     error:function(data){
+	//     	console.log(data);
+	//     }
+	// });
+
+	};
+
+	});
+	var arr=[];
+	var pas;
+		$('.fistline li').on('click',function(){
+			$(this).html();
+			if (arr.length<6) {
+				arr.push($(this).html());
+				// console.log(arr);
+				// console.log(arr.length);
+				for (var i = 0; i < arr.length; i++) {
+					$(".k-center li").eq(i).html("*");
+				};
+				if (arr.length==6) {
+					aj();
+					// $('.key').hide();
+				}
+			};
+			
+			
+		})
+		$('.fistlines').on('click',function(){
+			$(this).html();
+			if (arr.length<6) {
+				arr.push($(this).html());
+				// console.log(arr);
+				// console.log(arr.length);
+				for (var i = 0; i < arr.length; i++) {
+					$(".k-center li").eq(i).html("*");
+
+				};	
+				if (arr.length==6) {
+					aj();
+				}
+			};
+			
+		})
+		$('.k-lastline').on('click',function(){
+			arr.pop();
+			for (var i = 0; i < $(".k-center li").length; i++) {
+					$(".k-center li").eq(i).html("");
+				};
+			for (var i = 0; i < arr.length; i++) {
+					$(".k-center li").eq(i).html("*");
+				};
+			// console.log(arr);
+		})
+		$(".forget p").css("display","none");
+		function aj(){
+			var mon=$(".tx_p2 input").val();
+			pas=arr.join("");
+		    $.ajax({  
+		               type: 'POST',
+		               url: Url + "api/index.php?n=pay_balance&f=userDeposit",
+		               dataType: "json",
+		             data: { 
+		               token : tokens,
+		               pay_password:pas,
+		               money:mon,
+		              
+		             },
+		              success: function(data){
+		                          // console.log(data);
+		                          if (data.ret == "ok") {
+		                          	arr=[];
+		                          	$(".k-center li").html("");
+		                          	$(".key").css("display","none");
+		                          	setTimeout(function(){
+			    			$(".cg").css("display","block");
+			    		},0);
+			    		setTimeout(function(){
+			    			$(".cg").css("display","none");
+			    		},1000);
+			    		$(".tx_p2 input").val("");
+			    		location.href="sytx.html";
+			    	}else{
+			    		if (data.msg=="支付密码错误") {
+			                          	$(".forget p").css("display","block");
+			                          	arr=[];
+			                          	$(".k-center li").html("");
+			                          }else{
+			                          	$(".ltan p").html(data.msg);
+			                          	$(".ltan").show();
+			                          }
+			    		
+			    	}
+		       //                    if (data.msg=="支付密码错误") {
+		       //                    	$(".forget p").css("display","block");
+		       //                    	arr=[];
+		       //                    	$(".k-center li").html("");
+		       //                    }else if(data.msg=="提现申请已提交") {
+		       //                    	arr=[];
+		       //                    	$(".k-center li").html("");
+		       //                    	$(".key").css("display","none");
+		       //                    	setTimeout(function(){
+			    		// 	$(".cg").css("display","block");
+			    		// },0);
+			    		// setTimeout(function(){
+			    		// 	$(".cg").css("display","none");
+			    		// },1000);
+			    		// $(".tx_p2 input").val("");
+			    		// location.href="sytx.html";
+		       //                    }
+		            
+		      } ,
+		                error:function(data){
+		                                // console.log(data);
+		                                $(".ltan p").html(data.msg);
+			                          	$(".ltan").show();
+		                            }
+		    })
+		  }
+		$('.ltan').on('click',function(){
+			$(this).css("display","none");
+		})
+		$('.tbank').on('click',function(){
+			$(this).css("display","none");
+		})
+		  $('.tbank2').on('click',function(){
+			$(this).css("display","none");
+		})
+	})
+
+</script>
+</html>

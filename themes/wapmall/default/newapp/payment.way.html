@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<meta charset="UTF-8">
+
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+
+		<title></title>
+
+		<link rel="stylesheet" href="{res file=css/public.css}" /><!--公用css-->
+
+		<link rel="stylesheet" href="{res file=css/Payment.css}" />
+
+	</head>
+
+	<body>
+
+		<header class="header">
+
+			<a href="javascript:history.go(-1);" class="back"></a>
+
+			<h1 class="tit">货款支付</h1>
+
+		</header>
+
+		<div class="content mtop44">
+
+			<ul class="Payment">
+
+				<li>
+
+					<img src="{res file=images/Payment/weixin.png}">
+
+					<span class="class-name">微信支付</span>
+
+					<div class="Multiselect">
+
+						<span class="active"></span>
+
+						<input type="radio" checked="checked" name="follow" id="wxpay" value="wxpay">
+
+					</div>
+
+				</li>
+				<li>
+
+					<img src="{res file=images/Payment/llpay.png}">
+
+					<span class="class-name">连连支付</span>
+
+					<div class="Multiselect">
+
+						<span></span>
+
+						<input type="radio" name="follow" value="wapllpay">
+
+					</div>
+
+				</li>
+
+				<li>
+
+					<img src="{res file=images/Payment/yuanbao.png}">
+
+					<span class="class-name">货款支付</span>
+
+					<div class="Multiselect">
+
+						<span></span>
+
+						<input type="radio" name="follow" value="balpay">
+
+					</div>
+
+				</li>
+
+			</ul>
+
+			<p class="next">
+
+				<button type="button">下一步</button>
+
+			</p>
+
+            <p id="next"></p>
+
+		</div>
+
+		<!--弹窗-->
+
+		<div class="Withdrawals" id="pay" style="display: none;">
+
+			<div class="withdra-box">
+
+			<form id="myform" name="myform" action="index.php?app=pay_balance&act=paymentShops" method='post'>
+
+				<p class="pay-tit">货款支付</p>
+
+				<div class="pay-nr">
+
+					<h4>苏格联盟</h4>
+
+					<h2>{$order[amount]}</h2>
+
+					<p>
+
+                        <input type="hidden" name="orderid" value="{$order[id]}">
+
+                        <input type="hidden" name="_hash_" value="{$_hash_}">
+
+						<input placeholder="请输入支付密码" type="password" name="pay_passwd">
+
+					</p>
+
+				</div>
+
+				<div class="pop-operation">
+
+					<button  id="ment" type="button">取消</button>
+
+					<button type="submit">确定</button>
+
+				</div>
+
+			</form>
+
+			</div>
+
+			<div class="withdra-bg"></div>
+
+		</div>
+
+		{include file="footer.html"}
+
+	</body>
+
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+
+	<script type="text/javascript" src="{res file=js/payment.js}" ></script>
+
+    <script>
+
+       $('.next').click(function(){
+
+           var type = $('input[name="follow"]:checked').val();
+
+           if(type == 'wxpay'){
+
+               window.location.href='http://www.sugemall.com/app/wxpay/wxjs.php?dingdan=<!--{$order[orderid]}-->';
+
+           }else if(type == 'balpay'){
+
+                $('#next').click();
+
+           }else if(type == 'wapllpay'){
+			   window.location.href='http://www.sugemall.com/app/wapllpay/llpayapi.php?dingdan=<!--{$order[orderid]}-->';
+		   }
+
+       });
+
+       $('#myform').submit(function(){
+
+                var pay_passwd = $('input[name="pay_passwd"]').val();
+
+                if(pay_passwd.length <= 0){
+
+                    alert('请输入密码');
+
+                    return false;
+
+                }
+
+                 $.ajax({
+
+                      type: "post",
+
+                      url: "index.php?app=pay_balance&act=check_pay_pass",
+
+                      async: false,
+
+                      data: { pay_passwd: pay_passwd }
+
+                    }).done(function( msg ) {
+
+                      if(msg == 'ok'){
+
+                        status = 1;
+
+                      }else{
+
+                        alert('支付密码错误');
+
+                      }
+
+                    });
+
+            
+
+              if(status == 1){
+
+                return true;
+
+              }else{
+
+                return false;
+
+              }
+
+            });
+
+    </script>
+
+</html>
+

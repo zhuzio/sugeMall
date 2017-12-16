@@ -1,0 +1,61 @@
+{include file=member.header.html}
+<script type="text/javascript">
+    $(function() {
+        $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+    });
+</script>
+<style type="text/css">
+    .table .line td{ border:none;}
+    .float_right {float: right;}
+    .line{ border-bottom:1px solid #E2E2E2}
+</style>
+<div class="content">
+    <div class="totline"></div><div class="botline"></div>
+    {include file=member.menu.html}
+    <div id="right">
+        {include file=member.submenu.html}
+        <div class="wrap">
+            <div class="public table">
+
+                <table>
+                    <!--{if $sgxtorder_list}-->
+                    <tr class="line tr_bgcolor">
+                        <th width="10%">订单号</th>
+                        <th width="10%">金额</th>
+                        <th width="10%">购买时间</th>
+                    </tr>
+                    <!--{foreach from=$sgxtorder_list item=sgxtorder}-->
+                    <tr class="line">
+                    <td align="center">{$sgxtorder.orderid}</td>
+                    <td align="center">{$sgxtorder.amount}</td>
+                    <td align="center">{$sgxtorder.pay_createtime|date:Y-m-d H:i}</td>
+                </tr>
+                    <!--{foreachelse}-->
+                    <tr class="no_data">
+                        <td colspan="3">{$lang.no_data}</td>
+                    </tr>
+                    <!--{/foreach}-->
+                    <!--{/if}-->
+                    <!--{if $sgxtorder_list}-->
+                    <tr class="sep-row">
+                        <td colspan="4"></td>
+                    </tr>
+                    <tr class="operations">
+                        <th colspan="4">
+                            <p class="position2 clearfix">
+                                {include file=member.page.bottom.html}
+                            </p>
+                        </th>
+                    </tr>
+                    <!--{/if}-->
+                </table>
+            </div>
+            <div class="wrap_bottom"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="clear"></div>
+{include file=footer.html}

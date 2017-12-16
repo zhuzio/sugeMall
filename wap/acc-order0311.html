@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>确认订单</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<link rel="stylesheet" type="text/css" href="css/order.css" />
+		<link rel="stylesheet" type="text/css" href="css/acc-order.css" />
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a class="black" href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">确认订单</p>
+		</div>
+		<!--收货地址模块-->
+		<a class="change_add">
+			<div class="acc-address">
+				<div class="acc-a">
+					<span class="acc-per">收货人 :</span>
+					<span class="acc-name"></span>
+					<span class="acc-number"></span>
+				</div>
+				<span class="acc-token"></span>
+				<span class="acc-serve">(收货不便，请填写待收货服务)</span>
+				<img class="acc-down" src="images/z-21.png" />
+			</div>
+		</a>
+		<!--灰色背景模块-->
+		<div class="acc-bank"></div>
+		<!--店名标题-->
+		<div class="acc-store"></div>
+		<!--购买过的商品模块-->
+		<div class="payg">
+		</div>
+		<ul class="acc-distri">
+			<li><span class="distri-way">配送方式</span></li>
+			<li>
+				<span class="acc-expr"></span><br>
+				<span class="acc-online">在线支付</span>
+			</li>
+		</ul>
+		<ul class="acc-distri">
+			<li><span class="distri-way">发票信息</span></li>
+			<li class="acc-distrif">
+				<span class="acc-bill">明细个人(单位)</span><br>
+				<img class="acc-billf" src="images/z-21.png" />
+				<span class="acc-com"></span>
+			</li>
+		</ul>
+		<ul class="acc-bull">
+			<li><span class="distri-bull">买家留言</span></li>
+			<li>
+				<input class="acc-explain" type="" name="" value="" placeholder="选填：对本次交易的说明（建议填写...）" />
+			</li>
+		</ul>
+		<ul class="acc-points" style="margin-bottom: 12.0rem;">
+			<li><span class="shop-point">购物积分</span></li>
+			<li>
+				<span class="point-explain">当前积分</span>
+				<span class="point-a"></span>
+				<span>，购买可得消费积分</span>
+				<span class="point-e"></span>
+			</li>
+		</ul>
+		<div class="acc-footer">
+			<span>共</span>
+			<span class="acc-total"></span>
+			<span>件，</span>
+			<span>总金额</span>
+			<span class="acc-sum"></span>
+			<span class="acc-sub">提交订单</span>
+		</div>
+		<div class="acc-tj" style="display: none;">订单已提交</div>
+		<div class="acc-tj1" style="display: none;">请添加收货地址</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//买家留言接口
+			var words = $(".acc-explain").val();
+			$(".acc-explain").keyup(function() {
+				words = $(".acc-explain").val();
+			});
+			var tokens = localStorage.getItem("token");
+			var goodsId = localStorage.getItem("good");
+			var dpointss = localStorage.getItem("dpoints");
+			var dmoneyss = localStorage.getItem("dmoneys");
+			var daddressdss = localStorage.getItem("daddressds");
+			var daddresspss = localStorage.getItem("daddressps");
+			var daddressmss = localStorage.getItem("daddressms");
+			var dshippingpss = localStorage.getItem("dshippingps");
+			var dshippingssh = localStorage.getItem("dshippingss");
+			var dshippingnss = localStorage.getItem("dshippingns");
+			var dcolorcss = localStorage.getItem("dcolorcs");
+			var dstorenss = localStorage.getItem("dstorens");
+			var dsums = localStorage.getItem("dsum");
+			var dstorewss = localStorage.getItem("dstorews");
+			var dsountss = localStorage.getItem("dsounts");
+			var dgoodssf = localStorage.getItem("dgoodss");
+			var rss = localStorage.getItem("rss");
+			var obrss = JSON.parse(rss);
+			obrss[0].postscript = words;
+			var rsw = JSON.stringify(obrss);
+			var dgoodssf = localStorage.getItem("dgoodss");
+			var dshippingidss = localStorage.getItem("dshippingids");
+			var obj = JSON.parse(dgoodssf);
+			$(".acc-name").html(daddresspss);
+			$(".acc-number").html(daddressmss);
+			$(".acc-token").html(daddressdss);
+			$(".acc-store").html(dstorenss);
+			$(".acc-number").html(daddressmss);
+			$(".acc-token").html(daddressdss);
+			$(".acc-expr").html('快递费:&nbsp;&nbsp;&nbsp;&nbsp;' + dshippingpss);
+			$(".point-a").html(dmoneyss);
+			$(".point-e").html(dpointss);
+			$(".acc-sum").html(dsums);
+			var counter = $(".goods-name").text().length; //获取文本域的字符串长度
+			var txt = $(".goods-name").text();
+			if(counter >= 20) {
+				var num = $(".goods-name").text().substr(0, 20);
+				$(".goods-name").text(num + '....');
+			} else {
+				$(".goods-name").text(txt);
+			}
+			//发票点击
+			$(".acc-distrif").click(function() {
+				window.location.href = "z-invoice.html";
+			});
+			var inputl = $(".acc-explain").val();
+			$(".acc-explain").keyup(function() {
+				inputl = $(".acc-explain").val();
+			});
+			//发票号
+			var invonumss = localStorage.getItem("invonums");
+			$(".acc-com").text("");
+			//设置发票公司名
+			var fcomss = localStorage.getItem("fcoms");
+			$(".acc-com").text(fcomss);
+			var eitidss = localStorage.getItem("addss");
+			console.log(eitidss);
+			//判断收货地址开始
+			var addname = $(".acc-name").text();
+//			console.log(addname);
+			var addtel = $(".acc-number").text();
+//			console.log(addtel);
+			var addres = $(".acc-token").text();
+//			console.log(addres);
+			if(addname == "undefined" || addtel == "undefined" || addres == "undefined") {
+				$(".acc-tj1").show();
+				$(".acc-name").html(" ");
+				$(".acc-number").html(" ");
+				$(".acc-token").html(" ")
+			}
+			setTimeout(function() {
+				$(".acc-tj1").hide();
+			}, 1000);
+			//判断收货地址结束
+			//console.log(eitidss);
+			//提交订单ajax
+			//	定义一个生成订单的id
+			// 	var orderid;
+			$(".acc-sub").click(function() {
+				$.ajax({
+					//			contentType:"application/x-www-form-urlencoded; charset=gb2312",
+					type: 'POST',
+					url: Url + "/api/index.php?n=goods&f=directlyorder",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"order_info": rsw,
+						"invoice": invonumss,
+						"adr_id": eitidss,
+						"shipping_id": dshippingidss,
+					},
+					success: function(data) {
+//						console.log(data);
+						//收货地址判断开始
+						if(addname == "undefined" || addtel == "undefined" || addres == "undefined") {
+							$(".acc-tj1").show();
+							$(".acc-name").html(" ");
+							$(".acc-number").html(" ");
+							$(".acc-token").html(" ")
+						} else {
+							var orderid = data.data.order_id;
+							var zderids = data.data.orderid;
+							console.log(orderid);
+							localStorage.setItem('zzderid', zderids);
+							localStorage.setItem('order_sn', orderid);
+							$(".acc-tj").show();
+							localStorage.setItem('zftz', "2");
+							location.href = "z-order.html";
+						}
+						setTimeout(function() {
+							$(".acc-tj1").hide();
+						}, 1000);
+						setTimeout(function() {
+							$(".acc-tj").hide();
+						}, 1000);
+						//收货地址判断结束
+					},
+					error: function(data) {},
+				});
+
+			});
+			var html1 = " ";
+			var lengs = obj.length;
+			console.log(obj)
+			var lenn = 0;
+			$(".payg").html(" ");
+			for(var i = 0; i < obj.length; i++) {
+				var html1 = '<div class="pay-goods"><img class="zs-pays" src="' + Url + '' + obj[i].goods_image + '"/><ul class="pay-info"><li><span class="goods-name">' + obj[i].goods_name + '</span></li><li><span class="goods-amount">数量  x</span><span class="goods-num">' + obj[i].quantity + '</span><span class="goods-color">规格 :</span><span class="goods-colors">' + obj[i].specification + '</span></li><li><span class="goods-money">￥ ' + obj[i].price + '</span></li><li><span class="goods-rep">7天退换</span></li></ul></div>'
+				$(".payg").append(html1);
+				word(21);
+				 lenn += Number(obj[i].quantity);
+				var stroename = obj[0].store_name;
+				$(".acc-store").html(stroename);
+				$('.pay-goods img').error(function() {
+					$(this).attr('src', 'images/z-logo.png');
+				});
+				if($(".goods-num").text() == "undefined") {
+					$(".goods-num").text(dsountss);
+					$(".acc-total").html(dsountss);
+				}else{
+					$(".acc-total").html(lenn);
+				}
+				if($(".goods-colors").text() == "undefined") {
+					$(".goods-colors").text(dcolorcss);
+				}
+				console.log(obj[i].quantity)
+			  
+			}
+//			console.log(lenn)  
+			word1(15);
+			
+			//限制字数方法
+			function word(len) {
+				$(".goods-name").each(function() {
+					var counter = $(this).text().length; //获取文本域的字符串长度
+					var txt = $(this).text();
+					if(counter >= len) {
+						var num = $(this).text().substr(0, len);
+						$(this).text(num + '....');
+					} else {
+						$(this).text(txt);
+					}
+				});
+			}
+			$(".acc-address").click(function() {
+				// window.location.href = "manage-address.html";
+			});
+			$(".change_add").attr("href","manage-address.html?acc=order");
+
+			//颜色尺码
+			function word1(len) {
+				$(".goods-colors").each(function() {
+					var counter = $(this).text().length; //获取文本域的字符串长度
+					var txt = $(this).text();
+					if(counter >= len) {
+						var num = $(this).text().substr(0, len);
+						$(this).text(num + '....');
+					} else {
+						$(this).text(txt);
+					}
+				});
+			}
+
+		});
+	</script>
+
+</html>

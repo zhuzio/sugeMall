@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>订单详情</title>
+	<link rel="stylesheet" href="css/orderinformation.css">
+	<style type="text/css">
+</style>
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+				<a class="black" href="javascript:history.go(-1)"><img src="images/w_tback.png" alt="返回首页"></a>
+				<p class="title">订单详情</p>
+		</header>
+		<section>
+			<div class="banner">
+				<p>买家已付款</p>
+				<img src="images/w_bo.png" alt="">
+			</div>
+			<div class="address">
+				<div class="images">
+					<img src="images/w_address.png" alt="">
+				</div>
+				<div class="word">
+					<p class="p1"><i class="speo"></i><span class="sdetel"></span></p>
+					<p class="p2"></p>
+				</div>
+				
+			</div>
+			<div class="goods">
+				<div class="logo">
+					<div class="logo-left">
+						<dl>
+							<dt><img src="images/w-logo.png" alt=""></dt>
+							<dd></dd>
+						</dl>
+					</div>
+					<div class="logo-center"></div>
+					<div class="logo-right">
+						<dl>
+							<dt><img src="images/w-tel.png" alt=""></dt>
+							<dd></dd>
+						</dl>
+					</div>
+				</div>
+				<div class="z-detailed">
+			</div>
+				<div class="price1">
+					<p><i>商品总价</i><span class="z-count"></span></p>
+					<p class="p_p1 "><i>运费（快递）</i><span class="z-count1"></span></p>
+					<p class="p_p2"><i>订单总价</i><span class="z-count2"></span></p>
+				</div>
+				<div class="price2">
+					<p class="p_p2"><i>订单总价</i><span class="z-count3"></span></p>
+				</div>
+			</div>
+		</section>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+   $(function(){
+   	 $('.flag').on('tap',function(){
+        	$(this).css('color','#fff');
+        	$(this).css('background','#ffa442');
+      });
+       var mcount = 0;
+        var zzderids = localStorage.getItem("zzderid");
+        console.log(zzderids);
+        var tokens = localStorage.getItem("token");
+        var recid = [];
+        $.ajax({
+		type: 'POST',
+		url: Url + "api/index.php?n=order&f=orderlist",
+		dataType: "json",
+		data: {
+			"token":tokens,
+			"order_id":zzderids
+		},
+		success: function(data) {
+		 console.log(data)
+		var datas = data.data;
+		var daddressp = datas.consignee;
+		var daddress = datas.address;
+		var daddressm = datas.phone_tel;
+		$(".speo").html('收货人：'+daddressp);
+		$(".sdetel").html(daddressm);
+		$(".p2").html('收货地址：'+daddress);
+		var storel = datas.store_logo;
+		var storen = datas.store_name;
+		var storet = datas.tel;
+		var goodnum = datas.goods_amount;
+		var kd = datas.shipping_fee;
+		$(".logo-left dl dt").html('<img src="' + Url + ''+storel+'" alt="">');
+		$(".logo-left dl dd").html(storen);
+		$(".logo-right dd").html('<a href="tel:'+storet+'">'+storet+'</a>');
+		$(".z-count1").html('￥'+kd);
+		for (var i = 0; i < datas.goods.length; i++) {
+    	var html1 = '<div class="detailed"><div class="detailed-left"><dl><dt><img src="' + Url + ''+datas.goods[i].goods_image+'" alt=""></dt><dd><h1 class="z-name">'+datas.goods[i].goods_name+'</h1><p class="z-spec">颜色分类：'+datas.goods[i].specification+'</p><p class="z-quan">数量：'+datas.goods[i].quantity+'</p></dd></dl></div><div class="detailed-right"><p class="p1">￥ '+datas.goods[i].price+'</p><button class="flag">退款</button></div></div>';
+        $(".z-detailed").append(html1);
+        word(21);
+        var price = datas.goods[i].price;
+        console.log(price);
+        var count = datas.goods[i].quantity;
+        recid.push(datas.goods[i].rec_id); 
+        mcount += price * count;
+      }
+	console.log(mcount);
+	$(".z-count").html('￥'+ mcount);
+	var zmcount = Number(mcount) + Number(kd);
+	$(".z-count2").html('￥'+zmcount);
+	$(".z-count3").html('￥'+zmcount);
+	 BackFn();
+//	console.log(recid);
+	$('.logo-left dl dt img').error(function(){
+    	$(this).attr('src', 'images/z-logo.png');
+	});
+	$('.detailed-left dl dt img').error(function(){
+    	$(this).attr('src', 'images/z-logo.png');
+	});
+   },
+	error: function(data) {
+	}
+	 });
+	 
+	function word(len){
+  	$(".z-name").each(function(){
+   	 	var counter = $(this).text().length;//获取文本域的字符串长度
+   	 	var txt = $(this).text();
+	  	if(counter >= len) {
+		var num = $(this).text().substr(0, len);
+		$(this).text(num+'....');
+	}else { 
+	  $(this).text(txt);
+		} 
+   	});
+  }
+        
+//退款点击按钮     
+ function BackFn(){
+	$(".flag").click(function(){
+		var indext = $(this).parents(".detailed").index();
+		var recids = recid[indext];
+		localStorage.setItem('rec_id', recids);
+		window.location.href = "tksq.html";
+	})
+ }      
+ });
+</script>
+</html>

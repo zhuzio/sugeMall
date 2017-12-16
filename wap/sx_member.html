@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>社区-县代-会员</title>
+	<link rel="stylesheet" href="css/yonghugongyong.css">
+	<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<header>
+			<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+			<p class="p1"><img src="images/back.png" alt="返回首页"></p>
+		</a>
+		<p class="p2">我的会员</p>
+		</header>
+		<section>
+			<div class="sec1">
+				<dl class="w_member">
+					<dt><img src="images/my_hy.png"/></dt>
+					<dd>会员</dd>
+				</dl>
+				<dl class="w_daili">
+					<dt><img src="images/my_dl.png"/></dt>
+					<dd>代理</dd>
+				</dl>
+				<dl class="w_shangjia">
+					<dt><img src="images/my_sj.png"/></dt>
+					<dd>商家</dd>
+				</dl>
+				<dl class="w_xiamember">
+					<dt><img src="images/xqhysy.jpg"/></dt>
+					<dd>辖区会员</dd>
+				</dl>
+			</div>
+			<div class="sec2">
+				<dl class="w_xiashangjia">
+					<dt><img src="images/xqsjsy.jpg"/></dt>
+					<dd>辖区商家</dd>
+				</dl>
+				<dl>
+					<dt></dt>
+					<dd></dd>
+				</dl>
+				<dl>
+					<dt></dt>
+					<dd></dd>
+				</dl>
+				<dl>
+					<dt></dt>
+					<dd></dd>
+				</dl>
+			</div>
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script>
+		$(".w_member").click(function(){
+			location.href = "my_member.html";
+		});
+		$(".w_daili").click(function(){
+			location.href = "daili.html";
+		});
+		$(".w_shangjia").click(function(){
+			location.href = "shangjia.html";
+		});
+		$(".w_xiamember").click(function(){
+			location.href = "xia_member.html";
+		});
+		$(".w_xiashangjia").click(function(){
+			location.href = "xia_shangjia.html";
+		});
+	</script>
+</html>

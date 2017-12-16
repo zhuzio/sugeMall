@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>货款提现</title>
+		<link rel="stylesheet" type="text/css" href="css/hktx.css" />
+		<script src="js/box.js"></script>
+		<script src="js/url.js"></script>
+		<style>
+			.ltan {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				z-index: 1000;
+				top: 0;
+				left: 0;
+				background-color: rgba(0, 0, 0, 0.2);
+				display: none;
+			}
+			
+			.ltan p {
+				width: 70%;
+				height: 20rem;
+				text-align: center;
+				line-height: 14rem;
+				font-size: 3rem;
+				color: #333;
+				background-color: #fff;
+				margin-top: 50%;
+				margin-left: 15%;
+				border-radius: 1rem;
+			}
+			
+			.gbk {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				z-index: 1000;
+				top: 0;
+				left: 0;
+				background-color: rgba(0, 0, 0, 0.2);
+				display: none;
+			}
+			
+			.gbk p {
+				width: 70%;
+				height: 20rem;
+				text-align: center;
+				line-height: 14rem;
+				font-size: 3rem;
+				color: #333;
+				background-color: #54ceee;
+				margin-top: 50%;
+				margin-left: 15%;
+				border-radius: 1rem;
+			}
+			
+			.gbk p a {
+				float: left;
+				width: 44%;
+				height: 9rem;
+				line-height: 9rem;
+				text-align: center;
+				color: #fff;
+				background-color: #ffc600;
+				border-radius: 1rem;
+				margin-left: 28%;
+				margin-top: 10%;
+				box-shadow: 3px 3px 10px rgba(0, 0, 0, .3);
+			}
+			
+			.tbank {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				z-index: 100;
+				background-color: rgba(0, 0, 0, 0.2);
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.tbank p {
+				width: 70%;
+				height: 18rem;
+				background-color: #fff;
+				position: relative;
+				margin-top: 60%;
+				margin-left: 15%;
+				border-radius: 1rem;
+				font-size: 3.4rem;
+				line-height: 10rem;
+				text-align: center;
+			}
+			
+			.tbank p span {
+				position: absolute;
+				height: 10rem;
+				width: 100%;
+				text-align: center;
+				font-size: 3.4rem;
+				color: #333;
+				line-height: 10rem;
+			}
+			
+			.tbank p a {
+				position: absolute;
+				height: 7rem;
+				width: 40%;
+				text-align: center;
+				font-size: 3.4rem;
+				color: #fff;
+				background-color: #ffc600;
+				text-align: center;
+				line-height: 7rem;
+				border-radius: 1rem;
+				top: 11rem;
+				left: 30%;
+			}
+			
+			.tbank2 {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				z-index: 100;
+				background-color: rgba(0, 0, 0, 0.2);
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			
+			.tbank2 p {
+				width: 70%;
+				height: 18.0rem;
+				background-color: #fff;
+				position: relative;
+				margin-top: 60%;
+				margin-left: 15%;
+				border-radius: 1rem;
+				font-size: 3.4rem;
+				line-height: 10rem;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="z-hk">
+			<header>
+				<a href="javascript:history.go(-1)"><img src="images/z-1222.png" class="one" /></a>
+				<p>货款提现</p>
+				<span class="z-zhan">账单</span>
+				<img src="images/z-1221.png" class="two" />
+			</header>
+			<div class="banner">
+					<div class="b_left">
+						<span></span>
+						<p class="dianji">当前货款积分<img src="images/z-1223.png" alt="" /></p>
+					</div>
+					<div class="b_right">
+						<p class="b_right3">未审核货款</p>
+					</div>
+					<div class="z-leftri">
+					<p class="b_right1">购积分明细</p>
+					<p class="b_right2">货款提现明细</p>
+					</div>
+			</div>
+		</div>
+			<section>
+				<div class="main1">
+					<img src="images/lbank8.png" class="img" />
+					<div class="right">
+						<p></p>
+						<span></span>
+					</div>
+				</div>
+				<div class="main2">
+					<b href="">提现货款</b>
+					<input type="text" class="inp" />
+				</div>
+				<div class="main3">
+					<p>当前最大提现额度<span></span></p>
+					<!--<b href="">全部提现</b>-->
+				</div>
+				<button class="but">
+				确认提现
+			</button>
+			</section>
+		</div>
+		<div class="key">
+			<div class="k-header">
+				<div class="k-left"><img src="images/wk-x.png" alt="返回首页"></div>
+				<div class="k-right">
+					<p>输入支付密码</p>
+				</div>
+			</div>
+			<div class="k-center">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li class="kc-last"></li>
+				</ul>
+			</div>
+			<div class="forget">
+				<a href="czzfmm.html">忘记密码?</a>
+			</div>
+			<div class="k-footer">
+				<ul class="fistline">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+				<ul class="fistline">
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+				</ul>
+				<ul class="fistline">
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+				</ul>
+				<ul>
+					<li class="k-lastline"></li>
+					<li class="fistlines">0</li>
+					<li class="k-lastline"><img src="images/wk-12_03.png" alt=""></li>
+				</ul>
+			</div>
+		</div>
+		<div class="cd-popup">
+			<div class="cd-popup-container">
+				<h1>货款积分:</h1>
+				<p>货款积分是用户通过购物积分方式付款的款项,每满200货款积分即可提现.</p>
+				<span>注:1货款积分=1元</span><br />
+				<b class="quxiao">朕知道了</b>
+			</div>
+		</div>
+		<div class="ltan">
+			<p></p>
+		</div>
+		<div class="gbk">
+			<p>
+				<a href="bank.html">去选择银行卡</a>
+			</p>
+		</div>
+		<div class="tbank">
+			<p>
+				还没有添加银行卡
+			</p>
+		</div>
+		<div class="tbank2">
+			<p>
+				提现金额不能小于200
+			</p>
+		</div>
+	</body>
+
+	<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(".two").click(function() {
+			location.href = "zhangdan.html";
+		});
+		$(".z-zhan").click(function(){
+			location.href = "zhangdan.html";
+		})
+		$(".b_right1").click(function() {
+			location.href = "buymingxi2.html";
+		});
+		$(".b_right2").click(function() {
+			location.href = "s-hktxmx.html";
+		});
+		$(".b_right3").click(function() {
+			location.href = "newddsh.html";
+		});
+
+		$('.dianji').on('click', function() {
+			jQuery(document).ready(function($) {
+				event.preventDefault();
+				$('.cd-popup').addClass('is-visible');
+				//关闭窗口
+				$('.cd-popup').on('click', function(event) {
+					event.preventDefault();
+					$(this).removeClass('is-visible');
+				});
+			});
+		});
+		$('.cd-popup-container b').on('click', function() {
+			$('.cd-popup').removeClass('is-visible');
+		})
+
+		// $('.inp').on('keyup',function(){
+		$('.inp').on('input propertychange', function() {
+			var txt = $('.inp').val();
+			//	 	console.log(txt);
+			if(txt == "") {
+				$('.but').css('background', '#ccc');
+			} else {
+				$('.but').css('background', '#07a9d1');
+				$('.but').on('click', function() {
+					txt = $('.inp').val();
+					if($(".right p").html() == "") {
+						$('.tbank').show();
+					} else {
+						if(txt < 200) {
+							$('.tbank2').show();
+						} else {
+							console.log(12);
+							$('.key').show();
+						}
+
+					}
+
+				})
+			}
+		})
+		$('.tbank').on("click", function() {
+			$('.tbank').hide();
+		})
+		$('.tbank2').on("click", function() {
+			$('.tbank2').hide();
+		})
+
+		var tokens = localStorage.getItem("token");
+		var pay_passwords;
+		$('.btn').on('click', function() {
+			$('.key').show();
+		})
+		$('.k-left').on('click', function() {
+			$('.key').hide();
+		})
+		var arr = [];
+		$('.fistline li').on('click', function() {
+			$(this).html();
+			if(arr.length < 6) {
+				arr.push($(this).html());
+				// console.log(arr);
+				// console.log(arr.length);
+				for(var i = 0; i < arr.length; i++) {
+					$(".k-center li").eq(i).html("*");
+				};
+			};
+			if(arr.length == 6) {
+				pay_passwords = arr.join("");
+				aj();
+				$('.key').hide();
+			}
+
+		})
+		$('.fistlines').on('click', function() {
+			$(this).html();
+			if(arr.length < 6) {
+				arr.push($(this).html());
+				// console.log(arr);
+				// console.log(arr.length);
+				for(var i = 0; i < arr.length; i++) {
+					$(".k-center li").eq(i).html("*");
+				};
+			};
+			if(arr.length == 6) {
+				// pas=arr.join("");
+				pay_passwords = arr.join("");
+				aj();
+				$('.key').hide();
+				arr = [];
+				$(".k-center li").html("");
+			}
+		})
+		$('.k-lastline').on('click', function() {
+			arr.pop();
+			for(var i = 0; i < $(".k-center li").length; i++) {
+				$(".k-center li").eq(i).html(" ");
+			};
+			for(var i = 0; i < arr.length; i++) {
+				$(".k-center li").eq(i).html("*");
+			};
+		})
+		$(".main1").on("click", function() {
+			localStorage.setItem('bank_tf', "true");
+			location.href = "bank.html";
+		})
+	</script>
+	<script>
+		var tokens = localStorage.getItem("token");
+
+		var html = "";
+		var banks = ["中国建设银行", "中国工商银行", "中国邮政储蓄银行", "中国交通银行", "中国银行", "中国招商银行", "中国人民银行", "中国农业银行"];
+		var count = 8;
+
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=pay_balance&f=shopDepositShow",
+			dataType: "json",
+			data: {
+				token: tokens
+			},
+			success: function(data) {
+				console.log(data);
+				// if (!data.data.defaultCard) {
+				// 		$(".gbk").css("display","block");
+				// }
+				var mx = data.data.maxMoney;
+				var mx = data.data.maxMoney;
+				$('.main3 p span').html(mx);
+				$('.b_left span').html(mx);
+				if(data.data.defaultCard) {
+					var mx = data.data.maxMoney;
+					var mx = data.data.maxMoney;
+					$('.main3 p span').html(mx);
+					$('.b_left span').html(mx);
+					var carl = data.data.defaultCard.bank_num.length;
+					var card = data.data.defaultCard.bank_num.substr(carl - 4, 4);
+					// console.log(carl);
+					$('.right span').html("尾号" + card + "储蓄卡");
+					$('.right p').html(data.data.defaultCard.bank_name);
+					$(".img").attr("src", Url + data.data.defaultCard.bank_logo);
+				}
+
+			},
+			error: function(data) {
+				// console.log(data);
+			}
+		})
+		$(".gbk").on("click", function() {
+			$(this).css("display", "none");
+		})
+		$('.b_left span').on("click", function() {
+			location.href = "zhangdan.html";
+		})
+		$(".main3 b").on("click", function() {
+			$(".inp").val($('.main3 p span').html());
+			$('.but').css('background', '#07a9d1');
+			$('.but').on('click', function() {
+				// $('.key').show();
+				txt = $('.inp').val();
+				if($(".right p").html() == "") {
+					$('.tbank').show();
+				} else {
+					if(txt < 200) {
+						$('.tbank2').show();
+					} else {
+						// console.log(12);
+						$('.key').show();
+					}
+
+				}
+			})
+		})
+
+		function aj() {
+			var moneys = $('.inp').val();
+			// console.log(pay_passwords);
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=pay_balance&f=shopDeposit",
+				dataType: "json",
+				data: {
+					token: tokens,
+					money: moneys,
+					pay_password: pay_passwords,
+				},
+				success: function(data) {
+					// console.log(data);
+					$(".ltan p").html(data.msg);
+					$(".ltan").css("display", "block");
+					$(".ltan").on("click", function() {
+						$(".ltan").css("display", "none");
+					})
+					if(data.ret == "ok") {
+						localStorage.setItem('bank_tf', "");
+						setTimeout(function() {
+							location.href = "hktx.html";
+						}, 1000)
+
+					}
+					$(".k-center li").html("");
+					arr = [];
+				},
+				error: function(data) {
+					// console.log(data);
+				}
+			})
+		}
+		// var bank_ids=localStorage.getItem ("bank_id");
+		// if (bank_ids) {
+		// 	console.log(bank_ids);
+		// 	$.ajax({	
+		// 	           type: 'POST',
+		// 	           url: Url + "api/index.php?n=pay_balance&f=bank_list",
+		// 	         	dataType: "json",
+		// 	       	data: { 
+		// 	       		token : tokens,
+		// 	       		bank_id:bank_ids,
+		// 	       	},
+		// 	        	success: function(data){
+		// 	                      console.log(data);
+		// 	                        var carl=data.data.bank_num.length;
+		// 	                      var card= data.data.bank_num.substr(carl-4,4);
+		// 	                      // console.log(carl);
+		// 	                       $('.right span').html("尾号"+card+"储蓄卡");
+		// 	                       $('.right p').html(data.data.bank_name);
+		// 	                       $(".img").attr("src",Url+data.data.bank_logo);
+		// 	                      } ,
+		// 	            error:function(data){
+
+		// 		                      }
+		// 	})
+		// }
+	</script>
+
+</html>

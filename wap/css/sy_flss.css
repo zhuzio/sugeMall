@@ -1,0 +1,173 @@
+.d_header {
+	width: 100%;
+	height: 8.8rem;
+	background-color: #efeff4;
+	position: fixed;
+	/*left: 0;
+	top: 0;*/
+	z-index: 10000;
+	overflow: hidden;
+}
+
+.d_header a {
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width: 11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1 {
+	height: 8.8rem;
+	width: 11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+
+.p1 img {
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+
+.p2 {
+	/*text-align: center;
+	line-height: 8.8rem;*/
+	/*font-size: 3.4rem;
+	color: #333;*/
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 6rem;
+	margin-left: 20%;
+	margin-top: 1.4rem;
+	width: 60%;
+	background-color: #fff;
+	border-radius: 1rem;
+}
+
+.p2 span {
+	float: left;
+	width: 18%;
+	height: 100%;
+	text-align: center;
+	line-height: 6rem;
+}
+
+.p2 input {
+	float: left;
+	width: 80%;
+	height: 100%;
+	/*text-align: center;*/
+	/*line-height: 6rem;*/
+	font-size: 2.4rem;
+	color: #999;
+}
+
+.p2 span img {
+	/*float: left;*/
+	width: 37%;
+	/*height: 100%;*/
+	vertical-align: middle;
+}
+
+.d_header button {
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width: 7rem;
+	z-index: 1;
+	top: 0;
+	font-size: 2.8rem;
+	color: #333;
+	text-align: right;
+	background-color: #f0f0f0;
+}
+
+.z-sd {
+	width: 100%;
+	height: 9.8rem;
+}
+
+.hot li {
+	height: 18.8rem;
+	/*margin: 0 3rem 1rem;*/
+	position: relative;
+	margin-bottom: 8.0rem;
+}
+
+.z-simg {
+	display: inline-block;
+	width: 27.2%;
+	margin-left: 4%;
+	/*border: 1px solid red;*/
+}
+/*.z-simg1{
+	width: 27.2%;
+}*/
+.z-simg img {
+	width: 17.0rem;
+	height: 16.0rem;
+	/*border: 1px solid red;*/
+}
+
+.hot li span {
+	display: inline-block;
+	/*width: 27.2%;*/
+	height: 14.8rem;
+	float: left;
+	/*border: 1px solid red;*/
+}
+
+.hot li .hp1 {
+	float: left;
+	width: 55%;
+	/*height: 100%;*/
+	height: 18.8rem;
+	font-size: 2.8rem;
+	color: #333;
+	line-height: 3rem;
+	margin-left: 1.5rem;
+	position: relative;
+}
+
+.hot li .hp2 {
+	position: absolute;
+	bottom: 5.0rem;
+	font-size: 2.8rem;
+	color: #de1800;
+	line-height: 3rem;
+}
+
+.none {
+	text-align: center;
+	display: none;
+}
+
+.none img {
+	width: 55%;
+}
+
+.none p {
+	width: 100%;
+	text-align: center;
+	font-size: 3.4rem;
+	color: #666;
+	line-height: 5rem;
+	margin-top: 1rem;
+}
+
+.none p span {
+	color: #999;
+}
+
+.z-load {
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	bottom: 2.0rem;
+	z-index: 10000;
+	display: none;
+}

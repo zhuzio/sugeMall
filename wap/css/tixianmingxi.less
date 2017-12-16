@@ -1,0 +1,93 @@
+@import url(m_reset.css);
+.full(@w,@h,@b){
+	width: @w;
+	height: @h;
+	background: @b;
+}
+.lfc(@l,@f,@c){
+	line-height: @l;
+	font-size: @f;
+	color: @c;
+}
+.box(@tan){
+	display: -webkit-box;
+	-webkit-box-orient:@tan;
+}
+html,body,.container{
+	.full(100%,100%,#efeff4);
+	.box(vertical);
+	font-size: 62.5%;
+}
+.r{
+	position: relative;
+}
+.a{
+	position: absolute;
+}
+header{
+	.full(100%,8.8rem,#efeff4);
+	.r;
+	border-bottom: 0.1rem solid #d5d5d5;
+	a{
+		.a;
+		left: 3.0rem;
+		top: 2.5rem;
+		img{
+			width: 2.2rem;
+			height: 3.8rem;
+			vertical-align: middle;
+		}
+	}
+	p{
+		.lfc(8.8rem,3.4rem,#323333);
+		text-align: center;
+	}
+}
+section{
+	-webkit-box-flex:1;
+	overflow: auto;
+	.full(100%,auto,none);
+	.section1{
+		.full(100%,29.8rem,#fff);
+		margin-bottom: 2rem;
+		.box(horizontal);
+		line-height: 6rem;
+		font-size: 2.2rem;
+		padding-top: 2rem;
+		box-sizing: border-box;
+		.left{
+			padding-left: 3rem;
+			box-sizing: border-box;
+			ul{
+				.box(horizontal);
+				    img{
+				    	display: block;
+				    	width: 4rem;
+				    	height: 4rem;
+				    	margin-top: 1rem;
+				    }
+				.card{
+					width: 4.2rem;
+					height: 3.3rem;
+				}
+			}
+		}
+		.center{
+		    -webkit-box-flex: 1;
+		    padding-left: 8rem;
+		    box-sizing: border-box;
+		    font-size: 2.4rem;
+		}
+		.right{
+		    padding-right: 3rem;
+		    box-sizing: border-box;
+		   .box(horizontal);
+		    img{
+			display: block;
+			width: 4.4rem;
+			height: 4.4rem;
+			margin: 1rem 1rem 0 0 ;
+			}
+		}
+	}
+}

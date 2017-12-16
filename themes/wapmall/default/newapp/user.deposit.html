@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<meta charset="UTF-8">
+
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+
+		<title></title>
+
+		<link rel="stylesheet" href="{res file=css/public.css}" /> <!--公用css-->
+
+		<link rel="stylesheet" href="{res file=css/business.css}" />
+		<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+
+		<script type="text/javascript" src="{res file=js/Withdrawals.js}" ></script>
+
+	</head>
+
+	<body>
+
+		<header class="header">
+
+			<a href="javascript:history.back(-1);" class="back"></a>
+
+			<h1 class="tit">收益提现
+                <a href="{url app=balance&act=earnings_detail}"   style="float: right; display:block;">
+                    提现明细
+                </a>
+            </h1>
+
+		</header>
+
+		<form id="myform" name="myform" action="index.php?app=pay_balance&act=userDeposit" method='post'>
+
+			<div class="content mtop44">
+
+				<div class="business-main">
+
+						<ul>
+
+							<li>
+
+								<p>最大提现额度<span id="maxMoney">{$money[maxMoney]}</span></p>
+
+							</li>
+
+							<li>
+								<em></em>
+
+								<input placeholder="请输入提现金额" type="number" name="money" value="{$money[maxMoneyValue]}">
+
+							</li>
+
+							<li>
+
+	                        {if $defaultBank eq null}
+
+								<a href="{url app=bank&act=manage_bankcard}" class="classifi">请选择提现银行卡<span class="point-cion"></span>
+
+	                            </a>
+
+	                        {else}
+
+	                            <a href="{url app=bank&act=manage_bankcard}" class="classifi">{$defaultBank[bank_name]} &nbsp; {$defaultBank[bank_num]} <span class="point-cion"></span>
+
+	                            </a>
+
+	                        {/if}
+
+							</li>
+
+							<li>
+
+								<em></em>
+
+								<input placeholder="请输入支付密码" type="password" name="pay_passwd">
+
+							</li>
+
+						</ul>
+
+						<p class="determine"><button type="submit">确定</button></p>
+
+				</div>
+
+			</div>
+
+			<!--解冻弹窗-->
+
+			<div class="Withdrawals" id="Withd" style="display:none">
+
+				<div class="withdra-box">
+
+					<div class="thaw-inf">
+
+						<div class="thaw-news">
+
+							<!--<p>商家<span>阮中正</span></p>
+
+							<p>电话<span>18203654897</span></p>-->
+
+							<p>提现金额<span class="thaw-number">0</span></p>
+							
+						</div>
+
+						<p class="impot">是否确认提现？</p>
+
+					</div>
+
+					<div class="pop-operation">
+
+						<button type="button" id="Wit">否</button>
+
+						<button type="submit" >是</button>
+
+					</div>
+
+				</div>
+
+				<div class="withdra-bg"></div>
+
+			</div>
+		</form>
+	{include file="footer.html"}
+	</body>
+
+	
+
+	<script>
+
+		 $(function(){
+
+            var status = 0;
+
+            $('#myform').submit(function(){
+
+                var moneymath = /^\d+(\.\d+)?$/;
+
+                var money = $('input[name="money"]').val();
+
+                var maxMoney = $('#maxMoney').html();
+
+                if(!moneymath.test(money) || money.length <= 0){
+
+                   alert('你输入的金额不正确');
+
+                   return false;
+
+                 }
+
+                if( parseInt(money) %100 != 0){
+                	alert('提现金额只能为100的整数倍');
+                    return false;
+                }
+
+                 if(parseInt(money) > parseInt(maxMoney)){
+
+                 	alert('你不能提现那么多');
+
+                    return false;
+
+                 }
+
+                 //验证付款密码是否真确
+
+                 var pay_passwd  = $('input[name="pay_passwd"]').val();
+
+                 if(pay_passwd.length <= 0){
+
+                     alert('支付密码不能为空');
+
+                     return false;
+
+                 }
+
+                 $.ajax({
+
+                      type: "post",
+
+                      url: "index.php?app=pay_balance&act=check_pay_pass",
+
+                      async: false,
+
+                      data: { pay_passwd: pay_passwd }
+
+                    }).done(function( msg ) {
+
+                      if(msg == 'ok'){
+
+                        status = 1;
+
+                      }else{
+
+                        alert('支付密码错误');
+
+                        
+
+                      }
+
+                    });
+
+            
+
+              if(status == 1){
+
+                return true;
+
+              }else{
+
+                return false;
+
+              }
+
+            });
+
+    
+
+        $('input[name="money"]').blur(
+
+            function(){
+
+                $('.thaw-number').html($(this).val());
+
+            });
+
+        });
+
+	</script>
+
+</html>
+

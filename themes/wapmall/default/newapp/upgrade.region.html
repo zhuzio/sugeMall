@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /><!--公用css-->
+		<link rel="stylesheet" href="{res file=css/upgrade.css}" />
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.go(-1);" class="back"></a>
+			<h1 class="tit">请选择级别</h1>
+		</header>
+	<form action="index.php?app=req&act=upgradeRequest" method="post"  id="myform">
+		<div class="content mtop44">
+			<ul class="Payment">
+			{if $type eq "7"}
+				<li>
+					<label>请选择省份</label>
+					<select class="province" name="province" data='city' >
+						<option value="">请选择</option>
+					</select>
+				</li>
+			{elseif $type eq '6'}
+			    <li>
+					<label>请选择省份</label>
+					<select class="province" name="province" data='city' >
+						<option value="">请选择</option>	
+					</select>
+				</li>
+				<li>
+					<label>请选择市</label>
+					<select class="city" data='county' name="city">
+						<option value="">请选择</option>
+					</select>
+				</li>
+			{elseif $type eq '5'}
+				<li>
+					<label>请选择省份</label>
+					<select class="province" name="province" data='city' >
+						<option value="">请选择</option>
+					</select>
+				</li>
+				<li>
+					<label>请选择市</label>
+					<select class="city" data='county' name="city">
+						<option value="">请选择</option>
+					</select>
+				</li>
+				<li>
+					<label>请选择县</label>
+					<select class="county" name="county">
+						<option value="">请选择</option>
+					</select>
+				</li>
+			{/if}
+			</ul>
+			<p class="next">
+				<button type="button">下一步</button>
+			</p>
+		</div>
+		<!--弹窗-->
+		<div class="Withdrawals" id="pay" style="display: none;">
+			<div class="withdra-box">
+				<div class="up-nr">
+					
+					{if $type eq 7}
+						<p>目标级别<span>省级代理</span></p>
+
+					{elseif $type eq 6}
+						<p>目标级别<span>级代理</span></p>
+					
+					{else}
+
+						<p>目标级别<span>县级代理</span></p>
+					{/if}
+					<p class="region">代理区域<span id="prov"></span></p>
+				</div>
+				<p class="prompt">您确定要升级吗？</p>
+				<div class="pop-operation">
+					<button id="ment" type="button">取消</button>
+					<button type="submit">确定</button>
+				</div>
+				<input type="hidden" name="type" value="{$type}">
+			</div>
+			<div class="withdra-bg"></div>
+		</div>
+	</form>
+	{include file="footer.html"}
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/payment.js}" ></script>
+	<script type="text/javascript" src="{res file=js/upgrade.js}" ></script>
+	<script type="text/javascript">
+		//显示所选区域
+	$('.next').click(function(){
+		var province = $('select[name="province"]').find("option:selected").text();
+		var city =  $('select[name="city"]').find("option:selected").text();
+		var county =  $('select[name="county"]').find("option:selected").text();
+		$('#prov').html(province+'&nbsp'+city+'&nbsp'+county);
+	});
+
+	</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /> <!--公用css-->
+		<link rel="stylesheet" href="{res file=css/business.css}" />
+	</head>
+	<body>
+		<header class="header">
+			<a class="back"></a>
+			<h1 class="tit">发积分</h1>
+		</header>
+		<div class="content mtop44">
+			<div class="business-main">
+				<form>
+					<ul>
+						<li>
+							<p>总积分<span>2564</span></p>
+						</li>
+						<li>
+							<em></em>
+							<input placeholder="请输入电话/用户名" type="text">
+						</li>
+						<li>
+							<em></em>
+							<input placeholder="请输入赠送积分数量" type="number">
+						</li>
+						<li>
+							<div class="classifi">
+								<select>
+									<option>选择商品分类</option>
+									<option>零食</option>
+									<option>家电</option>
+									<option>化妆品</option>
+									<option>男装</option>
+									<option>女装</option>
+									<option>电子</option>
+									<option>手机</option>
+									<option>电脑</option>
+								</select>
+								<span class="point-cion"></span>
+							</div>
+						</li>
+						<li>
+							<em></em>
+							<input placeholder="请添加备注" type="text">
+						</li>
+						<li>
+							<em></em>
+							<input placeholder="请输入支付密码" type="password">
+						</li>
+					</ul>
+					<p class="determine"><a href="#" id="determine">确定</a></p>
+				</form>
+			</div>
+		</div>
+		
+		<!--发积分弹窗-->
+		<div class="Popup" id="dete-Popup">
+			<div class="Popup-box">
+				<div class="inf-box">
+					<div class="inf-dete">
+						<p class="inf-name">姓名<span>阮中正</span></p>
+						<p class="inf-tel">电话<span>18203758617</span></p>
+						<p class="inf-number">其中商家赠送<span>300</span>苏格赠送<span>700</span></p>
+					</div>
+					<p class="remind">是否确认赠送？</p>
+					<p class="inf-inf">
+						<button class="inf-no" id="no">否</button>
+						<button class="inf-yes">是</button>
+					</p>
+				</div>
+			</div>
+			<div class="Popup-bg"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/business-hairintegral.js}" ></script>
+</html>

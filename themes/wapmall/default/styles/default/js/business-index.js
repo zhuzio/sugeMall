@@ -1,0 +1,30 @@
+/*头部搜索框*/
+$(".search").children(".clear-icon").hide();
+			$("#search").focus(function(){
+				$(this).next(".clear-icon").show();
+				$(this).prev(".search-icon").hide();
+			});
+			$("#search").blur(function(){
+				$(this).children(".clear-icon").hide();
+				$(this).prev(".search-icon").show();
+			});
+			$(".clear-icon").click(function(){
+				$(this).prev("#search").attr("value","");
+				$(this).hide();
+				$(this).prev(".search-icon").show();
+			});
+/*商家切换*/
+$("#share").hide();
+		$("#index-nav").addClass("active");
+		$("#index-nav").click(function(){
+			$("#index").show();
+			$("#index-nav").addClass("active");
+			$("#share").hide();
+			$("#share-nav").removeClass("active");
+		});
+		$("#share-nav").click(function(){
+			$("#index").hide();
+			$("#index-nav").removeClass("active");
+			$("#share").show();
+			$("#share-nav").addClass("active");
+		});

@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>报表账单</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/bbtj.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.ldtt{
+			position: fixed;
+			z-index: 1000;
+			height: 3.2rem;
+			text-align: center;
+			bottom: 3rem;
+			left: 0;
+			width: 100%;
+			display: none;
+
+		}
+		.ldtt img{
+			width: 3.2rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="ldtt"><img src="images/add.gif" alt=""></div>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">报表账单</p>
+		<!-- <button>保存</button> -->
+	</div>
+	<div class="kong"></div>
+	<div class="date">
+		<p class="dt_p1 dtt1">
+			<select name="" id="year">
+				<!-- <option value="">2013年</option>
+				<option value="">2014年</option>
+				<option value="">2015年</option>
+				<option value="">2016年</option>
+				<option value="">2017年</option>
+				<option value="">2018年</option>
+				<option value="">2019年</option>
+				<option value="">2020年</option>
+				<option value="">2021年</option>
+				<option value="">2022年</option>
+				<option value="">2023年</option>
+				<option value="">2024年</option> -->
+			</select>
+		</p>
+		<p class="dt_p1 dtt2">
+			<select name="" id="month" class="kkk">
+				<option value="">01月</option>
+				<option value="">02月</option>
+				<option value="">03月</option>
+				<option value="">04月</option>
+				<option value="">05月</option>
+				<option value="">06月</option>
+				<option value="">07月</option>
+				<option value="">08月</option>
+				<option value="">09月</option>
+				<option value="">10月</option>
+				<option value="">11月</option>
+				<option value="">12月</option>
+			</select>
+		</p>
+		<span>查找</span>
+		<div class="dq"></div>
+	</div>
+	<div class="data">
+		
+		
+	</div>
+	
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	$(function(){
+		var mydate = new Date();
+  		 var years = mydate.getFullYear();
+  		 var months= (mydate.getMonth()+1);
+   		 var days= mydate.getDate();
+   		// console.log(years);
+   		// console.log(months);
+   		// console.log(days);
+   		// $(".month-m").html(months+"月");
+   		// $(".trans-y").html(years+"年");
+   		var yhtml="";
+   		for (var i = 2013; i <= years; i++) {
+   			if (i==years) {
+   				yhtml+="<option value='' id='"+years+"'>"+i+"年</option>";
+   			}else{
+   				yhtml+="<option value=''>"+i+"年</option>";
+   			}
+   			
+   		};
+   		$(".dtt1 select").append(yhtml);
+   		// var vau1=$(".dtt1 select option:selected").text();
+   		// document.getElementById('years').options.selected;
+   		document.getElementById('year').options.selectedIndex = years-2013;
+   		document.getElementById('month').options.selectedIndex = months-1;
+   		// $(".dtt1 select option").last()
+
+		var tokens=localStorage.getItem ("token");
+		var html="";
+		var num;
+		$.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + "api/index.php?n=member_wealth&f=reportStatistics",
+		     data: {
+		     	token:tokens,
+		     	// startTime:201603,
+		     	},
+		    success: function(data){
+		    	// console.log(data);
+		    	var areas=data.arr.area;
+	    		var al=areas.length;
+		           var aln=areas.indexOf("市");
+		           var alnn=areas.substr(aln+1,al-aln);
+		           $(".dq").html(alnn);
+		    	num=data.totalpage;
+		    	for (var j = 0; j < 100000; j++) {
+			    		
+			    		if (!data.data[j]) {
+			    			count=j;
+			    			
+			    			break;
+			    		}
+			    	};
+			    	// console.log(count);
+			    	for (var i = 0; i < count; i++) {
+			    		var timers=data.data[i].times;
+			    		
+			    		// console.log(timers.substr(0,4)+"年"+timers.substr(4,2)+"月");
+			    		
+			    	html+="<ul><li class='li1'><p class='dp2'>总辖区收益</p><p class='dp3'>日期</p><p class='dp4'>总商家</p></li><li class='li2'><p class='dp2'>"+data.data[i].total_earning+"</p><p class='dp3'>"+timers.substr(0,4)+"-"+timers.substr(4,2)+"</p><p class='dp4'>"+data.data[i].totalshopscount+"（<span>"+data.data[i].activeshopscount+"</span>）</p></li><li class='li3'><p class='dp2'>总会员</p><p class='dp3'>总赠送积分</p><p class='dp4'>总货款积分</p></li><li class='li4'><p class='dp2'>"+data.data[i].usercount+"（<span>"+data.data[i].activeusercount+"</span>）</p><p class='dp3'>"+data.data[i].totalgivepoint+"</p><p class='dp4'>"+data.data[i].totalpaymentpoint+"</p></li></ul>";
+			    		
+			    	};
+			    	
+			    	$(".data").append(html);
+		    },
+		    error:function(data){
+				    	// console.log(data);
+				    }
+		})
+		$(".date span").on("click",function(){
+			// var vau1=(".dtt1").find("select").val();
+			// var vau2=$(".dtt2").find("select").val();
+			var htmls="";
+			var vau1=$(".dtt1 select option:selected").text();
+			var vau2=$(".dtt2 select option:selected").text();
+			var vau11=vau1.substr(0,4);
+			var vau22=vau2.substr(0,2);
+			// console.log(vau11+vau22);
+			$.ajax({
+			     type: 'POST',
+			      dataType: "json",
+			      url:Url + "api/index.php?n=member_wealth&f=reportStatistics",
+			     data: {
+			     	token:tokens,
+			     	startTime:vau11+vau22,
+			     	page:1,
+			     	},
+			    success: function(data){
+			    	console.log(data);
+// 开始					
+				
+				for (var k = 1; k <= data.totalpage; k++) {
+					$.ajax({
+						     type: 'POST',
+						      dataType: "json",
+						      url:Url + "api/index.php?n=member_wealth&f=reportStatistics",
+						     data: {
+						     	token:tokens,
+						     	startTime:vau11+vau22,
+						     	page:k,
+						     	},
+						    success: function(data){
+						    	// console.log(data);
+						    	for (var j = 0; j < 100000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	// console.log(count);
+				    	for (var i = 0; i < count; i++) {
+				    		
+					                var timers=data.data[i].times;
+				    		// var timers=data.data[i].times;
+				    		
+				    		// console.log(timers.substr(0,4)+"年"+timers.substr(4,2)+"月");
+				    		
+				    	htmls+="<ul><li class='li1'><p class='dp2'>总辖区收益</p><p class='dp3'>日期</p><p class='dp4'>总商家</p></li><li class='li2'><p class='dp2'>"+data.data[i].total_earning+"</p><p class='dp3'>"+timers.substr(0,4)+"-"+timers.substr(4,2)+"</p><p class='dp4'>"+data.data[i].totalshopscount+"（<span>"+data.data[i].activeshopscount+"</span>）</p></li><li class='li3'><p class='dp2'>总会员</p><p class='dp3'>总赠送积分</p><p class='dp4'>总货款积分</p></li><li class='li4'><p class='dp2'>"+data.data[i].usercount+"（<span>"+data.data[i].activeusercount+"</span>）</p><p class='dp3'>"+data.data[i].totalgivepoint+"</p><p class='dp4'>"+data.data[i].totalpaymentpoint+"</p></li></ul>";
+				    		
+				    	};
+				    	
+				    	$(".data").html(htmls);
+			    },
+			    error:function(data){
+					    	// console.log(data);
+					    }
+					})
+			
+
+
+};
+
+// 结束
+			    	
+				    $(".data").html(htmls);
+			    },
+			    error:function(data){
+					    	// console.log(data);
+					    }
+					})
+			})
+		var pages=1; //当前页的页码
+		var allpage=num; //总页码，会从后台获取
+		var sc=true;
+		function showAjax(){
+			$(".ldtt").css("display","block");
+			$.ajax({
+				 type: 'POST',
+				 dataType: "json",
+				 url:Url + "api/index.php?n=member_wealth&f=reportStatistics",
+				 data: {
+				     	token:tokens,
+				     	page:pages,
+				     },
+				success:function(data){
+					//要执行的内容
+					// showContent();
+						//页数加1
+					// console.log(data);
+				    	var htmls="";
+				    	var count;
+				    	// var html="";
+				    	for (var j = 0; j < 10000000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	// console.log(count);
+				    	
+				    	for (var i = 0; i < count; i++) {
+				    		
+
+					
+				    	for (var i = 0; i < count; i++) {
+				    		var timers=data.data[i].times;
+				    		
+				    	htmls+="<ul><li class='li1'><p class='dp2'>总辖区收益</p><p class='dp3'>日期</p><p class='dp4'>总商家</p></li><li class='li2'><p class='dp2'>"+data.data[i].total_earning+"</p><p class='dp3'>"+timers.substr(0,4)+"-"+timers.substr(4,2)+"</p><p class='dp4'>"+data.data[i].totalshopscount+"（<span>"+data.data[i].activeshopscount+"</span>）</p></li><li class='li3'><p class='dp2'>总会员</p><p class='dp3'>总赠送积分</p><p class='dp4'>总货款积分</p></li><li class='li4'><p class='dp2'>"+data.data[i].usercount+"（<span>"+data.data[i].activeusercount+"</span>）</p><p class='dp3'>"+data.data[i].totalgivepoint+"</p><p class='dp4'>"+data.data[i].totalpaymentpoint+"</p></li></ul>";
+				    		
+				    	};
+				    	
+				    	
+				    	sc=true;
+	    		
+				    	};
+				    	// console.log(html);
+				    	$(".data").append(htmls);
+					// 分页加载/
+					setTimeout(function(){
+						$(".ldtt").css("display","none");
+					},300)
+				}
+			})
+		}
+		function scrollFn(){
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+				if (sc) {
+				// alert(2);
+				// alert(pages+":"+allpage)
+				sc=false;
+				pages++;
+				if (pages<=num) {
+					// console.log(pages);
+					showAjax();
+					// alert(1);
+				}
+				
+			}
+		       }
+		}
+		$(window).bind("scroll",scrollFn);	//绑定滚动事件
+	})
+</script>
+</html>

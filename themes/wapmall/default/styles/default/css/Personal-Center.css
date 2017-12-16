@@ -1,0 +1,530 @@
+
+
+
+/*个人中心*/
+
+/*top*/
+.top{ width: 100%;
+	 height: 160px;
+	 background: url(../images/Personal/bg-top.png) no-repeat center center; 
+	 background-size: 100% 160px;
+	 position: relative;
+	 overflow: hidden;
+	 }
+.setup{ display: block;
+		width: 20px;
+		height:20px; 
+		background: url(../images/Personal/set-up.png) no-repeat center center;
+		background-size:100% ;
+		top: 10px;
+		right: 50px;
+		position: absolute;
+		}
+.news{ 
+	display: block;
+	width: 20px;
+	height:20px; 
+	background: url(../images/Personal/news.png) no-repeat center center;
+	background-size:100% ;
+	top: 10px;
+	right: 20px;
+	position: absolute;
+}
+.news em{
+	position: absolute;
+	width:1rem;
+	height:1rem;
+	color: #FFFFFF;
+	font-style: normal;
+	top: -5px;
+	right: -5px;
+	font-size: 0.75rem;
+	background-color: #e85f5f;
+	border-radius: 1rem;
+	line-height: 1rem;
+	text-align: center;
+}
+.userpic{ float: left; 
+		text-align: right; 
+		margin-top: 45px;
+		margin-left:10px;
+		}
+.userpic a{ display: block; 
+			width: 4rem; 
+			height: 4rem;
+			border: 2px solid #f8e2e2; 
+			border-radius: 6rem; 
+			overflow: hidden; 
+			text-align: center;
+}
+.userpic a img{ width: 6rem; 
+				height: 6rem; 
+				margin-top: -0.5rem;
+				margin-left: -0.5rem;
+			}
+.userinf{ float: left;
+		 margin-top: 40px;
+		 margin-left: 0.6rem;
+		
+		}
+.userinf h4{ color: #FFFFFF;
+			 line-height: 36px;
+			 font-weight: 500;
+			 font-size: 18px;
+			 }
+.user-identity{ overflow: hidden; margin-top: 10px;}
+.user-identity .user-id{ overflow: hidden;
+						 float: left; 
+						 height: 1.8rem;
+						 border-radius: 15px;
+						 background-image: url(../images/Personal/top-gmbg.png);
+						 margin-right:5px;
+						 }
+.user-identity .user-id span{ float: left; /*背景图标样式*/
+							width: 1.5rem;
+							height: 1.5rem;
+							margin-top: 2px;
+							 margin-left: 2px;
+							 }
+.user-identity .user-id img{float: left; /*图片图标样式*/
+							width: 1.5rem;
+							height: 1.5rem;
+							margin-top: 2px;
+							 margin-left: 2px;
+							 }
+.user-identity .user-id a{ line-height: 24px;
+						color: #FFFFFF;
+						font-size: 0.75rem;
+						margin: 0 5px;
+						float: left;
+						display: block;
+						min-width: 2em;
+							}
+.user-identity .user-id em{ float: left;
+							width: 0.5rem;
+							height: 0.8rem;
+							margin-top: 0.5rem;
+							margin-right: 0.3rem;
+							}
+.upgrade{
+	float: left;
+	overflow: hidden;
+}
+.upgrade a{
+	display: block;
+	background-image: url(../images/Personal/upgrade.png);
+	background-size: 100% 1.5rem;
+	border-radius: 0.2rem;
+	width: 3rem;
+	height: 1.5rem;
+}
+/*推荐人*/
+.introducer{
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+.introducer p{
+	background-color: #000000;
+	border-radius: 10px;
+	color: #FFFFFF;
+	font-size: 12px;
+	padding:5px 10px;
+}
+.introducer p a{
+	color: #00A4A6;
+}
+/*
+.useradmin{ margin-top: 2.5em; float: left;}
+.useradmin a{ overflow: hidden;
+			 color: #FFFFFF;
+			 font-size: 12px;
+	 }
+*/		
+
+/*个人中心资金管理*/
+.capital{ width: 100%; 
+		  background-color: #FFFFFF;
+		   border-bottom: 1px solid #e9eaec;
+		   border-top: 1px solid #e9eaec;
+		  margin-top: 20px;
+		  overflow: hidden;
+		 }
+.cap-one{ float: left;
+		 width: 33.33%; 
+		 }
+.cap-box{ padding:1.5rem;
+		 border-left: 1px solid #e9eaec;}
+.cap-box h4{ text-align: center; 
+			font-size: 16px;
+			font-weight: 500;
+			}
+.cap-box .cap-tit{ 
+				font-size: 14px; 
+				color: #999999; 
+				margin: 5px 0;
+				color: #333333;
+				}
+.cap-box .cap-tit span{ 
+						width: 16px; 
+						height: 16px; 
+						float: left; 
+						margin-right: 5px; 
+						}
+.cap-box .cap-tay{ 
+					font-size: 14px;
+					color: #999999; 
+					line-height: 26px;
+					}
+.cap-box .cap-tay span{ 
+	margin-left: 5px; 
+	color: #666666;
+	}
+.cap-box .cap-button button{ 
+	width: 100%;
+	margin: auto; 
+	height: 2em; 
+	color: #FFFFFF; 
+	background-color: #39b4bf;
+	}
+@media screen and (max-width:640px){
+	
+	.capital{ width: 100%; 
+		  background-color: #FFFFFF;
+		   border-bottom: 1px solid #e9eaec;
+		   border-top: 1px solid #e9eaec;
+		  margin-top: 20px;
+		  overflow: hidden;
+		 }
+	.cap-one{ float: left;
+			 width: 33.33%; 
+			 }
+	.cap-box{ padding: 1rem;
+			 border-left: 1px solid #e9eaec;}
+	.cap-box h4{ text-align: center; 
+				font-size: 14px;
+				font-weight: 500;
+				}
+	.cap-box .cap-tit{ 
+					font-size: 12px; 
+					color: #999999; 
+					margin: 2px 0;
+					color: #333333;
+					}
+	.cap-box .cap-tit span{ 
+							width: 14px; 
+							height: 14px; 
+							float: left; 
+							margin-right: 2px; 
+							}
+	.cap-box .cap-tay{ 
+						font-size: 12px;
+						color: #999999; 
+						line-height: 26px;
+						}
+	.cap-box .cap-tay span{ 
+		margin-left: 5px; 
+		color: #666666;
+		}
+	.cap-box .cap-button button{ 
+		width: 100%;
+		margin: auto; 
+		height: 2em; 
+		color: #FFFFFF; 
+		background-color: #39b4bf;
+		}
+	.recommend{ 
+	background-color: #FFFFFF; 
+	margin-top: 15px; 
+	overflow: hidden; 
+	border: 1px solid #e9eaec;
+	}
+.recommend .rec-one{ 
+	text-align: center; 
+	border-right: 1px solid #e9eaec; 
+	margin-right: -1px;
+	border-bottom: 1px solid #e9eaec;
+	margin-bottom: -1px;
+	}
+.recommend .rec-one a{ 
+	display: block; 
+	min-height: 60px;
+	padding: 10px 0; 
+	}
+.recommend .rec-one span{  /*背景图标样式*/
+	display: block;
+	margin: auto;
+	margin-bottom: 10px;
+	width: 30px;
+ 	height: 30px;
+ 	}
+
+.recommend .rec-one a img{ /*图片图标样式*/
+	width: 30px;
+ 	height: 30px;
+	margin-bottom: 10px;
+	}
+.recommend .rec-one p{
+font-size: 12px;
+}
+}
+/*管理*/
+.recommend{ 
+	background-color: #FFFFFF; 
+	margin-top: 15px; 
+	overflow: hidden; 
+	border: 1px solid #e9eaec;
+	}
+.recommend .rec-one{ 
+	text-align: center; 
+	border-right: 1px solid #e9eaec; 
+	margin-right: -1px;
+	border-bottom: 1px solid #e9eaec;
+	margin-bottom: -1px;
+	}
+.recommend .rec-one a{ 
+	display: block; 
+	min-height: 60px;
+	padding: 10px 0; 
+	}
+.recommend .rec-one span{  /*背景图标样式*/
+	display: block;
+	margin: auto;
+	margin-bottom: 10px;
+	width: 30px;
+ 	height: 30px;
+ 	}
+
+.recommend .rec-one a img{ /*图片图标样式*/
+	width: 30px;
+ 	height: 30px;
+	margin-bottom: 10px;
+	}
+.recommend .rec-one p{
+	font-size: 14px;
+}
+/*提现弹窗*/
+.Withdrawals{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 99;
+}
+.withdra-bg{
+	 position: absolute;
+	 width: 100%;
+	 min-height:100%;
+	 height:100% ;
+	 background-color: #000000;
+	 opacity: 0.3;
+	 top: 0;
+	 left: 0;
+	 z-index: 100;
+}
+.withdra-box{
+	 width: 80%;
+	 margin: auto;
+	 min-height: 10%;
+	 background-color: #FFFFFF;
+	 z-index: 101;
+	 position: absolute;
+	 margin-left: -40%;
+	 left: 50%;
+	 top: 20%;
+	 box-shadow: 0 1px 6px #CCCCCC;;
+}
+.withdra-close{ 
+	position: absolute;
+	font-family: Muiicons;
+    font-size: 32px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+}
+.withdra-close:before{
+	content: '\e460';
+}
+.withdra-number{
+	 margin: 20px auto;
+	 width: 80%;
+}
+.withdra-profit{
+	margin-left: 5px;
+	 line-height: 36px;
+	 padding-top: 15px;
+	 font-size: 18px;
+	 font-weight: 500;
+}
+.withdra-profit span{
+	margin-left: 10px;
+	color: #159aa5;
+}
+.withdra-available{ 
+	margin-left: 5px;
+	 font-size: 18px;
+	 font-weight: 500;
+}
+.withdra-available span{
+	margin-left: 10px;
+	color: #159aa5;
+}
+.withdra-Withdrawals{ 
+	margin-top: 10px;
+	border-bottom: 1px solid #DDDDDD;
+	line-height: 22px;
+	position: relative;
+}
+.withdra-Withdrawals em{
+	position: absolute;
+	height: 10px;
+	width: 1px;
+	border-left: 1px solid #DDDDDD;
+	bottom: 0;
+	left: 0;
+}
+.withdra-Withdrawals input{
+	line-height: 22px;
+	height: 22px;
+	padding-left:5px;
+	font-size: 16px;
+	width: 100%;
+}
+.withdra-on-off{
+	overflow: hidden;
+	width: 100%;
+}
+.withdra-on-off button{
+	width: 50%;
+	height: 3em;
+	background-color: #F3F3F3;
+	float: left;
+	font-size: 16px;
+}
+.withdra-on-off button.withdra-on{
+	
+}
+.withdra-on-off button.withdra-off{
+	 background-color:#159AA5 ;
+	 color: #FFFFFF;
+}
+/*弹窗*/
+.Popup{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 99;
+}
+.Popup-bg{
+	 position: absolute;
+	 width: 100%;
+	 min-height:100%;
+	 height:100% ;
+	 background-color: #000000;
+	 opacity: 0.3;
+	 top: 0;
+	 left: 0;
+	 z-index: 100;
+}
+.Popup-box{
+	 width: 80%;
+	 margin: auto;
+	 min-height: 10%;
+	 background-color: #FFFFFF;
+	 z-index: 101;
+	 position: absolute;
+	 margin-left: -40%;
+	 left: 50%;
+	 top: 20%;
+	 box-shadow: 0 1px 6px #CCCCCC;;
+}
+.Popup-close{ 
+	position: absolute;
+	font-family: Muiicons;
+    font-size: 32px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+}
+.Popup-close:before{
+	content: '\e460';
+}
+.Popup-number{
+	 margin: 20px auto;
+	 padding-top: 15px;
+	 width: 80%;
+}
+.Popup-profit{
+	margin-left: 5px;
+	 line-height: 36px;
+	 padding-top: 15px;
+	 font-size: 18px;
+	 font-weight: 500;
+}
+.Popup-profit span{
+	margin-left: 10px;
+	color: #159aa5;
+}
+.Popup-available{ 
+	margin-left: 5px;
+	 font-size: 18px;
+	 font-weight: 500;
+}
+.Popup-available span{
+	margin-left: 10px;
+	color: #159aa5;
+}
+.Popup-input{ 
+	margin-top: 10px;
+	border-bottom: 1px solid #DDDDDD;
+	line-height: 36px;
+	position: relative;
+}
+.Popup-input em{
+	position: absolute;
+	height: 10px;
+	width: 1px;
+	border-left: 1px solid #DDDDDD;
+	bottom: 0;
+	left: 0;
+}
+.Popup-input input{
+	line-height: 22px;
+	height: 22px;
+	padding-left:5px;
+	font-size: 16px;
+	width: 100%;
+}
+.Popup-on-off{
+	overflow: hidden;
+	width: 100%;
+}
+.Popup-on-off button{
+	width: 50%;
+	height: 3em;
+	background-color: #F3F3F3;
+	float: left;
+	font-size: 16px;
+}
+.Popup-on-off button.Popup-on{
+	
+}
+.Popup-on-off button.Popup-off{
+	 background-color:#159AA5 ;
+	 color: #FFFFFF;
+}

@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>我的订单</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="css/order.css"/>
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		form{
+			display: none;
+		}
+		.ldtt{
+			position: fixed;
+			z-index: 1000;
+			height: 3.2rem;
+			text-align: center;
+			bottom: 3rem;
+			left: 0;
+			width: 100%;
+			display: none;
+
+		}
+		.ldtt img{
+			width: 3.2rem;
+		}
+	</style>
+	<style>
+	/*.sport p:first-child {
+    	padding-left: 0;
+	}*/
+	/*goods_id*/
+	.lod_id{
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+	}
+	.about .a_sp1{
+		line-height: 3rem;
+	}
+	.ddh{
+		position: absolute;
+		bottom: 10rem;
+		left: 3rem;
+		line-height: 2.5rem;
+		font-size: 1.6rem;
+		color: #999;
+	}
+	/*order_id*/
+	.lorder_id{
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+	}
+	.sport .ckdd{
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		right: 20%;
+	}
+	.payments{
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+	}
+	/*.sport p:nth-child(2) {
+	    	padding-left: 20%;
+	}*/
+	.order_sns{
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+	}
+	.seller_ids{
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+	}
+	/*.content1 li .right{
+		height: 28rem;
+	}*/
+	.goods span img{
+		vertical-align: middle;
+		margin-left: 1rem;
+		/*width: 1.8rem;*/
+		height: 3.3rem;
+	}
+	.lstatus{
+		display: none;
+	}
+	</style>
+</head>
+<div class="kong2"></div>
+<body>
+	<div class="ldtt"><img src="images/add.gif" alt=""></div>
+	<div class="head">
+		<div class="d_header">
+			<a class="back" href="javascript:history.go(-1)">
+				<p class="p1">
+				<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">
+				<button class="btn1">联盟订单</button>
+				<button class="btn2 btns">商城订单</button>
+			</p>
+			<a class="save"  href="newscentre.html"><img src="images/messge.png" alt=""></a>
+		</div>
+	</div>
+	<!-- 第一部分商城订单 -->
+	<div class="part1">
+		<div class="kong3"></div>
+		<ul class="menu">
+			<li class="mlis" data-status="">全部</li>
+			<li data-status="11">待付款</li>
+			<li data-status="20">待发货</li>
+			<li data-status="30">待收货</li>
+			<li data-status="40" class="p1lis">已完成</li>
+		</ul>
+		<ul  class="content1 content"></ul>
+		<div class="key">
+			<div class="k-header">
+				<div class="k-left"><img src="images/wk-x.png" alt="返回首页"></div>
+				<div class="k-right"><p>输入支付密码</p></div>
+			</div>
+			<div class="k-center">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li class="kc-last"></li>
+				</ul>
+			</div>
+			<div class="forget">
+				<a href="#">忘记密码?</a>
+			</div>
+			<div class="k-footer">
+				<ul class="fistline">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+				<ul class="fistline">
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+				</ul >
+				<ul class="fistline">
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+				</ul>
+				<ul>
+					<li class="k-lastline"></li>
+					<li class="fistlines">0</li>
+					<li class="k-lastline"><img src="images/wk-12_03.png" alt=""></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<form action="" method="post">
+	 		<input type="hidden" name="order_id" class="zlpy" value="" />
+	 		<input type="hidden" name="token" class="tok" value="" />
+	 		<input type="hidden" name="payment_id" class="ll" value="16" />
+	 		<input type="submit" name="" id="zftj" value="提交" />
+	 </form>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+<!-- <script type="text/javascript" src="js/order.js"></script> -->
+<script>
+ $(function(){
+ 	$(".btn1").on("click",function(){
+ 		location.href="order_off.html";
+ 	})
+ 	var status = '';
+ 	var status_change = false;
+	//显示删除   取消div
+	var tokens = localStorage.getItem("token");
+	var num1;
+	var pages1=1; //当前页的页码
+	var allpage1=num1; //总页码，会从后台获取
+	var sc1=false;
+	var tfz=true;
+	var tfzs=true;	
+	var arrs1=[false,true,true,true,true];
+	var arrs=[true,false,false,false,false];
+    $("form").attr("action",Url+"api/index.php?n=shop_center&f=online_pay");
+	$('.img_s_q').on('click',function(){
+		$('.bianji1').show();
+	})
+	//显示删除   取消div
+	$('.img_s_q2').on('click',function(){
+		$('.bianji2').show();
+	})
+	//点击取消隐藏
+	$('.b_btn2').on('click',function(){
+		$('.bianji1').hide();
+	})
+	//点击取消隐藏
+	$('.b_btn2').on('click',function(){
+		$('.bianji2').hide();
+	})
+	//点击删除将div   li1_h隐藏     kong_h1下面的kong  div
+	$('.bianji1 .b_btn1').on('click',function(){
+		$('.li1_h').hide();
+		$('.kong_h1').hide();
+	})
+	//点击删除将div   li1_h隐藏     kong_h2下面的kong  div
+	$('.bianji2 .b_btn1').on('click',function(){
+		$('.li2_h').hide();
+		$('.sport_h').hide();
+		$('.kong_h2').hide();
+	})
+	
+	//显示key键盘
+	$('.pay_key').on('click',function(){
+		$('.key').show();
+	})
+	
+	$('.k-header').on('click',function(){
+		$('.key').hide();
+	})
+	
+	showAjax1();
+	scorder1();
+	function tfarr(){
+		for (var i = 0; i < arrs.length; i++) {
+			arrs[i]=false;
+		}
+	}
+	$(".menu li").on("click",function(){
+		status = $(this).attr('data-status');
+		status_change = true;
+		pages1 = 1;
+		$(".mlis").removeClass("mlis");
+		$(this).addClass("mlis");
+		var indexs=$(this).index();
+		//$(".content1").css("display","none");
+		//$(".content1").eq($(this).index()).css("display","block");
+		tfarr();
+		arrs[indexs]=true;
+		if (indexs==1) {
+			if (arrs1[indexs]) {				
+				arrs1[indexs]=false;
+			}
+			
+		}
+		if (indexs==2) {
+			if (arrs1[indexs]) {
+				arrs1[indexs]=false;
+			}
+			
+		}
+		if (indexs==3) {
+			if (arrs1[indexs]) {
+				arrs1[indexs]=false;
+			}
+			
+		}
+		if (indexs==4) {
+			if (arrs1[indexs]) {
+				arrs1[indexs]=false;
+			}			
+		}
+		showAjax1();		
+	})
+	$(".left").on("click",function(){
+		var src=$(this).find("img").attr("src");
+		if(src=="images/circle1.png"){
+			$(this).find("img").attr("src","images/circle2.png");
+		}else{
+			$(this).find("img").attr("src","images/circle1.png");
+		}
+	})
+	
+	function scorder1(){			
+		// $(window).bind("scroll",scrollFn1);//绑定滚动事件
+		$(window).on("scroll",function(){			
+			scrollFn1();
+			
+		});
+	}
+	function showAjax1(){
+		$(".ldtt").css("display","block");
+		$.ajax({
+			 type: 'POST',
+			 dataType: "json",
+			 url:Url + "api/index.php?n=order&f=persononline",
+			 data: {
+			     	token:tokens,
+			     	page:pages1,
+			     	status : status
+			     },
+			success:function(data){
+			console.log(data);		    	
+		    	var htmls="";		    	
+			    var datas = data.data;
+			    allpage1 =  data.totalpage;
+			    num1 = data.totalpage;			    
+			    if(pages1 < allpage1){
+			    	sc1=true;
+			    }
+			    if(status_change){
+			    	$(".content1 ").eq(0).html('');
+			    }
+			    for (var i = 0; i < datas.length; i++) {
+			    	var st = '';
+			    	var lzf="";
+			    	var lzf2="";
+			    	var sport_html='<div class="sport"><p>取消订单</p><p class="ckdd">查看订单</p></div>';
+			    	// var sport_html = '<div class="sport">';
+				   	if (datas[i].status=="40") {
+				   		st="交易成功";
+				   		sport_html='<div class="sport"><p class="ckdd">查看订单</p></div>';
+				   		// sport_html += '<p class="detail_order" data-oid="'+datas[i].order_id+'">查看订单</p>';
+				   	}else if(datas[i].status=="30"){
+				   		st="卖家已发货";
+				   		sport_html='<div class="sport"><p class="ckdd">查看订单</p></div>';
+				   		// sport_html += '<p class="edit_shipping" data-oid="'+datas[i].order_id+'">修改单号</p><p class="cancel_order" data-oid="'+datas[i].order_id+'">取消订单</p><p class="detail_order" data-oid="'+datas[i].order_id+'">查看订单</p>';
+				   		lzf='<div class="pay3">确认收货</div>';
+				   		lzf2='<div class="pay2">确认收货</div>';
+				   	}else if(datas[i].status=="20"){
+				   		st="等待发货";
+				   		sport_html='<div class="sport"><p class="ckdd">查看订单</p></div>';
+				   		// sport_html += '<p class="send_order" data-oid="'+datas[i].order_id+'">发货</p><p class="cancel_order" data-oid="'+datas[i].order_id+'">取消订单</p><p class="detail_order" data-oid="'+datas[i].order_id+'">查看订单</p>';
+				   	}else if(datas[i].status=="11"){
+				   		st="等待买家付款";
+				   		sport_html='<div class="sport"><p>取消订单</p><p class="ckdd">查看订单</p></div>';
+				   		// sport_html += '<p class="money_order" data-oid="'+datas[i].order_id+'">收到货款</p><p class="cancel_order" data-oid="'+datas[i].order_id+'">取消订单</p><p class="detail_order data-oid="'+datas[i].order_id+'">查看订单</p>';
+				   		lzf='<div class="pay3">去支付</div>';
+				   		lzf2='<div class="pay2">去支付</div>';
+				   	}else if(datas[i].status=="0"){
+				   		st="交易已取消";
+				   		sport_html='<div class="sport"></div>';
+				   	}else if(datas[i].status=="10"){
+				   		st="货到付款，卖家即将发货";
+				   		// sport_html += '<p class="send_order" data-oid="'+datas[i].order_id+'">发货</p><p class="cancel_order" data-oid="'+datas[i].order_id+'">取消订单</p><p class="detail_order" data-oid="'+datas[i].order_id+'">查看订单</p>';
+				   	}
+				   	// sport_html += '</div>';
+			    	//htmls+= '<li><p class="p2_p1"><span class="p2_p1_sp1">订单号：'+datas[i].order_sn+'</span><span class="p2_p1_sp2">'+st+'</span></p><div><p class="d_p1">商家：'+datas[i].classname+'</p><p class="d_p2"><a href="tel:'+datas[i].phone_mob+'"><img src="images/tely.png" alt=""><span>'+datas[i].phone_mob+'</span></a></p></div><div><p class="d_p1">商品：<span>'+datas[i].seller_name+'</span></p><p class="d_p2"></p></div><p class="p2_p3">价格：<span>￥'+datas[i].goods_amount+'元</span></p></li>';
+
+				    htmls += 
+				    	'<li style="height:100%;">' +lzf2+'<span class="lorder_id">'+datas[i].order_id+'</span>'+'<span class="seller_ids">'+datas[i].seller_id+'</span>'+'<span class="lstatus">'+datas[i].status+'</span>'+'<span class="payments">'+datas[i].payment_code+'</span>'+'<span class="order_sns">'+datas[i].order_sn+'</span>'+
+		                    '<div class="right" style="position:relative;">' +
+		                        '<p class="goods">' +
+		                            '<a href="z-store.html?storeid='+datas[i].seller_id+'">'+datas[i].seller_name+'</a>' +
+		                            '<button>'+st+'</button>' +
+		                        '</p>';
+		             
+		            goodsList = datas[i].goods;		            
+		            for(j=0;j<goodsList.length;j++){
+		            	img = 'images/d_bag.png';
+		            	if(goodsList[j].goods_image){
+		            		img = Url+goodsList[j].goods_image;
+		            		// console.log(img);
+		            	}
+		            	amount = parseFloat(goodsList[j].price) * parseInt(goodsList[j].quantity);
+		            	htmls +=   
+		            			'<div class="detail">' +'<span class="lod_id">'+goodsList[j].goods_id+'</span>'+
+		                            '<p class="imgs">' +
+		                                '<img src="'+img+'" alt="">' +
+		                            '</p>' +
+		                            '<p class="about">' +
+		                                '<span class="a_sp1">'+goodsList[j].goods_name+'</span><br>' +
+		                                '<span class="a_sp2">'+goodsList[j].specification+'</span>' +
+		                                //'<span class="a_sp3">尺码: M</span>' +
+		                            '</p>' +
+		                            '<p class="price">￥ '+amount+'</p>' +lzf+
+		                        '</div>'
+		            }
+		            htmls += //'<div class="pay" style="right: 0;background-color:red;">未付款</div>' +
+		                    '</div>' + '<span class="ddh">订单号：'+datas[i].order_sn+'</span>' +
+		                    sport_html + 
+		                    '<div class="kong"></div>' 
+		                '</li>';
+			   	}
+		   	     setTimeout(function(){
+				$(".ldtt").css("display","none");
+			     },300)			   	
+			    $(".content1 ").eq(0).append(htmls);
+			    status_change = false;
+			    $(".a_sp1").each(function(){
+			    	var counter = $(this).text().length;//获取文本域的字符串长度
+			 	// console.log(counter);
+			 	var txt = $(this).text();
+				  if(counter >= 26) {
+					var num = $(this).text().substr(0, 25);
+					$(this).text(num+'....');
+				}else { 
+				  $(this).text(txt);
+					} 
+			   	});
+			    $('.cancel_order').on('click',function(){
+			    	order_id = $(this).attr('data-oid');
+			    	// console.log(this);
+			    	$.ajax({
+			    		url : Url+'api/index.php?n=order&f=orderstate',
+			    		type : 'POST',
+			    		data : {token:tokens,order_id:order_id},
+			    		dataType : 'JSON',
+			    		success : function(data){
+			    			if(data.ret == 'ok'){
+			    				alert('取消成功');
+			    			}
+
+			    		}
+			    	})
+			    });
+			},
+			error:function(data){
+				// console.log(data);
+			}
+		})
+	}
+	function scrollFn1(){
+		if(status_change){
+			return;
+		}
+		//真实内容的高度
+		var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+		//视窗的高度
+		// console.log(pageHeight);
+		var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+		// console.log(viewportHeight);
+		//隐藏的高度
+		var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+		// console.log(scrollHeight);
+		if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+			if (sc1) {
+				sc1 = false;
+				pages1++;
+				if (pages1<=num1) {
+					showAjax1();
+				}
+			}
+	    }
+	}
+	// 查看订单
+	$(".content1").on("click",".sport p",function(){
+		// alert(1);
+		// console.log(1);
+		// console.log($(this).text());		
+		if ($(this).text()=="查看订单") {
+			// console.log(2);
+			var lorder_id=$(this).parents("li").find(".lorder_id").html();
+			localStorage.setItem('lorder_id',lorder_id);
+			var lstatuss1=$(this).parents("li").find(".lstatus").html();
+			var lstatuss=$(this).parents("li").find(".payments").html();
+			if (lstatuss1=="11") {
+				localStorage.setItem('lstatus',lstatuss);
+			}
+			
+			location.href="orderinfo2.html";
+			// console.log(lorder_id);
+		}else if ($(this).text()=="取消订单") {
+			var order_ids=$(this).parents("li").find(".lorder_id").html();
+			// console.log(order_ids);
+			var pars=$(this).parents("li");
+			$.ajax({
+			           type: 'POST',
+			           url: Url + "api/index.php?n=order&f=orderstate",
+			         	dataType: "json",
+			       	data: { token : tokens,order_id:order_ids},
+			        	success: function(data){
+			                      // console.log(data); 
+			                      if (data.msg=="订单取消成功") {
+			                      	pars.css("display","none");
+			                      }
+				} ,
+			            error:function(data){
+				                      	  // console.log(data);
+				                      }
+			})
+			// localStorage.setItem('lorder_id',lorder_id);
+			// location.href="tksq.html";
+		}
+	})
+	// 确认订单
+	$(".content1").on("click",".pay2",function(){	
+		var pars=$(this).parents("li");
+		var order_ids=$(this).parents("li").find(".lorder_id").html();
+		var order_sn1=$(this).parents("li").find(".ddh").eq(0).html();
+		// console.log(order_sn1);
+		var order_sns=order_sn1.replace("订单号：","");
+		$(".zlpy").val(order_sns);
+		$(".tok").val(tokens);
+		// console.log($(".zlpy").val());
+		if ($(this).text()=="确认收货") {
+			
+			// console.log(order_ids);
+			$.ajax({
+			           type: 'POST',
+			           url: Url +"api/index.php?n=order&f=order_confirm",
+			         	dataType: "json",
+			       	data: { token : tokens,order_id:order_ids},
+			        	success: function(data){
+			                      // console.log(data);  
+			                     window.location.reload();   
+				} ,
+			            error:function(data){
+				                      	  // console.log(data);
+				                      }
+			})
+		}else if(($(this).text()=="去支付")){
+			var dsums1=$(this).parents("li").find(".price").html();
+			var payments=$(this).parents("li").find(".payments").html();
+			var order_sns=$(this).parents("li").find(".order_sns").html();
+			// console.log(payments);
+			// str=str.replace(/\r\n/ig,"<br/>");
+			var dsums=dsums1.replace("￥ ","");
+			// console.log(dsums);
+			// console.log(dsums.length);
+			localStorage.setItem('dsum', dsums);
+			
+			if (payments=="") {
+				localStorage.setItem('zorderid', order_ids);
+				localStorage.setItem('order_sn', order_sns);
+				localStorage.setItem('zftz', "1");
+				location.href="z-order.html";
+			}else if (payments=="epaywapllpay"){
+				// location.href="z-order.html";
+				$(".ll").val("16");
+				$("form").submit();
+			}else if (payments=="epaywxjs"){
+				// location.href="z-order.html";
+				$(".ll").val("8");
+				$("form").submit();
+			}
+		}
+		// 获取积分
+		function jf(){
+			$.ajax({
+				     type: 'POST',
+				      dataType: "json",
+				      url: Url +"api/index.php?n=member_wealth&f=pointTop",
+				     data: {
+				     	token:tokens,
+				     	
+				     	},
+				    success: function(data){
+				    	// console.log(data);
+				    	// $(".f-score").html(data.data.current);
+				    	localStorage.setItem('dmoneys', data.data.current);
+				    },
+				    error:function(data){
+						    	// console.log(data);
+						    }
+				})
+		}
+		jf();
+	})
+	$(".content1").on("click",".goods span",function(){	
+		var storeid=$(this).parents("li").find(".seller_ids").html();
+		localStorage.setItem('stid', storeid);
+                	location.href = "lmsjdpxq.html";
+	})
+	$(".content1").on("click",".detail",function(){	
+		var gdid=$(this).find(".lod_id").html();
+		localStorage.setItem('good', gdid);
+          window.location.href = "goods-order.html";
+	})
+
+		
+});
+</script>
+</html>

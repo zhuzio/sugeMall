@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>县级代理收益</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/xjdlsy.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.footer{
+			    border-top: 1px solid #efeff4;
+			}
+	</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="zdan.html" class="h_a1">
+			<!-- <a href="zdan.html"> -->
+				<p class="p1">
+			<img src="images/z-2.png" alt="返回首页">账单
+			</p>
+		<!-- </a> -->
+		</a>
+		<p class="p2">
+			<a href="jffortune1.html"><span class="hps2">购物积分</span></a>
+			<span class="hps1">收益奖励</span>
+		</p>
+		<a href="newscentre.html" class="h_a2">消息<img src="images/z-3.png" alt=""></a>
+		<!-- <button class="h_a1"></button> -->
+	</div>
+	<div class="top">
+		<p class="t_p1">
+			<span class="t1p1">当前可提（元）</span>
+			<span class="t1p2">累计收益（元）</span>
+		</p>
+		<p class="t_p2">
+			<span class="t2p1"></span>
+			<span class="t2p2"></span>
+		</p>
+		<p class="t_p3"><span>累计收益（元）：</span> <span class="t3s2"></span></p>
+	</div>
+	<div style="height:1px"></div>
+	<ul class="con">
+		<li ><a href="zsjl_xjdl.html">
+			<img src="images/zssy.jpg" alt=""><br>
+			<span>招商收益</span></a>
+		</li>
+		<li ><a href="xqhysy1.html">
+			<img src="images/xqhysy.jpg" alt=""><br>
+			<span>辖区会员收益</span></a>
+		</li>
+		<!-- <li class="cli3">
+			<img src="images/xqsjsy.jpg" alt=""><br>
+			<span>辖区商家收益</span>
+		</li> -->
+		<li class="cli2"><a href="bbtj.html">
+			<img src="images/tjbb.jpg" alt=""><br>
+			<span>统计报表</span></a>
+		</li>
+		<li ><a href="xqsjsy1.html">
+			<img src="images/xqsjsy.jpg" alt=""><br>
+			<span>辖区商家收益</span></a>
+		</li>
+	</ul>
+	<div class="tx"><a href="sytx.html" class="tixian">提现</a></div>
+	<div style="width:100%; height:9.8rem"></div>
+	<div class="footer">
+		<a href="index.html"><img src="images/souye.png" alt=""></a>
+		<a href="fenlei.html"><img src="images/kinds.png" alt=""></a>
+		<a href="coalition.html"><img src="images/union.png" alt=""></a>
+		<a href=""><img src="images/wealth2.png" alt=""></a>
+		<a href="z-member.html" class="lcf1"><img src="images/me.png" alt=""></a>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script>
+<script src="js/url.js"></script>
+<script>
+
+	var tokens;
+	var types;
+
+	function tok(toks,typs){
+		tokens = toks;
+		types = typs;
+	  	//tokens=toks;
+	  	localStorage.setItem('token',  tokens);
+	  	localStorage.setItem('type',  types);
+
+	  	inity();		  	
+	}
+
+	function inity(){
+		$(".t2p1").on("click",function(){
+			location.href="zdan.html";
+		})
+		
+		  if (types==1) {
+          $(".lcf1").attr("href","z-member.html");
+         }else if(types==2){
+            $(".lcf1").attr("href","z-unicon.html");
+         }else if(types==3){
+            $(".lcf1").attr("href","z-sell.html");
+         }else if(types==4){
+            $(".lcf1").attr("href","z-comm.html");
+         }else if(types==5){
+            $(".lcf1").attr("href","z-county.html");
+         }else if(types==6){
+            $(".lcf1").attr("href","z-city.html");
+         }else if(types==7){
+            $(".lcf1").attr("href","z-provin.html");
+         }
+		var html="";
+		$.ajax({
+	     type: 'POST',
+	      dataType: "json",
+	      url:Url + "api/index.php?n=member_wealth&f=profitTop",
+	     data: {
+	     	token:tokens,
+	     	page:1,
+	     	},
+	    success: function(data){
+	    	 console.log(data);
+	    	$(".t2p1").html(data.data.current);
+	    	$(".t_p3 .t3s2").html(data.data.totalprofit);
+	    },
+	    error:function(data){
+			    	// console.log(data);
+			    }
+			})
+	}
+
+	$(function(){
+		
+	})
+</script>
+</html>

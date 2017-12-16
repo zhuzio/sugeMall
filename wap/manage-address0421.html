@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>管理收货地址</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<link rel="stylesheet" type="text/css" href="css/manage-address.css" />
+	</head>
+	<style>
+		.tan {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: rgba(0, 0, 0, 0.2);
+			display: none;
+		}
+		
+		.tan p {
+			width: 60%;
+			height: 22rem;
+			margin-top: 50%;
+			margin-left: 20%;
+			background-color: #fff;
+			color: #333;
+			font-size: 3.4rem;
+			text-align: center;
+			line-height: 22rem;
+			border-radius: 1rem;
+		}
+		
+		.addr_ids {
+			display: none;
+		}
+		
+		.addtypes {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<div class="d_header">
+			<a class="black" href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">管理收货地址</p>
+		</div>
+		<div class="address-wp">
+		</div>
+		<div class="addr-add">
+			<span class="addr-add1">新增收货地址</span>
+			<img src="images/z-31.png" />
+		</div>
+		<!--删除界面-->
+		<div class="addr-rem" style="display: none;">
+			<div class="addr-rema">
+				<div class="addr-rema1">
+					<span class="rema-rem">删除</span>
+					<span class="rema-cancel">取消</span>
+				</div>
+			</div>
+		</div>
+		<div class="tan">
+			<p></p>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript">
+		var str = location.href;
+		// console.log(str);
+		var strs = str.indexOf("acc=order");
+		console.log(strs);
+		if(strs == -1) {
+
+		} else {
+			$(".black").attr("href", "acc-order.html");
+		}
+		$(function() {
+			$(".addr-add").click(function() {
+				if(strs == -1) {
+					location.href = "new_adder.html";
+				} else {
+					// $(".black").attr("href","acc-order.html?acc=order");
+					location.href = "new_adder.html?acc=order";
+				}
+
+			});
+			var tokens = localStorage.getItem("token");
+			//定义一个id数组用来存放收货地址的id
+			var arrid = [];
+			//定义一个type
+			var type;
+			//收货地址接口调用
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=my_address&f=addrList",
+				dataType: "json",
+				data: {
+					"token": tokens
+				},
+				success: function(data) {
+					console.log(data);
+					var datas = data.data;
+					for(var i = 0; i < datas.length; i++) {
+						if(datas[i].phone_mob) {
+							var phone_mobs = datas[i].phone_mob;
+						} else {
+							var phone_mobs = "";
+						}
+						var html = '<ul class="mange-addr"><span class="addtypes">' + datas[i].type + '</span><span class="addr_ids">' + datas[i].addr_id + '</span><li class="addcon addj"><span class="addr-name">' + datas[i].consignee + '</span><span class="addr-phone">' + datas[i].phone_tel + '</span></li><li class="addcitys addj"><span class="addr-city">' + datas[i].region_name + '</span><span class="addr-jd">' + phone_mobs + '</span></li><li class="adds addj">' + datas[i].address + '</li><li class="addset"><span class="addr-chose"></span><span class="addr-def">设为默认地址</span><span class="addr-edit">编辑</span><span class="addr-delet">删除</span></li></ul>';
+						arrid.push(datas[i].addr_id);
+						$(".address-wp").append(html);
+						type = datas[i].type;
+						if(type == 1) {
+							$(".addr-chose").each(function() {
+								$(this).addClass("chosed");
+								$(this).parents(".mange-addr").siblings().find(".addr-chose").removeClass("chosed");
+								var zeiti = datas[i].addr_id;
+								var addrsn = datas[i].consignee;
+								var addresp = datas[i].phone_tel;
+								var address = datas[i].address;
+								localStorage.setItem('daddressps', addrsn);
+								localStorage.setItem('daddressms', addresp);
+								localStorage.setItem('daddressds', address);
+								localStorage.setItem('addss', zeiti);
+							});
+						} else {
+							var leng = $(".address-wp ul").length;
+							var zeiti = $(".address-wp ul").eq(leng - 1).find(".addr_ids").text();
+							var addrsn = $(".address-wp ul").eq(leng - 1).find(".addr-name").text();
+							var addresp = $(".address-wp ul").eq(leng - 1).find(".addr-phone").text();
+							var address = $(".address-wp ul").eq(leng - 1).find(".adds").text();
+							localStorage.setItem('daddressps', addrsn);
+							localStorage.setItem('daddressms', addresp);
+							localStorage.setItem('daddressds', address);
+							localStorage.setItem('addss', zeiti);
+						}
+					}
+					EditFn();
+					ChooseFn()
+						//for循环结束
+						//点击设置默认收货地址开始
+					$(".addr-chose").click(function(event) {
+						event.stopPropagation();
+						$(this).addClass("chosed");
+						$(this).parents(".mange-addr").siblings().find(".addr-chose").removeClass("chosed");
+						var j = $(this).parents(".mange-addr").index();
+						var eitid = arrid[j];
+						//						console.log(eitid);
+						var addrsn = $(this).parent(".addset").siblings(".addcon").find(".addr-name").text();
+						var addresp = $(this).parent(".addset").siblings(".addcon").find(".addr-phone").text();
+						var address = $(this).parent(".addset").siblings(".adds").text();
+						// var address = $(this).parent(".addset").siblings(".adds").text();
+						localStorage.setItem('daddressps', addrsn);
+						localStorage.setItem('daddressms', addresp);
+						localStorage.setItem('daddressds', address);
+						localStorage.setItem('addss', eitid);
+						$.ajax({
+							type: 'POST',
+							url: Url + "api/index.php?n=my_address&f=setDefaultAddr",
+							dataType: "json",
+							data: {
+								"token": tokens,
+								"addr_id": eitid,
+							},
+							success: function(data) {
+								console.log(data);
+								setTimeout(function() {
+									$(".tan p").html(data.msg);
+									$(".tan").css("display", "block");
+								}, 0);
+								setTimeout(function() {
+									$(".tan").css("display", "none");
+								}, 1000);
+
+							},
+							error: function(data) {}
+						});
+					});
+					//点击设置默认收货地址结束	
+					//删除ajax開始
+					$(".addr-delet").click(function(event) {
+						event.stopPropagation();
+						var i = $(this).parents(".mange-addr").index();
+						var deleid = arrid[i];
+						$(".addr-rem").show();
+						$(".rema-rem").click(function() {
+							$(".mange-addr").eq(i).remove();
+							$(".addr-rem").hide();
+							$.ajax({
+								type: 'POST',
+								url: Url + "api/index.php?n=my_address&f=deladdress",
+								dataType: "json",
+								data: {
+									"token": tokens,
+									"addr_id": deleid,
+								},
+								success: function(data) {
+									var datas = data.data;
+									setTimeout(function() {
+										$(".tan p").html(data.msg);
+										$(".tan").css("display", "block");
+									}, 0);
+									setTimeout(function() {
+										$(".tan").css("display", "none");
+									}, 1000);
+									window.location.reload();
+								},
+								error: function(data) {　　　　}
+							});
+
+						})
+
+					});
+					// 删除ajax结束
+					$(".rema-cancel").click(function() {
+						$(".addr-rem").hide();
+					});
+				},
+				error: function(data) {　　　　}
+			});
+
+			//编辑ajax开始
+			function EditFn() {
+				$(".addr-edit").click(function() {
+					event.stopPropagation();
+					var addname = $(this).parent("li").siblings(".addcon").find(".addr-name").text();
+					var addphone = $(this).parent("li").siblings(".addcon").find(".addr-phone").text();
+					var address = $(this).parent("li").siblings(".adds").text();
+					var addcitys = $(this).parents("ul").find(".addr-city").text();
+					var addr_ids = $(this).parents("ul").find(".addr_ids").text();
+					var addtypes = $(this).parents("ul").find(".addtypes").text();
+					localStorage.setItem('addnames', addname);
+					localStorage.setItem('addphones', addphone);
+					localStorage.setItem('addressf', address);
+					localStorage.setItem('addcity', addcitys);
+					localStorage.setItem('addr_id', addr_ids);
+					localStorage.setItem('addtype', addtypes);
+					var a = $(this).parents(".mange-addr").index();
+					var editid = arrid[a];
+					localStorage.setItem('edid', editid);
+					window.location.href = "edit-address.html";
+				});
+			}
+			//编辑ajax结束
+			function ChooseFn() {
+				$(".mange-addr").on("click", function() {
+					// 		$(this).css({"background-color":"#f1f1f1"});
+					// 		$(this).siblings().css({"background-color":"#fff"});
+					var addp = $(this).find(".addr-name").text();
+					var addm = $(this).find(".addr-phone").text();
+					var addrs = $(this).find(".adds").text();
+					localStorage.setItem('daddressps', addp);
+					localStorage.setItem('daddressms', addm);
+					localStorage.setItem('daddressds', addrs);
+					var b = $(this).index();
+					var eitia = arrid[b];
+					localStorage.setItem('addss', eitia);
+					window.location.href = "acc-order.html";
+
+				})
+			}
+			// 阻止冒泡
+			// $(".addset").click(function(event){
+			// 	event.stopPropagation();
+			// })
+
+		});
+	</script>
+
+</html>

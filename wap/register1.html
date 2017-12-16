@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>用户注册</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<link rel="stylesheet" type="text/css" href="css/register.css" />
+		<style>
+			.lltan {
+				position: fixed;
+				z-index: 100000； left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.3);
+				display: none;
+			}
+			
+			.lltan p {
+				width: 70%;
+				height: 20rem;
+				margin-top: 60%;
+				margin-left: 15%;
+				line-height: 20rem;
+				font-size: 3.4rem;
+				color: #333;
+				text-align: center;
+				background-color: #fff;
+				border-radius: 1rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a href="javascript:history.go(-1);location.reload()">
+				<p class="p1">
+					<img src="images/z-120.png" alt="返回首页" />
+				</p>
+			</a>
+			<p class="p2">注册新账号</p>
+		</div>
+		<div class="re-number re-top">
+			<div class="re-number1">
+				<label for="" class="re-recom">推荐编号:</label>
+				<input class="re-input re-input0" type="" name="" id="" value="" placeholder="注册号不可更改" />
+				<img class="re-remove" src="images/z-130.png" />
+			</div>
+		</div>
+		<div class="re-phone">
+			<div class="re-phone1">
+				<label for="" class="re-recom">手机号:</label>
+				<input class="re-phone-put" type="" name="" id="" value="" placeholder="输入11位有效手机号" />
+				<span class="re-phone-get">获取验证码</span>
+			</div>
+		</div>
+		<div class="re-number">
+			<div class="re-number1">
+				<label for="" class="re-recom">验证码:</label>
+				<input class="re-input re-input1" type="" name="" id="" value="" placeholder="短信验证码" />
+				<img class="re-remove" src="images/z-130.png" />
+			</div>
+		</div>
+		<div class="re-number">
+			<div class="re-number1">
+				<label for="" class="re-recom">登录密码:</label>
+				<input class="re-input re-input2" type="password" name="" id="" value="" placeholder="请输入6-12位字符" />
+				<img class="re-remove" src="images/z-130.png" />
+			</div>
+		</div>
+		<div class="re-number">
+			<div class="re-number1">
+				<label for="" class="re-recom">支付密码:</label>
+				<input class="re-input re-input3" type="password" name="" id="" value="" placeholder="支付密码必须为6位数字" />
+				<img class="re-remove" src="images/z-130.png" />
+			</div>
+		</div>
+		<div class="re-number re-number-w">
+			<div class="re-number1">
+				<label for="" class="re-recom">姓名:</label>
+				<input class="re-input re-input4" type="" name="" id="" value="" placeholder="请输入姓名" />
+				<img class="re-remove" src="images/z-130.png" />
+			</div>
+			<div class="re-warn">*请输入您的真实姓名，一经提交不可修改</div>
+		</div>
+		<div class="re-number">
+			<ul class="re-member1">
+				<li class="re-recom">注册类别</li>
+				<li class="re-common">会员</li>
+				<!-- <ul class="re-commonlist" style="display: none;">
+	 				
+	 		</ul> -->
+
+				<!-- <li class="re-com-img"><img src="images/z-131.png"/></li> -->
+			</ul>
+		</div>
+		<ul class="re-address area-wrap">
+			<li id="proname">
+				<span class="re-address-pro">请选择省份</span>
+				<img class="re-address-img" src="images/z-131.png" />
+				<ul class="proname-ul"></ul>
+			</li>
+			<li id="cityname">
+				<span class="re-address-pro">请选择市</span>
+				<img class="re-address-img" src="images/z-131.png" />
+				<ul class="cityname-ul"></ul>
+			</li>
+			<li id="areaname">
+				<span class="re-address-pro">请选择县</span>
+				<img class="re-address-img" src="images/z-131.png" />
+				<ul class="areaname-ul"></ul>
+			</li>
+		</ul>
+		<div class="re-term">
+			<!--<img class="re-term-img" src="images/z-132.png"/>-->
+			<span class="re-term-img"></span>
+			<span class="z-clause">我同意条款</span>
+			<span class="z-clause">(阅读条款)</span>
+		</div>
+		<div class="re-register">注册</div>
+		<div class="lltan">
+			<p>此手机号已经注册过</p>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/adress.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+		$(".z-clause").click(function() {
+				window.location.href = "clause.html";
+			})
+			// function GetQueryString(name){
+
+		// var reg = new RegExp("(&]*)(&|$)");
+
+		// var r = window.location.search.substr(1).match(reg);
+
+		// if (r!=null) return unescape(r[2]); return null;
+
+		// }
+		// $(".re-input0").val(GetQueryString("mobile"));
+		var loca = window.location.href;
+
+		function getphone(urls) {
+			var ulength = urls.length;
+			var indexs = urls.indexOf("mobile=");
+			if(indexs == -1) {
+				return null
+			} else {
+				return urls.substr(indexs + 7, 11);
+			}
+		}
+		// console.log(getphone(loca));
+		$(".re-input0").val(getphone(loca));
+		var ssx = false;
+		$(function() {
+			// 获取地址栏中的手机号
+			// console.log(window.location.href);
+			// window.location.href.indexOf("mobile=");
+			//下拉事件 
+			$(".re-com-img").click(function() {
+				$(".re-commonlist").show();
+			});
+			$(".re-commonlist").on("click", ".re-commonlist-li", function() {
+				var text1 = $(".re-commonlist-li").text();
+				$(".re-common").text(text1);
+				$(".re-commonlist").hide();
+				user_types = $(this).attr("ltypes");
+				// console.log(user_types);
+			});
+
+			//获取验证码倒计时
+			var count = 60;
+			var setTime;
+			var bol = true;
+			var tel = /^1(3|4|5|7|8)\d{9}$/;
+			var tfcheck;
+			$(".lltan").on("click", function() {
+				$(".lltan").css("display", "none");
+			})
+			// console.log($(".re-phone-get").length);
+			$(".re-phone-get").off().on("click", function() {
+				var val1 = $(".re-phone-put").val();
+				var yz = tel.test($(".re-phone-put").val());
+				if(yz) {
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=user&f=check_user",
+						dataType: "json",
+						data: {
+							phone: val1,
+						},
+						success: function(data) {
+							// console.log(data);
+							if(data == 1) {
+								tfcheck = false;
+								$(".lltan").css("display", "block");
+								$(".lltan p").html("用户已存在");
+							} else {
+								// tfcheck=true;
+								if(bol == true) {
+									$.ajax({
+										type: 'POST',
+										url: Url + "api/index.php?n=user&f=send_code",
+										dataType: "json",
+										data: {
+											phone: val1,
+											type: "register",
+										},
+										success: function(data) {
+											// alert(1);
+											console.log(data);
+										},
+										error: function(data) {
+											// console.log(data);
+										}
+									})
+									$(".re-phone-get").addClass("re-phone-get1");
+									$(".re-phone-get").text(count + "s后重新获取").css({
+										"color": "#fff",
+										"background-color": "#d5d5d5"
+									});
+									bol = false;
+									setTime = setInterval(function() {
+										if(count == 0) {
+											count = 60;
+											bol = true;
+											$(".re-phone-get").removeClass("re-phone-get1");
+											$(".re-phone-get").text("获取验证码").css({
+												"color": "#fff",
+												"background-color": "#ffc600"
+											});
+											clearInterval(setTime);
+											return;
+										}
+										count--;
+										$(".re-phone-get").text(count + "s后重新获取").css({
+											"color": "#fff",
+											"background-color": "#d5d5d5"
+										});
+									}, 1000);
+								}
+
+							}
+
+						},
+						error: function(data) {
+							// console.log(data);
+						}
+					})
+				}
+			});
+
+			//input输入框事件
+			$(".re-input").each(function() {
+				var txt1 = $(this).val();
+				if(txt1 == "") {
+					$(".re-remove").css({
+						"opacity": "0"
+					})
+				} else {
+					$(".re-remove").css({
+						"opacity": "1"
+					})
+				}
+				$(this).keyup(function() {
+					var txt1 = $(this).val();
+					console.log(txt1);
+					//      	console.log(txt1);
+					if(txt1 == "") {
+						$(this).siblings(".re-remove").css({
+							"opacity": "0"
+						})
+					} else {
+						$(this).siblings(".re-remove").css({
+							"opacity": "1"
+						})
+					}
+				});
+			});
+			//		删除事件
+			$(".re-remove").each(function() {
+				$(this).click(function() {
+					$(this).siblings(".re-input").val("");
+					$(this).css({
+						"opacity": "0"
+					});
+					$(".re-term-img").attr({
+						"src": "images/z-132.png"
+					})
+				});
+			});
+			//同意条款事件
+			$(".re-input").each(function() {
+				var txtk = $(".re-input").val();
+				if(txtk == "") {
+					$(".re-term-img").attr({
+						"src": "images/z-132.png"
+					})
+				} else {
+					$(".re-term-img").attr({
+						"src": "images/z-133.png"
+					})
+				}
+
+				$(this).keyup(function() {
+					var txtk = $(".re-input").val();
+					if(txtk == "") {
+						$(".re-term-img").attr({
+							"src": "images/z-132.png"
+						})
+					} else {
+						$(".re-term-img").attr({
+							"src": "images/z-133.png"
+						})
+					}
+				});
+			});
+
+			$(".re-term-img").click(function() {
+				if(bolclick == true) {
+					$(".re-term-img").addClass("re-term-img1");
+					$(".re-register").css({
+						"background-color": "#ffc600"
+					});
+					bolclick = false;
+				} else {
+					$(".re-term-img").removeClass("re-term-img1");
+					$(".re-register").css({
+						"background-color": "#d5d5d5"
+					});
+					bolclick = true;
+				}
+			});
+		});
+		//会员类型
+		$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=user&f=usertype",
+				dataType: "json",
+				data: {},
+				success: function(data) {
+					// console.log(data);
+					// console.log(data.data.length);
+					var html = "";
+					for(var i = 0; i < data.data.length; i++) {
+						html += "<li class='re-commonlist-li' ltypes=" + data.data[i].type + ">" + data.data[i].name + "</li>"
+					};
+					$(".re-commonlist").html(html);
+				},
+				error: function(data) {
+					// console.log(data);
+				}
+			})
+			//定义一个省级的id数组
+		var proArr = [];
+		//定义一个市级的id
+		var cityArr = [];
+		//定义一个县级的id
+		var areaArr = [];
+		var index, index1, index2, index3;
+		var zaddress;
+		var se, si, qu;
+		//省级接口
+		var tokens = localStorage.getItem("token");
+		function proajax() {
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=my_address&f=province",
+				dataType: "json",
+				data: {},
+				success: function(data) {
+					// console.log(data);
+					proArr = [];
+					var datas = data.data;
+					var html = " ";
+					for(var i = 0; i < datas.length; i++) {
+						html += '<li>' + datas[i].name + '</li>';
+						proArr.push(datas[i].id);
+					}
+					$("#proname ul").html(html);
+				},
+				error: function(data) {},
+			});
+		}
+		//省级点击事件开始
+		$("#proname span").click(function() {
+			proajax();
+			ssx = false;
+			$(".proname-ul").show();
+			$(".cityname-ul").hide();
+			$(".areaname-ul").hide();
+			$(".proname-ul").on("click", "li", function() {
+				var txt = $(this).text();
+				index1 = $(this).index();
+				$(".proname-ul").hide();
+				$("#proname span").text(txt);
+				$("#cityname .re-address-pro").text("请选择市");
+				$("#areaname .re-address-pro").text("请选择县");
+				cityajax();
+				city();
+			});
+		});
+		//市级ajax接口
+		function cityajax() {
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=my_address&f=city",
+				dataType: "json",
+				data: {
+					"id": proArr[index1]
+				},
+				success: function(data) {
+					var datas = data.data;
+					cityArr = [];
+					var html = " ";
+					for(var i = 0; i < datas.length; i++) {
+						html += '<li>' + datas[i].name + '</li>';
+						cityArr.push(datas[i].id);
+					}
+					$("#cityname ul").html(html);
+				},
+				error: function(data) {},
+			});
+		}
+		//市级点击事件开始
+		function city() {
+			$("#cityname span").click(function() {
+				cityajax();
+				ssx = false;
+				$(".proname-ul").hide();
+				$(".cityname-ul").show();
+				$(".areaname-ul").hide();
+				$(".cityname-ul").on("click", "li", function() {
+					// console.log()
+					var txt = $(this).text();
+					index2 = $(this).index();
+					// console.log(index2);
+					$(".cityname-ul").hide();
+					// txt = $(".cityname-ul li").eq(0).text();
+					$("#cityname span").text(txt);
+					$("#areaname .re-address-pro").text("请选择县");
+					areaajax();
+					area();
+				});
+			});
+		}
+		var t = $(".cityname-ul li").eq(0).text();
+		//县级ajax
+		function areaajax() {
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=my_address&f=area",
+				dataType: "json",
+				data: {
+					"id": cityArr[index2]
+				},
+				success: function(data) {
+					var datas = data.data;
+					areaArr = [];
+					var html = "";
+					for(var i = 0; i < datas.length; i++) {
+						html += '<li>' + datas[i].name + '</li>';
+						areaArr.push(datas[i].id);
+						// console.log(datas[i].id);
+					}
+					$("#areaname ul").html(html);
+					// console.log(areaArr)	
+				},
+				error: function(data) {},
+			});
+		}
+		//县级点击事件
+		function area() {
+			$("#areaname span").click(function() {
+				cityajax();
+				$(".proname-ul").hide();
+				$(".cityname-ul").hide();
+				$(".areaname-ul").show();
+				$(".areaname-ul").on("click", "li", function() {
+					ssx = true;
+					var txt = $(this).text();
+					index3 = $(this).index();
+					$(".areaname-ul").hide();
+					$("#areaname span").text(txt);
+					zaddress = $(this).text();
+					// console.log(proArr[index1],cityArr[index2],areaArr[index3]);
+					// localStorage.setItem('zadd',  zaddress);
+					// window.location.href = "coalition.html";
+				});
+			});
+		}
+		var tel = /^1(3|4|5|7|8)\d{9}$/;
+		var mmzz = /^.{6,12}$/;
+		var zfmmzz = /^\d{6}$/;
+		var tjphones;
+		var phones;
+		var codes;
+		var passwords;
+		var zfpws;
+		var real_names;
+		var user_types;
+		var bolclick = true;
+		$(".re-register").on("click", function() {
+			if(!bolclick) {
+				tjphones = $(".re-input0").val();
+				phones = $(".re-phone-put").val();
+				codes = $(".re-input1").val();
+				passwords = $(".re-input2").val();
+				zfpws = $(".re-input3").val();
+				real_names = $(".re-input4").val();
+				user_types = $(".re-common").html();
+				var provinces = proArr[index1];
+				var citys = cityArr[index2];
+				var areas = areaArr[index3];
+				if(tjphones != "") {
+					if(tel.test(phones)) {
+						if(codes != "") {
+							if(mmzz.test(passwords)) {
+								if(zfmmzz.test(zfpws)) {
+									if(real_names != "") {
+										if($(".re-common").html() != "选择注册身份") {
+											// console.log(ssx);
+											if(ssx) {
+												//接口
+												ajx();
+												function ajx() {
+													$.ajax({
+														type: 'POST',
+														url: Url + "api/index.php?n=user&f=register",
+														dataType: "json",
+														data: {
+															tjphone: tjphones,
+															phone: phones,
+															code: codes,
+															password: passwords,
+															zfpw: zfpws,
+															real_name: real_names,
+															user_type: 1,
+															province: provinces,
+															city: citys,
+															area: areas
+														},
+														success: function(data) {
+															console.log(data);
+															if(data.ret == "ok") {
+																//location.href="lead.html";
+																localStorage.clear();
+																localStorage.setItem('myphone', phones);
+																setTimeout(function() {
+																	$(".lltan").css("display", "block");
+																	$(".lltan p").html(data.msg);
+																}, 0)
+																setTimeout(function() {
+																	window.location.href = "lead.html";
+																}, 1500)
+
+															} else {
+																// alert(data.msg)
+																$(".lltan").css("display", "block");
+																$(".lltan p").html(data.msg);
+															}
+														},
+														error: function(data){
+															// console.log(data.msg);
+															// alert(data.msg);
+//															$(".lltan").css("display", "block");
+//															$(".lltan p").html(data.msg);
+														}
+													});
+											 }
+											} else {
+												// alert("请选择神市县")
+												$(".lltan").css("display", "block");
+												$(".lltan p").html("请选择省市县");
+											}
+										} else {
+											// alert("请选择您想要注册的身份")
+											$(".lltan").css("display", "block");
+											$(".lltan p").html("请选择您想要注册的身份");
+										}
+									} else {
+										// alert("请输入真实姓名");
+										$(".lltan").css("display", "block");
+										$(".lltan p").html("请输入真实姓名");
+									}
+								} else {
+									// alert("支付密码必须为6位数字");
+									$(".lltan").css("display", "block");
+									$(".lltan p").html("支付密码必须为6位数字");
+								}
+							} else {
+								// alert("密码必须为6-12位");
+								$(".lltan").css("display", "block");
+								$(".lltan p").html("密码必须为6-12位");
+							}
+						} else {
+							// alert("验证码不能为空");
+							$(".lltan").css("display", "block");
+							$(".lltan p").html("验证码不能为空");
+						}
+					} else {
+						// alert("手机号格式错误");
+						$(".lltan").css("display", "block");
+						$(".lltan p").html("手机号格式错误");
+					}
+				} else {
+					// alert("推荐编号不能为空");
+					$(".lltan").css("display", "block");
+					$(".lltan p").html("推荐编号不能为空");
+				}
+			}
+		})
+	</script>
+
+</html>

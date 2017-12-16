@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>意见反馈</title>
+	<link rel="stylesheet" href="css/shezhi.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+			<div class="left"><a href="javascript:history.go(-1)"><img src="images/fanhui.png" alt="返回首页"></a></div>
+			<div class="center"><p>意见反馈</p></div>
+			
+		</header>
+		<section>
+			<div class="main_one">
+				<textarea name="" id="t1" placeholder="输入您遇到的问题和建议..."  onkeyup="check()" maxlength="400"></textarea>
+				<span>400</span>
+			</div>
+			<div class="main_two">
+				<p><span>QQ号码</span><input type="number" placeholder="请输入您的QQ号码"></p>
+			</div>
+			<div class="main_three">
+				<p><span>手机号码</span><input type="number" placeholder="选填，便于我们联系您"></p>
+			</div>
+			<div class="main_four">
+				<span id="sub">提交</span>
+			</div>
+			<div class="tan">
+				    <div class="tan-container">
+					       <div class="tk">
+					       	<p></p>	
+					       </div>
+			    	</div>
+			</div>
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script src="js/me.js" type="text/javascript" charset="utf-8"></script>
+
+<script> 
+	function check() { 
+	var regC = /[^ -~]+/g; 
+	var regE = /\D+/g; 
+	var str = t1.value; 
+	var ptel=/^1(3|4|5|7|8)\d{9}$/;
+	if (regC.test(str)){ 
+	    t1.value = t1.value.substr(0,400); 
+	} 
+
+	if(regE.test(str)){ 
+	    t1.value = t1.value.substr(0,800); 
+	} 
+	} 
+</script> 
+<script>
+	var tokens=localStorage.getItem ("token");
+	var ptel=/^1[34578]\d{9}$/;
+	var val1;
+	var val2;
+	var val3;
+	var tf=false;
+	val10=$("#t1").val();
+	val20=$(".main_two").val();
+	val30=$(".main_three").val();
+	function vals(){
+		val1=$("#t1").val();
+		val2=$(".main_two input").val();
+		val3=$(".main_three input").val();
+	}
+	var html="";
+	$('.main_four span').on('click',function(){
+		vals();
+		if(val1==val10){ 
+			$(".tk p").html("请填写您的问题和建议");
+			zzc();
+		// }else if (val2==val20) {
+		// 	$(".tk p").html("请输入你的QQ号码");
+		// 	zzc();
+		// }else if (ptel.test(val3)) {
+		// 	jk();
+
+		// }else{
+		// 	$(".tk p").html("手机号格式有误");
+		// 	zzc();
+		// }
+	}else{
+		jk();
+	}
+			
+	})
+	function jk(){
+		$.ajax({	
+			           type: 'POST',
+			           url: Url + "api/index.php?n=userset&f=feedback",
+			         	dataType: "json",
+			       	data: { 
+			       		token : tokens,
+			       		feedback:val1,
+			       		user_qq:val2,
+			       		phone:val3,
+			       	},
+			        	success: function(data){
+			                      // console.log(data);
+			                      $(".tk p").html(data.msg);
+			                      tf=true;
+			                     zzc();
+				} ,
+			            error:function(data){
+				                      }
+			})
+	}
+	function zzc() {
+			//遮罩层
+			  jQuery(document).ready(function($){
+		              event.preventDefault();
+		              $('.tan').addClass('is-visible');
+		     	 //关闭窗口
+		        	 $('.tan').on('click', function(event){
+			            if( $(event.target).is('.tan_close') || $(event.target).is('.tan') ) {
+			                event.preventDefault();
+			                $(this).removeClass('is-visible');
+			                if (tf) {
+			                	location.href="information.html";
+			                };
+			                
+			            }
+			        });
+			
+	
+	   	});
+	}
+	
+</script>
+
+</html>

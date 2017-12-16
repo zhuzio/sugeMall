@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>升级</title>
+	<link rel="stylesheet" href="css/shengji.css">
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+			<div class="left"><a href="javascript:history.go(-1)"><img src="images/fanhui.png" alt="返回首页"></a></div>
+			<div class="center"><p>请选择级别</p></div>
+		</header>
+		<section>
+			<div class="shangjia sj">
+				<p>商家</p>
+				<a href=""><img src="images/back2.png" alt=""></a>
+			</div>
+			<div class="qyd">
+				<p>区域代理</p>
+				<img src="images/back2.png" alt="">
+			</div>
+			<div class="xd">
+				<p>县代理</p>
+				<img src="images/back2.png" alt="">
+			</div>
+			<div class="sd">
+				<p>市代理</p>
+				<img src="images/back2.png" alt="">
+			</div>
+			<div class="shd">
+				<p>省代理</p>
+				<img src="images/back2.png" alt="">
+			</div>
+			<div class="alert">
+				<p>申请提交已成功<br><span>我们会尽快与您联系</span></p>
+		</div>
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+<script>
+		$(".shd").click(function(){
+			location.href = "choice_sheng.html";
+		});
+		$(".sd").click(function(){
+			location.href = "choice_shi.html";
+		});
+		$(".xd").click(function(){
+			location.href = "choice_xian.html";
+		});
+		$(".shangjia").click(function(){
+			location.href = "storeset.html";
+		});
+	$(function(){
+		var tokens=localStorage.getItem('token');
+	var mun;
+	$("section").on("touchend",".qyd",function(){
+		// $("section .qyd").css("background","#fff");
+		// $(this).css("background","#ffc600");
+		// num=$(this).index();
+		// // alert(num);
+		// if (num==0) {
+		// 	$(".next a").attr("href","kaidian.html");
+		// }
+		$(".sj").removeClass("sj");
+		$(this).addClass("sj");
+	})
+	$(".qyd").on("click",function(){
+		$.ajax({
+			type: 'POST',
+			dataType: 'JSON',
+			data: {token:tokens,type:4},
+			url: Url+'/api/index.php?n=userset&f=upgrade',
+			success:function(res){
+				// console.log(res);
+				$(".alert p").html(res.msg);
+				$(".alert").css("display","block");
+				setTimeout(function(){
+					$(".alert").css("display","none");
+					if (res.ret=="ok") {
+						location.href="z-member.html";
+					}
+				},1000)		
+				}
+		})	
+	})
+
+})
+</script>
+</html>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>找回密码</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style2.css">
+		<link rel="stylesheet" href="css/a.css">
+	</head>
+
+	<body>
+		<div class="d_header">
+			<p class="p1">
+				<a href="javascript:history.go(-1)">
+					<img src="images/back.png" alt="返回首页">
+				</a>
+			</p>
+			<p class="p2">找回密码</p>
+		</div>
+		<form action="" class="form">
+			<div class="div1">
+				<li class="li1"></li>
+				<input type="text" placeholder="注册手机号" class="inp1">
+				<span>获取验证码</span>
+			</div>
+			<div class="div2">
+				<li class="li2"></li>
+				<input type="text" placeholder="输入验证码" class="inp2">
+			</div>
+			<div class="div3"><span>提交信息</span></div>
+		</form>
+		<div class="tan">
+			<div class="tan-container">
+				<div class="tk">
+					<p>验证码输入错误！</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/box1.js"></script>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script>
+		$(function() {
+			// 	var html = document.getElementsByTagName("html")[0];
+			// 	html.style.fontSize=(100/720)*document.documentElement.clientWidth+"px";
+			// 	window.onresize = function(){		
+			// 		setTimeout(function(){
+			// 			html.style.fontSize=(100/720)*document.documentElement.clientWidth+"px";
+			// 		},20)
+			// 	}
+			// 返回上一页
+			function return_prepage() {
+				if(window.document.referrer == "" || window.document.referrer == window.location.href) {
+					window.location.href = "{dede:type}[field:typelink /]{/dede:type}";
+				} else {
+					window.location.href = window.document.referrer;
+				}
+			}
+		})
+	</script>
+	<script src="js/action2.js"></script>
+	<script>
+		$(function() {
+			var tel = /^1(3|4|5|7|8)\d{9}$/;
+			var a = false;
+			$(".inp1").on("blur", function() {
+				var vue = $(this).val();
+				if(!tel.test(vue)) {
+					alert("请输入正确的手机号");
+					a = false;
+					$(this).focus();
+				} else {
+					a = true;
+
+				}
+			})
+			$(".inp2").on("keyup", function() {
+				var vue1 = $(".inp2").val();
+				if(a) {
+					if(vue1) {
+						$(".next span").addClass("next1");
+						tf1 = true;
+					} else {
+						$(".next span").removeClass("next1");
+						tf1 = false;
+					}
+				} else {
+
+				}
+
+			})
+			var count = 60;
+			var timer = null;
+			var tf = true;
+			var tf1 = false;
+
+			function set() {
+
+				timer = setInterval(function() {
+					count--;
+					// $(".fbtn").html(count+"秒内重发");
+					$(".div1 span").html(count + "秒内重发");
+					if(count <= 0) {
+						clearInterval(timer);
+						tf = true;
+						// $(".fbtn").html("");
+						$(".div1 span").css("background-color", "#ffc600");
+						$(".div1 span").css("color", "#fff");
+						count = 60;
+					}
+				}, 1000)
+			}
+			// 获取验证码
+			$(".div1 span").on("click", function() {
+					var val1 = $(".inp1").val();
+					// console.log(val1);
+					if(a) {
+						if(tf) {
+							clearInterval(timer);
+							// $(".fbtn").html(count+"秒内重发");
+							$.ajax({
+								type: 'POST',
+								url: Url + "api/index.php?n=user&f=send_code",
+								dataType: "json",
+								data: {
+									phone: val1,
+									type: "find",
+								},
+								success: function(data) {
+									// alert(1);
+
+									console.log(data);
+								},
+								error: function(data) {
+									// console.log(data);
+								}
+							})
+
+							$(this).css("background-color", "#999");
+							$(this).css("color", "#666");
+							tf = false;
+							set();
+						}
+					}
+
+				})
+				//接口
+			$(".div3 span").on("click", function() {
+					if(tf1) {
+						var valn = $(".inp2").val();
+						var val1 = $(".inp1").val();
+						console.log(valn);
+						$.ajax({
+							type: 'POST',
+							url: Url + "api/index.php?n=user&f=checkcode",
+							dataType: "json",
+							data: {
+								phone: val1,
+								code: valn,
+							},
+							success: function(data) {
+								console.log(data);
+								if(data.msg == "验证码输入正确！") {
+									var val1s = $(".inp1").val();
+									localStorage.setItem('dlphones', val1s);
+									location.href = "qrdlmm.html";
+								} else {
+									errort();
+								}
+
+							},
+							error: function(data) {
+								console.log(data);
+							}
+						})
+					}
+				})
+				// $('.next span').on('click',function(){
+				//遮罩层
+			function errort() {
+				jQuery(document).ready(function($) {
+					event.preventDefault();
+					$('.tan').addClass('is-visible');
+					//关闭窗口
+					$('.tan').on('click', function(event) {
+						if($(event.target).is('.tan_close') || $(event.target).is('.tan')) {
+							event.preventDefault();
+							$(this).removeClass('is-visible');
+						}
+					});
+				});
+			}
+
+		})
+	</script>
+
+</html>

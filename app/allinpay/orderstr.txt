@@ -1,0 +1,1 @@
+inputCharset=1&pickupUrl=http://test.4gxt.com/app/allinpay/pickup.php&receiveUrl=http://test.4gxt.com/app/allinpay/receive.php&version=v1.0&language=1&signType=0&merchantId=008411353990035&orderNo=P33683799521344&orderAmount=100000&orderCurrency=0&orderDatetime=20170428163259&ext1=<USER>170428823365687</USER>&payType=33&signMsg=E6EB31F6BC8DD56DB2CDA13B09C37DD7

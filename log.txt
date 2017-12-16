@@ -1,0 +1,52 @@
+request body = <TemplateSMS>
+                    <to>undefined</to> 
+                    <appId>aaf98f895388dae5015398244ce61775</appId>
+                    <templateId>74919</templateId>
+                    <datas><data>748902</data><data>http://www.sugemall.com</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/aaf98f895335f2be01533bb0f8ae0bcb/SMS/TemplateSMS?sig=89E2D987F575A4798D7E5512F968A89D
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160042</statusCode>
+    <statusMsg>号码格式有误</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>undefined</to> 
+                    <appId>aaf98f895388dae5015398244ce61775</appId>
+                    <templateId>74919</templateId>
+                    <datas><data>893747</data><data>http://www.sugemall.com</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/aaf98f895335f2be01533bb0f8ae0bcb/SMS/TemplateSMS?sig=6C612A3F698CEC92BC82B607D79322F9
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160042</statusCode>
+    <statusMsg>号码格式有误</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>undefined</to> 
+                    <appId>aaf98f895388dae5015398244ce61775</appId>
+                    <templateId>74919</templateId>
+                    <datas><data>408591</data><data>http://www.sugemall.com</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/aaf98f895335f2be01533bb0f8ae0bcb/SMS/TemplateSMS?sig=ECA14DBA6D8274E7112A1F5DF0E5F217
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160042</statusCode>
+    <statusMsg>号码格式有误</statusMsg>
+</Response>
+
+request body = <TemplateSMS>
+                    <to>undefined</to> 
+                    <appId>aaf98f895388dae5015398244ce61775</appId>
+                    <templateId>74919</templateId>
+                    <datas><data>277386</data><data>http://www.sugemall.com</data></datas>
+                  </TemplateSMS>
+request url = https://app.cloopen.com:8883/2013-12-26/Accounts/aaf98f895335f2be01533bb0f8ae0bcb/SMS/TemplateSMS?sig=F5BBC4438DEF76D0459EFD7A22CFD9D8
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Response>
+    <statusCode>160042</statusCode>
+    <statusMsg>号码格式有误</statusMsg>
+</Response>
+

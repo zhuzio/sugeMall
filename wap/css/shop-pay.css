@@ -1,0 +1,227 @@
+.sp-price {
+	width: 100%;
+	/*height: 9.2rem;*/
+	border-bottom: 1px solid #d5d5d5;
+	margin-top: 8.9rem;
+}
+.sp-price1{
+	width: 89.5%;
+	line-height: 9.2rem;
+	/*border: 1px solid red;*/
+	margin-left: 4.0%;
+	display: flex;
+	justify-content: space-between;
+}
+.sp-price1 span{
+	font-size: 3.0rem;
+}
+.sp-price1 span:nth-child(1){
+	color: #333;
+}
+.sp-price1 span:nth-child(2){
+	color: #d81e05;
+}
+
+.sp-price-type {
+	width: 100%;
+	height: 12.8rem;
+	border-bottom: 1px solid #d5d5d5;
+}
+.sp-price-type>li{
+	display: inline-block;
+}
+.sp-price-type >li:nth-child(1){
+	/*height: 6.0rem;*/
+	/*border: 1px solid red;*/
+	margin-left: 4.0%;
+	margin-top: 1.25rem;
+}
+.sp-price-type >li:nth-child(1) img{
+	width: 9.5rem;
+}
+.sp-price-type>li:nth-child(2){
+	/*width: 40.7%;*/
+	/*height: 8.0rem;*/
+	/*border: 1px solid red;*/
+	position: relative;
+	top: -1.3rem;
+	left: 3.0rem;
+}
+.sp-price-type1 li:nth-child(1){
+	font-size: 3.0rem;
+	color: #333;
+	line-height: 7.6rem;
+}
+.sp-price-type1 li:nth-child(2) span{
+	font-size: 2.4rem;
+	color: #666;
+	/*line-height: 6.0rem;*/
+}
+.sp-price-type5{
+	font-size: 2.6rem !important;
+	color: #37e4b1 !important;
+	margin-left: 1.0rem;
+}
+.sp-consume{
+	width: 95.8%;
+	height: 29.5rem;
+	/*border: 1px solid red;*/
+	margin-left: 4.0%;
+}
+.sp-consume li:nth-child(1){
+	margin-top: 3.5rem;
+}
+.sp-consume li:nth-child(1) span{
+	font-size: 2.8rem;
+	color: #333;	
+}
+.zpayd{
+	color: #d81e05 !important;
+}
+/*.sp-consume li:nth-child(2) input,.sp-consume li:nth-child(3) input{
+	width: 100%;
+	height: 3.0rem;
+	border: 1px solid red;
+	font-size: 3.0rem;
+	color: #333;
+	border-bottom: 1px solid #999;
+}
+.sp-consume li:nth-child(2) input{
+	margin-top: 8.0rem;
+}
+.sp-consume li:nth-child(3) input{
+	margin-top: 10.6rem;
+}
+.sp-blank{
+	width: 100%;
+	height: 3.5rem;
+	background-color: #efeff4;
+}*/
+.sp-confirm {
+	width: 92.5%;
+	height: 10.2rem;
+	background-color: #e5e5e5;
+	/*margin-top: 12.0rem;*/
+	text-align: center;
+	line-height: 10.2rem;
+	font-size: 2.8rem;
+	color: #999;
+	margin: 15.0rem auto 0;
+	border-radius: 0.8rem;
+}
+.pay-success, .pay-success1,.pay-success2{
+	width: 45.5%;
+	height: 14.2rem;
+	background-color: #333;
+	font-size: 2.8rem;
+	color: #fff;
+	text-align: center;
+	line-height: 14.2rem;
+	margin: -30.0rem auto 0;
+	border-radius: 1.0rem;
+	
+}
+.key {
+  width: 100%;
+  height: 70.7rem;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  /*display: none;*/
+}
+.key .k-header {
+  width: 100%;
+  height: 9.3rem;
+  background: none;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+.key .k-header .k-left {
+  width: 1.9rem;
+  margin-left: 3.6rem;
+  margin-top: 3.2rem;
+}
+.key .k-header .k-left img {
+  width: 1.9rem;
+  height: 1.8rem;
+}
+.key .k-header .k-right {
+  -webkit-box-flex: 1;
+}
+.key .k-header .k-right p {
+  line-height: 9.3rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+  padding-right: 10%;
+}
+.key .k-center {
+  width: 100%;
+  height: 9rem;
+  background: none;
+}
+.key .k-center ul {
+  width: 80%;
+  height: 9rem;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  margin-left: 10%;
+  border-radius: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+.key .k-center ul li {
+  border-right: 1px solid #e2e2e2;
+  width: 16.6%;
+  height: 9rem;
+  line-height: 9rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+}
+.key .k-center ul .kc-last {
+  border-right: none;
+}
+.key .forget {
+  width: 100%;
+  height: 6.8rem;
+  background: none;
+}
+.key .forget a {
+  line-height: 6.8rem;
+  font-size: 2.6rem;
+  color: #ffc600;
+  margin-left: 75%;
+}
+.key .k-footer {
+  width: 100%;
+  height: 45.6rem;
+  background: #e2e7ed;
+}
+.key .k-footer ul {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  width: 100%;
+  height: 11.3rem;
+  background: none;
+  border-top: 1px solid #e2e7ed;
+}
+.key .k-footer ul li {
+  width: 100%;
+  -webkit-box-flex: 1;
+  background: #fff;
+  text-align: center;
+  line-height: 11.3rem;
+  font-size: 4.4rem;
+  color: #414141;
+  margin-right: 0.1rem;
+}
+.key .k-footer .k-lastline {
+  background: none;
+}
+.key .k-footer .k-lastline img {
+  width: 4.1rem;
+  height: 3.8rem;
+  background: none;
+}

@@ -1,0 +1,1 @@
+{"user_id":"19815","bank_num":"6226230020072524","bank_name":"\u6c11\u751f\u94f6\u884c","real_name":"\u9648\u4e1c\u68ee","idcard_num":"411325198611067835","mobile":"15225683967","type":"1","end_time":"1021","cvv2":"966","status":1,"is_default":1,"bind_id":"13903234","add_time":1491056026}

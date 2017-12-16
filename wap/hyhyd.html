@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>会员活跃度</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/sjhyd.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">会员活跃度</p>
+		<!-- <button>保存</button> -->
+	</div>
+	<div class="kong"></div>
+	<ul>
+		
+	</ul>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js">
+
+</script>
+<script src="js/url.js"></script>
+<script>
+$(function(){
+	function ys(){
+		var font=document.getElementsByTagName('font');
+		
+		var leng=font.length;
+		var lengs1;
+		for(var i=0;i<leng;i++){
+			
+			var valu=font[i].innerHTML;
+			if(!valu<=0){
+				font[i].style.color="#11c353";
+			}else{
+				font[i].style.color="#d81e05";
+			}
+		}
+	}
+	
+	
+	    var tokens=localStorage.getItem ("token");
+		var num;
+		$.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + "api/index.php?n=member_wealth&f=memberActive",
+		     data: {
+		     	token:tokens,
+		     	
+		     	},
+		    success: function(data){
+		    	// console.log(data);
+		    	var lengs1=data.totalpage;
+		    	num=data.totalpage;
+				    	// console.log(data);
+				    	var count;
+				    	for (var j = 0; j < 100000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	var html="";
+				    	// console.log(count);
+				    	for (var i = 0; i < count; i++) {
+				    		
+				    		var ls=data.data[i].getname.length;
+				    		if (!isNaN(data.data[i].getname)) {
+				    			var getn=data.data[i].getname;
+
+				    		}else{
+				    			var getn="*"+data.data[i].getname.substr(1,ls);
+				    		}
+				    	html+="<li>"+getn+"<p class='up1'>"+data.data[i].info+" <span>"+data.data[i].totalPoint+"</span></p><p class='up2'>手机号：<span>"+data.data[i].phone+"</span></p></li>";
+				    		
+				    	};
+				    	
+				    	$("ul").html(html);
+				  
+		    	
+
+		    } ,
+		    error:function(data){
+		    	// console.log(data);
+		    }
+		});
+		var pages=1; //当前页的页码
+		var allpage=num; //总页码，会从后台获取
+		var sc=true;
+		function showAjax(){
+			$.ajax({
+				 type: 'POST',
+				 dataType: "json",
+				 url:Url + "api/index.php?n=member_wealth&f=memberActive",
+				 data: {
+				     	token:tokens,
+				     	page:pages,
+				     },
+				success:function(data){
+					//要执行的内容
+					// showContent();
+						//页数加1
+					// console.log(data);
+				    	
+				    	var count;
+				    	for (var j = 0; j < 100000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	var html="";
+				    	// console.log(count);
+				    	for (var i = 0; i < count; i++) {	
+				    	var ls=data.data[i].getname.length;
+				    		if (!isNaN(data.data[i].getname)) {
+				    			var getn=data.data[i].getname;
+
+				    		}else{
+				    			var getn="*"+data.data[i].getname.substr(1,ls);
+				    		}
+				    	html+="<li>"+getn+"<p class='up1'>"+data.data[i].info+" <span>"+data.data[i].totalPoint+"</span></p><p class='up2'>手机号：<span>"+data.data[i].phone+"</span></p></li>";
+				    		
+				    	};
+				    	sc=true;
+				    	// console.log(html);
+				    	$("ul").append(html);
+					// 分页加载/
+				}
+			})
+		}
+		function scrollFn(){
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+				if (sc) {
+				// alert(2);
+				
+				sc=false;
+				pages++;
+				if (pages<=num) {
+					// console.log(pages);
+					showAjax();
+					
+				}
+				
+			}
+		       }
+		}
+		$(window).bind("scroll",scrollFn);	//绑定滚动事件
+	})
+</script>		
+</html>

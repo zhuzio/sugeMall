@@ -1,0 +1,67 @@
+.d_header{
+	height: 8.8rem;
+	background-color: #efeff4;
+	position: relative;
+	
+}
+.d_header .ha1{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.d_header .ha2{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width:30%;
+	z-index: 1;
+	top: 0;
+	font-size: 3rem;
+	color: #333;
+	text-align: right;
+	line-height: 8.8rem;
+}
+.kd p{
+	height: 10rem;
+	margin: 0 3rem;
+	position: relative;
+	line-height: 10rem;
+	font-size: 3rem;
+	color: #666;
+	border-bottom: 0.1rem solid #666;
+}
+.kd p img{
+	position: absolute;
+	right: 0;
+	top:2.5rem;
+	width: 5rem;
+	height: 5rem;
+}

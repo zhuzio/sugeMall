@@ -1,0 +1,134 @@
+.d_header{
+	height: 8.8rem;
+	background-color: #efeff4;
+	position: relative;
+	
+}
+.d_header a{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.d_header button{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width:11rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3.4rem;
+	color: #333;
+	text-align: right;
+	background-color: #f0f0f0;
+}
+.zdul{
+	width: 100%;
+}
+.zdul li{
+	margin: 0 3rem;
+	height: 23rem;
+	overflow: hidden;
+	position: relative;
+}
+.lp1{
+	line-height: 6rem;
+	height: 6rem;
+	margin-top: 2rem;
+	font-size: 3.4rem;
+	color: #666;
+	text-align: center;
+	width: 100%;
+}
+.lp2{
+	line-height: 8rem;
+	height: 8rem;
+	font-size: 3rem;
+	color: #666;
+	/*text-align: center;*/
+	width: 100%;
+	border-bottom: 1px solid #dcdcdc;
+}
+.sp1{
+	float: left;
+	height: 8rem;
+	width: 50%;
+}
+.sp2{
+	float: right;
+	height: 8rem;
+	width: 50%;
+	text-align: right;
+
+}
+.sp1 img,.sp2 img{
+	vertical-align: middle;
+	width: 3.1rem;
+	height: 1.9rem;
+}
+/*.lp3{
+	line-height: 3.5rem;
+	height: 3.5rem;
+	font-size: 2.2rem;
+	color: #666;
+	text-align: right;
+	text-indent: 2px;
+}
+.lp3 span{
+	color: transparent;
+}*/
+.lp4{
+	line-height: 7rem;
+	height: 7rem;
+	font-size: 2.4rem;
+	color: #666;
+	text-align: right;
+}
+.kong4{
+	background-color: #f1f1f1;
+	height: 2rem;
+	width: 100%;
+}
+.lp5{
+	position: absolute;
+	line-height: 7rem;
+	height: 7rem;
+	font-size: 3rem;
+	color: #666;
+	/*text-align: right;*/
+	width: 100%;
+	bottom: 0;
+}
+.lp5 span{
+	color: #333;
+}
+.lp2 font{
+	color: #d81e05;
+}

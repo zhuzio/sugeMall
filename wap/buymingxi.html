@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>积分发放明细</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/area-business11.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<link rel="stylesheet" href="css/a.css">
+		<style>
+			.d_header {
+				border-bottom: 1px solid #dcdcdc;
+			}
+			
+			body {
+				background-color: #efeff4;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">积分发放明细</p>
+			<!-- <span>批量操作</span> -->
+		</div>
+		<ul class="zdul">
+			<!--<div>
+			<li>
+				<p class="lp1"><img src="images/z-1000.png"> 平台赠送：
+				<span class="lp1r">456</span></p>
+				<p class="lp1">
+					<img src="images/z-z11.png">商家赠送：
+					<span class="lp1r">456</span>
+				</p>
+				<p class="lp2">
+					<img src="images/z-z12.png"> 会员：李家豪
+				</p>
+				<p class="lp3"><img src="images/z-z15.png">商城订单：123456</p>
+				<p class="lp4"><img src="images/xqtime.png">2016-08-09 10：00：00</p>
+				<p class="lp5"><img src="images/z-z13.png"><span>13522063950</span></p>
+				<span class="is-check"></span>
+			</li>
+		</div>-->
+			<!--<div>
+			<li>
+				<p class="lp1"><img src="images/z-1000.png"> 平台赠送：
+				<span class="lp1r">456</span></p>
+				<p class="lp1">
+					<img src="images/z-z11.png">商家赠送：
+					<span class="lp1r">456</span>
+				</p>
+				<p class="lp2">
+					<img src="images/z-z12.png"> 会员：李家豪
+				</p>
+				<p class="lp3"><img src="images/z-z15.png">商城订单：123456</p>
+				<p class="lp4"><img src="images/xqtime.png">2016-08-09 10：00：00</p>
+				<p class="lp5"><img src="images/z-z13.png"><span>13522063950</span></p>
+				<span class="is-check"><img src="images/z-z16.png"/></span>
+			</li>
+		</div>-->
+		</ul>
+	</body>
+	<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script>
+		var tokens = localStorage.getItem("token");
+		var times = localStorage.getItem("times");
+		var num;
+		$.ajax({
+			type: 'POST',
+			dataType: "json",
+			url: Url + "api/index.php?n=order&f=pointsendmonthlist",
+			data: {
+				token: tokens,
+				month: times,
+			},
+			success: function(data) {
+				console.log(data);
+				num = data.totalpage;
+				var html = "";
+
+				for(var i = 0; i < data.data.length; i++) {
+					if(data.data[i].is_pass == "1") {
+						var srcs = "images/z-z16.png";
+					} else if(data.data[i].is_pass == "0") {
+						var srcs = "images/z-5521.png";
+					}
+					html = '<div><li><p class="lp1"><img src="images/z-1000.png"> 平台赠送：<span class="lp1r">' + data.data[i].system_point + '</span></p><p class="lp1"><img src="images/z-z11.png">商家赠送：<span class="lp1r">' + data.data[i].shops_point + '</span></p><p class="lp2"><img src="images/z-z12.png"> 会员：' + data.data[i].real_name + '</p><p class="lp3"><img src="images/z-z15.png">商城订单：' + data.data[i].order_sn + '</p><p class="lp4"><img src="images/xqtime.png">' + data.data[i].createtime + '</p><p class="lp5"><img src="images/z-z13.png"><span>' + data.data[i].user_name + '</span></p><span class="is-check"><img src="' + srcs + '"/></span></li></div>';
+					$(".zdul").append(html);
+				}
+
+			},
+			error: function(data) {}
+		});
+		var pages = 1; //当前页的页码
+		var allpage = num; //总页码，会从后台获取
+		var sc = true;
+
+		function showAjax() {
+			$.ajax({
+				type: 'POST',
+				dataType: "json",
+				url: Url + "api/index.php?n=order&f=pointsendmonthlist",
+				data: {
+					token: tokens,
+					month: times,
+					page: pages,
+				},
+				success: function(data) {
+//					console.log(data)
+					var html = "";
+					for(var i = 0; i < data.data.length; i++) {
+						if(data.data[i].is_pass == "1") {
+							var srcs = "images/z-z16.png";
+						} else if(data.data[i].is_pass == "0") {
+							var srcs = "images/z-5521.png";
+						}
+						html = '<div><li><p class="lp1"><img src="images/z-1000.png"> 平台赠送：<span class="lp1r">' + data.data[i].system_point + '</span></p><p class="lp1"><img src="images/z-z11.png">商家赠送：<span class="lp1r">' + data.data[i].shops_point + '</span></p><p class="lp2"><img src="images/z-z12.png"> 会员：' + data.data[i].real_name + '</p><p class="lp3"><img src="images/z-z15.png">商城订单：' + data.data[i].order_sn + '</p><p class="lp4"><img src="images/xqtime.png">' + data.data[i].createtime + '</p><p class="lp5"><img src="images/z-z13.png"><span>' + data.data[i].user_name + '</span></p><span class="is-check"><img src="' + srcs + '"/></span></li></div>';
+						sc = true;
+						$(".zdul").append(html);
+					}
+				}
+			})
+		}
+
+		function scrollFn() {
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+				if(sc) {
+					// alert(2);
+					// alert(pages+":"+allpage)
+					sc = false;
+					pages++;
+					if(pages <= num) {
+						// console.log(pages);
+						showAjax();
+						// alert(1);
+					}
+
+				}
+			}
+		}
+		$(window).bind("scroll", scrollFn); //绑定滚动事件
+	</script>
+	</script>
+
+</html>

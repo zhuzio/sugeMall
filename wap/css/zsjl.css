@@ -1,0 +1,30 @@
+.f-business{
+	width: 92%;
+	margin: 12rem 3rem 0;
+	/*display: -webkit-box;
+	-webkit-box-pack: justify;*/
+}
+.f-business a{
+	float: left;
+	width: 28%;
+	height: 30rem;
+	margin-left: 8%;
+	text-align: center;
+}
+.f-business .la1{
+	margin: 0;
+}
+.f-business li {
+	height: 13rem;
+}
+.f-business li img {
+	/*width: 80%;*/
+	width: 11rem;
+	}
+.f-business span {
+	/*text-align: center;*/
+	font-size: 3.0rem;
+	color: #333333; 
+	position: relative;
+	top: 2.5rem;
+	}

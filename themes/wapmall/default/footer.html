@@ -1,0 +1,191 @@
+<footer id="copyright">
+    <section class="footer-t">
+        <div class="fl" id="is_login">
+            <!--{if !$visitor.user_id}-->
+            <a href="{url app=member&act=login&ret_url=$ret_url}">{$lang.login}</a><a href="{url app=member&act=register&ret_url=$ret_url}">{$lang.register}</a>
+            <!--{else}-->
+            <span class="mr10">{$visitor.user_name|escape}</span><a href="{url app=member&act=logout}">{$lang.logout}</a>
+            <!--{/if}--> 
+        </div>
+        <a href="#" class="retum">回到顶部<b></b></a>
+    </section>
+    <section class="footer-c">
+        <div>© {$icp_number}</div>
+    </section>
+    {$async_sendmail}
+</footer>
+
+
+    <nav>
+            <ul class="nav">
+                <li>
+                    <a href="{url app=default}" class="icon-nava">
+                        <span></span>
+                        <p>首页</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{url app=category}" class="icon-navb">
+                        <span></span>
+                        <p>分类</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{url app=offline}" class="icon-navc">
+                        <span></span>
+                        <p>联盟商家</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{url app=cart}" class="icon-navd">
+                        <span></span>
+                        <p>购物车</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{url app=new_member}" class="icon-nave">
+                        <span></span>
+                        <p>我的</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!--通用弹窗-->
+        <div class="index-pop" style="display: none;">
+            <div class="pop-box">
+                    <div class="popjian"></div>
+                    <span class="close">&nbsp;</span>
+            </div>
+            <div class="pop-bg"></div>
+        </div>
+    <audio id="media" src="{res file=vivo/tixiang.mp3}"   style="display:none"></audio>
+    <!-- 微信弹出窗口 -->
+    <div class="Withdrawals" id="withds" style="display:none">
+        <div class="withdra-box">
+            <div class="thaw-inf">
+                <div class="thaw-news">
+
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;绑定微信账号下次自动登录，是否将微信账号与联盟账号绑定?</p>
+
+                </div>              
+            </div>
+            <div class="pop-operation">
+                <button type="button"  id="no_binding">暂不绑定</button>
+                <button type="button" id="ok_binding">立即绑定</button></a>
+            </div>
+        </div>
+        <div class="withdra-bg"></div>
+    </div>
+<script>
+    function addcookie(name,value,expireHours){
+    var cookieString=name+"="+escape(value)+"; path=/";
+    //判断是否设置过期时间
+    if(expireHours>0){
+        var date=new Date();
+        date.setTime(date.getTime+expireHours*3600*1000);
+        cookieString=cookieString+"; expire="+date.toGMTString();
+    }
+    document.cookie=cookieString;
+    }
+    function trim(str){ //删除左右两端的空格
+    　　 return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
+    function getcookie(name){
+        var strcookie=document.cookie;
+
+        var arrcookie=strcookie.split(";");
+         
+        for(var i=0;i<arrcookie.length;i++){
+        var arr=arrcookie[i].split("=");
+        if(trim(arr[0])==name)return arr[1];
+        //if(arr[0]==' '+name)return arr[1];
+        }
+
+        return "";
+    }
+    function delcookie(name){//删除cookie
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval=getcookie(name);
+        if(cval!=null) document.cookie= name + "="+cval+"; path=/;expires="+exp.toGMTString();
+    }
+$(function(){
+     if(getcookie('storeid')){
+         setInterval("push_message()",5000);
+     }
+    $(".index-pop").hide();
+    $("#index-pop").click(function(){
+        $(".index-pop").show();
+    });
+    $('.pop-box').delegate( '.close','click' ,function(){
+        
+        $(".index-pop").hide();
+    })
+})
+var  Media = document.getElementById("media"); 
+    //Media.play();
+function push_message(){
+    $.ajax({
+      method: "get",
+      url: "index.php?app=default&act=push_messgae",
+      data: { name:1 },
+      success:function(msg){
+
+            if(msg.length > 5){
+                $('.pop-box').html(msg);
+                $('.index-pop').show();
+                Media.play();
+            }
+      }
+    })
+}
+
+//验证用户有没有绑定uid
+
+if(getcookie('wx_not_binding')){
+    //$('#withds').show();
+}
+
+//点击暂不绑定
+$('#no_binding').click(function(){
+    delcookie('wx_not_binding');
+    $('#withds').hide();
+});
+$('#ok_binding').click(function(event) {
+    addcookie('wx_ok_binding' , 1);
+    $('#withds').hide();
+    //window.location.href="index.php?app=member&act=login";
+});
+
+//底部菜单点击换色
+$(document).ready(function(){
+    $(".nav li a").each(function(){
+        $this = $(this);
+        if($this[0].href==String(window.location)){
+            $this.addClass("active");
+        }
+    });
+});
+
+
+//  $(".nav li a").first().addClass("active");
+// $(".nav li a").each(function(){
+//  if($(this).attr('href') == location.href){
+
+//     $(this).toggleClass("active").siblings().removeClass("active");
+//  // $(this).css('background-color','#f00');
+
+//  }
+
+// })
+
+ // $(".icon-nava").click(function(){
+ //        // $(this).toggleClass("active");
+ //        $(this).addClass("active").siblings().removeClass("active");
+ //    });
+
+
+
+</script>
+
+</html>

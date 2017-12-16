@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title>升级代理</title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /><!--公用css-->
+		<link rel="stylesheet" href="{res file=css/upgrade.css}" />
+		<link rel="stylesheet" href="{res file=css/business.css}" />
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.go(-1);" class="back"></a>
+			<h1 class="tit">请选择级别</h1>
+		</header>
+		<form action="index.php?app=req&act=upgradeRequest" method="post"  id="myform">
+			<div class="content mtop44">
+				<ul class="Payment">
+                     <li>
+                        <span class="class-name">商家</span>
+                        <div class="Multiselect">
+                            <span></span>
+                            <input type="radio" name="type" id="sales"   data-name="商家" value="2">
+                        </div>
+                    </li>
+					<li>
+						<span class="class-name">销售经理</span>
+						<div class="Multiselect">
+							<span></span>
+							<input type="radio" name="type" id="sales"  data-name="销售经理" value="3">
+						</div>
+					</li>
+					<li>
+						<span class="class-name">区域代理</span>
+						<div class="Multiselect">
+							<span></span>
+							<input type="radio" name="type" id="area" data-name="区域经理" value="4">
+						</div>
+					</li>
+                    <li>
+                        <span class="class-name">县代理</span>
+                        <div class="Multiselect">
+                            <span></span>
+                            <input type="radio" name="type" id="county" value="5">
+                        </div>
+                    </li>
+
+					<li>
+						<span class="class-name">市代理</span>
+						<div class="Multiselect">
+							<span></span>
+							<input type="radio" name="type" id="city" value="6">
+						</div>
+					</li>
+                    <li>
+                        <span class="class-name">省代理</span>
+                        <div class="Multiselect">
+                            <span></span>
+                            <input type="radio" name="type" id="province" value="7">
+                        </div>
+                    </li>
+				</ul>
+				<p class="next">
+					<button type="button" id="next_step">下一步</button>
+					
+				</p>
+			</div>
+		
+		<!-- 确认弹框 -->
+    			<div class="Popup2" id="buy-Popup" style="display:none">
+    			<div class="Popup2-box">
+    				<p class="prompt">是否确认升级为&nbsp;<span id="prompt1" style="color:#00A4A6"></span>？</p>
+    				<p class="buy-inf">
+    					<button type="button" class="buy-no" id="no">否</button>
+    					<button type="submit" class="buy-yes" id="yes">是</button>
+    				</p>
+    			</div>
+    			<div class="Popup2-bg"></div>
+    		</div>
+    	</form>
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/payment.js}" ></script>
+	<script type="text/javascript">
+    $(function(){
+    	//绑定input框
+			$('#next_step').click(function(){
+				var tid = 0;
+				var tname = '';				
+				
+
+
+				var v =$("input[type='radio']:checked").val();
+				if(v == undefined){
+					return ;
+				}
+                if(v == '2'){
+                    document.location ="index.php?app=apply&step=2&id=2";
+                    return ;
+                }
+
+				if(v >4){	
+					document.location ="index.php?app=req&act=upgradeRegion&type="+v;
+				}else{
+					$("#buy-Popup").show();
+					var val=$('#prompt1').text('('+$("input[type='radio']:checked").attr('data-name')+')');
+				}
+			})
+
+    });
+           
+	</script>
+</html>

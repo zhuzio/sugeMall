@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+		<link rel="stylesheet" href="{res file=css/team-fold.css}" />
+	</head>
+	<body>
+		<header class="header">
+			<a class="back"></a>
+			<h1 class="tit">团队明细</h1>
+		</header>
+		<div class="content mtop44">
+			<ul class="team-fold">
+				<li class="team-one">
+					<div class="team-onenr">
+						<span class="one-iconleft one-team-icon"></span>
+						<p class="one-tit">一级团队</p>
+						<span class="one-iconright"></span>
+					</div>
+					<ul>
+						<!--{if $team1}-->
+						<!--{foreach from=$team1 item=user}-->
+						<li class="team-two">
+							<p class="two-name">{$user.mobile}<!--{if $user.real_name}-->({$user.real_name})<!--{/if}--></p>
+							<div class="two-tit">
+								<p class="two-time">
+									加入时间
+									<span>{$user.add_time}</span>
+								</p>
+								<p class="two-recommend">推荐人<span>{$user.pname}<br/>{$user.p_mobile}</span></p>
+							</div>
+						</li>
+						<!--{/foreach}-->
+						<!--{/if}-->
+					</ul>
+				</li>
+				
+				<li class="team-one">
+					<div class="team-onenr">
+						<span class="one-iconleft two-team-icon"></span>
+						<p class="one-tit">二级团队</p>
+						<span class="one-iconright"></span>
+					</div>
+					<ul>
+						<!--{if $team2}-->
+						<!--{foreach from=$team2 item=user}-->
+						<li class="team-two">
+							<p class="two-name">{$user.mobile}<!--{if $user.real_name}-->({$user.real_name})<!--{/if}--></p>
+							<div class="two-tit">
+								<p class="two-time">
+									加入时间
+									<span>{$user.add_time}</span>
+								</p>
+								<p class="two-recommend">推荐人<span>{$user.pname}<br/>{$user.p_mobile}</span></p>
+							</div>
+						</li>
+						<!--{/foreach}-->
+						<!--{/if}-->
+					</ul>
+				</li>
+				
+				<li class="team-one">
+					<div class="team-onenr">
+						<span class="one-iconleft three-team-icon"></span>
+						<p class="one-tit">三级团队</p>
+						<span class="one-iconright"></span>
+					</div>
+					<ul>
+						<!--{if $team3}-->
+						<!--{foreach from=$team3 item=user}-->
+						<li class="team-two">
+							<p class="two-name">{$user.mobile}<!--{if $user.real_name}-->({$user.real_name})<!--{/if}--></p>
+							<div class="two-tit">
+								<p class="two-time">
+									加入时间
+									<span>{$user.add_time}</span>
+								</p>
+								<p class="two-recommend">推荐人<span>{$user.pname}<br/>{$user.p_mobile}</span></p>
+							</div>
+						</li>
+						<!--{/foreach}-->
+						<!--{/if}-->
+					</ul>
+				</li>
+			</ul>
+		</div>
+		{include file="footer.html"}
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/team-fold.js}" ></script>
+</html>

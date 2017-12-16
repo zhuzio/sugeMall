@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+		<link rel="stylesheet" href="{res file=css/register.css}" />
+		<link rel="stylesheet" href="/includes/libraries/javascript/jquery.plugins/poshy_tip/tip-yellowsimple/tip-yellowsimple.css" />
+		<script src="{res file=js/layer/layer.js}"></script>
+
+	</head>
+
+	<body>
+		<header class="header">
+			<a class="back"></a>
+			<h1 class="tit">注册新账号</h1>
+		</header>
+		<div class="content mtop44">
+			<form class="register" id="register_form" method="post" action="index.php?app=regcheck&act=register">
+				<div class="register-input">
+					<label>推荐编号</label>
+					<input type="text" id="tuijian" name="tuijian" value="{$key}" placeholder="注册后不可更改">
+					<span class="register-clear"></span>
+				</div>
+				<div class="register-input">
+					<label>手机号</label>
+					<input type="tel" id="phone_mob" name="phone_mob" placeholder="请输入11位有效手机号" >
+					<button type="button" id="sendsms">获取验证码</button>
+				</div>
+				<div class="register-input">
+					<label>验证码</label>
+					<input type="number" id="code" name="code" placeholder="短信效验码" >
+					<span class="register-clear"></span>
+				</div>
+				<div class="register-input">
+					<label>登录密码</label>
+					<input type="password" id="password" name="password" placeholder="请输入6-12位字符">
+					<span class="register-clear"></span>
+				</div>
+				<div class="register-input">
+					<label>确认密码</label>
+					<input type="password" id="repassword" name="repassword" placeholder="请再次输入密码">
+					<span class="register-clear"></span>
+				</div>
+				<div class="register-input">
+					<label>姓名</label>
+					<input type="text" id="real_name" name="real_name" placeholder="请输入姓名">
+					<span class="register-clear"></span>
+				</div>
+				<div class="register-input">
+					<label>会员类别</label>
+					<select name="type">
+						<option value="1">普通会员</option>
+					</select>
+				</div>
+				<div class="region">
+					<div class="province">
+						<select name="province" id="province" data-next="city" onchange="areaChange(this,this.value)">
+							<option value="0">选择省份</option>
+						</select>
+						<span></span>
+					</div>
+					<div class="city">
+						<select name="city" id="city" data-next="area" onchange="areaChange(this,this.value)">
+							<option value="0">选择城市</option>
+						</select>
+						<span></span>
+					</div>
+					<div class="area">
+						<select name="area" id="area" data-next="" onchange="areaChange(this,this.value)">
+							<option value="0">选择县区</option>
+						</select>
+						<span></span>
+					</div>
+				</div>
+				<div class="clause">
+					<div class="clause-box">
+						<span></span>
+						<input type="radio" name="agree_lis" id="agree_lis" value="1">
+					</div>
+					<label>同意条款</label>
+					<a href="#">（阅读条款）</a>
+				</div>
+				<p class="add-bank">
+					<button type="button" id="submitForm">注册</button>
+				</p>
+			</form>
+		</div>
+		
+		
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/register.js}" ></script>
+	<script charset="utf-8" type="text/javascript" src="/includes/libraries/javascript/ecmall.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/includes/libraries/javascript/jquery.plugins/jquery.validate.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/includes/libraries/javascript/jquery.plugins/poshy_tip/jquery.poshytip.js"></script>
+	<script>
+		var tuijianOK = false;
+		var mobileOK = false;
+		var sendOK = false;
+		var codeOK = false;
+		var passwordOK = false;
+		var repasswordOK = false;
+		var agree = false;
+
+		//点击获取验证码
+		var InterValObj; //timer变量，控制时间  
+		var count = 60; //间隔函数，1秒执行  
+		var curCount;//当前剩余秒数
+
+		$(function() {
+			getAreaChild('province',1);
+			var checkTuiJian = function(){
+				var tuijian = $("#tuijian").val();
+				var phone = /^1([38]\d|4[0-9]|5[0-9]|7[0-9]|8[0-9])\d{8}$/;
+				// var phone = /^1[3|4|5|7|8]\d{9}$/;
+				if(!phone.test(tuijian)){
+					alert('推荐人手机号格式不正确');
+//					layer.open({'content':'推荐人手机号格式不正确'});
+					return false;
+				}
+				$.ajax({
+					url : 'index.php?app=regcheck&act=check_tuijian&type=register',
+					dataType:'JSON',
+					type : 'POST',
+					data : {'mobile':$("#tuijian").val()},
+					success:function(res){
+						if(res.status == 0){
+							if(res.data){
+								tuijianOK = true;
+							}else{
+								alert('推荐人不存在');
+//								layer.open({'content':'推荐人不存在'});
+							}
+						}else{
+							alert('推荐人不存在');
+//							layer.open({'content':'推荐人不存在'});
+						}
+					}
+				})
+			}
+
+			if($("#tuijian").val() != ''){
+				console.log("123");
+				checkTuiJian();
+			}
+
+			$("#tuijian").bind('blur',checkTuiJian);
+
+			// $("#phone_mob").bind('blur',function(){
+			// 	var tuijian = $(this).val();
+			// 	var phone = /^1([38]\d|4[0-9]|5[0-9]|7[0-9]|8[0-9])\d{8}$/;
+			// 	// var phone = /^1[3|4|5|7|8]\d{9}$/;
+
+			// 	if(!phone.test(tuijian)){
+			// 		alert('手机号格式不正确');
+			// 		return false;
+			// 	}
+			// 	$.ajax({
+			// 		url : 'index.php?app=regcheck&act=check_user&type=register',
+			// 		dataType:'JSON',
+			// 		type : 'POST',
+			// 		data : {'mobile':$(this).val()},
+			// 		beforeSend:function(){
+			// 			loadDiv = layer.open({type: 2,shadeClose:false});
+			// 		},
+			// 		complete:function(){
+			// 			layer.close(loadDiv);
+			// 		},
+			// 		success:function(res){
+			// 			if(res.status == 0){
+			// 				if(res.data == ''){
+			// 					mobileOK = true;
+			// 				}else{
+			// 					alert('手机号已被使用');
+			// 				}
+			// 			}else{
+			// 				layer.open({'content':res.msg});
+			// 			}
+			// 		}
+			// 	})
+			// });
+
+		
+
+
+
+
+			//发送验证码 	
+			$('#sendsms').click(function(){
+				//检测用户
+				var mobile= $('#phone_mob').val();
+				var phone = /^1([38]\d|4[0-9]|5[0-9]|7[0-9]|8[0-9])\d{8}$/;
+				if(!phone.test(mobile)){
+					alert('手机号格式不正确');
+					return false;
+				}
+				$.ajax({  
+		            type: 'POST',  
+		            dataType: 'JSON',
+		            url: 'index.php?app=regcheck&act=check_user&type=register', 
+		            data : {'mobile':mobile},    
+		            success: function(res){         	
+		          		if(res.status == 0){
+								mobileOK = true;
+								curCount = count; 
+						        InterValObj = window.setInterval(SetRemainTime, 1000);   
+								//发送手机验证码  
+						        $("#sendsms").attr("disabled", "true");  
+						        $("#sendsms").text(curCount + "秒后重新发送");  	
+								$.ajax({  
+						            type: 'GET',  
+						            dataType: 'JSON',
+						            url: 'index.php?app=member&act=send_code&type=register', 
+						            data: {mobile:mobile},    
+						            success: function(msg){         	
+						          
+						           }
+								});
+
+							}else{
+								alert('手机号已被使用');
+							}
+						}
+				});
+			});	
+
+		//time处理函数  
+		function SetRemainTime() {  
+		    if (curCount == 0) {                  
+		        window.clearInterval(InterValObj);//停止计时器  
+		        $("#sendsms").removeAttr("disabled");//启用按钮  
+		        $("#sendsms").text("重新发送验证码");     
+		    }else{  
+		        curCount--;  
+		        $("#sendsms").text(curCount + "秒后重新发送");  
+		    }  
+		} 
+
+
+		$("#code").bind('blur',function(){
+			if(mobileOK){
+				var code = $(this).val();
+				if(code == ''){
+					alert('请输入短信验证码');
+//						layer.open({'content':'请输入短信验证码'});
+					return;
+				}
+				$.ajax({
+					url : 'index.php?app=regcheck&act=check_code&type=register',
+					dataType:'JSON',
+					type : 'POST',
+					data : {'mobile':$("#phone_mob").val(),'code':code},
+					beforeSend:function(){
+						loadDiv = layer.open({type: 2,shadeClose:false});
+					},
+					complete:function(){
+						layer.close(loadDiv);
+					},
+					success:function(res){
+						if(res.status == 0){
+							codeOK = true;
+						}else{
+							layer.open({'content':res.msg});
+						}
+					}
+				});
+			}else{
+				return;
+			}
+		});
+
+
+			$("#submitForm").click(function(){
+				//$("#register_form").submit();
+				if(!tuijianOK){
+					alert('推荐人不正确');
+//					layer.open({'content':'推荐人不正确',time: 2});
+					return;
+				}
+				if(!mobileOK){
+					alert('手机号不正确');
+//					layer.open({'content':'手机号不正确',time: 2});
+					return;
+				}
+
+				if(!codeOK){
+					alert('验证码错误');
+//					layer.open({'content':'验证码错误'});
+					return;
+				}
+				if(!checkpwd()){
+					return;
+				}
+				if(!agree){
+					alert('请勾选同意条款');
+//					layer.open({'content':'请勾选同意条款'});
+					return;
+				}
+				if($("#parent").val() == 0 || $("#city").val() == 0 || $("#area").val() == 0){
+					alert('请选择完整的区域信息');
+//					layer.open({'content':'请选择完整的区域信息'});
+					return;
+				}
+				$("#register_form").submit();
+			});
+
+
+
+			$("#agree_lis").click(function(){
+				agree = !agree;
+			});
+
+
+		});
+
+
+
+		function areaChange(obj,value){
+			var type = $(obj).attr('data-next');
+			if(type != ''){
+				getAreaChild(type,value);
+			}
+		}
+		function getAreaChild(objid,pid){
+			console.log(objid);
+			$.ajax({
+				url : 'index.php?app=regcheck&act=getAreaList',
+				type : 'POST',
+				dataType : 'JSON',
+				data : {'pid':pid},
+				success : function(res){
+					if(res.status==0){
+						var str = '请选择城市';
+						if(objid == 'area'){
+							str = '请选择县区';
+						}else if(objid == 'province'){
+							str = '请选择省份';
+						}
+						$("#"+objid).html('');
+						html = '<option value="0">'+str+'</option>'
+						for(var i in res.data){
+							html += '<option value="'+res.data[i].id+'">'+res.data[i].name+'</option>';
+						}
+						console.log(html);
+						$("#"+objid).html(html);
+					}
+				}
+			});
+		}
+		function checkpwd(){
+			pwd = $("#password").val();
+			repwd = $('#repassword').val();
+			if(pwd == ''){
+				alert('密码不能为空');
+//				layer.open({'content' : '密码不能为空'});
+				return false;
+			}
+			if(repwd == ''){
+				alert('请确认密码');
+//				layer.open({'content' : '请确认密码'});
+				return false;
+			}
+			if(pwd != repwd){
+				alert('密码不一致');
+//				layer.open({'content' : '密码不一致'});
+				return false;
+			}
+			return true;
+		}
+	</script>
+</html>

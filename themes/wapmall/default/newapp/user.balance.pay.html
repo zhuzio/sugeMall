@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /> <!--公用css-->
+		<link rel="stylesheet" href="{res file=css/business.css}" />
+        <script src="{res file=js/layer2.0/layer.js}"></script>
+	</head>
+	<body>
+		<header class="header">
+			<a class="back"></a>
+			<h1 class="tit">余额支付</h1>
+		</header>
+        <form id="myform" name="myform" action="index.php?app=pay_balance&act=pay_balance" method='post'>
+		<div class="content mtop44">
+			<div class="business-main">
+				
+					<ul>
+						<li>
+							<p>向商家<span><!--{$truename}--></span>支付</p>
+						</li>
+						<li>
+							<em></em>
+							<input placeholder="请输入支付金额" type="number" name="money">
+						</li>
+                        <li>
+                            <div class="classifi">
+                                <select name="classid">
+                                    <option value='0'>选择商品分类</option>
+                                    {foreach from=$class_goods item=goods}
+                                    <option value="{$goods[class_id]}">{$goods[name]}</option>
+                                    {/foreach}
+                                </select>
+                                <span class="point-cion"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <em></em>
+                            <input placeholder="请添加备注" type="text" name="paymess">
+                        </li>
+                        <!--
+						<li>
+							<em></em>
+
+							<input placeholder="请输入支付密码" type="password" name="pay_passwd">
+
+						</li>
+						-->
+					</ul>
+                <input id="paypasswd" type="hidden" name="pay_passwd">
+                <input type="hidden" name="key" value="<?php echo $_GET['key']?>">
+                <input type="hidden" name="_hash_" value="{$_hash_}">
+					<p class="determine"><a href="#" id="determine">确定</a></p>
+				
+			</div>
+		</div>
+		
+		<!--发积分弹窗-->
+		<div class="Popup" id="dete-Popup">
+			<div class="Popup-box">
+				<div class="inf-box">
+					<div class="inf-dete">
+						<p class="inf-name">向商家<span><!--{$truename}--></span></p>
+						<p class="inf-number">支付<span id="money">0</span>余额</p>
+					</div>
+					<p class="remind">请输入支付密码</p>
+                    <p class="inf-name" style="line-height: 24px;font-size: 14px;color: #999999;margin-bottom: 10px;">
+                        <input type="password" id="pay_passwd" style="width: 95%;height: 32px;line-height: 32px;border-bottom: 1px solid #B3B3B3;padding-left: 10px;font-size: 20px;">
+                    </p>
+					<p class="inf-inf">
+						<button type="button" class="inf-no" id="no">否</button>
+						<button type="button" class="inf-yes">是</button>
+					</p>
+				</div>
+			</div>
+			<div class="Popup-bg"></div>
+		</div>
+        </form>
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/business-hairintegral.js}" ></script>
+    <!--为了用户你体验更好这一块用ajax提交-->
+    <script type="text/javascript">
+        $(function(){
+            var status = 0;
+            var is_submit = false;
+
+            $(".inf-yes").on('click',function(){
+                $("#dete-Popup").hide();
+                var moneymath = /^\d+(\.\d+)?$/;
+                var money = $('input[name="money"]').val();
+
+                if(!moneymath.test(money) || money.length <= 0){
+                    alert('你输入的金额不正确');
+                    is_submit = false;
+                    return false;
+                }
+                //验证付款密码是否真确
+                var pay_passwd  = $('#pay_passwd').val();
+                if(pay_passwd.length <= 0){
+                    alert('支付密码不能为空');
+                    is_submit = false;
+                    return false;
+                }
+                $.ajax({
+                    type: "post",
+                    url: "index.php?app=pay_balance&act=check_pay_pass",
+                    async: false,
+                    data: { pay_passwd: pay_passwd },
+                    beforeSend : function(){
+                        layer.open({
+                            type: 2
+                            ,content: '加载中',
+                            shadeClose:false
+                        });
+                    },
+                    complete:function(){
+
+                    },
+                    success:function(msg){
+                        msg = $.trim(msg);
+                        if(msg == 'ok'){
+                            status = 1;
+                            $("#paypasswd").val(pay_passwd);
+                            $('#myform').submit();
+                        }else{
+                            alert('支付密码错误');
+                            layer.closeAll();
+                            is_submit = false;
+                            return false;
+                        }
+                    }
+                });
+            });
+            /*
+            $('#myform').submit(function(){
+
+                $("#dete-Popup").hide();
+                var moneymath = /^\d+(\.\d+)?$/;
+                var money = $('input[name="money"]').val();
+
+                if(!moneymath.test(money) || money.length <= 0){
+                   alert('你输入的金额不正确');
+                    is_submit = false;
+                   return false;
+                 }
+                 //验证付款密码是否真确
+                 var pay_passwd  = $('input[name="pay_passwd"]').val();
+                 if(pay_passwd.length <= 0){
+                     alert('支付密码不能为空');
+                     is_submit = false;
+                     return false;
+                 }
+                 $.ajax({
+                      type: "post",
+                      url: "index.php?app=pay_balance&act=check_pay_pass",
+                      async: false,
+                      data: { pay_passwd: pay_passwd }
+                    }).done(function( msg ) {
+                      if(msg == 'ok'){
+                        status = 1;
+                      }else{
+                        alert('支付密码错误');
+                          is_submit = false;
+                          return false;
+                      }
+                    });
+            
+              if(status == 1){
+                  is_submit = true;
+                return true;
+              }else{
+                  is_submit = false;
+                return false;
+              }
+            });
+             */
+        });
+
+    </script>
+</html>

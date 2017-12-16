@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>退款详情-买家成功</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/mjcg.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">退款详情</p>
+		<!-- <span>批量操作</span> -->
+	</div>
+	<div class="ty">
+		<p class="typ1">卖家已同意退款</p>
+		<p class="typ2">卖家同意了本次售后服务申请</p>
+		<p class="typ3"></p>
+	</div>
+	<div class="time1">09-14  15:32</div>
+	<div class="tk">退款给您20.00元</div>
+	<div class="time1">09-14  15:32</div>
+	<div class="ty2">
+		<p class="typ21">卖家已同意退款</p>
+		<p class="typ22">卖家同意了本次售后服务申请</p>
+		<p class="typ23"></p>
+	</div>
+</body>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	var tokens=localStorage.getItem ("token");
+	var refund_ids=localStorage.getItem ("refund_id");
+	var imgs="' + Url + 'api/";
+	
+	$.ajax({
+	            type: 'POST',
+	            url: Url + "api/index.php?n=message&f=succ_info",
+	     	dataType: "json",
+	    	data: {
+	               	token:tokens,
+                         		refund_id:refund_ids,
+	        	},
+	    	success: function(data){
+	    		console.log(data);
+	    		$(".tk").html("退款给您"+data.data.money+"元");
+	    		 function getLocalTime(timestamp){
+			    	var d = new Date(timestamp * 1000);    //根据时间戳生成的时间对象
+				var date = (d.getFullYear()) + "-" + 
+				           (d.getMonth() + 1) + "-" +
+				           (d.getDate()) + " " + 
+				           (d.getHours()) + ":" + 
+				           (d.getMinutes()) + ":" + 
+				           (d.getSeconds());
+				          return date; 
+		   	 }
+	    		$(".time1").html(getLocalTime(data.data.times));
+	    		
+	          },
+	          error: function(data){
+	    		console.log(data);
+	    		
+	          },
+	})
+</script>
+</html>

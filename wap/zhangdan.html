@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>货款账单</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/hyjl1.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.d_header a{
+			width: 6rem;
+		}
+		.p1{
+			width: 6rem;
+		}
+		.zp2 img{
+			width: 2.9rem;
+			height: 3.1rem;
+			vertical-align: top;
+			margin-left: 0.5rem;
+			margin-top: 4.2rem;
+		}
+		.time{
+			display: none;
+		}
+		.p2{
+			display: none;
+		}
+		.d_header{
+			overflow: hidden;
+		}
+		.d_header div{
+			position: relative;
+			height: 6rem;
+			width: 50%;
+			border: 1px solid #e27424;
+			border-radius: 3rem;
+			/*top: 1.4rem;
+			left: 25%;*/
+			margin-left: 25%;
+			margin-top: 1.4rem;
+			/*background: url(images/zdd.png) 0 0 no-repeat;*/
+			background-image:url(images/zdd.png);
+			background-size: 40% 6rem;
+			background-repeat: no-repeat;
+			background-position: 0 0;
+		}
+		.d_header div p{
+			float: left;
+			width: 30%;
+			text-align: center;
+			line-height: 6rem;
+			color:  #ffb986;
+			font-size: 3rem;
+		}
+		.d_header div .hdp0{
+			color: #fff;
+		}
+		.hdp1{
+			margin-left: 5%;
+		}
+		.zp3{
+			display: none;
+		}
+		.li2{
+			display: none;
+		}
+		.zp2{
+			left: 55%;
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png">
+			</p>
+		</a>
+		<p class="p2"></p>
+		<div>
+			<p class="hdp1 hdp0">收入</p>
+			<p class="hdp2">支出</p>
+			<p class="hdp3">提现</p>
+		</div>
+		<!-- <span>批量操作</span> -->
+	</div>
+	<div class="lj">
+		<span class="time"></span>
+		<li class="li1">
+			<p class="lp1">0</p>
+			<p class="lp2"><span>本月货款收入</span></p>
+		</li>
+		<li class="li2">
+			<img src="images/ldj.png"> 
+			<span></span>
+		</li>
+		<li class="li3">
+			<font>历史累计收入：</font><span></span>
+		</li>
+	</div>
+	<ul class="zdul">
+		<!-- <li>
+			<div>
+				<p class="zp1">上月奖励</p>
+				<p class="zp2"><span>5554235.1235</span><img src="images/qiandai.png"></p>
+				<p class="zp3">
+					<img src="images/ljd.png">
+					 已解冻
+				</p>
+			</div>
+		</li> -->
+	</ul>
+</body>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/box.js"></script>
+<script src="js/url.js"></script>
+<script>
+	 var tokens=localStorage.getItem ("token");
+	 var num;
+	 var urls="api/index.php?n=addjson&f=shopincome";
+	 var txt1="收入";
+	 var txt2="收入";
+	 function list() {
+	 	$.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + urls,
+		     data: {
+		     	token:tokens,
+		     	},
+		    success: function(data){
+		    	console.log(data);	
+		    	$(".li3 span").text(data.totalpage);
+		    	$(".li3 font").text("历史累计"+txt1+"：");
+		    	$(".lp2 span").text("本月累计"+txt1+"");
+				    	var count;
+				    	num=data.totalpage;
+				    	for (var j = 0; j < 100000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;    			
+				    			break;
+				    		}
+				    	};
+				    	var html="";
+				    	for (var i = 0; i < count; i++) {	
+				    		// if (data.data[i].order_amount) {
+				    		// 	var moneys=data.data[i].order_amount;
+				    		// }else if(data.data[i].amount){
+				    		// 	var moneys=data.data[i].amount;
+				    		// }
+				    		if (data.data[i].is_clearing=="0") {
+				    			var ims="images/ldj.png";
+				    		}else{
+				    			var ims="images/ljd.png";
+				    		}
+				    		if (i==0) {
+				    			$(".li2 img").attr("src",ims);
+				    			$(".li2 span").text(data.data[i].is_clearing_cn);
+				    			$(".lp1").text(data.data[i].order_amount);
+				    			$(".lj .time").html(data.data[i].months);
+				    		}else if(i==1){
+				    			html+='<li><span class="time">'+data.data[i].months+'</span><div><p class="zp1">上月'+txt1+'</p><p class="zp2"><span>'+data.data[i].order_amount+'</span><img src=images/qiandai.png></p><p class="zp3"><img src="'+ims+'">'+data.data[i].is_clearing_cn+'</p></div></li>';
+				    		}else{
+				    			var lens=data.data[i].months.length;
+				    			var timer1=data.data[i].months.substr(0,4);
+				    			var timer2=data.data[i].months.substr(4,lens-4);
+				    			html+='<li><span class="time">'+data.data[i].months+'</span><div><p class="zp1">'+timer1+"-"+timer2+' '+txt1+'</p><p class="zp2"><span>'+data.data[i].order_amount+'</span><img src=images/qiandai.png></p><p class="zp3"><img src="'+ims+'">'+data.data[i].is_clearing_cn+'</p></div></li>';
+				    		}
+				    		
+				    	};
+				    	
+				    	$("ul").html(html);
+				    	bl();
+				   pages=1;
+
+		    } ,
+		    error:function(data){
+		    }
+	});
+	 }
+	 list();
+	var pages=1; //当前页的页码
+		var allpage=num; //总页码，会从后台获取
+		var sc=true;
+		function showAjax(){
+			$.ajax({
+				 type: 'POST',
+				 dataType: "json",
+				 url:Url + urls,
+				 data: {
+				     	token:tokens,
+				     	page:pages,
+				     },
+				success:function(data){
+				    	var count;
+				    	var html="";
+				    	for (var j = 0; j < 10000000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	// console.log(count);
+				    	
+				    	for (var i = 0; i < count; i++) {
+				    		if (data.data[i].is_clearing=="0") {
+				    			var ims="images/ldj.png";
+				    		}else{
+				    			var ims="images/ljd.png";
+				    		}
+				    		var lens=data.data[i].times.length;
+			    			var timer1=data.data[i].times.substr(0,4);
+			    			var timer2=data.data[i].times.substr(4,lens-4);
+			    			html+='<li><span class="time">'+data.data[i].times+'</span><div><p class="zp1">'+timer1+"-"+timer2+' '+txt1+'</p><p class="zp2"><span>'+data.data[i].order_amount+'</span><img src=images/qiandai.png></p><p class="zp3"><img src="'+ims+'">'+data.data[i].is_clearing_cn+'</p></div></li>';
+				    		sc=true;
+	    		
+				    	};
+				    	// console.log(html);
+				    	$("ul").append(html);
+				    	bl();
+					// 分页加载/
+				}
+			})
+		}
+		function scrollFn(){
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+				if (sc) {
+				// alert(2);
+				// alert(pages+":"+allpage)
+				sc=false;
+				pages++;
+				if (pages<=num) {
+					// console.log(pages);
+					showAjax();
+					// alert(1);
+				}
+				
+			}
+		       }
+		}
+		// $(window).bind("scroll",scrollFn);	//绑定滚动事件
+		function bl(){
+			$(".zdul li").each(function(){
+				console.log($(this).find(".zp2").find("span").html());
+				if ($(this).find(".zp2").find("span").text()=="0") {
+					$(this).css("display","none");
+				}
+				
+			})
+		}
+		var ps=0;
+		$(".d_header div p").on("click",function(){
+			$(".hdp0 ").removeClass("hdp0");
+			$(this).addClass("hdp0");
+			console.log($(this).index());
+			ps=$(this).index();
+			// var pss=$(this).index()*30%;
+			
+			// pss=pss+0.05;
+			
+			// pss=pss+" 0";
+			// console.log(typeof(pss));
+			if (ps==0) {
+				$(".d_header div").css("background-position","0 0");
+				urls="api/index.php?n=addjson&f=shopincome";
+				txt1="收入";
+				list();
+				$(".li3").css("display","block");
+
+			}else if (ps==1) {
+				$(".d_header div").css("background-position"," 50% 0");
+				urls="api/index.php?n=addjson&f=shopspending";
+				txt1="支出";
+				list();
+				$(".li3").css("display","none");
+			}if (ps==2) {
+				$(".d_header div").css("background-position","100% 0");
+				urls="api/index.php?n=addjson&f=shopDepositList";
+				txt1="提现";
+				list();
+				$(".li3").css("display","none");
+			}
+			
+			
+		})
+		$(".lj").on("click",function(){
+			var timess=$(this).find(".time").text();
+			localStorage.setItem('times', timess);
+			if (ps==0) {
+				location.href="hksr.html";
+			}else if(ps==1){
+				location.href="hkzc.html";
+			}else if(ps==2){
+				location.href="hkzdtx.html";
+			}
+			
+		})
+		$(".zdul").on("click","li",function(){
+			var timess=$(this).find(".time").text();
+			localStorage.setItem('times', timess);
+			if (ps==0) {
+				location.href="hksr.html";
+
+			}else if(ps==1){
+				location.href="hkzc.html";
+			}else if(ps==2){
+				location.href="hkzdtx.html";
+			}
+		})
+</script>
+</html>

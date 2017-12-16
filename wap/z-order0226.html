@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<link rel="stylesheet" type="text/css" href="css/z-order.css" />
+		<title>收银台</title>
+	</head>
+
+	<body>
+		<div class="order-wp">
+			<div class="d_header">
+				<a class="black" href="javascript:history.go(-1)">
+					<p class="p1">
+						<img src="images/back.png" alt="返回首页">
+					</p>
+				</a>
+				<p class="p2">收银台</p>
+			</div>
+			<div class="order-sumr">
+				<div class="order-sum">
+					<span class="order-account">订单金额</span>
+					<span class="order-money">￥3194444元</span>
+				</div>
+			</div>
+			<div class="order-pay order-pay1">
+				<img src="images/z-113.png" />
+				<span>购物积分支付</span>
+				<p>最划算的支付方式</p>
+			</div>
+			<div class="order-other">
+				其他支付方式
+			</div>
+			<div class="order-pay order-payy">
+				<img src="images/z-112.png" />
+				<span>连连支付</span>
+				<p>网上银行卡快捷支付</p>
+				<form action="" method="post">
+					<input type="hidden" name="order_id" class="zlpy" value="" />
+					<input type="hidden" name="token" class="tok" value="" />
+					<input type="hidden" name="payment_id" value="16" />
+					<input type="submit" name="" id="zftj" value="提交" />
+				</form>
+			</div>
+			<div class="order-pay order-pay12">
+				<img src="images/z-110.png" />
+				<span>微信支付</span>
+				<p>微信安全支付</p>
+				<form action="" method="post">
+					<input type="hidden" name="order_id" class="zlpy" value="" />
+					<input type="hidden" name="token" class="tok" value="" />
+					<input type="hidden" name="payment_id" value="8" />
+					<input type="submit" name="" id="weixin" value="提交" />
+				</form>
+			</div>
+			<!--<div class="order-pay">
+	 	<img src="images/z-111.png"/>
+	 	<span>支付宝支付</span>
+	 	<p>支付宝快捷支付</p>
+	 </div>-->
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("form").attr("action",Url+"api/index.php?n=shop_center&f=online_pay")
+			$(".order-pay1").click(function() {
+				window.location.href = "shop-pay.html";
+			});
+			var zorderids = localStorage.getItem("order_sn");
+			var dsums = localStorage.getItem("dsum");
+			// console.log(dsums);
+			var dnsnum = Number(dsums);
+			// console.log(dnsnum);
+			$(".zlpy").val(zorderids);
+			var tokens = localStorage.getItem("token");
+			$(".tok").val(tokens);
+			if(dsums >= 100) {
+				$(".order-pay12").hide();
+			} else {
+				$(".order-other").show();
+			}
+			if(dsums >= 5000){
+				$(".order-other").hide();
+				$(".order-payy").hide();
+			}else{
+				$(".order-payy").show();
+				$(".order-other").show();
+			}
+			//			移除上一个发票公司
+			localStorage.removeItem("fcoms");
+			//连连支付回调开始
+//			$(".order-payy").click(function() {
+////				alert("aaa");
+//				$.ajax({
+//					type: 'POST',
+//					url: Url + "api/index.php?n=goods&f=goodspayback",
+//					dataType: "json",
+//					data: {
+//						"token": tokens,
+//						"type": "ll",
+//						"order_sn": zorderids,
+//					},
+//					success: function(data) {
+////						console.log(data);
+//
+//					},
+//					error: function(data) {}
+//				});
+//			})
+			//连连支付回调结束
+			
+			//微信支付回调开始
+//			$(".order-pay12").click(function() {
+////				alert("bbb");
+//				$.ajax({
+//					type: 'POST',
+//					url: Url + "api/index.php?n=goods&f=goodspayback",
+//					dataType: "json",
+//					data: {
+//						"token": tokens,
+//						"type": "wx",
+//						"order_sn": zorderids,
+//					},
+//					success: function(data) {
+////						console.log(data);
+//
+//					},
+//					error: function(data) {}
+//				});
+//			})
+			//微信支付回调结束
+
+		});
+	</script>
+
+</html>

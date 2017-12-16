@@ -1,0 +1,115 @@
+.line{
+	overflow: hidden;
+}
+.line .line-list{
+	overflow: hidden;
+	 background-color: #FFFFFF;
+	 margin-top: 10px;
+	 padding:0 10px;
+	 border-bottom: 1px solid #ECECEC;
+}
+.line-tit{
+	overflow: hidden;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+.line-tit p{
+	float: right;
+	text-align: right;
+	width: 50%;
+	line-height: 36px;
+}
+.line-tit p:first-child{
+	float: left;
+	text-align: left;
+}
+.line-tit p span{
+	margin-left: 5px;
+}
+.line-tit p.state img{
+	width: 20px;
+	margin-top: 8px;
+	float: right;
+}
+.line-tit p.state span{
+	float: right;
+}
+.order-nr{
+	overflow: hidden;
+	
+}
+.order-nr ul{
+	border-bottom: 1px solid #ECECEC;
+}
+.order-nr li{
+	overflow: hidden;
+	line-height: 32px;
+}
+.order-nr li p{
+	float: left;
+	width: 50%;
+	text-align: left;
+}
+.order-nr li p img{
+	width: 16px;
+}
+.order-nr li p span{
+	margin-left: 5px;
+}
+.time{
+	overflow: hidden;
+	padding: 10px;
+}
+.time p{
+	float: left;
+}
+.time p span{
+	margin-right: 10px;
+}
+.time a{
+	display: block;
+	float: right;
+	/*width: 4rem;*/
+	/*padding:3px;*/
+	/*height: 2rem;*/
+	line-height: 2em;
+	margin-left:15px;
+	background-color: #00A4A6;
+	color: #FFFFFF;
+	border-radius: 3px;
+}
+/*订单详情*/
+.line-details{
+	background-color: #FFFFFF;
+	margin-top: 0;
+}
+.line-details ul{
+	margin-top: 0;
+}
+.line-details .line-list{
+	padding: 10px;
+	border-bottom: none;
+}
+.line-details ul .line-list .line-tit{
+	margin-top: 0;
+}
+.line-details .order-nr ul{
+	border-bottom: none;
+}
+.qrma img{
+	display: block;
+	width: 80%;
+	margin:20px auto;
+}
+.quxiao a{
+	display: block;
+	 width: 80%;
+	 margin: 20px auto;
+	 line-height: 44px;
+	 text-align: center;
+	 height: 44px;
+	 background-color: #00A4A6;
+	 color: #FFFFFF;
+	 border-radius: 3px;
+	 font-size: 16px;
+}

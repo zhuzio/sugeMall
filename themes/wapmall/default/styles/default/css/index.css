@@ -1,0 +1,221 @@
+.mui-slider-indicator {
+				bottom: 0;
+			}
+			.mui-slider {
+				background-color: #FFFFFF;
+			}
+/*首页头部*/
+.index-header{
+	display: block; 
+	box-shadow: 0 1px 6px #CCCCCC;
+	position: fixed;
+	z-index: 10;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 44px;
+	background-color: #FFFFFF;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+.index-header a.menu-iocn{
+	float: left;
+	 font-family: Muiicons;
+	font-size: 24px;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 44px;
+	display: inline-block;
+	text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  color: #999999;
+}
+.index-header a.menu-iocn:before{
+	content: '\e563';
+}
+.index-header a.menu-iocn:hover{
+	color: #00A4A6;
+}
+.search{ 
+	height: 30px;
+	line-height: 30px;
+	margin-top: 8px;
+	display: inline-block;
+	overflow: hidden;
+	margin-left:0.5rem;
+	min-width: 50%;
+	float: left;
+	width: 60%;
+	position: relative;
+}
+.search p{
+	width: 100%;
+	border-bottom: 1px solid #00A4A6;
+	position: absolute;
+	bottom: 0;
+	border-right: 1px solid #00A4A6;
+	border-left: 1px solid #00A4A6;
+	height: 3px;
+	margin: 0;
+}
+.search-icon{
+	float: left;
+	font-family: Muiicons;
+	font-size: 20px;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 30px;
+	display: inline-block;
+	text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  color: #666666;
+}
+.search-icon:before{
+	content: '\e466';
+}
+.clear-icon{
+	float: right;
+	font-family: Muiicons;
+	font-size: 24px;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 30px;
+	display: inline-block;
+	text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  color: #999999;
+}
+.clear-icon:before{
+	    content: '\e460';
+}
+.search input{
+	float: left;
+	line-height: 30px;
+	padding-left: 5px;
+	width: 80%;
+	font-size: 1rem;
+}
+.weizhi{
+	float: right;
+	display: inline-block;
+	color: #00A4A6;
+	line-height: 1.2rem;
+	margin-top: 15px;
+}
+.weizhi span{
+	width: 1rem;
+	height: 1.2rem;
+	background-image: url(../images/index/dingwei.png);
+	background-size: 100% 1.2rem;
+	float: left;
+	margin-right: 0.2rem;
+}
+/**/
+.cation{
+	margin-top: 10px;
+}
+.list-box{
+	overflow: hidden;
+	position: relative;
+	min-height: 500px;
+	margin-top: 10px;
+}
+.list-box .list-tit{
+	padding:5px 10px;
+	margin-bottom:0px;
+	margin-top: 15px;
+	font-size: 16px;
+	background-color: #FFFFFF;
+	color: #00A4A6;
+	overflow: hidden;
+	border-bottom: 1px solid #ECECEC;
+	
+}
+.list-box .list-tit span{
+	float: left;
+	width: 30px;
+	height: 24px;
+	font-family: Muiicons;
+	font-size: 24px;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 24px;
+	color: #00A4A6;
+	display: inline-block;
+	text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+}
+.list-box .list-tit span:before{
+	content: '\e364';
+}
+.cat-list{
+	background-color: #FFFFFF;
+	padding: 10px;
+	overflow:hidden;
+	border-bottom: 1px solid #ECECEC;
+}
+.cat-list a{
+	overflow: hidden;
+	display: block;
+}
+.cat-list a img{
+	float: left;
+	width:25%;
+}
+.inf{
+	float: left;
+	width: 45%;
+	margin-left: 5px;
+	overflow: hidden;
+}
+.inf p{
+	margin: 0;
+}
+.inf p.name{
+	font-size: 14px;
+	color: #333333;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.inf p.names{
+	font-size: 12px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.inf p.number{
+	overflow: hidden;
+}
+.inf p.number span{
+	margin-right: 3px;
+	float: left;
+	font-size: 12px;
+}
+.inf p.number span.icon-yan{
+	width: 14px;
+	height: 12px;
+	margin-top: 6px;
+	margin-right: 3px;
+	float: left; 
+	background:url(../images/index/yan.png) no-repeat; 
+	background-size: 100%;
+}
+
+.distance{
+	 float: right;
+	 width: 20%;
+	 text-align: right;
+}
+.distance .icon-dis{
+	float:right;
+	width: 1rem;
+	height: 1rem;
+	background: url(../images/index/dingwei.png) no-repeat;
+	background-size:80% 1rem;
+}
+.distance span{
+	float: left;
+	font-size: 0.875rem;
+	line-height: 1rem;
+}

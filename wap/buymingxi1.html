@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>发积分明细</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/buymingxi1.css" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/a.css">
+		<link rel="stylesheet" type="text/css" href="css/footer.css" />
+		<style>
+			.footer {
+				border-top: 1px solid #efeff4;
+			}
+			.time{
+				opacity: 0;
+				display: none;
+			}
+			.z-jifen li{
+				position: relative;
+			}
+			.z-ffm{
+				position: absolute;
+				right: 3rem;
+				top:0;
+				/*text-align: left;*/
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a href="fajifen.html" class="h_a1">
+				<!-- <a href="zdan.html"> -->
+				<p class="p1">
+					<img src="images/z-998.png">
+				</p>
+				<!-- </a> -->
+			</a>
+			<p class="p2">
+				<a href="buymingxi2.html"><span class="hps1">购积分明细</span></a>
+				<span class="hps2">发积分明细</span>
+			</p>
+		</div>
+		<!--财富界面开始-->
+		<div class="f-wrap">
+			<div class="f-banner">
+				<div class="f-middle">
+					<p class="f-use">当前积分</p>
+					<p class="f-score"></p>
+				</div>
+				<div class="quan">
+					<div class="f-bottom">
+						<span class="f-bottoms">已发积分</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<span class="f-bottomsz"></span>
+						<!--<img class="f-bottom-i" src="images/z-4.png" />-->
+					</div>
+					<div class="f-bottomr">
+						<span class="f-x">累计积分</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<span class="f-w"></span>
+						<!--<img class="f-bottom-i" src="images/z-4.png" />-->
+					</div>
+				</div>
+			</div>
+			<ul class="z-jifen">
+				<li>
+					<!--<span class="z-ff">上个月发积分总额</span>
+					<span class="z-ffm">456789</span>
+					<span class="time">23155</span>-->
+				</li>
+				<!--<li></li>
+				<li></li>-->
+			</ul>
+		</div>
+		<!--财富界面结束-->
+		<!--<div class="footer">
+			<a href="index.html" class="ssy"><img src="images/souye.png" alt=""></a>
+			<a href="fenlei.html"><img src="images/kinds.png" alt=""></a>
+			<a href="coalition.html"><img src="images/union.png" alt=""></a>
+			<a href=""><img src="images/wealth2.png" alt=""></a>
+			<a href="z-member.html" class="lcf1"><img src="images/me.png" alt=""></a>
+		</div>-->
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+	    $(function(){
+			var tokens=localStorage.getItem ("token");
+			var html = "";
+			var num;
+//			$(".h_a1").click(function(){
+//				window.location.href = "fajifen.html";
+//			})
+			$.ajax({
+				type: 'POST',
+				dataType: "json",
+				url: Url + "api/index.php?n=order&f=pointsendmonth",
+				data: {
+					token: tokens,
+				},
+				success: function(data) {
+					console.log(data);
+					num=data.totalpage;
+					var sumpoint = data.summoney;
+					var newpoint = data.newpoint;
+					var totalmoney = data.totalmoney;
+					$(".f-bottomsz").html(sumpoint);
+					$(".f-score").html(newpoint);
+					$(".f-w").html(totalmoney);
+					var html = '';
+					var ztime;
+					var mydate = new Date();
+					var str = "" + mydate.getFullYear();
+					str += "-" + (mydate.getMonth() + 1);
+					for (var i = 0; i < data.data.length; i++) {
+						ztime = data.data[0].months;
+//						if(i == 0){
+//							html += '<li><span class="z-ff">上个月发积分总额</span><span class="z-ffm">'+data.data[i].point+'</span><span class="time">'+data.data[i].months+'</span></li>';
+//							$(".z-jifen").html(html);
+//						}else{
+							html += '<li><span class="z-ff">'+data.data[i].months+'发积分总额</span><span class="z-ffm">'+data.data[i].point+'</span><span class="time">'+data.data[i].months+'</span></li>';
+//						}
+						
+					}
+					$(".z-jifen").html(html);
+					bl();
+					if(ztime == str){
+//							console.log("aaa")
+							$(".z-jifen li").eq(0).find(".z-ff").html("本月发积分总额")
+						}
+					sendPoint();
+				},
+				error: function(data) {
+					console.log(data);
+				}
+			});
+		function bl(){
+			$(".z-jifen li").each(function(){
+				console.log($(this).find(".z-ffm").html());
+				if ($(this).find(".z-ffm").html()=="0") {
+					$(this).css("display","none");
+				}
+				
+			})
+		}
+		
+//		发积分点击事件
+     function sendPoint(){
+     	$(".z-jifen li").click(function(){
+     		var time = $(this).find(".time").text();
+     		console.log(time);
+     		localStorage.setItem('times', time);
+     		location.href = "buymingxi.html";
+
+     	})
+     }
+		})
+	</script>
+
+</html>

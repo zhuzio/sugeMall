@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>店铺搜索</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/z-shop-local.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=CAd14de4d13fa18ebecbd5ab92af71bc"></script>
+	</head>
+
+	<body>
+		<header class="z-location-a">
+			<div class="z-location-h">
+				<a class="black" href="javascript:history.go(-1)">
+					<img class="z-location-b" src="images/z-88.png" />
+				</a>
+				<div class="z-location-input">
+					<img src="images/z-89.png" />
+					<input type="" name="" id="" value="" placeholder="搜索商铺/商品" />
+				</div>
+				<img class="z-location-c" src="images/z-90.png" />
+			</div>
+		</header>
+		<div class="z-location-hg">
+		</div>
+		<ul class="none">
+			<img src="images/syflss.png" alt="">
+			<p>没有搜索结果<br><span>没有找到相关的宝贝</span></p>
+		</ul>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var lgts = localStorage.getItem("lgt");
+			var lats = localStorage.getItem("lat");
+			var lovals = localStorage.getItem("lovals");
+			var lgtss = localStorage.getItem("zlgt");
+			var latss = localStorage.getItem("zlat");
+//			console.log(lovals);
+			var storeId = [];			
+			var dis;
+			var disn;
+			var num;			
+			$.ajax({
+				//contentType:"application/x-www-form-urlencoded; charset=gb2312",
+				type: 'POST',
+				url: Url + "api/index.php?n=store&f=nearbyshops",
+				dataType: "json",
+				data: {
+					"lat": lats,
+					"lng": lgts,
+					"type": lovals,
+					"page": 1
+				},
+				success: function(data) {
+//						console.log(data)
+					var datas = data.data;
+					if(data.msg == "附近没有加盟商家") {
+						$(".none").css("display", "block");
+					}
+					var html = '';
+					for(var i = 0; i < datas.length; i++) {
+						var lgt = datas[i].lng;
+						var lat = datas[i].lat;
+						var map = new BMap.Map();
+						var pointA = new BMap.Point(lgtss, latss); // 创建点坐标A
+						var pointB = new BMap.Point(lgt, lat); // 创建点坐标B
+//						console.log((map.getDistance(pointA, pointB)).toFixed(2));
+						var distance = (map.getDistance(pointA, pointB)).toFixed(2);
+						dis = distance / 1000;
+						disn = dis.toFixed(2);
+						html = '<div class="z-location-d"><div class="z-location-e"><img src="' + Url + '' + datas[i].store_logo + '" alt=""/></div><ul class="z-location-f"><li class="z-location-g">' + datas[i].store_name + '</li><li class="z-location-s">地址：' + datas[i].address + '</li><li><span class="z-location-w">' + datas[i].cate_name + '</span><p><span>距我</span><span class="z-location-m">' + disn + '</span><span>km</span></p></li></ul></div>';
+						$(".z-location-hg").append(html);
+						storeId.push(datas[i].store_id)
+						StoreFun();
+						word(10);
+						storew(8)
+					}
+//					console.log(storeId);
+
+				},
+				error: function(data) {　　}
+			});
+
+			//分页加载开始
+			var pages = 1; //当前页的页码
+			var allpage = num; //总页码，会从后台获取
+			var sc = true;
+
+			function showAjax() {
+				$(".z-load").show();
+				$.ajax({
+					//			contentType:"application/x-www-form-urlencoded; charset=gb2312",
+					type: 'POST',
+					url: Url + "api/index.php?n=store&f=nearbyshops",
+					dataType: "json",
+					data: {
+						"lat": lats,
+						"lng": lgts,
+						"type": lovals,
+						"page": pages
+					},
+					success: function(data) {
+						var datas = data.data;
+						if(data.msg == "数据获取失败") {
+							$(".none").css("display", "block");
+						}
+						for(var i = 0; i < datas.length; i++) {
+							var lgt = datas[i].lng;
+							var lat = datas[i].lat;
+							var map = new BMap.Map();
+							var pointA = new BMap.Point(lgtss, latss); // 创建点坐标A
+							var pointB = new BMap.Point(lgt, lat); // 创建点坐标B
+//							console.log((map.getDistance(pointA, pointB)).toFixed(2));
+							var distance = (map.getDistance(pointA, pointB)).toFixed(2);
+							dis = distance / 1000;
+							disn = dis.toFixed(2);
+							html = '<div class="z-location-d"><div class="z-location-e"><img src="" alt="' + Url + '' + datas[i].store_logo + '"/></div><ul class="z-location-f"><li class="z-location-g">' + datas[i].store_name + '</li><li class="z-location-s">地址：' + datas[i].address + '</li><li><span class="z-location-w">' + datas[i].cate_name + '</span><p><span>距我</span><span class="z-location-m">' + disn + '</span><span>km</span></p></li></ul></div>';
+							sc = true;
+							$(".z-location-hg").append(html);
+							storeId.push(datas[i].store_id)
+							StoreFun();
+							word(10);
+							storew(8)
+						}
+						setTimeout(function() {
+							$(".z-load").hide();
+						}, 300);
+					},
+					error: function(data) {
+						//　　　　        alert("出错啦！");
+						　　}
+				});
+			}
+			//分页加载结束
+			function scrollFn() {
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+					if(sc) {
+						sc = false;
+						pages++;
+						if(pages <= num) {
+							showAjax();
+						}
+
+					}
+				}
+			}
+			$(window).bind("scroll", scrollFn); //绑定滚动事件  
+			//    跳转的方法
+			function StoreFun() {
+				$(".z-location-d").each(function() {
+					$(this).click(function() {
+						var a = $(this).index();
+//						console.log(a);
+						var stid = storeId[a];
+						localStorage.setItem('stid', stid);
+						location.href = "lmsjdpxq.html";
+					})
+				})
+			}
+
+			//限制地址字数方法
+			function word(len) {
+				$(".z-location-s").each(function() {
+					var counter = $(this).text().length; //获取文本域的字符串长度
+					var txt = $(this).text();
+					// 	 	console.log(counter);
+					if(counter >= len) {
+						var num = $(this).text().substr(0, len);
+						$(this).text(num + '....');
+						//		alert("你已经超过字数限制");
+					} else {
+						$(this).text(txt);
+					}
+				});
+			}
+			//限制商家名字数方法
+			function storew(slen) {
+				$(".z-location-g").each(function() {
+					var counter = $(this).text().length; //获取文本域的字符串长度
+					var txt = $(this).text();
+					// 	 	console.log(counter);
+					if(counter >= slen) {
+						var num = $(this).text().substr(0, slen);
+						$(this).text(num + '....');
+						//		alert("你已经超过字数限制");
+					} else {
+						$(this).text(txt);
+					}
+				});
+			}
+
+			$(".z-location-c").click(function() {
+				window.location.href = "http://map.baidu.com/mobile/webapp/index/index/foo=bar/vt=map";
+			});
+
+		})
+	</script>
+
+</html>

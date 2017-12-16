@@ -1,0 +1,130 @@
+.d_header{
+	height: 8.8rem;
+	background-color: #efeff4;
+	position: relative;
+	
+}
+.d_header a{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.xx{
+	background-color: #efeff4;
+	width: 100%;
+}
+.gs{
+	height: 10rem;
+	border-bottom: 0.2rem solid #bcbcbc;
+	margin: 0 3rem;
+	line-height: 10rem;
+	font-size: 3rem;
+	color: #333;
+	position: relative;
+	background: url(../images/wlxz_more.png)  right no-repeat;
+	background-size: 1.8rem 2.5rem;
+}
+.gs a{
+	position: absolute;
+	height: 10rem;
+	width: 25%;
+	right: 0;
+	top: 0;
+	font-size: 3rem;
+	color: #333;
+	line-height: 10rem;
+}
+.dh{
+	height: 10rem;
+	/*border-bottom: 0.2rem solid #bcbcbc;*/
+	margin: 0 3rem;
+	line-height: 10rem;
+	font-size: 3rem;
+	color: #333;
+	position: relative;
+	
+}
+.dh input{
+	position: absolute;
+	height: 10rem;
+	width: 60%;
+	right: 0;
+	top: 0;
+	font-size: 3rem;
+	color: #666;
+	line-height: 10rem;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	text-align: right;
+}
+.ensure{
+	margin: 0 12%;
+	width: 76%;
+	background-color: #ffc600;
+	position: fixed;
+	bottom: 20rem;
+	border-radius: 1rem;
+	height: 9.8rem;
+	line-height: 9.8rem;
+	color: #fff;
+	text-align: center;
+	font-size: 3rem;
+}
+.tk{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	z-index: 10;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.tk p{
+	width: 60%;
+	height: 25rem;
+	background-color: #000;
+	margin-top: 57%;
+	margin-left: 20%;
+	font-size: 3rem;
+	color: #fff;
+	
+	text-align: center;
+}
+.tk p span{
+	padding-top: 6rem;
+	display: block;
+	width: 90%;
+	margin-left: 5%;
+	height: 10rem;
+	line-height: 5rem;
+}

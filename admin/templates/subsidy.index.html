@@ -1,0 +1,81 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>市场补贴消费积分</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="subsidy" />
+                <input type="hidden" name="act" value="index" />
+                <select class="querySelect" name="field">{html_options options=$search_options selected=$smarty.get.field}
+                </select>:<input class="queryInput" type="text" name="search_name" value="{$query.search_name|escape}" />
+
+                产生时间从:<input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+                至:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+                奖励金额从:<input class="queryInput2" type="text" value="{$query.order_amount_from}" name="order_amount_from" />
+                至:<input class="queryInput2" type="text" style="width:60px;" value="{$query.order_amount_to}" name="order_amount_to" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" onclick="$('[name=act]').val('index');"/>
+                <!--<input type="submit" class="formbtn" value="导出" onclick="$('[name=act]').val('export');" />-->
+
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=subsidy">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $orders}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $orders}-->
+        <tr class="tatr1">
+            <td width="10%" class="firstCell"><span ectype="order_by" fieldname="id">序号</span></td>
+            <td width="10%"><span>{$lang.true_name}</span></td>
+            <td width="10%"><span>手机号</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="money">市场奖励</span></td>
+            <td><span>操作人</span></td>
+            <td width="15%"><span ectype="order_by" fieldname="createtime">日期</span></td>
+            <!--<td width="10%">{$lang.handler}</td>-->
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$orders item=order}-->
+        <tr class="tatr2">
+            <td class="firstCell">{$order.id}</td>
+            <td>{$order.true_name|escape}</td>
+            <td>{$order.user_mob|escape}</td>
+            <td>{$order.point}</td>
+            <td>{$order.op_name}</td>
+            <td>{$order.add_time}</td>
+
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+        <tr class="tatr2">
+            <td colspan="3" style="text-align:right">合计：</td>
+            <td>￥ {$totalMoney} 元</td>
+            <td></td>
+        </tr>
+    </table>
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {if $orders}{include file=page.bottom.html}{/if}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

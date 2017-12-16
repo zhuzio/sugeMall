@@ -1,0 +1,88 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p><b>平台收益统计</b></p>
+
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="wealth" />
+                <input type="hidden" name="act" value="index" />
+                 <select class="querySelect" name="province" data-next="city" onchange="changeArea(this,this.value)">
+                     <option value="">请选择省份</option>
+                     {html_options options=$provinceList selected=$query.province}
+                 </select>
+                 <select class="querySelect" id="city" name="city" data-next="area" onchange="changeArea(this,this.value)">
+                     <option value="">请选择城市</option>
+                     {html_options options=$cityList selected=$query.city}
+                 </select>
+                 <select class="querySelect" id="area" name="area" data-next="" onchange="changeArea(this,this.value)">
+                     <option value="">请选择县区</option>
+                     {html_options options=$areaList selected=$query.area}
+                 </select>
+                时间从:<input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+                至:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" onclick="$('[name=act]').val('index');"/>
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=order">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $orders}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <div>
+        总收益：{$statistics.income}<br/>
+        总支出：{$statistics.return}<br/>
+        总提现：{$statistics.cash}<br/>
+
+        区域总收益：{$statistics.area_income}<br/>
+        区域总支出：{$statistics.area_pay}<br/>
+        区域总提现：{$statistics.area_cash}
+    </div>
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {if $orders}{include file=page.bottom.html}{/if}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script>
+    function changeArea(obj,pid){
+        var next = $(obj).attr('data-next');
+        if(next != ''){
+            getAreaChild(next,pid);
+        }
+    }
+    function getAreaChild(next,pid){
+        $.ajax({
+            url : 'index.php?app=user&act=getarea',
+            type : 'POST',
+            dataType : 'JSON',
+            data:{'pid':pid},
+            success : function(res){
+                res = JSON.parse(res);
+                if(res.status == 0){
+                    str = next == 'city' ? '请选择城市' : '请选择县区';
+                    html = '<option value="">'+str+'</option>';
+                    $("#"+next).html();
+                    for(var i in res.data){
+                        html += '<option value="'+res.data[i].id+'">'+res.data[i].name+'</option>';
+                    }
+                    $("#"+next).html(html);
+                }
+            }
+        });
+    }
+</script>
+{include file="footer.html"}

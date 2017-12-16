@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>货款提现</title>
+	<link rel="stylesheet" type="text/css" href="css/my-goujifen.css"/>
+</head>
+<body>
+	<div class="wrap">
+		<header>
+			<div class="left"><a href="javascript:history.go(-1)"><img src="images/fanhui.png"/></a></div>
+			<div class="center">购积分</div>
+			<div class="right">明细</div>
+		</header>
+		<section>
+			<div class="sec-j">
+				<p>积分购买成功！您本次购买了20积分。</p>
+				<div class="but">
+					<button class="but1">去发积分</button>
+					<button class="but2">回到首页</button>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+<script src="js/box.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script>
+	$(".but1").click(function(){
+			location.href = "fajifen.html";
+		});
+	$(".but2").click(function(){
+			location.href = "index.html";
+		});
+	$(".right").click(function(){
+			location.href = "buymingxi.html";
+		});
+	// var tokens=localStorage.getItem ("token");
+	var moneys=localStorage.getItem ("gjfnum");
+	$(".sec-j p").html("积分购买成功！您本次购买了"+moneys+"积分。")
+	// $.ajax({
+	// 		            type: 'POST',
+	// 		            url: Url + "api/index.php?n=user&f=login",
+	// 		     	dataType: "json",
+	// 		    	data: {
+	// 		    		phone:tel,
+	// 		    		password:pwd,
+	// 		               	token:tokens
+	// 		        	},
+	// 		    		success: function(data){
+	// 		    		console.log(data);
+			    		
+	// 		          },
+	// 		          error: function(data){
+	// 		    		console.log(data);
+			    		
+	// 		          },
+	// 		})
+</script>
+</html>

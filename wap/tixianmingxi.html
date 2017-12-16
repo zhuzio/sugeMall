@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>货款积分提现明细</title>
+	<link rel="stylesheet" href="css/tixianmingxi.css">
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+			<a href="javascript:history.go(-1)"><img src="images/w_tback.png" alt="返回首页"></a>
+			<p>货款提现明细</p>
+		</header>
+		<section>
+			
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	$(function(){
+	    var tokens=localStorage.getItem ("token");
+	var html="";
+$.ajax({
+     type: 'POST',
+      dataType: "json",
+      url:Url + "api/index.php?n=pay_balance&f=shopDepositList",
+     data: {
+     	token:tokens,
+     	},
+    success: function(data){
+    	console.log(data);
+    	for (var k = 1; k <=data.totalpage; k++) {
+    		$.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + "api/index.php?n=pay_balance&f=shopDepositList",
+		     data: {
+		     	token:tokens,
+		     	page:k,
+		     	},
+		    success: function(data){
+		    	// console.log(data);
+		    	var count;
+		    	for (var j = 0; j < 100000; j++) {
+		    		
+		    		if (!data.data[j]) {
+		    			count=j;
+		    			
+		    			break;
+		    		}
+		    	};
+		    	// console.log(count);
+		    	for (var i = 0; i < count; i++) {
+		    		var moneys=data.data[i].money;
+		    		var timer1=data.data[i].createtime;
+		    		if (data.data[i].ispay=="0") {
+		    			var timer2="未审核";
+		    		}else{
+		    			var timer2=data.data[i].operatortime;
+		    		}
+		    		// var timer2=data.data[i].operatortime;
+		    		var card=data.data[i].bank_code;
+		    		var ip=data.data[i].ispay;
+		    		// var card="hellllllloodsd";
+		    		var cards=card.substr(0,3)+"***********"+card.substr(15,4);
+		    		// console.log(moneys);
+		    		// console.log(timer1);
+		    		// console.log(cards);
+		    		if (ip==0) {
+		    			var a="待审核";
+		    			var src="images/w_dsh.jpg";
+		    		}else if(ip==1){
+		    			var a="已到账";	
+		    			var src="images/w_tok.png";
+		    		}else if(ip==2){
+		    			var a="未到账";	
+		    			var src="images/w_tno.png";
+		    		}
+
+		    	
+		    	html+="<div class='section1'><div class='left'><ul><img src='images/w_tmoney.png'>提现积分</ul><ul><img src='images/w_ttime.png'>申请时间</ul><ul><img src='images/w_tcard.png' class='card'>到账银行卡</ul><ul><img src='images/w_tmoney.png'>操作时间</ul></div><div class='center'><ul><li>"+moneys+"</li><li>"+timer1+"</li><li>"+cards+"</li><li>"+timer2+"</li></ul></div><div class='right'><img src="+src+">"+a+"</div></div>";
+		    		// console.log(i);
+		    	};
+		    	
+		    	
+		    	$("section").html(html);
+		    	// alert($(".section1").length)
+		    } ,
+		    error:function(data){
+		    	// console.log(data);
+		    }
+		});
+    	};
+
+    } ,
+    error:function(data){
+    	// console.log(data);
+    }
+});
+	})
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>引导页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/lead.css"/>
+		<style type="text/css">
+		.leadimgc {
+		    width: 35.5%;
+		    position: absolute;
+		    top: 82%;
+		    left: 32%;
+		    z-index: 100;
+		}
+		.buttons {
+			
+		}
+		</style>
+	</head>
+	<body>
+		<div class="lead-wp">
+			<img class="leadimg" src="images/z-lead.png"alt="引导页" />
+				<a class="z-load" href=""><img class="leadimgb" src="images/z-lead1.png"/></a>
+				<a class="z-load2" href=""><img class="leadimgc" src="images/imgc.png"/></a>	
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=wendy&f=download",
+				dataType: "json",
+				data: {},
+				success: function(data) {
+					var datas = data.data;
+//					console.log(datas);   
+					$(".z-load").attr({"href":datas});
+				},
+				error: function(data) {}
+			});
+		})
+
+		//登录
+		$('.z-load2').click(function(event) {
+			var url ='./denglu.html';
+			$('.z-load2').attr({'href':url})
+			// window.location.href ='denglu.html';
+		});
+	</script>
+</html>

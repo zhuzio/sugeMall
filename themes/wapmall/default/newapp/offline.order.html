@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+		<link rel="stylesheet" href="{res file=css/line-order.css}" />
+		<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.go(-1);" class="back"></a>
+			<h1 class="tit">我的线下订单</h1>
+		</header>
+		<div class="content mtop44">
+			<ul class="Line-order">
+			{foreach from=$myorder item=item2}
+				<li class="line-list">
+					<div class="list-number">
+						<p class="first">
+							<span class="one">订单号</span>
+							<span>{$item2.order_sn}</span>
+						</p>
+						<p class="last">
+							<!-- <span>2016-05-25</span> -->
+							<time>{$item2.pay_time}</time>
+						</p>
+					</div>
+					<div class="list-text">
+						<p class="first">
+							<span class="one">商家名称</span>
+							<span>{$item2.seller_name}</span>
+						</p>
+					</div>
+					<div class="list-text">
+						<p class="first">
+							<span class="one">付款方式</span>
+							<span>{$item2.payment_name}</span>
+						</p>
+						<p class="next">
+							<span>商品种类</span>
+							<span>{$item2.classname}</span>
+						</p>
+					</div>
+					<div class="list-text">
+						<p class="first">
+							<span class="one">消费金额</span>
+							<span>￥{$item2.goods_amount}</span>
+						</p>
+						<p class="next">
+							<span>赠送积分</span>
+							<span>{$item2.point}</span>
+						</p>
+					</div>
+					<div class="list-text">
+						<p class="first">
+							<span class="one">订单备注</span>
+							<span>{$item2.pay_message}</span>
+						</p>
+					</div>
+				</li>
+			{/foreach}
+			</ul>
+		</div>
+		{include file="footer.html"}
+	</body>
+</html>

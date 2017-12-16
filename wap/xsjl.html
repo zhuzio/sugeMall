@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>销售经理</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/my_member.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		/*.f-business a{
+			margin-left:4%;
+		}*/
+	</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">销售经理</p>
+		<!-- <button>保存</button> -->
+	</div>
+	<div class="searcher">
+	<p class="search">
+		<i><img src="images/l_search.png" alt=""></i>
+		<input type="text" placeholder="收索姓名或手机号查看团队成员">
+	</p><span>搜索</span></div>
+	<div class="kong"></div>
+	<ul class="memer">
+		<li>
+			<div class="con">
+				<div class="left"><img src="images/rubit.png" alt=""></div>
+				<div class="right">
+					<i><img src="images/li.png" alt=""></i>
+					<p class="rp1">
+						<img src="images/dengji.png" alt=""><span>姓名：张三</span>
+					</p>
+					<p class="rp2">
+						<!-- <img src="images/mmtel.png" alt=""> --><span>电话：15811161111</span>
+					</p>
+					<p class="rp3">
+						<span>注册时间：2016.10.01</span>
+					</p>
+					
+				</div>
+			</div>
+			<a href=""><div class="mmtel"><img src="images/mmtel.png" alt=""></div></a>
+		</li>
+		
+	</ul>
+	<ul class="memer">
+		<li>
+			<div class="con">
+				<div class="left"><img src="images/rubit.png" alt=""></div>
+				<div class="right">
+					<i><img src="images/li.png" alt=""></i>
+					<p class="rp1">
+						<img src="images/dengji.png" alt=""><span>姓名：张三</span>
+					</p>
+					<p class="rp2">
+						<!-- <img src="images/mmtel.png" alt=""> --><span>电话：15811161111</span>
+					</p>
+					<p class="rp3">
+						<span>注册时间：2016.10.01</span>
+					</p>
+					
+				</div>
+			</div>
+			<a href=""><div class="mmtel"><img src="images/mmtel.png" alt=""></div></a>
+		</li>
+		
+	</ul>
+	<ul class="memer">
+		<li>
+			<div class="con">
+				<div class="left"><img src="images/rubit.png" alt=""></div>
+				<div class="right">
+					<i><img src="images/li.png" alt=""></i>
+					<p class="rp1">
+						<img src="images/dengji.png" alt=""><span>姓名：张三</span>
+					</p>
+					<p class="rp2">
+						<!-- <img src="images/mmtel.png" alt=""> --><span>电话：15811161111</span>
+					</p>
+					<p class="rp3">
+						<span>注册时间：2016.10.01</span>
+					</p>
+					
+				</div>
+			</div>
+			<a href=""><div class="mmtel"><img src="images/mmtel.png" alt=""></div></a>
+		</li>
+		
+	</ul>
+	<ul class="memer">
+		<li>
+			<div class="con">
+				<div class="left"><img src="images/rubit.png" alt=""></div>
+				<div class="right">
+					<i><img src="images/li.png" alt=""></i>
+					<p class="rp1">
+						<img src="images/dengji.png" alt=""><span>姓名：张三</span>
+					</p>
+					<p class="rp2">
+						<!-- <img src="images/mmtel.png" alt=""> --><span>电话：15811161111</span>
+					</p>
+					<p class="rp3">
+						<span>注册时间：2016.10.01</span>
+					</p>
+					
+				</div>
+			</div>
+			<a href=""><div class="mmtel"><img src="images/mmtel.png" alt=""></div></a>
+		</li>
+		
+	</ul>
+	<div class="none">
+		<img src="images/none.png" alt="">
+	</div>
+	<div class="numk"></div>
+	<div class="num">当前会员人数（<span>10</span>）</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	$(function(){
+		if ($(".num").find("span").html()<1) {
+			
+			$(".num").css("display","none");
+			$(".none").css("display","block");
+		}else{
+			
+		}
+		var tokens=localStorage.getItem ("token");
+  var types=localStorage.getItem ("type");  
+//    会员ajax
+        $.ajax({  
+               type: 'POST',
+                url: Url + "api/index.php?n=user&f=myteam",
+               dataType: "json",
+               data: { 
+                 "token" : tokens,
+                 "type":types,
+               },
+              success: function(data){
+                   // console.log(data);
+                   var datas = data.data.sum;
+                   var leng = datas.length;
+                   // console.log(datas)
+                   for (var i = 0; i < datas.length; i++) {
+                     var html = '<li><div class="con"><div class="left"><img src="'+datas[i].portrait+'" alt=""></div><div class="right"><p class="rp1"><img src="images/dengji.png" alt=""><span>姓名：'+datas[i].real_name+'</span></p><p class="rp2"><span>电话：'+datas[i].real_name+'</span></p><p class="rp3"><span>注册时间：'+datas[i].reg_time+'</span></p></div></div><a href=""><div class="mmtel"><img src="images/mmtel.png" alt=""></div></a></li>';
+                     $(".memer").append(html);
+                   }
+            $(".numl").html(leng);
+            
+           //
+      } ,
+             error:function(data){
+                // console.log(data);
+        }
+    });
+//    
+  //搜索会员ajax开始
+    var intxt = $(".intext").val();
+    // console.log(intxt);
+    $(".intext").keyup(function(){
+      intxt = $(".intext").val();
+      // console.log(intxt);
+       if(parseInt(intxt)){
+       $.ajax({  
+               type: 'POST',
+                url: Url + "api/index.php?n=user&f=myteam",
+               dataType: "json",
+               data: { 
+                 "token" : tokens,
+                 "phone":intxt,
+                 "type":types,
+               },
+              success: function(data){
+                   // console.log(data);
+                   var datas = data.data.sum;
+                   var leng = datas.length;
+                   // console.log(datas)
+                   for (var i = 0; i < datas.length; i++) {
+                     var html = '<li><div class="con"><div class="left"><img src="'+datas[i].portrait+'" alt=""></div><div class="right"><p class="rp1"><img src="images/dengji.png" alt=""><span>姓名：'+datas[i].real_name+'</span></p><p class="rp2"><span>电话：'+datas[i].real_name+'</span></p><p class="rp3"><span>注册时间：'+datas[i].reg_time+'</span></p></div></div><a href=""><div class="mmtel"><img src="images/mmtel.png" alt=""></div></a></li>';
+                     $(".memer").append(html);
+                   }
+            $(".numl").html(leng);
+      } ,
+             error:function(data){
+                // console.log(data);
+        }
+    });
+    }else{
+       $.ajax({  
+               type: 'POST',
+                url: Url + "api/index.php?n=user&f=myteam",
+               dataType: "json",
+               data: { 
+                 "token" : tokens,
+                 "name":intxt,
+                 "type":types,
+               },
+              success: function(data){
+                   console.log(data);
+                   var datas = data.data.sum;
+                   var leng = datas.length;
+                   // console.log(datas)
+                   for (var i = 0; i < datas.length; i++) {
+                     var html = '<li><div class="con"><div class="left"><img src="'+datas[i].portrait+'" alt=""></div><div class="right"><p class="rp1"><img src="images/dengji.png" alt=""><span>姓名：'+datas[i].real_name+'</span></p><p class="rp2"><span>电话：'+datas[i].real_name+'</span></p><p class="rp3"><span>注册时间：'+datas[i].reg_time+'</span></p></div></div><a href=""><div class="mmtel"><img src="images/mmtel.png" alt=""></div></a></li>';
+                     $(".memer").append(html);
+                   }
+            $(".numl").html(leng);
+      } ,
+             error:function(data){
+                // console.log(data);
+        }
+    });
+    }
+    });
+	})
+</script>
+
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>商家收款二维码</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/sjewm.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">商家收款二维码</p>
+		<!-- <button>保存</button> -->
+	</div>
+	<div class="con">
+		<!-- <img src="images/sjewm.jpg" alt=""> -->
+		<img src='' / style="width:70%">
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	$(function(){
+		var tokens=localStorage.getItem ("token");
+		// console.log(tokens);
+		$(".con img").attr("src",Url + "api/index.php?n=shop_center&f=pay_barcode&token="+tokens);
+		// $.ajax({
+		//      type: 'get',
+		//       dataType: "json",
+		//       url:Url + "api/index.php?n=shop_center&f=pay_barcode",
+		//      data: {
+		//      	token:tokens,
+		//      	},
+		//     success: function(data){
+		//     	console.log(data);
+		//     },
+		//     error:function(data){
+		// 		    	console.log(data);
+		// 		    }
+		// })
+	})
+</script>
+</html>

@@ -1,0 +1,239 @@
+.d_header {
+	height: 8.8rem;
+	background-color: transparent;
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+	top: 0;
+}
+
+.d_header .h_a1 {
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width: 11rem;
+	left: 3rem;
+	z-index: 1;
+}
+
+.d_header .p1 {
+	height: 8.8rem;
+	width: 11rem;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+
+.d_header .p1 img {
+	vertical-align: middle;
+	height: 3.0rem;
+}
+
+.d_header .p2 {
+	width: 34.0rem;
+	height: 6rem;
+	margin: 1.6rem auto 1.2rem;
+	background-color: #bcf9fd;
+	border-radius: 5.0rem;
+	border: 1px solid #fff;
+}
+
+.d_header .p2 span {
+	float: left;
+	width: 50%;
+	line-height: 6rem;
+	text-align: center;
+	color: #2a2a2a;
+	font-size: 3.2rem;
+	border-radius: 0 5.0rem 5.0rem 0;
+	/*background-color: #b18042;*/
+}
+
+.d_header .p2 .hps2 {
+	color: #fefefe;
+}
+
+.hps2 {
+	background-color: #15b6c5;
+}
+
+.d_header .h_a2 {
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	line-height: 8.8rem;
+	width: 11rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3.4rem;
+	color: #333;
+	text-align: right;
+	background-color: transparent;
+}
+
+.d_header .h_a2 img {
+	width: 4.2rem;
+	height: 3.8rem;
+	vertical-align: middle;
+}
+
+.f-bar {
+	width: 92.0%;
+	height: 8.8rem;
+	/*border: 1px solid red;*/
+	position: fixed;
+	top: 2.2rem;
+	left: 3.9%;
+	z-index: 100;
+	/*margin: 0 auto;*/
+}
+
+.f-bill {
+	width: 4.4rem;
+	/*margin-left: 3.0rem;*/
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.f-shop,
+.f-income {
+	font-size: 3.4rem;
+	color: #333;
+	padding: 0.4rem 0.3rem;
+	/*border: 1px solid red;*/
+	/*margin-left: 24.8rem;*/
+	/*position: relative;
+	 * top: -0.8rem;*/
+}
+
+.f-shop {
+	background-color: #3fd9bf;
+	border: 1px solid #fff;
+	border-top-left-radius: 0.8rem;
+	border-bottom-left-radius: 0.8rem;
+	box-sizing: border-box;
+	color: #fff;
+}
+
+.f-income {
+	background-color: #fff;
+	border-top-right-radius: 0.8rem;
+	border-bottom-right-radius: 0.8rem;
+}
+
+.f-news {
+	width: 4.4rem;
+	/*margin-left: 22.8rem;*/
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.f-si {
+	width: 42.7%;
+	height: 6rem;
+	/*border: 1px solid red;*/
+	margin: -0.5rem auto 0;
+	line-height: 6rem;
+}
+
+.f-banner {
+	width: 100%;
+	height: 37.0rem;
+	background: url(../images/top_bg.png) 0 0 no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+}
+
+.f-middle {
+	/*width: 44.0%;*/
+	/*border: 1px solid red;*/
+	margin: 12.5rem 3rem 0;
+}
+
+.f-score {
+	font-size: 9rem;
+	color: #fff;
+	line-height: 10rem;
+	/*text-align: center;*/
+}
+
+.f-use {
+	font-size: 2.8rem;
+	color: #fff;
+	/*margin-left: 2.8rem;*/
+	line-height: 3rem;
+	/*text-align: center;*/
+}
+
+.f-bottom {
+	width: 50%;
+	position: absolute;
+	top: 31.5rem;
+	/*border: 1px solid red;*/
+}
+
+.f-bottoms,.f-bottomsz{
+	font-size: 2.4rem;
+	color: #fff;	
+}
+
+.f-bottom-i {
+	width: 2.8rem;
+	vertical-align: middle;
+	margin-top: -1rem;
+}
+
+.f-bottomr {
+	width: 50%;
+	/*margin: -2.2rem 3rem 0 50%;*/
+	/*border: 1px solid red;*/
+	text-align: right;
+	position: absolute;
+	top: 31.5rem;
+	right: 10.0%;
+}
+
+.quan {
+	/*margin: 0 4rem 0 3rem;*/
+	/*margin-top: */
+	/*margin: 4rem 0 3rem 0;*/
+	margin: 6rem 3rem 0rem;
+}
+
+.f-w {
+	font-size: 2.6rem;
+	color: #fff;
+}
+
+.f-x {
+	font-size: 2.4rem;
+	color: #fff;
+}
+.z-jifen{
+	width: 100%;
+	position: absolute;
+	top: 37.0rem;
+}
+.z-jifen li:nth-child(1){
+	border-top: 1px solid #efeff4;
+}
+.z-jifen li{
+	width: 100%;
+	height: 12.0rem;
+	border-bottom: 1px solid #efeff4;
+	line-height: 12.0rem;
+	/*position:relative;
+	top: 37.0rem;*/
+}
+.z-jifen li span{
+	font-size: 2.6rem;
+	color: #323333;
+	margin-left: 5.6%;
+}
+.z-ffm{
+	font-size: 3.2rem !important;
+	color: #333;
+}

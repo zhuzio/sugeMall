@@ -1,0 +1,96 @@
+@import url(m_reset.css);
+.full(@w,@h,@b){
+	width: @w;
+	height: @h;
+	background: @b;
+}
+.lfc(@l,@f,@c){
+	line-height: @l;
+	font-size: @f;
+	color: @c;
+}
+.box(@tan){
+	display: -webkit-box;
+	-webkit-box-orient:@tan;
+}
+html,body,.container{
+	.full(100%,100%,#ebebeb);
+	.box(vertical);
+	font-size: 62.5%;
+}
+.r{
+	position: relative;
+}
+.a{
+	position: absolute;
+}
+header{
+	.full(100%,31.3rem,#efeff4);
+	.r;
+	a{
+		.a;
+		left: 3.0rem;
+		top: 2.5rem;
+		img{
+			width: 2.2rem;
+			height: 3.8rem;
+			vertical-align: middle;
+		}
+	}
+	p{
+		.lfc(8.8rem,3.4rem,#333333);
+		text-align: center;
+	}
+	.header1{
+		.full(100%,10rem,none);
+		margin-top: 9.5rem;
+		text-align: center;
+		span{
+			.lfc(5rem,4rem,#ffa442);
+		}
+		.leiji{
+			.lfc(5rem,3.4rem,#333333);
+		}
+	}
+	.border{
+		height: 2.9rem;
+		border-bottom: 0.1rem solid #d5d5d5;
+	}
+}
+section{
+	-webkit-box-flex:1;
+	overflow: auto;
+	.full(100%,auto,none);
+	.section1{
+		.full(100%,22.6rem,#fff);
+		margin-bottom: 2rem;
+		.p1{
+			.full(90%,16.2rem,none);
+			.r;
+			color: #333333;
+			margin-left: 5%;
+			font-size: 3.0rem;
+			padding-top: 4.3rem;
+			box-sizing: border-box;
+			border-bottom: 0.1rem dashed #dcdcdc;
+			.money{
+				color: #d81e05;
+				.a;
+				right: 5%;
+				bottom: 3.0rem;
+
+			}
+		}
+		.p2{
+			.r;
+			height: 6.3rem;
+			.lfc(6.3rem,2.4rem,#333);
+			margin-left: 57%;
+			.time{
+				.a;
+				right: 23%;
+			}
+		}
+		
+	}
+}

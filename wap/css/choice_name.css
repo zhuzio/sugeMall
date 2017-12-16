@@ -1,0 +1,198 @@
+@import url(m_reset.css);
+html,
+body,
+.container {
+  width: 100%;
+  height: 100%;
+  background: #f1f2f6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 62.5%;
+}
+.r {
+  position: relative;
+}
+.a {
+  position: absolute;
+}
+header {
+  width: 100%;
+  height: 8.8rem;
+  background: #ffffff;
+  border-bottom: 0.1rem solid #d5d5d5;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+header .left {
+  width: 2.2rem;
+  margin-left: 3rem;
+  margin-top: 2.5rem;
+}
+header .left img {
+  width: 2.2rem;
+  height: 3.8rem;
+}
+header .center {
+  -webkit-box-flex: 1;
+}
+header .center p {
+  line-height: 8.8rem;
+  font-size: 3.4rem;
+  color: #333333;
+  text-align: center;
+  padding-right: 10%;
+}
+section {
+  width: 100%;
+  height: auto;
+  background: none;
+  border-top: 0.1rem solid #e3e3e3;
+  margin-top: 1.4rem;
+}
+section .section1 {
+  width: 100%;
+  height: 8.6rem;
+  background: #ffffff;
+  border-bottom: 0.1rem solid #e3e3e3;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .section1 p {
+  width: 65%;
+  margin-left: 5%;
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+}
+section .section1 span {
+  display: block;
+  width: 3.2rem;
+  margin-left: 20%;
+  line-height: 8.6rem;
+  text-align: right;
+}
+section .section1 span img {
+  width: 3.2rem;
+  height: 3.6rem;
+  background: none;
+  vertical-align: middle;
+}
+section .tianjia {
+  width: 100%;
+  height: 20rem;
+  background: none;
+}
+section .tianjia img {
+  width: 10.7rem;
+  height: 10.7rem;
+  background: none;
+  margin-top: 8rem;
+  margin-left: 42%;
+}
+section .cd-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  z-index: 9999;
+}
+section .cd-popup.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+section .cd-popup-container {
+  position: relative;
+  width: 70%;
+  margin: 40% auto;
+  height: 20rem;
+  background: #FFF;
+  border-radius: .4rem .4rem .4rem .4rem;
+  text-align: center;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(1.2);
+  -webkit-backface-visibility: hidden;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 0.3s;
+}
+section .is-visible .cd-popup-container {
+  -webkit-transform: scale(1);
+}
+section .tanchu {
+  width: 100%;
+  height: 100%;
+  background: none;
+  padding: 0 15%;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+  border-radius: 5rem;
+}
+section .tanchu input {
+  width: 100%;
+  height: 8.5rem;
+  background: 0;
+  -webkit-box-flex: 1;
+  display: block;
+  outline: none;
+  border: none;
+  border-bottom: 0.1rem solid #666666;
+  line-height: 8.5rem;
+  font-size: 2.4rem;
+  letter-spacing: 0.1rem;
+  padding-top: 2rem;
+}
+section .tanchu ul {
+  width: 100%;
+  height: 5rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  line-height: 5rem;
+  margin-top: 2rem;
+}
+section .tanchu ul li {
+  -webkit-box-flex: 1;
+  font-size: 2.4rem;
+}
+section .tanchu ul .li1 {
+  width: 5rem;
+  height: 5rem;
+  background: #ebebeb;
+}
+section .tanchu ul .li2 {
+  width: 5rem;
+  height: 5rem;
+  background: #ffc600;
+}
+section .tanchu ul .vis {
+  -webkit-box-flex: 1;
+  overflow: hidden;
+}
+section .kong {
+  width: 90%;
+  height: 17.2rem;
+  background: none;
+  margin-left: 5%;
+}
+section .kong p {
+  line-height: 17.2rem;
+  font-size: 3rem;
+  color: #333333;
+  float: left;
+  width: 70%;
+}
+section .kong .kong_tj {
+  margin-right: 3rem;
+  float: right;
+  width: 20%;
+}
+section .kong .kong_tj img {
+  width: 10.7rem;
+  height: 10.7rem;
+  background: none;
+  margin-top: 4rem;
+}

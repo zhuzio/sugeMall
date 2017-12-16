@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title></title>
+
+    <link rel="stylesheet" href="{res file=css/Personal-Center.css}" />
+
+    <link rel="stylesheet" href="{res file=css/public.css}" />
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" ></script>
+
+    <script type="text/javascript">
+
+    	
+
+   		document.addEventListener('plusready', function(){
+
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+
+   			
+
+   		});
+
+   		
+
+    </script>
+
+</head>
+
+<body>
+
+	<div class="content">
+
+		<!--
+
+        	时间：2016-06-15
+
+        	描述：个人中心top板块
+
+        -->
+
+		<div class="top">
+
+			<a href= "{url app=account_manage&act=showData}"  class="setup">&nbsp;</a>
+
+			<div class="userpic">
+
+				<a href="#"><img src="{res file=images/Personal/User-profile.png}"></a>
+
+			</div>
+
+			<div class="userinf">
+
+				<h4>{$type[true_name]}</h4>
+
+				<div class="user-identity">
+
+					<div class="user-id">
+						<img src="{$type[img]}">
+						<a href="#">{$type[name]}</a>
+						<em class="icon-jx"></em>
+
+					</div>
+
+                    {if $type.is_up eq 1}
+                        <div class="upgrade">
+                            <a href="{url app=req&act=upgradeRequest}">
+                            </a>
+                        </div>            
+                    {/if}
+                    <div class="introducer" id="jieshao">
+
+                    {if $tuijian.sj_zhitui  eq  0}
+
+                        <!--<p>合伙人：<a href="{url app=new_member&act=add_tuijian}">添加</a></p>-->
+
+                        {else}
+
+                        <!--<p>合伙人：<span>{$tuijian_u.real_name}</span></p>-->
+
+                    {/if}
+
+                    </div>
+
+				</div>
+
+			</div>
+
+			<!--
+
+			<div class="useradmin">
+
+				<a href="#">
+
+					<sapn>帐户管理</span>
+
+				</a>
+
+			</div>
+
+            	时间：2016-06-15
+
+            	描述：屏幕宽度不同时无法保证正确显示
+
+            -->
+
+            <div class="clear"></div>
+
+		</div>
+
+		<div class="capital">
+
+			<div class="cap-one">
+
+                <a href="{url app=new_member&act=balance}">
+
+    				<div class="cap-box">
+
+    					<h4 style="color:#df4f4f;font-size:18px"><!--{$shoping_point[current]}--></h4>
+
+    					<p class="cap-tit"><span class="icon-balance"></span>购物积分</p>
+
+    					<p class="cap-tay">当月<span><!--{$shoping_point[month]}--></span></p>
+
+    					<p class="cap-tay">累计<span><!--{$shoping_point[all]}--></span></p>
+
+    				</div>
+
+                </a>
+
+			</div>
+
+
+
+			<div class="cap-one">
+
+             <a href="{url app=point&act=userGetPoint&action=point}">
+
+				<div class="cap-box">
+
+					<h4 style="color:#39b4bf;font-size:18px"><!--{$point[point]}--></h4>
+
+					<p class="cap-tit"><span class="icon-int"></span>结余积分</p>
+
+					<p class="cap-tay">当前权<span><!--{$point[point_peac]}--></span></p>
+
+					<p class="cap-tay">累计<span><!--{$point[all_point]}--></span></p>
+
+				</div>
+
+            </a>
+
+			</div>
+
+			<div class="cap-one">
+
+            
+
+				<div class="cap-box">
+
+                <a href="{url app=new_member&act=earnings}">
+
+					<h4 style="color:#df4f4f;font-size:18px"><!--{$earnings[current]}--></h4>
+
+					<p class="cap-tit"><span class="icon-pro"></span>当前收益</p>
+
+					<p class="cap-tay">今日<span><!--{$earnings[freeze]}--></span></p>
+
+                </a>
+
+                <a href="{url app=pay_balance&act=userDeposit}">
+
+					<p class="cap-button"><button>提现</button></p>
+
+                </a>
+
+				</div>
+
+            
+
+			</div>
+
+		</div>
+
+		<!--
+
+        	时间：2016-06-15
+
+        	描述：管理
+
+        -->
+
+        <div class="recommend">
+
+        <!--{foreach from=$top_bander item=bander}-->
+
+        	<div class="rec-one w25 fl">
+
+        		<a href="<!--{$bander[link]}-->">
+
+        			<img src="<!--{$bander[imgurl]}-->">
+
+        			<!--
+
+                    	<span class="icon-1"></span>
+
+                    	时间：2016-06-16
+
+                    	描述：背景图标样式
+
+                    -->
+
+        			<p><!--{$bander[model_name]}--></p>
+
+        		</a>
+
+        	</div>
+
+          <!--{/foreach}-->
+
+
+
+        </div>
+
+        
+
+        <div class="recommend">
+
+        
+
+        <!--{foreach from=$piv_bander item=bander}-->
+
+        	<div class="rec-one w25 fl">
+
+        		<a href="<!--{$bander[link]}-->">
+
+        			<img src="<!--{$bander[imgurl]}-->">
+
+        			<p><!--{$bander[model_name]}--></p>
+
+        		</a>
+
+        	</div>
+
+        <!--{/foreach}-->
+
+        </div>
+
+
+
+
+
+
+
+        <div class="recommend">
+
+        <!--{foreach from=$public_bander item=bander}-->
+
+            <div class="rec-one w25 fl">
+
+                <a href="<!--{$bander[link]}-->">
+
+                    <img src="<!--{$bander[imgurl]}-->">
+
+                    <p><!--{$bander[model_name]}--></p>
+
+                </a>
+
+            </div>
+
+        <!--{/foreach}-->
+
+            
+
+        </div>
+
+  
+
+
+
+	</div>
+
+    <script type="text/javascript" src="{res file=js/Popup.js}" ></script>
+
+    <script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+
+    <script type="text/javascript">
+
+    $.ajax({
+
+        type: 'GET',
+
+        dataType: 'JSON',
+
+        url: 'index.php?app=new_member&act=user_type',
+
+        async:false,
+
+        success:function(result){
+
+            var list =result;
+
+            if(list.type != 2){
+
+                $('#jieshao').hide();
+
+            }else{
+
+                $('#jieshao').show(); 
+
+            }
+
+        }
+
+
+
+    });
+
+
+
+    wx.config({
+
+    debug: true,
+
+    appId: '<!--{$signPackage[appId]}-->',
+
+    timestamp: '<!--{$signPackage[timestamp]}-->',
+
+    nonceStr: '<!--{$signPackage[nonceStr]}-->',
+
+    signature: '<!--{$signPackage[signature]}-->',
+
+    jsApiList: [
+
+        'checkJsApi',
+
+        'onMenuShareTimeline',
+
+        'onMenuShareAppMessage',
+
+        'onMenuShareQQ',
+
+        'onMenuShareWeibo',
+
+        'onMenuShareQZone',
+
+        'hideMenuItems',
+
+        'showMenuItems',
+
+        'hideAllNonBaseMenuItem',
+
+        'showAllNonBaseMenuItem',
+
+        'translateVoice',
+
+        'startRecord',
+
+        'stopRecord',
+
+        'onVoiceRecordEnd',
+
+        'playVoice',
+
+        'onVoicePlayEnd',
+
+        'pauseVoice',
+
+        'stopVoice',
+
+        'uploadVoice',
+
+        'downloadVoice',
+
+        'chooseImage',
+
+        'previewImage',
+
+        'uploadImage',
+
+        'downloadImage',
+
+        'getNetworkType',
+
+        'openLocation',
+
+        'getLocation',
+
+        'hideOptionMenu',
+
+        'showOptionMenu',
+
+        'closeWindow',
+
+        'scanQRCode',
+
+        'chooseWXPay',
+
+        'openProductSpecificView',
+
+        'addCard',
+
+        'chooseCard',
+
+        'openCard'
+
+    ]
+
+  });
+
+  wx.ready(function () {
+
+    // 在这里调用 API
+
+        
+
+  });
+
+  function shaoyishao(){
+
+    wx.scanQRCode({
+
+    needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+
+    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+
+    success: function (res) {
+
+    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+
+     }
+
+    });
+
+  }
+
+
+
+    </script>
+  {include file="footer.html"}
+</body>
+
+</html>

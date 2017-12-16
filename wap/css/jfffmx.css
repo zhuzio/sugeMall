@@ -1,0 +1,320 @@
+.d_header{
+	height: 8.8rem;
+	background-color:transparent;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+	
+}
+.d_header a{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.d_header button{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width:11rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3.4rem;
+	color: #333;
+	text-align: right;
+	background-color: #f0f0f0;
+}
+.jf_count{
+	height: 31.5rem;
+	background-color: #efeff4;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9;
+	overflow: hidden;
+	border-bottom: 1px solid #d5d5d5;
+}
+.jc_p1{
+	height: 6rem;
+	width: 100%;
+	text-align: center;
+	line-height: 6rem;
+	color: #ffa442;
+	font-size: 4rem;
+	margin-top: 8.8rem;
+}
+.jc_p2{
+	height: 6.5rem;
+	width: 100%;
+	text-align: center;
+	line-height: 3rem;
+	color: #333;
+	font-size: 3rem;
+	
+}
+.jc_p3{
+	height: 10rem;
+	/*width: 100%;*/
+	margin: 0 3rem;
+	line-height: 10rem;
+	color: #333;
+	font-size: 3rem;
+	
+}
+.jsp1{
+	float: left;
+	width: 50%;
+	height: 10rem;
+
+}
+.jsp1 font{
+	color: #39b054;
+}
+.jsp2{
+	float: right;
+	width: 50%;
+	height: 10rem;
+	text-align: right;
+	font-size: 3.2rem;
+}
+.jsp2 font{
+	color: #d81e05;
+	font-size: 3.2rem;
+}
+.tab{
+	height: 14rem;
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	top: 31.5rem;
+	border-bottom: 2rem solid #f1f1f1;
+	background-color: #fff;
+}
+.tab p{
+	height: 9rem;
+	width: 72%;
+	/*width: 53.5rem;*/
+	margin: 2.5rem auto;
+}
+.tab button{
+	height: 9rem;
+	width: 50%;
+	border: 1px solid #666;
+	margin: 0.5rem auto;
+	float: left;
+	outline: none;
+	background-color: #fff;
+	box-sizing:border-box;
+	color: #666;
+	font-size: 3.4rem;
+	line-height: 9rem;
+	text-align: center;
+}
+.tab .tbtn1{
+	border-right: none;
+}
+.tab .tbtn2{
+	border-left: none;
+}
+.tab .tbtn{
+	background-color: #ffc600;
+	color: #fff;
+}
+.jkong{
+	height: 47.5rem;
+}
+.part1{
+	overflow: hidden;
+	width: 100%;
+
+}
+.part1 ul{
+	overflow: hidden;
+	width: 100%;
+	
+}
+.part1 ul li{
+	height: 31rem;
+	margin: 0rem 0rem;
+	border-bottom: 2rem solid #f1f1f1;
+}
+.p1_p1{
+	height: 10rem;
+	line-height: 10rem;
+	font-size: 3rem;
+	color: #666;
+	margin: 0 3rem;
+}
+.p1p1sp1{
+	float: left;
+	height: 10rem;
+	width: 50%;
+}
+.p1p1sp1 font,.p1p1sp2 font{
+	color: #d81e05;
+	font-size: 3.2rem;
+}
+.p1p1sp2{
+	float: right;
+	height: 10rem;
+	width: 50%;
+	text-align: right;
+}
+.p1_p2{
+	height: 4rem;
+	line-height: 3.5rem;
+	font-size: 3rem;
+	color: #666;
+	margin: 0 3rem;
+}
+.p1p2sp1{
+	float: left;
+	height: 4rem;
+	width: 50%;
+}
+.p1p2sp2{
+	float: right;
+	height: 4rem;
+	width: 50%;
+	text-align: right;
+}
+.p1p1sp2 font{
+	font-size: 3.2rem;
+}
+.p1_p3{
+	height: 11rem;
+	line-height: 11rem;
+	font-size: 3rem;
+	color: #666;
+	/*border-bottom: 1px solid #d5d5d5;*/
+	margin: 0 3rem;
+}
+.p1_p3 font{
+	font-size: 3.2rem;
+
+}
+.p1_p4{
+	height: 6rem;
+	line-height: 6rem;
+	font-size: 2.4rem;
+	color: #666;
+	text-align: right;
+	margin: 0 3rem;
+}
+/*第二部分*/
+.part2{
+	overflow: hidden;
+	width: 100%;
+	display: none;
+}
+.part2 ul{
+	overflow: hidden;
+	width: 100%;
+	
+}
+.part2 ul li{
+	height: 31rem;
+	margin: 0rem 0rem;
+	border-bottom: 2rem solid #f1f1f1;
+}
+.p2_p1{
+	height: 5rem;
+	line-height: 5rem;
+	font-size: 3rem;
+	color: #666;
+	margin: 0 3rem;
+}
+.p2p1sp1{
+	float: left;
+	height: 5rem;
+	width: 50%;
+}
+.p2p1sp1 font,.p2p1sp2 font{
+	color: #d81e05;
+	font-size: 3.2rem;
+}
+.p2p1sp2{
+	float: right;
+	height: 5rem;
+	width: 50%;
+	text-align: right;
+}
+.p2_p2{
+	height: 5rem;
+	line-height: 5rem;
+	font-size: 3rem;
+	color: #666;
+	margin: 0 3rem;
+}
+.p2p2sp1{
+	float: left;
+	height: 5rem;
+	width: 50%;
+}
+.p2p2sp2{
+	float: right;
+	height: 5rem;
+	width: 50%;
+	text-align: right;
+}
+.p2p1sp2 font{
+	font-size: 3.2rem;
+}
+.p2_p3{
+	height: 7rem;
+	line-height: 7rem;
+	font-size: 3rem;
+	color: #666;
+	/*border-bottom: 1px solid #d5d5d5;*/
+	margin: 0 3rem;
+}
+.p2_p31{
+	height: 7rem;
+	line-height: 7rem;
+	font-size: 3rem;
+	color: #666;
+	border-bottom: 1px solid #d5d5d5;
+	margin: 0 3rem;
+}
+.p2_p3 font{
+	font-size: 3.2rem;
+
+}
+.p2_p4{
+	height: 6rem;
+	line-height: 6rem;
+	font-size: 2.4rem;
+	color: #666;
+	text-align: right;
+	margin: 0 3rem;
+}

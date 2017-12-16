@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>消息中心</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/newscentre.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.ldtt{
+			position: fixed;
+			z-index: 1000;
+			height: 3.2rem;
+			text-align: center;
+			bottom: 3rem;
+			left: 0;
+			width: 100%;
+			display: none;
+
+		}
+		.ldtt img{
+			width: 3.2rem;
+		}
+		.ld_header{
+			width: 100%;
+			height: 8.8rem;
+			position: fixed;
+			z-index: 10;
+			top: 0;
+			left: 0;
+		}
+		.ding{
+			height: 9rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="ldtt"><img src="images/add.gif" alt=""></div>
+	<div class="ld_header">
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" class="ha1">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">消息中心</p>
+		<button>
+			<a href="newsset.html"><img src="images/set.png" alt=""></a>
+			
+		</button>
+	</div>
+	</div>
+	<p class="ding"></p>
+	<ul>
+		
+	</ul>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+	<script>
+		var tokens=localStorage.getItem ("token");
+		var types=localStorage.getItem ("type");
+		// console.log(types);
+		var o2os;
+		var oturl;
+		if (types=="2") {
+			$.ajax({	
+			type: 'POST',
+			url: Url + "api/index.php?n=shop_center&f=getShopInfo",
+			dataType: "json",
+			data: { token : tokens},
+			success: function(data){
+				console.log(data);
+				o2os=data.data.o2o;
+				if (o2os=="offline") {
+					oturl="l-order1.html";
+				}else{
+					oturl="z-union-shop-online-order.html";
+				}
+				// console.log(o2os);
+			} ,
+		    error:function(data){
+		    	// console.log(data);
+		    }
+		})
+		}
+		
+		var num;
+		    function getLocalTime(timestamp){
+		    	var d = new Date(timestamp * 1000);    //根据时间戳生成的时间对象
+			var date = (d.getFullYear()) + "-" + 
+			           (d.getMonth() + 1) + "-" +
+			           (d.getDate()) + " " + 
+			           (d.getHours()) + ":" + 
+			           (d.getMinutes()) + ":" + 
+			           (d.getSeconds());
+			          return date; 
+		    }
+		$.ajax({
+			     type: 'POST',
+			      dataType: "json",
+			      url:Url + "api/index.php?n=message&f=mlist",
+			     data: {
+			     	token:tokens,
+			     	},
+			    success: function(data){
+			    	console.log(data);
+			    	var count;
+				    	num=data.totalpage;
+				    	for (var j = 0; j < 100000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	var html="";
+				    	for (var i = 0; i < count; i++) {
+					if (data.data[i].is_read=="1") {
+						var lclas="wd lwd";
+					}else{
+						var lclas="wd";
+					}
+					if (data.data[i].ms_type=="1") {
+							var refundids=data.data[i].order_id;
+						}else if(data.data[i].ms_type=="4"){
+							var refundids=data.data[i].refund_id;
+						}else{
+							var refundids="";
+						}	
+				    	html+="<li><p><img src='images/lwd.png' class='"+lclas+"'><font class='ms_types'>"+data.data[i].ms_type+"</font><font class='newsids'>"+data.data[i].id+"</font><font class='is_reads'>"+data.data[i].is_read+"</font><font class='states'>"+data.data[i].status+"</font><font class='user_types'>"+data.data[i].user_type+"</font><font class='refundids'>"+refundids+"</font><a><img src='"+Url +data.data[i].img+"'><span>"+data.data[i].title+"</span></a><span class='usp'>"+getLocalTime(data.data[i].addtime)+"</span></p></li>";
+				    	if (true) {};
+				    		
+				    	};
+				    	
+				    	
+				    	$("ul").html(html);
+			    	
+			    },
+			    error:function(data){
+					    	
+					    }
+					})
+		var pages=1; //当前页的页码
+		var allpage=num; //总页码，会从后台获取
+		var sc=true;
+		function showAjax(){
+			$(".ldtt").css("display","block");
+			$.ajax({
+				 type: 'POST',
+				 dataType: "json",
+				 url:Url + "api/index.php?n=message&f=mlist",
+				 data: {
+				     	token:tokens,
+				     	page:pages,
+				     },
+				success:function(data){
+					//要执行的内容
+					// showContent();
+						//页数加1
+					// console.log(data);
+				    	
+				    	var count;
+				    	var html="";
+				    	for (var j = 0; j < 10000000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	
+				    	var html="";
+				    	for (var i = 0; i < count; i++) {
+					    	if (data.data[i].is_read=="1") {
+							var lclas="wd lwd";
+						}else{
+							var lclas="wd";
+						}
+						if (data.data[i].ms_type=="1") {
+							var refundids=data.data[i].order_id;
+						}else if(data.data[i].ms_type=="4"){
+							var refundids=data.data[i].refund_id;
+						}else{
+							var refundids=data.data[i].order_id;
+						}		    	
+				    	html+="<li><p><img src='images/lwd.png' class='"+lclas+"'><font class='ms_types'>"+data.data[i].ms_type+"</font><font class='newsids'>"+data.data[i].id+"</font><font class='is_reads'>"+data.data[i].is_read+"</font><font class='states'>"+data.data[i].status+"</font><font class='user_types'>"+data.data[i].user_type+"</font><font class='refundids'>"+refundids+"</font><a><img src='"+Url +data.data[i].img+"'><span>"+data.data[i].title+"</span></a><span class='usp'>"+getLocalTime(data.data[i].addtime)+"</span></p></li>";
+				    	};
+				    	
+				    	
+				    	$("ul").append(html);
+				    	sc=true;
+					// 分页加载/
+					setTimeout(function(){
+						$(".ldtt").css("display","none");
+					},300)
+				}
+			})
+		}
+		function scrollFn(){
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+				if (sc) {
+				// alert(2);
+				// alert(pages+":"+allpage)
+				sc=false;
+				pages++;
+				if (pages<=num) {
+					// console.log(pages);
+					showAjax();
+					// alert(1);
+				}
+				
+			}
+		       }
+		}
+		$(window).bind("scroll",scrollFn);	//绑定滚动事件
+		$("ul").on("click","li",function(){
+
+			var tid=$(this).find(".newsids").html();
+			var oThis=$(this);
+			if($(this).find(".is_reads").html()=="0"){
+				$.ajax({	
+					type: 'POST',
+					url: Url + "api/index.php?n=message&f=read",
+					dataType: "json",
+					data: { 
+						token : tokens,
+						messageid:tid,
+					},
+					success: function(data){
+						console.log(data);
+						if (data.ret=="ok") {
+							oThis.find(".wd").addClass("lwd");
+						}
+					} ,
+				    error:function(data){
+				    	
+				    }
+				})
+			}
+			var xxtype=$(this).find(".ms_types").html();
+			var luser_types=$(this).find(".user_types").html();
+			if (xxtype=="1") {
+				// 订单类
+				if (luser_types=="1") {
+					location.href="order_off.html";
+				}else{
+					location.href=oturl;
+				}
+			}else if(xxtype=="2") {
+				// 购物积分类
+				location.href="transrorm2.html";
+			}else if(xxtype=="3") {
+				// 购物积分类
+				location.href="buymingxi2.html";
+			}else if(xxtype=="4") {
+				// 退款类
+				var lstatus=$(this).find(".states").html();
+				var lrefund_ids=$(this).find(".refundids").html();
+				 localStorage.setItem('refund_id',lrefund_ids);
+				if (lstatus=="WAIT_SELLER_AGREE") {
+					location.href="wdtksq.html";
+				}else if(lstatus=="SELLER_REFUSE_BUYER") {
+					location.href="mjjj.html";
+				}else if(lstatus=="SUCCESS") {
+					location.href="mjcg.html";
+				}else if(lstatus=="CLOSED") {
+					location.href="tkxq.html";
+				}
+			}else if(xxtype=="5") {
+				var lrefund_ids=$(this).find(".refundids").html();
+				 localStorage.setItem('good',lrefund_ids);
+				 location.href="goods-order.html";
+			}else if(xxtype=="6") {
+				// 财富类
+				  if (types==1) {
+				    	location.href="jfmember.html";
+				    }else{
+				     	location.href="jffortune.html";
+				    }
+			}
+			
+		})		
+	</script>
+</html>

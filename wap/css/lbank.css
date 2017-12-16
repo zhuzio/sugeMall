@@ -1,0 +1,180 @@
+.d_header{
+	height: 8.8rem;
+	background-color: #f0f0f0;
+	position: relative;
+	
+}
+.d_header .ha1{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.d_header button{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width:3.3rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3.4rem;
+	color: #333;
+	text-align: right;
+	background-color: #f0f0f0;
+	line-height: 8.8rem;
+}
+.d_header button img{
+	vertical-align: middle;
+	width:3.3rem;
+}
+ul{
+	margin: 3rem 3rem 0;
+}
+ul li{
+	height: 25.5rem;
+	width: 100%;
+	margin-bottom: 3rem;
+	border-radius: 1rem;
+	background-color: #466fb5;
+	overflow: hidden;
+	position: relative;
+}
+ul li font{
+	position: absolute;
+	top: 10rem;
+	color: transparent;
+}
+.lp0{
+	height: 6rem;
+	width: 100%;
+}
+.lp0 span{
+	color: #fff;
+	font-size: 2.2rem;
+	line-height: 6rem;
+	float: left;
+	height: 6rem;
+	width: 35%;
+}
+.lp0 button{
+	/*color: #fff;*/
+	/*font-size: 2.2rem;*/
+	line-height: 6rem;
+	float: right;
+	height: 6rem;
+	width: 20%;
+	margin-right: 3rem;
+	text-align: right;
+	background-color: transparent;
+}
+.lp0 button img{
+	vertical-align: middle;
+}
+.lp0 span img{
+	vertical-align: middle;
+	margin: 0 1rem;
+}
+.lp1{
+	/*margin-top: 4.5rem;*/
+	height: 9rem;
+	margin-left: 5.8rem;
+}
+/*.lp1 img{
+	float: left;
+	width: 5.4rem;
+	height: 5.4rem;
+}*/
+.lp1 span{
+	float: left;
+	margin-left: 1rem;
+	font-size: 3rem;
+	color: #d0dcec;
+	height: 9rem;
+	width: 30rem;
+	line-height: 3rem;
+}
+.lp2{
+	text-align: center;
+	line-height: 8rem;
+	font-size: 3rem;
+	color: #fff;
+}
+.lp2 span{
+	color: #fff;
+	font-size: 3rem;
+}
+.deletek{
+	height: 20rem;
+	width: 100%;
+}
+.delete{
+	height: 20rem;
+	width: 100%;
+	background-color: #3b3437;
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	display: none;
+}
+.delete button{
+	/*width: 48rem;*/
+	width: 64%;
+	height: 6.4rem;
+	margin-top: 2.5rem;
+	background-color: #fff;
+	text-align: center;
+	line-height: 6.4rem;
+	font-size: 3rem;
+	color: #666;
+	/*margin: 2.5rem auto 0;*/
+}
+.delete .de_btn1{
+	
+	background-color: #d81e05;
+	color: #fff;
+	/*margin: 2.5rem auto 0;*/
+}
+.more{
+	height: 23rem;
+	text-align: center;
+	border: 1px solid #efeff4;
+	margin: 0 3rem;
+	border-radius: 1rem ;
+}
+.more img{
+	width: 9.1rem;
+	height: 9.1rem;
+	margin-top: 4rem;
+} 
+.more span{
+	font-size: 3rem;
+	color: #666;
+	line-height: 6rem;
+}

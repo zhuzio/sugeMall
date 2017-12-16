@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>联盟商家-店铺详情</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/lmsjdpxq.css">
+		<link rel="stylesheet" href="css/a.css">
+		<!--<link rel="stylesheet" type="text/css" href="css/share.css" />-->
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css" />
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a class="black" href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/leftw.png" alt="返回首页">
+				</p>
+			</a>
+			<!--<p class="p2"><img src="images/lmdpfx.png" alt=""></p>-->
+			<button><img class="z-collz" src="images/lmdpsc.png" alt=""></button>
+		</div>
+		<div class="dplb">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+				</div>
+				 <div class="swiper-pagination"></div>
+			</div>
+		</div>
+		<div class="dpname"></div>
+		<div class="dpdizhi"><img src="images/lmdpdw.png" alt=""><span class="dz"></span></div>
+		<div class="dptel">
+			<a href="" class="dtp1">
+				<span class="tel1"></span>
+				<img src="images/lmdpline.png" alt="">
+			</a>
+			<a href="" class="dtp2">
+				<span class="tel2"></span>
+				<img src="images/lmdpline.png" alt="">
+			</a>
+		</div>
+		<div class="dpkong"></div>
+		<div class="dpjjie">
+			<p class="djjp1">简介：</p>
+			<p class="djjp2 djj3"></p>
+		</div>
+		<div class="dpkong"></div>
+		<div class="dpjjie">
+			<p class="djjp1">店铺活动：</p>
+			<p class="djjp2"></p>
+		</div>
+		<div class="qxsc">收藏已取消</div>
+		<!--<div class="zz"></div>
+		<div class="fxsub">
+			<p class="fxto">分享到</p>
+			<div class="list" id="sns-share">
+				<a href="" class="wechat">
+					<li class="list1"><img src="images/lmwxin.png" alt=""><br><span>微信好友</span></li>
+				</a>
+				<a href="" class="wechat">
+					<li><img src="images/lmpy.png" alt=""><br><span>微信朋友圈</span></li>
+				</a>
+				<a href="" class="weibo">
+					<li><img src="images/syne.png" alt=""><br><span>新浪微博</span></li>
+				</a>
+				<a href="" class="qq">
+					<li><img src="images/lmqq.png" alt=""><br><span>QQ好友</span></li>
+				</a>
+				<a href="" class="qzone">
+					<li><img src="images/lmkjian.png" alt=""><br><span>QQ空间</span></li>
+				</a>
+			</div>
+		</div>-->
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/swiper-3.3.1.min.js"></script>
+	<!--<script type="text/javascript" src="js/share.js"></script>-->
+	<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script>
+		function GetQueryString(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值		
+		}
+		$(function() {
+			//设置1开始
+			$(".black").on('click', function() {
+				if(GetQueryString('storeid') != null) {
+					location.href = 'index.html';
+				} else {
+					history.back(-1);
+				}
+			});
+			//设置2结束
+			var tokens = localStorage.getItem("token");
+			var strid = '';
+			if(GetQueryString("storeid") != null) {
+				strid = GetQueryString('storeid');
+			} else if(localStorage.getItem("stid")) {
+				strid = localStorage.getItem("stid");
+				console.log(strid);
+			}
+			//		商铺收藏ajax
+			var ints = true;
+			$(".d_header button").on("click", function() {
+				if(ints) {
+					$(this).find("img").attr("src", "images/lmdpsc1.png");
+					ints = false;
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=goods&f=shopcollect",
+						dataType: "json",
+						data: {
+							"token": tokens,
+							"type": "store",
+							"store_id": strid,
+						},
+						success: function(data) {
+							if(data.msg == "未登录") {
+								window.location.href = "denglu.html";
+							}
+							if(data.msg == "身份错误，请重新登录") {
+								window.location.href = "denglu.html";
+							}
+							if(data.msg == "收藏成功") {
+								$(".qxsc").html("收藏成功");
+							}
+							if(data.msg == "已收藏") {
+								$(".qxsc").html("已收藏");
+							}
+							var datas = data.data;
+						},
+						error: function(data) {　　}
+					});
+					setTimeout(function() {
+						$(".qxsc").css("display", "block");
+					}, 1000);
+					setTimeout(function() {
+						$(".qxsc").css("display", "none");
+					}, 2000);
+
+				} else {
+					$(this).find("img").attr("src", "images/lmdpsc.png");
+					ints = true;
+					$(".qxsc").html("收藏已取消");
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=collection&f=uncollectstore",
+						dataType: "json",
+						data: {
+							"token": tokens,
+							"type": "store",
+							"store_id": strid,
+						},
+						success: function(data) {
+							console.log(data);
+							var datas = data.data;
+							if(data.msg == "取消成功") {
+								$(this).find("img").attr("src", "images/lmdpsc.png");
+								ints = true;
+								$(".qxsc").html("收藏已取消");
+								setTimeout(function() {
+									$(".qxsc").css("display", "block");
+								}, 1000);
+								setTimeout(function() {
+									$(".qxsc").css("display", "none");
+								}, 2000);
+							}
+						},
+						error: function(data) {}
+					});
+				}
+
+			})
+			$(".p2 img").on("click", function() {
+				$(".fxsub").css("display", "block");
+				$(".zz").css("display", "block");
+			})
+
+			//			var strid = localStorage.getItem("stid");
+			//			console.log(strid);
+			// 商铺详情接口
+			$.ajax({
+				//contentType:"application/x-www-form-urlencoded; charset=gb2312",
+				type: 'POST',
+				url: Url + "/api/index.php?n=store&f=storeinfo",
+				dataType: "json",
+				data: {
+					"store_id": strid,
+					"token": tokens,
+				},
+				success: function(data) {
+					console.log(data)
+					var datas = data.data;
+					var html = '';
+					for(var i = 0; i < datas.length; i++) {
+						var img1 = datas[i].image_1;
+						var img2 = datas[i].image_2;
+						var img3 = datas[i].image_3;
+						if(img1 != "" || img2 != "" || img3 != "") { 
+//							html += '<li class="swiper-slide"><img src="' + Url + '' + img1 + '"></li><li class="swiper-slide"> <img src="' + Url + '' + datas[i].image_2 + '"></li><li class="swiper-slide"><img src="' + Url + '' + datas[i].image_3 + '"> </li>';
+							html += '<div class="swiper-slide"><img src="' + Url + '' + img1 + '"></div><div class="swiper-slide"><img src="' + Url + '' + datas[i].image_2 + '"></div><div class="swiper-slide"><img src="' + Url + '' + datas[i].image_3 + '"></div>'
+						} else {
+							$(".dplb").css({
+								"background": "url(" + Url + "" + datas[0].store_logo + ") no-repeat",
+								"background-size": "cover",
+								"background-position": "center center"
+							});
+						}
+						var storename = datas[i].store_name;
+						var storetel1 = datas[i].tel;
+						var storetel2 = datas[i].tel2;
+						var storeaddr = datas[i].address;
+						var storedes = datas[i].description;
+						if(storetel1 == null) {
+							$(".dtp1").hide();
+						}
+						if(storetel2 == null) {
+							$(".dtp2").hide();
+						}
+						if(storetel1 == "") {
+							$(".dtp1").hide();
+						}
+						if(storetel2 == "") {
+							$(".dtp2").hide();
+						}
+						$(".dtp1").attr({
+							"href": "tel:" + storetel1
+						});
+						$(".dtp2").attr({
+							"href": "tel:" + storetel2
+						});
+						$(".dpname").html(storename);
+						$(".dz").html(storeaddr);
+						$(".tel1").html(storetel1);
+						$(".tel2").html(storetel2);
+						$(".djj3").html(storedes);
+
+					}
+				 $(".swiper-wrapper").html(html);
+					var mySwiper = new Swiper('.swiper-container', {
+						direction: 'horizontal',
+						autoplay: 3000,
+						loop: true,
+						pagination: '.swiper-pagination',
+						paginationClickable: true,
+					});
+					var coll = data.totalpage;
+					//					console.log(coll);
+					if(coll == "1") {
+						$(".z-collz").attr("src", "images/lmdpsc1.png");
+						ints = false;
+					}
+					$(".djjp2 p img").each(function() {
+						var img = $(this).attr("src");
+						//						console.log(img);
+						imgh = img.substr(0, 4);
+						//						console.log(imgh);
+						if(imgh == "http") {
+
+						} else {
+							$(this).attr("src", Url + img);
+						}
+						//						
+					});
+				},
+				error: function(data) {
+					//　　　　        alert("出错啦！");
+					　　}
+			});
+			$(".list a").click(function() {
+				$(".zz").hide();
+				$(".fxsub").hide();
+			});
+			$(".zz").click(function() {
+				$(".zz").hide();
+				$(".fxsub").hide();
+			});
+			$(".zz").click(function() {
+				$(".zz").hide();
+				$(".fxsub").hide();
+			});
+
+			//分分享
+			//			var $config = {
+			//				url: '', // 网址，默认使用 window.location.href
+			//				site: '', // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
+			//				title: '这个是tittle', // 标题，默认读取 document.title
+			//				description: '这个事描述', // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
+			//				iamge: '', // 图片, 默认取网页中第一个img标签
+			//				target: '_blank' //打开方式
+			//			};
+			//			$('#sns-share').share($config);
+
+		});
+	</script>
+
+</html>

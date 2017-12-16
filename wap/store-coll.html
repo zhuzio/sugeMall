@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的收藏</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/store-coll.css" />
+		<link rel="stylesheet" type="text/css" href="css/share.css" />
+		<link rel="stylesheet" href="css/shangpin.css">
+		<script type="text/javascript" src="js/box.js"></script>
+		<style>.ldtt {
+	position: fixed;
+	z-index: 1000;
+	height: 3.2rem;
+	text-align: center;
+	bottom: 3rem;
+	left: 0;
+	width: 100%;
+	display: none;
+}
+
+.ldtt img {
+	width: 3.2rem;
+}</style>
+	</head>
+
+	<body>
+		<div class="ldtt"><img src="images/add.gif" alt=""></div>
+		<div class="sc-header">
+			<a class="scha" href="javascript:history.go(-1)"><img class="sc-left" src="images/z-32.png" /></a>
+			<ul class="sc-middle">
+				<li class="scmli">商品</li>
+				<li>商店</li>
+			</ul>
+			<ul class="sc-right">
+				<!--<li class="sc-editor">编辑</li>
+				<li>|</li>-->
+				<li class="coll-more"><img src="images/lsmore.png" /></li>
+			</ul>
+		</div>
+		<!--商铺界面-->
+		<div class="sc-wp" style="display: none;">
+			<div class="scdivs">
+				<p><span><img src="images/z-34.png"/></span><input class="sc-input scin1" type="" name="" id="" value="" placeholder="搜索商铺" /></p>
+				<button class="ss1">搜索</button>
+			</div>
+			<div class="spnone">
+				<img src="images/scnone.png" alt="">
+				<p class="spn1">还没有收藏商店<br>何不去逛逛~</p>
+				<p class="spn2">
+					<a href="index.html">去逛逛更多商店</a>
+				</p>
+			</div>
+			<div class="scgoods"></div>
+		</div>
+		<!--商品界面-->
+		<div class="sp-wp">
+			<div class="scdivs">
+				<p><span><img src="images/z-34.png"/></span><input class="sc-input scin2" type="" name="" id="" value="" placeholder="搜索商品" /></p>
+				<button class="ss2">搜索</button>
+			</div>
+			<div class="spnone1">
+				<img src="images/scnone.png" alt="">
+				<p class="spn1">还没有收藏商品<br>何不去逛逛~</p>
+				<p class="spn2">
+					<a href="index.html">去逛逛更多商品</a>
+				</p>
+			</div>
+			<div class="sp">
+			</div>
+		</div>
+		<div class="lfooter">
+			<p class="lfp3"><img src="images/ldpy1.png" alt=""><span>全选</span></p>
+			<p class="lfp2">取消</p>
+			<p class="lfp1">删除</p>
+		</div>
+		<!--更多界面-->
+		<div class="goods-more">
+			<div class="goods-ml">
+				<ul class="goods-list">
+					<li>
+						<img src="images/z-39.png" /><br>
+						<span>首页</span>
+					</li>
+					<li>
+						<img src="images/z_fk.png" /><br>
+						<span>反馈</span>
+					</li>
+					<li>
+						<img src="images/z-11.png" /><br>
+						<span>消息</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--分享开始-->
+		<!--<div class="zz"></div>
+		<div class="fxsub">
+			<p class="fxto">分享到</p>
+			<div class="list" id="sns-share">
+				<a href="" class="wechat">
+					<li class="list1"><img src="images/lmwxin.png" alt=""><br><span>微信好友</span></li>
+				</a>
+				<a href="" class="wechat">
+					<li><img src="images/lmpy.png" alt=""><br><span>微信朋友圈</span></li>
+				</a>
+				<a href="" class="weibo">
+					<li><img src="images/syne.png" alt=""><br><span>新浪微博</span></li>
+				</a>
+				<a href="" class="qq">
+					<li><img src="images/lmqq.png" alt=""><br><span>QQ好友</span></li>
+				</a>
+				<a href="" class="qzone">
+					<li><img src="images/lmkjian.png" alt=""><br><span>QQ空间</span></li>
+				</a>
+			</div>
+		</div>-->
+		<!--分享结束-->
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/share.js"></script>
+	<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">$(function() {
+	//	  	var zsc=true;
+	var tokens = localStorage.getItem("token");
+	//定义一个商铺的id数组
+	var storeId = [];
+	//定义多个商铺的数组
+	var delstid = [];
+	var delstids;
+	var ldndex = 0;
+	var Oco = [];
+	//更多点击事件开始
+	$(".goods-list li").eq(0).click(function() {
+		window.location.href = "index.html";
+	});
+	$(".goods-list li").eq(1).click(function() {
+		window.location.href = "shezhi.html";
+	});
+	$(".goods-list li").eq(2).click(function() {
+		window.location.href = "newscentre.html";
+	});
+	$(".sc-middle li").click(function() {
+		ldndex = $(this).index();
+		chos();
+		$(".scmli").removeClass("scmli");
+		$(this).addClass("scmli");
+		if($(this).index() == 1) {
+			$(".sc-wp").show();
+			$(".sp-wp").hide();
+		}
+		if($(this).index() == 0) {
+			$(".sp-wp").show();
+			$(".sc-wp").hide();
+		}
+	});
+	//商铺搜索ajax开始
+	var inputval1 = $(".scin1").val();
+	$(".scin1").keyup(function() {
+		inputval1 = $(".scin1").val();
+	});
+	$(".ss1").click(function() {
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=collection&f=searchgoods",
+			dataType: "json",
+			data: {
+				"token": tokens,
+				"type": "store",
+				"search": inputval1
+			},
+			success: function(data) {
+				//console.log(data);
+				if(data.msg == "数据获取失败") {
+					$(".spnone").show();
+				}
+				$(".scgoods").html("");
+				storeId = [];
+				Oco = [];
+				var datas = data.data;
+				for(var i = 0; i < datas.length; i++) {
+					var html = '';
+					$(".spnone").hide();
+					html = '<div class="sc-goods"><img class = "spimg" src="' + Url + '' + datas[i].store_logo + '"/><span class="spid">' + datas[i].store_id + '</span><ul class="sc-goodst"><li>' + datas[i].store_name + '</li><li></li></ul><div class="leditor"><p class="z-lep"><img src="images/ldpu.png" alt=""><br>进入店铺</p><!--<p class="lep2"><img src="images/lfxiang.png" alt=""><br>分享</p>--><p class="lep3 lep"><img src="images/soucang.png" alt=""><br>取消收藏</p></div><div class="leditorz leditor2"><button><img src="images/z-33.png" alt=""></button></div><div class="lchoose"></div></div>';
+					$(".scgoods").append(html);
+					storeId.push(datas[i].store_id);
+					Oco.push(datas[i].o2o);
+				}
+				//						console.log(Oco)
+				//console.log(storeId);
+				$('.spim').error(function() {
+					$(this).attr('src', 'images/z-logo.png');
+				});
+				//					$(".lep3").on("click", function() {
+				//						$(this).parent().parent().find(".leditor").css("display", "block");
+				//						$(this).parent().css("display", "none");
+				//					});
+				//					
+				//店铺新点击开始
+				$(".leditor2 button").on("click", function() {
+					$(this).parent().parent().find(".leditor").css("display", "block");
+					$(this).parent().css("display", "none");
+				});
+				//店铺新点击结束
+
+				//进入店铺开始
+				$(".z-lep").click(function() {
+					var dindex = $(this).parents(".sc-goods").index();
+					var osc = Oco[dindex];
+					//							console.log(osc);
+					if(osc == "offline") {
+						var stodin = storeId[dindex];
+						//console.log(stodin);
+						localStorage.setItem('stid', stodin);
+						location.href = "lmsjdpxq.html";
+					}
+					if(osc == "online") {
+						var stodin = storeId[dindex];
+						//console.log(stodin);
+						localStorage.setItem('stoids', stodin);
+						location.href = "z-store.html";
+					}
+				});
+				//进入店铺结束
+				//点击分享开始
+//				$(".lep2").click(function() {
+//						$(".zz").show();
+//						$(".fxsub").show();
+//					})
+					//点击分享结束
+				delFn();
+			},
+			error: function(data) {}
+		});
+	});
+	//商铺搜索ajax结束
+	//商铺开始
+	$.ajax({
+		type: 'POST',
+		url: Url + "api/index.php?n=collection&f=gcollection",
+		dataType: "json",
+		data: {
+			"token": tokens,
+			"type": "store",
+		},
+		success: function(data) {
+			console.log(data);
+			if(data.msg == "数据获取失败") {
+				$(".spnone").show();
+			}
+			var datas = data.data;
+			for(var i = 0; i < datas.length; i++) {
+				var html = '';
+				$(".spnone").hide();
+				html = '<div class="sc-goods"><img class = "spimg" src="' + Url + '' + datas[i].store_logo + '"/><span class="spid">' + datas[i].store_id + '</span><ul class="sc-goodst"><li>' + datas[i].store_name + '</li><li></li></ul><div class="leditor"><p class="z-lep"><img src="images/ldpu.png" alt=""><br>进入店铺</p><!--<p class="lep2"><img src="images/lfxiang.png" alt=""><br>分享</p>--><p class="lep3 lep"><img src="images/soucang.png" alt=""><br>取消收藏</p></div><div class="leditor2"><button><img src="images/z-33.png" alt=""></button></div><div class="lchoose "></div></div>';
+				$(".scgoods").append(html);
+				storeId.push(datas[i].store_id);
+				Oco.push(datas[i].o2o);
+			}
+//			console.log(storeId);
+//			console.log(Oco);
+			$('.spim').error(function() {
+				$(this).attr('src', 'images/z-logo.png');
+			});
+			$(".leditor2 button").on("click", function() {
+				$(this).parent().parent().find(".leditor").css("display", "block");
+				$(this).parent().css("display", "none");
+			});
+			//进入店铺开始
+			$(".z-lep").click(function() {
+				var dindex = $(this).parents(".sc-goods").index();
+				var osc = Oco[dindex];
+//				console.log(osc);
+				if(osc == "offline") {
+					var stodin = storeId[dindex];
+					//							console.log(stodin);
+					localStorage.setItem('stid', stodin);
+					location.href = "lmsjdpxq.html";
+				}
+				if(osc == "online") {
+					var stodin = storeId[dindex];
+					//							console.log(stodin);
+					localStorage.setItem('stoids', stodin);
+					location.href = "z-store.html";
+				}
+
+			});
+			//进入店铺结束
+			//点击图片进入店铺开始
+			$(".spimg").click(function() {
+					var index = $(this).parent(".sc-goods").index();
+//					console.log(index);
+					var zosc = Oco[index];
+//					console.log(zosc);					
+					if(zosc == "offline") {
+						var stodin = storeId[index];
+//						console.log(stodin);
+						localStorage.setItem('stid', stodin);
+						location.href = "lmsjdpxq.html";
+					}
+					if(zosc == "online") {
+						var stodin = storeId[index];
+//													console.log(stodin);
+						localStorage.setItem('stoids', stodin);
+						location.href = "z-store.html";
+					}
+
+				}) //点击图片进入店铺结束
+				$(".sc-goodst").click(function(){
+					var index = $(this).parent(".sc-goods").index();
+//					console.log(index);
+					var zosc = Oco[index];
+//					console.log(zosc);					
+					if(zosc == "offline") {
+						var stodin = storeId[index];
+//						console.log(stodin);
+						localStorage.setItem('stid', stodin);
+						location.href = "lmsjdpxq.html";
+					}
+					if(zosc == "online") {
+						var stodin = storeId[index];
+//													console.log(stodin);
+						localStorage.setItem('stoids', stodin);
+						location.href = "z-store.html";
+					}
+				})
+				//点击分享开始
+//			$(".lep2").click(function() {
+//					$(".zz").show();
+//					$(".fxsub").show();
+//				})
+				//点击分享结束
+			delFn();
+		},
+		error: function(data) {}
+	});
+	//商铺ajax结束
+	function delFn() {
+		//取消收藏店铺开始
+		//$(".lep3").each(function() {
+		$(".lep3").click(function() {
+			var a = $(this).parents(".sc-goods").index();
+			var storeid = storeId[a];
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=collection&f=uncollectstore",
+				dataType: "json",
+				data: {
+					"token": tokens,
+					"store_id": storeid,
+					"type": "store"
+				},
+				success: function(data) {
+					var datas = data.data;
+//					window.location.reload();
+					//							console.log(data);
+				},
+				error: function(data) {},
+			});
+			$(this).parents(".sc-goods").remove();
+		});
+		//				});
+		//取消收藏店铺结束
+	}
+	//商铺取消多个收藏开始
+//	function SpmoreFn() {
+//		$.ajax({
+//			type: 'POST',
+//			url: Url + "api/index.php?n=collection&f=uncollectstore",
+//			dataType: "json",
+//			data: {
+//				"token": tokens,
+//				"store_id": delstids,
+//				"type": "store"
+//			},
+//			success: function(data) {
+//				var datas = data.data;
+//				if(data.msg = "取消成功") {
+//					window.location.reload();
+//				}
+//			},
+//			error: function(data) {}
+//		});
+//	}
+	//商铺取消多个收藏结束
+	//		更多点击事件
+	var bol = true;
+	$(".coll-more").click(function() {
+		if(bol == true) {
+			$(".goods-more").show();
+			$(".goods-ml").slideDown("show");
+			bol = false;
+		} else {
+			$(".goods-more").slideUp("hide");
+			bol = true;
+			$(".goods-ml").slideUp("hide");
+		}
+	});
+	$(".sc-editor").click(function() {
+		$(".lfooter").css("display", "block");
+		$(".sp li").addClass("dplis");
+		$(".sc-goods").addClass("dplis");
+		$(".lchoose").css("display", "block");
+		$(".leditor2").css("display", "none");
+		$(".leditor").css("display", "none");
+	});
+	var tf = true;
+	$(".lfp3").click(function() {
+		if(tf) {
+			$(".lfp3 img").attr({
+				"src": "images/ldpy2.png"
+			});
+			$(".lchoose").addClass("lchoose2");
+			tf = false;
+		} else {
+			$(".lfp3 img").attr({
+				"src": "images/ldpy1.png"
+			});
+			$(".lchoose").removeClass("lchoose2");
+			tf = true;
+		}
+		ChooseFn();
+		ChoosespFn();
+	});
+
+	function chos() {
+		$(".leditor").css("display", "none");
+		$(".lfooter").css("display", "none");
+		$(".lfp3").find("img").attr("src", "images/ldpy1.png");
+		$(".lchoose").removeClass("lchoose2")
+		$(".dplis").removeClass("dplis");
+		$(".lchoose").css("display", "none");
+		$(".leditor2").css("display", "block");
+	}
+//	$(".lfp1").click(function() {
+//		chos();
+//		if(ldndex == 0) {
+//			SpreFn();
+//		}
+//		if(ldndex == 1) {
+//			SpmoreFn();
+//		}
+//
+//	});
+	$(".lfp2").on("click", function() {
+		chos();
+	});
+
+	//商品删除多个收藏开始
+//	function SpreFn() {
+//		$.ajax({
+//			type: 'POST',
+//			url: Url + "api/index.php?n=collection&f=uncollect",
+//			dataType: "json",
+//			data: {
+//				"token": tokens,
+//				"goods_id": collstr,
+//				"type": "goods"
+//			},
+//			success: function(data) {
+//				var datas = data.data;
+//				if(data.msg = "取消成功") {
+//					window.location.reload();
+//				}
+//			},
+//			error: function(data) {　　　　}
+//		});
+//	}
+	//商品删除多个收藏结束
+	//商品收藏ajax
+	//商品收藏ajax调用
+	var goodsId = localStorage.getItem("good");
+	//	定义一个收藏商品的id数组
+	var collId = [];
+	//定义一个取消收藏多个商品的id数组
+	var collsid = [];
+	var collstr;
+	var goodid = [];
+	//商品收藏搜索ajax开始
+	//获取商品收藏搜索值
+	var inputval = $(".scin2").val();
+	$(".scin2").keyup(function() {
+		inputval = $(".scin2").val();
+	});
+	$(".ss2").click(function() {
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=collection&f=searchgoods",
+			dataType: "json",
+			data: {
+				"token": tokens,
+				"type": "goods",
+				"search": inputval
+			},
+			success: function(data) {
+				//						 console.log(data);
+				var datas = data.data;
+				if(data.msg = "数据获取失败") {
+					$(".spnone1").show();
+				}
+				collId = [];
+				goodid = [];
+				$(".sp").html("");
+				for(var i = 0; i < datas.length; i++) {
+					$(".spnone1").hide();
+					var html = '<li class="spl"><div class="sld1"><span class="collid">' + datas[i].goods_id + '</span><img src="' + Url + '' + datas[i].default_image + '" alt=""></div><div class="sld2"><p class="sdp1">' + datas[i].goods_name + '</p><p class="sdp2">￥ ' + datas[i].price + '</p><div class="leditor"><p class="lep1"><img src="images/ldpu.png" alt=""><br>进入店铺</p><p class="lep3 lep"><img src="images/soucang.png" alt=""><br>取消收藏</p></div><div class="leditor2"><button><img src="images/z-33.png" alt=""></button></div></div><div class="lchoose"></div></li>';
+					collId.push(datas[i].goods_id);
+					goodid.push(datas[i].store_id);
+					$(".sp").append(html);
+				}
+				//						console.log(collId)
+				//						console.log(goodid)
+				$('.sld1 img').error(function() {
+					$(this).attr('src', 'images/z-logo.png');
+				});
+				$(".leditor2 button").on("click", function() {
+					$(this).parent().parent().find(".leditor").css("display", "block");
+					$(this).parent().css("display", "none");
+				});
+				//商品进入店铺开始
+				$(".leditor .lep1").click(function() {
+					var db = $(this).parents(".spl").index();
+					var dbid = goodid[db];
+					localStorage.setItem('stoids', dbid);
+					location.href = "z-store.html";
+				});
+				$(".sld1 img").click(function() {
+						var as = $(this).parents(".spl").index();
+						localStorage.setItem('good', collId[as]);
+						window.location.href = "goods-order.html";
+					})
+					//商品进入店铺结束
+				$(".lep2").click(function() {
+					$(".zz").show();
+					$(".fxsub").show();
+				});
+				//商品点击选择
+				$(".spl .lchoose").each(function() {
+					$(this).click(function() {
+						if($(this).hasClass('lchoose2')) {
+							$(this).removeClass("lchoose2");
+						} else {
+							$(this).addClass("lchoose2");
+						}
+						ChooseFn();
+					});
+				});
+				//商铺点击选择
+				$(".sc-goods .lchoose").each(function() {
+					$(this).click(function() {
+						if($(this).hasClass('lchoose2')) {
+							$(this).removeClass("lchoose2");
+						} else {
+							$(this).addClass("lchoose2");
+						}
+						ChoosespFn();
+					});
+				});
+				//商品取消收藏ajax
+				DelFn()
+
+			},
+			error: function(data) {}
+		});
+	});
+	//商品收藏搜索ajax结束
+	//商品收藏ajax开始
+	$.ajax({
+		//contentType:"application/x-www-form-urlencoded; charset=gb2312",
+		type: 'POST',
+		url: Url + "api/index.php?n=collection&f=gcollection",
+		dataType: "json",
+		data: {
+			"token": tokens,
+			"type": 'goods',
+		},
+		success: function(data) {
+			console.log(data);
+			if(data.msg = "数据获取失败") {
+				$(".spnone1").show();
+			}
+			var datas = data.data;
+			for(var i = 0; i < datas.length; i++) {
+				$(".spnone1").hide();
+				var html = '<li class="spl"><div class="sld1"><span class="collid">' + datas[i].goods_id + '</span><img src="' + Url + '' + datas[i].default_image + '" alt=""></div><div class="sld2"><p class="sdp1">' + datas[i].goods_name + '</p><p class="sdp2">￥ ' + datas[i].price + '</p><div class="leditor"><p class="lep1"><img src="images/ldpu.png" alt=""><br>进入店铺</p><p class="lep3 lep"><img src="images/soucang.png" alt=""><br>取消收藏</p></div><div class="leditor2"><button><img src="images/z-33.png" alt=""></button></div></div><div class="lchoose"></div></li>';
+				collId.push(datas[i].goods_id);
+				goodid.push(datas[i].store_id);
+				$(".sp").append(html);
+			}
+			//					console.log(collId);
+			//					console.log(goodid);
+			$('.sld1 img').error(function() {
+				$(this).attr('src', 'images/z-logo.png');
+			});
+			$(".leditor2 button").on("click", function() {
+				$(this).parent().parent().find(".leditor").css("display", "block");
+				$(this).parent().css("display", "none");
+			});
+			//商品进入店铺开始
+			$(".leditor .lep1").click(function() {
+				var db = $(this).parents(".spl").index();
+				var dbid = goodid[db];
+				localStorage.setItem('stoids', dbid);
+				location.href = "z-store.html";
+			});
+			$(".sld1 img").click(function() {
+					var as = $(this).parents(".spl").index();
+					localStorage.setItem('good', collId[as]);
+					window.location.href = "goods-order.html";
+				})
+				//商品进入店铺结束
+			$(".lep2").click(function() {
+				$(".zz").show();
+				$(".fxsub").show();
+			});
+			//商品点击选择
+			$(".spl .lchoose").each(function() {
+				$(this).click(function() {
+					if($(this).hasClass('lchoose2')) {
+						$(this).removeClass("lchoose2");
+					} else {
+						$(this).addClass("lchoose2");
+					}
+					ChooseFn();
+				});
+			});
+			//商铺点击选择
+			$(".sc-goods .lchoose").each(function() {
+				$(this).click(function() {
+					if($(this).hasClass('lchoose2')) {
+						$(this).removeClass("lchoose2");
+					} else {
+						$(this).addClass("lchoose2");
+					}
+					ChoosespFn();
+				});
+			});
+			//商品取消收藏ajax
+			DelFn()
+		},
+		error: function(data) {　　　　　}
+	});
+
+	//商品取消收藏方法開始
+	function DelFn() {
+		$(".lep3").each(function() {
+			$(this).click(function() {
+				var a = $(this).parents(".spl").index();
+				var collecid = collId[a];
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=collection&f=uncollect",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"type": 'goods',
+						"goods_id": collecid,
+					},
+					success: function(data) {
+						//	console.log(data)
+						var datas = data.data;
+//						window.location.reload();
+					},
+					error: function(data) {　　}
+				});
+				$(this).parents(".spl").remove();
+			});
+			//商品取消收藏ajax结束
+		});
+	}
+	//商品取消收藏方法結束
+
+	//商铺选择事件
+	function ChoosespFn() {
+		delstid = [];
+		$(".sc-goods .lchoose2").each(function() {
+			var a = $(this).siblings(".spid").text();
+			delstid.push(a);
+		});
+		delstids = delstid.toString();
+	}
+	//商品選擇事件
+	function ChooseFn() {
+		collsid = [];
+		$(".spl .lchoose2").each(function() {
+			var a = $(this).siblings(".sld1").children(".collid").text();
+			collsid.push(a);
+		});
+		collstr = collsid.toString();
+	}
+//	$(".list a").click(function() {
+//		$(".zz").hide();
+//		$(".fxsub").hide();
+//	});
+//	$(".zz").click(function() {
+//		$(".zz").hide();
+//		$(".fxsub").hide();
+//	});
+	//分分享
+//	var $config = {
+//		url: '', // 网址，默认使用 window.location.href
+//		site: '', // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
+//		title: '这个是tittle', // 标题，默认读取 document.title
+//		description: '这个事描述', // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
+//		iamge: 'http://bbs.xiaoniu.com/data/attachment/image/paipai/7a51976182_flow.jpg', // 图片, 默认取网页中第一个img标签
+//		target: '_blank' //打开方式
+//	};
+//	$('#sns-share').share($config);
+
+});</script>
+
+</html>

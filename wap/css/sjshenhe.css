@@ -1,0 +1,222 @@
+@import url(reset.css);
+html {
+  font-size: 62.5%;
+}
+html,
+body,
+.wrap {
+  width: 100%;
+  /*height: 100%;*/
+  /*background: #e7e7e7;*/
+}
+.wrap {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  background: #efeff4;
+}
+header {
+  width: 100%;
+  height: 8.8rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+header img {
+  padding-left: 2.5rem;
+  padding-top: 2.5rem;
+}
+header p {
+  font-size: 3.4rem;
+  line-height: 8.8rem;
+  -webkit-box-flex: 1;
+  text-align: center;
+  color: #333333;
+}
+section {
+  -webkit-box-flex: 1;
+  background: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+section .main {
+  width: 100%;
+  height: 12rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  line-height: 12rem;
+  position: relative;
+}
+section .main .left {
+  width: 35%;
+  margin-left: 5%;
+  height: 5rem;
+  margin-top: 3.5rem;
+}
+section .main .left input {
+  width: 80%;
+  height: 100%;
+  text-align: center;
+  font-size: 2.8rem;
+  float: left;
+  /*background-color: transparent;*/
+}
+section .main b {
+  font-weight: normal;
+  font-size: 3.0rem;
+  color: #333;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+section .main .right {
+  width: 35%;
+  height: 5rem;
+   margin-top: 3.5rem;
+}
+section .main .right input {
+  width: 80%;
+  height: 100%;
+  font-size: 2.8rem;
+  text-align: center;
+  float: left;
+  /*background-color: transparent;*/
+}
+section .main span {
+  display: block;
+  margin-top: 4rem;
+  width: 17%;
+  height: 4rem;
+  text-align: center;
+  line-height: 4rem;
+  font-size: 3rem;
+  background: #ffc600;
+  color: #fff;
+  position: absolute;
+  right: 3%;
+
+}
+section .sel {
+  margin-bottom: 5rem;
+  width: 14rem;
+  height: 5rem;
+  border-radius: 1rem;
+  border: 1px solid #000;
+  background: #fff;
+  position: relative;
+}
+section .sel input {
+  display: inline-block;
+  width: 8rem;
+  line-height: 5rem;
+  float: left;
+}
+section .sel button {
+  display: inline-block;
+  border: none;
+  height: 5rem;
+  width: 6rem;
+  float: right;
+  background: url(images/select-btn.png) no-repeat;
+  background-size: 100% 100%;
+}
+section .sel ul {
+  border: 1px solid #000;
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  width: 12rem ;
+  height: auto;
+  background: #fff;
+  display: none;
+}
+section .sel ul li {
+  width: 16rem;
+  height: 5rem;
+  line-height: 5rem;
+}
+section .main1 {
+  width: 100%;
+  height: 39.4rem;
+  position: relative;
+  overflow: hidden;
+}
+section .main1 table {
+  width: 90%;
+  /*height: 27rem;*/
+  padding-left: 5%;
+  margin: 0 auto;
+  border: 1px solid #000;
+  text-align: center;
+  font-size: 2.6rem;
+}
+section .main1 .a {
+  background: #efeff5;
+}
+section .main1 tr {
+  /*height: 52px;*/
+  height: 5.2rem;
+  border-color: #000000;
+}
+section .main1 i {
+  visibility: hidden;
+}
+section .main1 td a {
+  width: 25%;
+  text-align: center;
+}
+section .main1 tr td {
+  border: 1px solid #000;
+}
+/*section .main1 ul {
+  display: none;
+  width: 17%;
+  height: 18.2rem;
+  position: absolute;
+  z-index: 999;
+  right: 15.6%;
+  bottom: -5rem;
+  font-size: 3rem;
+  border: solid 0.1rem #000;
+  -webkit-box-sizing: border-box;
+}*/
+section .main1 .caozuo1{
+  position: absolute;
+  right: 10%;
+  width: 8rem;
+  height: 12rem;
+  z-index: 10;
+  background: #fff;
+  top: 15rem;
+  display: none;
+}
+section .main1 .caozuo1 li{
+  width: 100%;
+  height: 6rem;
+  line-height: 6rem;
+  text-align: center;
+  color: #333;
+  font-size: 3rem;
+}
+.main1 font{
+  opacity: 0;
+}
+.dp{
+  display: none;
+}
+.zt{
+  display: none;
+}
+section .main1 .caozuo1 .ch{
+  background-color: #ffc700;
+  color: #fff;
+}
+/*section .main1 ul li {
+  width: 100%;
+  height: 6rem;
+  line-height: 6rem;
+  padding-left: 2rem;
+  -webkit-box-sizing: border-box;
+  border-bottom: solid 0.1rem #d5d5d5;
+  background: #fff;
+}
+section .main1 ul li:first-child {
+  background: #ffc700;
+}*/

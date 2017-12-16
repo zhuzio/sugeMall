@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/profit.css}" />
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+		<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.back(-1)" class="back"></a>
+			<h1 class="tit">直推区域代理明细</h1>
+		</header>
+		<div class="content mtop44">
+			<ul class="text-list">
+				<!--{foreach from=$list item=user}-->
+				<li>
+					<div class="textlist-name-tel">
+						<p class="textlist-name"><!--{$user.real_name}--></p>
+						<p class="textlist-tel">电话<span><!--{$user.phone_mob}--></span></p>
+					</div>
+
+					<div class="textlist-number-time">
+						<p class="textlist-number"><span></span></p>
+						<p class="textlist-time">
+							<span><!--{$user.reg_time}--></span>
+						</p>
+					</div>
+				</li>
+				<!--{/foreach}-->
+			</ul>
+			
+			
+			   <div id="pager">
+                    
+                    {$mypage}
+
+                </div>
+		</div>
+		{include file="footer.html"}
+	</body>
+	<script type="text/javascript" src="{res file=js/switches.js}" ></script>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>分类</title>
+		<link rel="stylesheet" type="text/css" href="css/fenlei.css" />
+		<link rel="stylesheet" type="text/css" href="css/footer.css" />
+		<style>
+			dl span{
+				display: none;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="container">
+			<!-- 头部 -->
+			<header>
+				<span class="fen-scan"></span>
+				<input class="con-input" type="text" placeholder="请输入商品名称">
+				<a href="newscentre.html"></a>
+			</header>
+			<section>
+				<div class="wrap">
+					<ul class="uls">
+					</ul>
+					<div class="box">
+						<div>
+							<div class="div">
+								<div class="div-one">
+									<img class="div-onee" src=" " alt="">
+									<!--<p>热门分类</p>-->
+									<div class="right">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div class="footer">
+				<a href="index.html?inx" class="ssy"><img src="images/souye.png" alt=""></a>
+				<a href="fenlei.html"><img src="images/kinds2.png" alt=""></a>
+				<a href="coalition.html"><img src="images/union.png" alt=""></a>
+				<a href="member.html" class="lcf"><img src="images/wealth.png" alt=""></a>
+				<a href="z-member.html" class="w_my"><img src="images/me.png" alt=""></a>
+			</div>
+			<div class="z-prompt5" style="display: none;"></div>
+			<div class="z-prompt6" style="display: none;"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>	
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="js/wx_qrCode.js"></script>
+	<script type="text/javascript">
+		$(".ssy").on("click", function() {
+			location.href = "index.html";
+		})
+		$(function() {
+			//扫一扫
+			wxInity('/wap/fenlei.html');
+			/*
+	//微信扫一扫开始
+	wx.config({
+    debug: false,
+    appId: 'wx10a59d3bf7f7f692',
+    timestamp: '1478075518',
+    nonceStr: 'DaP43TjEgiV6rqA5',
+    signature: '2a84cf207291cdc8a5f81ed5d8a00e5de9ad7937',
+    jsApiList: [
+        'checkJsApi',
+        'scanQRCode',
+    ]
+  });
+
+  wx.ready(function () {
+    // 在这里调用 API
+  });
+  */
+ 			var tokens = localStorage.getItem("token");
+			var types = localStorage.getItem("type");
+			var parent_ids = localStorage.getItem("parent_id");
+
+			$(".fen-scan").click(function() {
+				if(tokens == null) {
+					$(".z-prompt5").html("请先登录").show();
+					setTimeout(function() {
+						$(".z-prompt5").hide();
+					}, 1000);
+					setTimeout(function() {
+						 window.location.href = "denglu.html"
+					}, 1500);
+				
+				} else {
+					saoyisao();
+				}
+				/*
+ 	wx.scanQRCode({
+    needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+    success: function (res) {
+    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+    }
+    });
+    */
+			});
+			if(types == 1) {
+				$(".w_my").attr("href", "z-member.html");
+			} else if(types == 2) {
+				$(".w_my").attr("href", "z-unicon.html");
+			} else if(types == 3) {
+				$(".w_my").attr("href", "z-sell.html");
+			} else if(types == 4) {
+				$(".w_my").attr("href", "z-comm.html");
+			} else if(types == 5) {
+				$(".w_my").attr("href", "z-county.html");
+			} else if(types == 6) {
+				$(".w_my").attr("href", "z-city.html");
+			} else if(types == 7) {
+				$(".w_my").attr("href", "z-provin.html");
+			}
+			if(types == 1) {
+				$(".lcf").attr("href", "jfmember.html");
+			} else {
+				$(".lcf").attr("href", "jffortune.html");
+			}
+			$(".con-input").click(function() {
+				location.href = "history-seach.html";
+			});
+			$(".right >div dl").each(function() {
+				$(this).click(function() {
+					location.href = "goods-order.html";
+				});
+			});
+
+			//ajax调接口
+			var tokens = localStorage.getItem("token");
+			//定义一个分类id数组
+			var cateId = [];
+			var index;
+			//    定义一个商品分类名
+			var gtxt;
+			$.ajax({
+				//contentType:"application/x-www-form-urlencoded; charset=gb2312",
+				type: 'POST',
+				url: Url + "api/index.php?n=goods&f=classlist",
+				dataType: "json",
+				data: "{}",
+				success: function(data) {
+					 //console.log(data);
+					var datas = data.data;
+					for(var i = 0; i < datas.length; i++) {
+						cateId.push(datas[i].cate_id);
+						var html = '<li cateId = "'+ datas[i].cate_id+'">' + datas[i].cate_name + '</li>';
+						$(".uls").append(html);
+					}
+					$(".lis").removeClass('lis');
+
+					var first_into = $(".uls li:first").attr("cateid");
+					if(!parent_ids){
+                        cateTwo(first_into);
+                        Adfn(first_into);
+                    }
+					if (parent_ids) {
+						$("[cateid="+parent_ids+"]").addClass('lis');
+						// console.log(parent_ids);
+						cateTwo(parent_ids);
+					//	alert(parent_ids);
+						Adfn(parent_ids);
+						// localStorage.clear("parent_id");
+						localStorage.removeItem("parent_id");
+					}else{
+						$(".uls li").eq(0).addClass('lis');
+					}
+					// console.log(cateId);
+
+					$('ul li').on('click', function() {
+					//	index = $(this).index();
+						$(this).addClass('lis').siblings().removeClass('lis');
+				//		var indexs=index+1;
+						// console.log(indexs);
+				//		cateTwo(indexs);
+						var cate_id_s = $(this).attr("cateid");
+                        localStorage.setItem("parent_id",cate_id_s);
+					//	console.log(cate_id_s);
+                        cateTwo(cate_id_s);
+						Adfn(cate_id_s);
+					});
+				},
+			});
+			//加载的时候先加载第一个ajax开始
+
+//			$.ajax({
+//				//		contentType:"application/x-www-form-urlencoded; charset=gb2312",
+//				type: 'POST',
+//				url: Url + "api/index.php?n=goods&f=classlistinfo",
+//				dataType: "json",
+//				data: {
+//					"cate_id": 3,
+//				},
+//				success: function(data) {
+//					// console.log(data);
+//					var data1 = data.data;
+//					$(".right").html(" ");
+//					for(var i = 0; i < data1.length; i++) {
+//						var html = '<dl class="z-cate"><span>' + data1[i].parent_id + '</span><dt><img src="' + Url + '' + data1[i].cate_logo + '" alt=""></dt><dd>' + data1[i].cate_name + '</dd></dl>';
+//						$(".right").append(html);
+//					}
+//					$(".z-cate dt img").error(function() {
+//						$(this).attr('src', 'images/z-logo.png');
+//					});
+//					//			//点击获取分类名
+//					$(".right dl").each(function() {
+//						$(this).click(function() {
+//							gtxt = $(this).children("dd").text();
+//							localStorage.setItem('gtxts', gtxt);
+//						});
+//					});
+//					$(".z-cate").each(function() {
+//						$(this).click(function() {
+//							window.location.href = "cate-good.html";
+//						});
+//					});
+//				},
+//			});
+			//加载的时候先加载第一个ajax结束
+			//    点击分类导航有id的
+			function cateTwo(cateIds) {
+				$.ajax({
+					//contentType:"application/x-www-form-urlencoded; charset=gb2312",
+					type: 'POST',
+					url: Url + "api/index.php?n=goods&f=classlistinfo",
+					dataType: "json",
+					data: {
+						"cate_id": cateIds,
+					},
+					success: function(data) {
+//						console.log(data);
+						/*console.log(data);*/
+						var data1 = data.data;
+						$(".right").html(" ");
+						for(var i = 0; i < data1.length; i++) {
+							var html = '<dl class="z-cate"><span>' + data1[i].parent_id + '</span><dt><img src="' + Url + '' + data1[i].cate_logo + '" alt=""></dt><dd>' + data1[i].cate_name + '</dd></dl>';
+							$(".right").append(html);
+							console.log(data);
+							console.log(data1[i].cate_id);
+						}
+						$(".z-cate dt img").error(function() {
+							$(this).attr('src', 'images/z-logo.png');
+						});
+						//点击获取分类名
+						$(".right dl").each(function() {
+							$(this).click(function() {
+								gtxt = $(this).children("dd").text();
+								localStorage.setItem('gtxts', gtxt);
+								localStorage.setItem('parent_id', $(this).find("span").text());
+								var a = $(this).index();
+								localStorage.setItem('cid', data1[a].cate_id);
+							});
+						});
+						$(".z-cate").each(function() {
+							$(this).click(function() {
+								var a = $(this).index();
+								console.log(data);
+								localStorage.setItem('cid', data1[a].cate_id);
+								window.location.href = "cate-good.html?cate_id="+data1[a].cate_id;
+							});
+						});
+					},
+				});
+			}
+			// $(".uls li").eq(3).click();
+			//分类广告图ajax开始
+//			$.ajax({
+//				//      	contentType:"application/x-www-form-urlencoded; charset=gb2312",
+//				type: 'POST',
+//				url: Url + "api/index.php?n=wendy&f=goodcate_ad",
+//				dataType: "json",
+//				data: {
+//					"cate_id": 1,
+//				},
+//				success: function(data) {
+//					// console.log(data);
+//					var datas = data.data;
+//					var datai = datas.ad_logo;
+//					var adlink = datas.ad_link;
+////					console.log(adlink);
+//					$(".div-onee").attr({
+//						"src": Url + datai
+//					});
+//					$('.div-onee').error(function() {
+//						$(this).attr('src', 'images/z-logo.png');
+//					});
+//					$(".div-onee").click(function() {
+//						window.location.href = adlink;
+//					})
+//				},
+//				error: function(data) {　　}
+//			});
+			//分类广告图ajax结束
+			//分类广告图
+			function Adfn(cateIds) {
+				$.ajax({
+					//      	contentType:"application/x-www-form-urlencoded; charset=gb2312",
+					type: 'POST',
+					url: Url + "api/index.php?n=wendy&f=goodcate_ad",
+					dataType: "json",
+					data: {
+						"cate_id": cateIds,
+					},
+					success: function(data) {
+						 console.log(data);
+						 var adlink = data.data.ad_link;
+						var datas = data.data;
+						var datai = datas.ad_logo;
+						$(".div-onee").attr({
+							"src": Url + datai
+						});
+						$(".div-onee").click(function() {
+							window.location.href = adlink;
+						})
+						var cateimg = $(".div-onee").attr("src");
+						$('.div-onee').error(function() {
+							$(this).attr('src', 'images/z-logo.png');
+						});
+					},
+
+					error: function(data) {　　}
+				});
+			}
+		});
+	</script>
+
+</html>

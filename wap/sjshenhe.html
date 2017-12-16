@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>商家审核</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/sjshenhe.css" />
+		<link rel="stylesheet" type="text/css" href="css/date.css" />
+		<script src="js/box.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/url.js"></script>
+		<style>
+			body {
+				background-color: #fff;
+			}
+			header {
+				position: relative;
+			}
+			header a {
+				position: absolute;
+				width: 5rem;
+				top: 0;
+				left: 0;
+				z-index: 10;
+				height: 8.8rem;
+			}
+			
+			.caozuo1 {
+				/*display: none;*/
+			}
+			
+			.main1 {
+				position: relative;
+			}
+			
+			.ldtt {
+				position: fixed;
+				z-index: 1000;
+				height: 3.2rem;
+				text-align: center;
+				bottom: 3rem;
+				left: 0;
+				width: 100%;
+				display: none;
+			}
+			
+			.ldtt img {
+				width: 3.2rem;
+			}
+			section .main1 table{
+				height: 37rem;
+			}
+			tbody{
+				height: 37rem;
+			}
+			.wraps{
+				height: 40.4rem;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="ldtt"><img src="images/add.gif" alt=""></div>
+		<div class="wrap">
+			<header>
+				<p>商家审核</p>
+				<a href="javascript:history.go(-1)"><img src="images/back.png" alt="" /></a>
+
+			</header>
+			<section>
+
+				<div class="main">
+					<div class="left">
+						<!-- <input  style="background: #fefefefefefe;border: 1px solid #bbb;color: #333;border-radius: 3px;" type="text" class="date_picker">  -->
+						<input type="date" class="dt1" placeholder="年-月-日">
+					</div> <b>至</b>
+					<div class="right">
+						<!-- <input  style="background: #fefefefefefe;border: 1px solid #bbb;color: #333;border-radius: 3px;" type="text" class="date_picker"	> -->
+						<input type="date" class="dt2" placeholder="年-月-日">
+					</div>
+					<span class="lsearch">查找</span>
+				</div>
+				<div class="biao">
+					
+				</div>
+			</section>
+		</div>
+		<script type="text/javascript" src="js/datash.js"></script>
+		<script type="text/javascript" src="js/jquery.date_input.pack.js"></script>
+		<script>
+			var tokens = localStorage.getItem("token");
+			$(function() {
+				$('.date_picker').date_input();
+				$(".sel-on").click(function() {
+					var obj = $(this).parent(".sel").find("ul");
+					obj.show();
+				})
+				$(".sel ul li").click(function() {
+					var selectvalue = $(this).data("value");
+					$(this).parent("ul").hide();
+					var obj = $(this).parents(".sel").find("input");
+					obj.val(selectvalue);
+				})
+
+				//展示
+				$('.biao').on('click', ".ishow1", function() {
+						// console.log(tokens);
+						var txt = $(this).html();
+						if(txt == "展示") {
+							$(this).html('不展示');
+							$(this).css('background', '#e95438');
+							var is_shows = 0;
+						} else if(txt == "不展示") {
+							$(this).html('展示');
+							$(this).css('background', '#ffc700');
+							var is_shows = 1;
+						}
+						var store_ids = $(this).parents(".main1").find("font").html();
+						$.ajax({
+							type: 'POST',
+							url: Url + "api/index.php?n=shop_center&f=showStore",
+							dataType: "json",
+							data: {
+								token: tokens,
+								store_id: store_ids,
+								is_show: is_shows,
+							},
+							success: function(data) {
+//								 console.log(data);
+							},
+							error: function(data) {
+								// console.log(data);
+							}
+						})
+					})
+					//允许
+				$('.biao').on('click', ".ishow2", function() {
+						var txt = $(this).text();
+						if(txt == "优质") {
+							$(this).html('不优质');
+							$(this).css('background', '#e95438');
+							var is_goods = 0;
+						} else if(txt == "不优质") {
+							$(this).html('优质');
+							$(this).css('background', '#ffc700');
+							var is_goods = 1;
+						}
+						var store_ids = $(this).parents(".main1").find("font").html();
+						$.ajax({
+							type: 'POST',
+							url: Url + "api/index.php?n=shop_center&f=goodStore",
+							dataType: "json",
+							data: {
+								token: tokens,
+								store_id: store_ids,
+								is_good: is_goods,
+							},
+							success: function(data) {
+								// console.log(data);
+							},
+							error: function(data) {
+								// console.log(data);
+							}
+						})
+					})
+					//优质
+				$('.biao').on('click', ".ishow3", function() {
+						var txt = $(this).text();
+						if(txt == "允许") {
+							$(this).html('不允许');
+							$(this).css('background', '#e95438');
+							var is_trades = 0;
+						} else if(txt == "不允许") {
+							$(this).html('允许');
+							$(this).css('background', '#ffc700');
+							var is_trades = 1;
+						}
+						var store_ids = $(this).parents(".main1").find("font").html();
+						$.ajax({
+							type: 'POST',
+							url: Url + "api/index.php?n=shop_center&f=tradeStore",
+							dataType: "json",
+							data: {
+								token: tokens,
+								store_id: store_ids,
+								is_trade: is_trades,
+							},
+							success: function(data) {
+								// console.log(data);
+							},
+							error: function(data) {
+								// console.log(data);
+							}
+						})
+					})
+					//操作显示
+				$('.biao').on('click', '.operation1', function() {
+					if ($(this).attr("lstates")=="0") {
+						$(".caozuo1").css("display", "none");
+						$(this).parents(".main1").find(".caozuo1").css("display", "block");
+					}
+					
+				})
+				$('.biao').on('click', ".caozuo1 li", function() {
+					var index = $(this).index();
+					var states = $(this).attr('data-state');
+					$(this).parent().find("li").css('background', '#fff').eq(index).css('background', '#ffc700');
+					$(this).parent().find("li").css('color', '#333').eq(index).css('color', '#fff');
+					$(this).parent().css("display", "none");
+					var store_ids = $(this).parents(".main1").find("font").html();
+					var othis = $(this);
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=shop_center&f=checkStore",
+						dataType: "json",
+						data: {
+							token: tokens,
+							store_id: store_ids,
+							state: states,
+						},
+						success: function(data) {
+							// console.log(data);
+							if(states == 1) {
+								othis.parents(".main1").find(".dp").removeClass("dp");
+								othis.parents(".main1").find(".zt").removeClass("zt");
+								othis.parents(".main1").find(".operation1").attr("rowspan", "3");
+							}
+							if(states == 2) {
+								othis.parents(".main1").find(".dps").addClass("dp");
+								othis.parents(".main1").find(".zts").addClass("zt");
+								othis.parents(".main1").find(".operation1").attr("rowspan", "1");
+							}
+						},
+						error: function(data) {
+							// console.log(data);
+						}
+					})
+				})
+
+			})
+
+			function color() {
+				$(".ishow3").each(function() {
+					if($(this).html() == "允许") {
+						$(this).css('background', '#ffc700');
+					} else if($(this).html() == "不允许") {
+						$(this).css('background', '#e95438');
+					}
+				})
+				$(".ishow2").each(function() {
+					if($(this).html() == "优质") {
+						$(this).css('background', '#ffc700');
+					} else if($(this).html() == "不优质") {
+						$(this).css('background', '#e95438');
+					}
+				})
+				$(".ishow1").each(function() {
+					if($(this).html() == "展示") {
+						$(this).css('background', '#ffc700');
+					} else if($(this).html() == "不展示") {
+						$(this).css('background', '#e95438');
+					}
+				})
+
+			}
+			// function init(){
+			// 	document.body.onmousedown = function(){
+			// 	document.getElementById("content1").style.display = "none";
+			// 	document.getElementById("content2").style.display = "none";
+			// 	};
+			// }
+			//		function init(){
+			//			document.body.onmousedown = function(){
+			//			document.getElementById("content2").style.display = "none";
+			//			};
+			//		}
+
+			var num;
+			$.ajax({
+				type: 'POST',
+				dataType: "json",
+				url: Url + "api/index.php?n=shop_center&f=checkStoreList",
+				data: {
+					token: tokens,
+				},
+				success: function(data) {
+					 console.log(data);
+					var count;
+					num = data.totalpage;
+					for(var j = 0; j < 100000; j++) {
+						if(!data.data[j]) {
+							count = j;
+							break;
+						}
+					};
+					var html = "";
+					for(var i = 0; i < count; i++) {
+						if(data.data[i].state == 0) {
+							var times = "未审核";
+						} else {
+							var times = data.data[i].apply_time;
+						}
+						if(data.data[i].image_2 == 0) {
+							var images = "未上传";
+						} else {
+							var images = "已上传";
+						}
+						if(data.data[i].is_good == 0) {
+							var is_goods = "不优质";
+						} else {
+							var is_goods = "优质";
+						}
+						if(data.data[i].is_show == 0) {
+							var is_shows = "不展示";
+						} else {
+							var is_shows = "展示";
+						}
+						if(data.data[i].is_trade == 0) {
+							var is_trades = "不允许";
+						} else {
+							var is_trades = "允许";
+						}
+						if(data.data[i].store_name.length > 12) {
+							var sname = data.data[i].store_name.substr(0, 11) + "..."
+						} else {
+							var sname = data.data[i].store_name;
+						}
+						if(data.data[i].state == 0) {
+							var cols = 1;
+							var cla1 = "b dp dps";
+							var cla2 = "b zt zts";
+						} else if(data.data[i].state == 1) {
+							var cols = 3
+							var cla1 = "b dps";
+							var cla2 = "b zts";
+						} else if(data.data[i].state == 2) {
+							var cols = 1
+							var cla1 = "b dp dps";
+							var cla2 = "b zt zts";
+						}
+						if (data.data[i].state=="1") {
+							var cazu="通过";
+						}else if(data.data[i].state=="0") {
+							var cazu="操作";
+						}else if(data.data[i].state=="2") {
+							var cazu="驳回";
+						}
+						html += '<div class="wraps"><div class="main1"><font>' + data.data[i].store_id + '</font><table cellspacing="0" cellpadding="0" bordercolor="black"><tr class="a"><td colspan="4"><a>申请时间</a><i>我</i><a>' + data.data[i].add_time + '</a><i>我</i><a>审核时间</a><i>我</i><i>我</i><a>' + times + '</a></td></tr><tr><td colspan="4" style="text-align:left;">注册地址：'+data.data[i].region_name+'</td></tr><tr><td colspan="4" style="text-align:left;line-height: 3rem;">店铺地址：'+data.data[i].address+'</td></tr><tr class="b"><td>商家名称</td><td>上架电话</td><td>营业执照</td><td>审核</td></tr><tr class="b"><td>' + sname + '</td><td>' + data.data[i].user_name + '</td><td>' + images + '</td><td rowspan="' + cols + '" class="operation1" id="" style="background: #ffc700; color: #fff;" lstates="'+data.data[i].state+'">'+cazu+'</td></tr><ul class="caozuo1"><li class="ch" data-state="2">驳回</li><li data-state="1">通过</li></ul><tr class="' + cla1 + '"><td>店铺状态</td><td>优质商家</td><td>允许交易</td></tr><tr class="' + cla2 + '"><td class="yes-no-show ishow1" style="color: #fff;">' + is_shows + '</td><td class="yes-no-allow ishow2" style="background: #e95438; color: #fff;">' + is_goods + '</td><td class="yes-no-great ishow3" style="background: #e95438; color: #fff;">' + is_trades + '</td></tr></table></div></div>';
+
+					};
+					$(".biao").html(html);
+					color();
+				},
+				error: function(data) {}
+			})
+			var pages = 1; //当前页的页码
+			var allpage = num; //总页码，会从后台获取
+			var sc = true;
+
+			function showAjax() {
+				$(".ldtt").css("display", "block");
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=shop_center&f=checkStoreList",
+					data: {
+						token: tokens,
+						page: pages,
+					},
+					success: function(data) {
+						//要执行的内容
+						// showContent();
+						//页数加1
+						console.log(data);
+
+						var count;
+						var html = "";
+						for(var j = 0; j < 10000000; j++) {
+
+							if(!data.data[j]) {
+								count = j;
+
+								break;
+							}
+						};
+
+						var html = "";
+						for(var i = 0; i < count; i++) {
+							if(data.data[i].apply_time == 0) {
+								var times = "未审核";
+							} else {
+								var times = data.data[i].apply_time;
+							}
+							if(data.data[i].image_2 == 0) {
+								var images = "未上传";
+							} else {
+								var images = "已上传";
+							}
+							if(data.data[i].is_good == 0) {
+								var is_goods = "不优质";
+							} else {
+								var is_goods = "优质";
+							}
+							if(data.data[i].is_show == 0) {
+								var is_shows = "不展示";
+							} else {
+								var is_shows = "展示";
+							}
+							if(data.data[i].is_trade == 0) {
+								var is_trades = "不允许";
+							} else {
+								var is_trades = "允许";
+							}
+							if(data.data[i].store_name.length > 12) {
+								var sname = data.data[i].store_name.substr(0, 11) + "..."
+							} else {
+								var sname = data.data[i].store_name;
+							}
+							if(data.data[i].state == 0) {
+								var cols = 1;
+								var cla1 = "b dp dps";
+								var cla2 = "b zt zts";
+							} else if(data.data[i].state == 1) {
+								var cols = 3
+								var cla1 = "b dps";
+								var cla2 = "b zts";
+							} else if(data.data[i].state == 2) {
+								var cols = 1;
+								var cla1 = "b dp dps";
+								var cla2 = "b zt zts";
+							}
+							if (data.data[i].state=="1") {
+								var cazu="通过";
+							}else if(data.data[i].state=="0") {
+								var cazu="操作";
+							}else if(data.data[i].state=="2") {
+								var cazu="驳回";
+							}
+							html += '<div class="wraps"><div class="main1"><font>' + data.data[i].store_id + '</font><table cellspacing="0" cellpadding="0" bordercolor="black"><tr class="a"><td colspan="4"><a>申请时间</a><i>我</i><a>' + data.data[i].add_time + '</a><i>我</i><a>审核时间</a><i>我</i><i>我</i><a>' + times + '</a></td></tr><tr><td colspan="4" style="text-align:left;">注册地址：'+data.data[i].region_name+'</td></tr><tr><td colspan="4" style="text-align:left;line-height: 3rem;">店铺地址：'+data.data[i].address+'</td></tr><tr class="b"><td>商家名称</td><td>上架电话</td><td>营业执照</td><td>审核</td></tr><tr class="b"><td>' + sname + '</td><td>' + data.data[i].user_name + '</td><td>' + images + '</td><td rowspan="' + cols + '" class="operation1" id="" style="background: #ffc700; color: #fff;" lstates="'+data.data[i].state+'">'+cazu+'</td></tr><ul class="caozuo1"><li class="ch" data-state="2">驳回</li><li data-state="1">通过</li></ul><tr class="' + cla1 + '"><td>店铺状态</td><td>优质商家</td><td>允许交易</td></tr><tr class="' + cla2 + '"><td class="yes-no-show ishow1" style="color: #fff;">' + is_shows + '</td><td class="yes-no-allow ishow2" style="background: #e95438; color: #fff;">' + is_goods + '</td><td class="yes-no-great ishow3" style="background: #e95438; color: #fff;">' + is_trades + '</td></tr></table></div></div>';
+						};
+
+						$(".biao").append(html);
+						color();
+						sc = true;
+						// 分页加载/
+						setTimeout(function() {
+							$(".ldtt").css("display", "none");
+						}, 300)
+					}
+				})
+			}
+
+			function scrollFn() {
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+					if(sc) {
+						// alert(2);
+						// alert(pages+":"+allpage)
+						sc = false;
+						pages++;
+						if(pages <= num) {
+							// console.log(pages);
+							showAjax();
+							// alert(1);
+						}
+
+					}
+				}
+			}
+			var ifss = true;
+			// $(window).bind("scroll",scrollFn);	//绑定滚动事件
+			$(window).on("scroll", function() {
+				if(ifss) {
+					scrollFn();
+				}
+
+			})
+
+			// 收索
+			$(".lsearch").on("click", function() {
+				$(".biao").html("");
+				// console.log($(".dt1").val());
+				// console.log($(".dt2").val());
+				var starttimes = $(".dt1").val();
+				var endtimes = $(".dt2").val();
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=shop_center&f=checkStoreList",
+					data: {
+						token: tokens,
+						starttime: starttimes,
+						endtime: endtimes,
+					},
+					success: function(data) {
+						ifss = false;
+						// console.log(data);
+						for(var k = 1; k <= data.totalpage; k++) {
+							$.ajax({
+								type: 'POST',
+								dataType: "json",
+								url: Url + "api/index.php?n=shop_center&f=checkStoreList",
+								data: {
+									token: tokens,
+									starttime: starttimes,
+									endtime: endtimes,
+								},
+								success: function(data) {
+									var count;
+									var html = "";
+									$(".biao").append();
+									for(var j = 0; j < 10000000; j++) {
+
+										if(!data.data[j]) {
+											count = j;
+
+											break;
+										}
+									};
+
+									var html = "";
+									for(var i = 0; i < count; i++) {
+										if(data.data[i].apply_time == 0) {
+											var times = "未审核";
+										} else {
+											var times = data.data[i].apply_time;
+										}
+										if(data.data[i].image_2 == 0) {
+											var images = "未上传";
+										} else {
+											var images = "已上传";
+										}
+										if(data.data[i].is_good == 0) {
+											var is_goods = "不优质";
+										} else {
+											var is_goods = "优质";
+										}
+										if(data.data[i].is_show == 0) {
+											var is_shows = "不展示";
+										} else {
+											var is_shows = "展示";
+										}
+										if(data.data[i].is_trade == 0) {
+											var is_trades = "不允许";
+										} else {
+											var is_trades = "允许";
+										}
+										if(data.data[i].store_name.length > 12) {
+											var sname = data.data[i].store_name.substr(0, 11) + "..."
+										} else {
+											var sname = data.data[i].store_name;
+										}
+										if(data.data[i].state == 0) {
+											var cols = 1;
+											var cla1 = "b dp dps";
+											var cla2 = "b zt zts";
+										} else if(data.data[i].state == 1) {
+											var cols = 3
+											var cla1 = "b dps";
+											var cla2 = "b zts";
+										} else if(data.data[i].state == 2) {
+											var cols = 1;
+											var cla1 = "b dp dps";
+											var cla2 = "b zt zts";
+										}
+										if (data.data[i].state=="1") {
+											var cazu="通过";
+										}else if(data.data[i].state=="0") {
+											var cazu="操作";
+										}else if(data.data[i].state=="2") {
+											var cazu="驳回";
+										}
+										html += '<div class="wraps"><div class="main1"><font>' + data.data[i].store_id + '</font><table cellspacing="0" cellpadding="0" bordercolor="black"><tr class="a"><td colspan="4"><a>申请时间</a><i>我</i><a>' + data.data[i].add_time + '</a><i>我</i><a>审核时间</a><i>我</i><i>我</i><a>' + times + '</a></td></tr><tr><td colspan="4" style="text-align:left;">注册地址：'+data.data[i].region_name+'</td></tr><tr><td colspan="4" style="text-align:left;line-height: 3rem;">店铺地址：'+data.data[i].address+'</td></tr><tr class="b"><td>商家名称</td><td>上架电话</td><td>营业执照</td><td>审核</td></tr><tr class="b"><td>' + sname + '</td><td>' + data.data[i].user_name + '</td><td>' + images + '</td><td rowspan="' + cols + '" class="operation1" id="" style="background: #ffc700; color: #fff;" lstates="'+data.data[i].state+'">'+cazu+'</td></tr><ul class="caozuo1"><li class="ch" data-state="2">驳回</li><li data-state="1">通过</li></ul><tr class="' + cla1 + '"><td>店铺状态</td><td>优质商家</td><td>允许交易</td></tr><tr class="' + cla2 + '"><td class="yes-no-show ishow1" style="color: #fff;">' + is_shows + '</td><td class="yes-no-allow ishow2" style="background: #e95438; color: #fff;">' + is_goods + '</td><td class="yes-no-great ishow3" style="background: #e95438; color: #fff;">' + is_trades + '</td></tr></table></div></div>';
+									};
+
+									$(".biao").append(html);
+									color();
+								}
+							})
+						}
+
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

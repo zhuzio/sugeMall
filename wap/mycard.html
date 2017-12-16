@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的银行卡</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/mycard.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<style>
+			.lt{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			z-index: 10000;
+			background-color: rgba(0,0,0,0.2);
+			top: 0;
+			left: 0;
+			display: none;
+		}
+		.lt p{
+			width: 70%;
+			height: 22rem;
+			background-color: #fff;
+			position: relative;
+			margin-top: 60%;
+			margin-left: 15%;
+			font-size: 3.4rem;
+			color: #333;
+			text-align: center;
+			line-height: 11rem;
+		}
+		</style>
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">绑定银行卡</p>
+		</div>
+		<div class="d_bind">
+			<span>请绑定持卡人本人的银行卡</span>
+		</div>
+		<div class="d_cardholder">
+			<div class="d_cardholder1">
+				<label for="" class="d_person">持卡人</label>
+				<input type="text" class="d_input" id="" value=""/>
+				<img class="d_img" src="images/z-13.png"/>
+			</div>
+			<div class="d_cardholder2">
+				<label for="" class="d_person1">卡号</label>
+				<input type="text" class="d_input1" id="d_banknum" value="" placeholder="银行卡号"/>
+			</div>
+			<ul class="d_cardholder3">
+				<li class="d_card" id="li_bank"><span>开户行</span><span class="cardblank" id="span_bank">请选择开户行</span><img src="images/z-202.png"/></li>
+				<ul class="d_cardholder31" id="d_bank">
+				</ul>
+			</ul>
+			<ul class="d_cardholder3">
+				<li class="d_card" id="li_province"><span>开户省份</span><span class="cardblank" id="span_province">请选择开户省份</span><img src="images/z-202.png"/></li>
+				<ul class="d_cardholder31" id="d_province">
+				</ul>
+			</ul>
+			<ul class="d_cardholder3">
+				<li class="d_card" id="li_area"><span>开户城市</span><span class="cardblank" id="span_area">请选择开户城市</span><img src="images/z-202.png"/></li>
+				<ul class="d_cardholder31" id="d_area">
+				</ul>
+			</ul>
+			<ul class="d_cardholder3">
+				<li class="d_card" id="li_bankcode"><span>开户支行</span><span class="cardblank" id="span_bankcode">请选择开户支行</span><img src="images/z-202.png"/></li>
+				<ul class="d_cardholder31" id="d_bankcode">
+				</ul>
+			</ul>
+			<div class="d_cardholder2">
+				<label for="" class="d_person1">身份证号码</label>
+				<input type="text" class="d_input1" id="d_idcard" value="" placeholder="请输入持卡人身份证号"/>
+			</div>
+		</div>
+		<span class="d_nexth">下一步</span>
+		<div class="d_card-p">
+			<span>持卡人</span>
+			<p>为了保障账户资金安全，只能绑定认证用户本人的银行卡</p>
+		</div>
+		<div class="d_success">
+			添加银行卡成功
+		</div>
+		<div class="lt">
+			<p></p>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    	var txtli;//开户行
+    	var value1;//持卡人姓名
+    	var value;//卡号
+			var province;
+			var area;
+			var bankcode;
+			var idcard;
+    	var tokens=localStorage.getItem ("token");
+    	var tf=true;
+    console.log(tokens);
+		//银行卡列表开始
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=bank&f=w_bank_list",
+			dataType: "json",
+			data: {
+				"token": tokens,
+			},
+			success: function(data) {
+			console.log(data);
+			var datas = data.data;
+			for (var i = 0; i < datas.length; i++) {
+				var html1 = '<li>'+datas[i].bank_name+'</li>';
+				$("#d_bank").append(html1);
+		     }
+			//  	选择银行卡界面
+	        	$("#li_bank").click(function(){
+	        	 $("#d_bank").show();
+	        	});
+        	
+        	//选择银行卡银行卡列表消失
+        	$("#d_bank li").each(function(){
+			$(this).click(function(){
+			var b = $(this).index();
+			txtli = $(this).text();
+			$("#span_bank").text(txtli);
+			$("#d_bank").hide();
+			});
+		});
+		},
+	    error: function(data) {　　　　
+		}
+			});			
+		//银行卡列表结束
+			//选择开户省份界面
+			$("#li_province").click(function(){
+				if(txtli.length>0)
+				{
+					//开户省份
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=bank&f=w_bank_province",
+						dataType: "json",
+						data: {
+							"bank": txtli,
+						},
+						success: function(data) {
+							console.log(data);
+							var datas = data.data;
+							$("#d_province").html('');
+							for (var i = 0; i < datas.length; i++) {
+								var html1 = '<li>'+datas[i]+'</li>';
+								$("#d_province").append(html1);
+							}
+							//选择银行卡银行卡列表消失
+							$("#d_province li").each(function(){
+								$(this).click(function(){
+									province = $(this).text();
+									$("#span_province").text(province);
+									$("#d_province").hide();
+								});
+							});
+						},
+						error: function(data) {
+						}
+					});
+					$("#d_province").show();
+				}
+			});
+			//选择开户城市界面
+			$("#li_area").click(function(){
+				if(txtli.length>0 && province.length>0)
+				{
+					//开户城市
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=bank&f=w_bank_city",
+						dataType: "json",
+						data: {
+							"bank": txtli,
+							"province": province,
+						},
+						success: function(data) {
+							console.log(data);
+							var datas = data.data;
+							$("#d_area").html('');
+							for (var i = 0; i < datas.length; i++) {
+								var html1 = '<li>'+datas[i]+'</li>';
+								$("#d_area").append(html1);
+							}
+							//选择银行卡银行卡列表消失
+							$("#d_area li").each(function(){
+								$(this).click(function(){
+									area = $(this).text();
+									$("#span_area").text(area);
+									$("#d_area").hide();
+								});
+							});
+						},
+						error: function(data) {
+						}
+					});
+					$("#d_area").show();
+				}
+			});
+			//选择开户支行界面
+			$("#li_bankcode").click(function(){
+				if(txtli.length>0 && province.length>0 && area.length>0)
+				{
+					//开户支行
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=bank&f=w_bank_code_list",
+						dataType: "json",
+						data: {
+							"bank": txtli,
+							"province": province,
+							"area": area,
+						},
+						success: function(data) {
+							console.log(data);
+							var datas = data.data;
+							$("#d_bankcode").html('');
+							for (var i = 0; i < datas.length; i++) {
+								var html1 = '<li code="'+datas[i].code+'">'+datas[i].name+'</li>';
+								$("#d_bankcode").append(html1);
+							}
+							//选择银行卡银行卡列表消失
+							$("#d_bankcode li").each(function(){
+								$(this).click(function(){
+									bankcodename = $(this).text();
+									bankcode = $(this).attr("code");
+									$("#span_bankcode").text(bankcodename);
+									$("#d_bankcode").hide();
+								});
+							});
+						},
+						error: function(data) {
+						}
+					});
+					$("#d_bankcode").show();
+				}
+			});
+    	$(".d_img").click(function(){
+    		$(".d_card-p").show();
+    	});
+    	$(".d_card-p").click(function(){
+    		$(".d_card-p").hide();
+    	});
+    	$(".d_next").click(function(){
+    		$(".d_success").show();
+    	});
+    	$(".d_success").click(function(){
+    		$(".d_success").hide();
+    	})    
+
+  
+		//持卡人姓名
+    $(".d_input").keyup(function(){
+    	value1 = $(this).val();
+    	// console.log(value1);
+    });
+			//银行卡号
+	$("#d_banknum").keyup(function() {
+		value = $(this).val();
+	});
+			//身份证号
+			$("#d_idcard").keyup(function() {
+				idcard = $(this).val();
+			});
+//	添加银行卡下一步
+  $(".d_nexth").click(function(){
+  	if (tf) {
+  		tf=false;
+  		//  	添加银行卡ajax
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=userset&f=addcard",
+			dataType: "json",
+			data: {
+				"token": tokens,
+				"user_name":value1,
+				"bank_name":txtli,
+				"bank_num":value,
+				"bank_code":bankcode,
+				"id_card":idcard,
+				"type":"0"
+			},
+			success: function(data) {
+				console.log(data);
+				tf=true;
+				if(data.msg=="添加成功"){
+					
+					location.href="bank.html";
+				}else{
+					$(".lt").css("display","block");
+					$(".lt p").html(data.msg);
+				}
+				$(".lt").on("click",function(){
+					$(this).css("display","none");
+				})
+				
+			},
+			error: function(data) {
+				}
+			});		
+  	}
+  		
+  })
+	});
+    </script>
+</html>

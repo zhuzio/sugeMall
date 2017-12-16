@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/Present-detail.css}" />
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.back(-1)" class="back"></a>
+			<h1 class="tit">提现收益明细</h1>
+		</header>
+		<div class="content mtop44">
+			<div class="profit-top">
+				<div class="profit-pic">
+					<span>
+						<img src="{res file=images/Present-detail/profit.png}">
+					</span>
+				</div>
+				<div class="refine">
+					<h4>{$total}</h4>
+					<p>提现收益</p>
+				</div>
+			</div>
+			<!--
+            	时间：2016-06-16
+            	描述：收益top
+            -->
+            <div class="refine-details">
+            	<ul>
+                  {foreach from=$detail item=item2}
+            		<li>
+            			<div class="one">
+            				<p class="onr-let">
+            					<img src="{res file=images/Present-detail/amount.png}">
+            					<span class="list-muen">提现金额</span>
+            					<span class="list-nr">{$item2.money}</span>
+            				</p>
+
+                                    {if $item2.ispay eq 1}
+                  				<p class="onr-rgh">
+                  					<img src="{res file=images/Present-detail/adopt.png}">
+                  					<span>已到帐</span>
+                  				</p>
+                                    {elseif $item2.ispay eq 2}
+                                          <p class="onr-rgh">
+                                                <img src="{res file=images/Present-detail/refuse.png}">
+                                                <span>已拒绝</span>
+                                          </p>
+                                    {else}
+                                          <p class="onr-rgh">
+                                                <img src="{res file=images/Present-detail/wait.png}">
+                                                <span>待处理</span>
+                                          </p>
+
+                                    {/if}
+            			</div>
+            			<div class="one">
+            				<p class="onr-let">
+            					<img src="{res file=images/Present-detail/time.png}">
+            					<span class="list-muen">申请时间</span>
+            					<time>{$item2.createtime}</time>
+            				</p>
+            			</div>
+            			<div class="one">
+            				<p class="onr-let">
+            					<img src="{res file=images/Present-detail/bank.png}">
+            					<span class="list-muen">到账银行卡</span>
+            					<span class="list-nr">{$item2.bank_code}</span>
+            				</p>
+            			</div>
+
+                              {if $item2.operatortime lt $item2.createtime}
+                               <div class="one">
+                                    <p class="onr-let">
+                                          <img src="{res file=images/Present-detail/time.png}">
+                                          <span class="list-muen">到账时间</span>
+                                          <span class="list-nr"></span>
+                                          <time>预计3个工作日到账</time>
+                                    </p>
+                              </div>     
+                              {else}
+            			<div class="one">
+            				<p class="onr-let">
+            					<img src="{res file=images/Present-detail/time.png}">
+            					<span class="list-muen">到账时间</span>
+            					<span class="list-nr"></span>
+            					<time>{$item2.operatortime}</time>
+            				</p>
+            			</div>
+                              {/if}
+            		</li>
+                  {/foreach}
+            	</ul>
+            </div>
+		</div>
+            {include file="footer.html"}
+	</body>
+</html>

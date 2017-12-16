@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>新消息设置</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/newsset.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">新消息设置</p>
+		<!-- <button>保存</button> -->
+	</div>
+	<ul>
+		<li>
+			<p>
+				<span>物流通知</span>
+				<button><img src="images/open.png" alt=""></button>
+			</p>
+		</li>
+		<li>
+			<p>
+				<span>商品提醒</span>
+				<button><img src="images/open.png" alt=""></button>
+			</p>
+		</li>
+		<li>
+			<p>
+				<span>我的财富</span>
+				<button><img src="images/open.png" alt=""></button>
+			</p>
+		</li>
+		<li class="lis">
+			<p>
+				<span>系统通知</span>
+				<button><img src="images/open.png" alt=""></button>
+			</p>
+		</li>
+	</ul>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+
+<script>
+	$(function(){
+		var tokens=localStorage.getItem ("token");
+		var idsc;
+		$.ajax({
+			     type: 'POST',
+			      dataType: "json",
+			      url:Url + "api/index.php?n=message&f=type",
+			     data: {
+			     	token:tokens,
+			     	},
+			    success: function(data){
+			    	console.log(data);
+			    	idsc=parseInt(data.data[0].id); 
+			    	for (var i = 0; i < data.data.length; i++) {
+			    		if(data.data[i].status==1){
+			    			$("ul li").eq(i).find("img").attr("src","images/open.png");
+			    			
+			    		}else{
+			    			$("ul li").eq(i).find("img").attr("src","images/close.png");
+			    			
+			    		}
+			    	};
+			    	
+			    },
+			    error:function(data){
+					    	console.log(data);
+					    }
+					})
+				
+		$("ul button").on("click",function(){
+			var sta=1;
+			var src="images/open.png",src1="images/close.png";
+			if ($(this).find("img").attr("src")==src) {
+				$(this).find("img").attr("src",src1);
+				sta=0;
+			}else{
+				$(this).find("img").attr("src",src);
+				sta=1;
+			}
+
+			var ids=$(this).parent().parent().index()+idsc;
+			console.log(ids);
+			$.ajax({
+			     type: 'POST',
+			      dataType: "json",
+			      url:Url + "api/index.php?n=message&f=status",
+			     data: {
+			     	token:tokens,
+			     	id:ids,
+			     	status:sta,
+			     	},
+			    success: function(data){
+			    	console.log(data);
+
+			    },
+			    error:function(data){
+					    	console.log(data);
+					    }
+					})
+				})
+	})
+</script>
+</html>

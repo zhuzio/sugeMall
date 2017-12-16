@@ -1,0 +1,204 @@
+.address-wp{
+	width: 100%;
+	height: 100%;
+	margin-top: 10rem;
+	margin-bottom: 9.0rem;
+}
+.mange-addr{
+	width: 92.0%;
+	margin: 0 auto;
+	border-bottom: 0.1rem solid #eee;
+}
+.kong{
+	height: 2rem;
+	background: #f1f1f1;
+}
+.addcon{
+	position: relative;
+	height: 6rem;
+}
+.addcon span{
+	position: absolute;
+	height: 6rem;
+	font-size: 3rem;
+	color: #333;
+	width: 50%;
+	line-height: 6rem;
+}
+.addr-name{
+	top: 0;
+	left: 0;
+}
+.addr-phone{
+	top: 0;
+	left: 50%;
+}
+.addcitys{
+	position: relative;
+	height: 6rem;
+}
+.addcitys span{
+	position: absolute;
+	height: 6rem;
+	font-size: 2.4rem;
+	color: #333;
+	/*width: 50%;*/
+	line-height: 6rem;
+}
+.addr-city{
+	top: 0;
+	left: 0;
+	width: 60%;
+}
+.addr-jd{
+	top: 0;
+	left: 60%;
+	width: 40%;
+
+}
+/*.mange-addr li:nth-child(1) span{
+	display: inline-block;
+	font-size:3.0rem;
+	color: #333;
+}
+.mange-addr li:nth-child(1) span:nth-child(1){
+	width: 40%;
+	margin-top: 2.0rem;
+	line-height: 3.0rem;
+}
+.mange-addr li:nth-child(1) span:nth-child(2){
+	position: relative;
+	top: -3.5rem;
+	line-height: 3.0rem;
+}*/
+/*.addr-phone{
+	margin-left:60%;
+}*/
+.adds{
+	/*display: inline-block;*/
+	/*width: 55.0rem;*/
+	/*height: 6.5rem;*/
+	width: 100%;
+	font-size: 2.4rem;
+	line-height: 4rem;
+	color: #333;
+	border-bottom: 1px dashed #dcdcdc;
+	/*margin-top: 1.5rem;*/
+	/*overflow: hidden;*/
+}
+.addset{
+	width: 100%;
+	height: 9.8rem;
+	line-height: 9.8rem;
+	font-size: 3rem;
+}
+.addr-chose{
+	display: inline-block;
+	width: 4.4rem;
+	height: 4.4rem;
+	border: 1px solid #dcdcdc;
+	border-radius: 0.8rem;
+	position: relative;
+	top: 1.2rem;
+}
+.chosed{
+	display: inline-block;
+	width: 4.4rem;
+	height: 4.4rem;
+	border: 1px solid #dcdcdc;
+	border-radius: 0.8rem;
+	position: relative;
+	top: 1.2rem;
+	background: url("../images/z-30.png") no-repeat;
+	background-size: 100%;
+	background-position:50%;
+}
+.addr-def{
+	font-size: 3.0rem;
+	color: #333;
+	margin-left: 1.5rem;
+}
+.addr-edit,.addr-delet{
+	display: inline-block;
+	width:19.3%;
+	height:5.7rem;
+	border: 1px solid #dcdcdc;
+	font-size: 3.0rem;
+	color: #333;
+	text-align: center;
+	line-height: 5.0rem;
+	border-radius: 1.0rem;
+}
+.addr-edit{
+	margin-left: 14.1%;
+}
+.addr-delet{
+	margin-left: 4.3%;
+}
+.addr-bank{
+	width: 100%;
+	height: 2.1rem;
+	background-color: #f1f1f1;
+}
+.addr-add{
+	width: 100%;
+	height:9.8rem;
+	background-color: #ffc600;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	line-height: 9.8rem;
+	z-index:1000;
+}
+.addr-add1{
+	font-size: 3.4rem;
+	color: #fff;
+}
+.addr-add img{
+	width: 4.7rem;
+	position: relative;
+	left: 2.0rem;
+	top: 1.0rem;
+}
+.addr-rem{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.2);
+	position: fixed;
+	top:0;
+	left: 0;
+}
+.addr-rema{
+	width: 100%;
+	height: 9.2rem;
+	background-color: #ebebeb;
+	/*border: 1px solid red;*/
+	margin-top: 100%;
+}
+.addr-rema1{
+	width: 72.5%;
+	/*border: 1px solid red;*/
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+}
+.rema-rem,.rema-cancel{
+	display: inline-block;
+	width: 17.3rem;
+	height: 8.0rem;
+	font-size: 3.0rem;
+	color: #fff;
+	background-color: #d81e05;
+	margin-top: 0.6rem;
+	line-height: 8.0rem;
+	text-align: center;
+	/*margin-left: 18.6%;*/
+}
+.rema-cancel{
+	background-color: #fff;
+	color: #666;
+}
+.z-sadd{
+	border: 1px solid red;
+}

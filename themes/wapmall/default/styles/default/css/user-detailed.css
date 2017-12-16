@@ -1,0 +1,203 @@
+/*板块样式*/
+/*top*/
+.profit-top{
+	width: 100%;
+	height: 160px;
+	background-image: url(../images/user-detailed/bg.png);
+	background-size:100% 160px;
+}
+.profit-pic{ 
+	float: left;
+	width: 30%;
+	overflow: hidden;
+	}
+.profit-pic span{ 
+	display: block;
+	margin: auto;
+	margin-top: 40px;
+	width: 80px; 
+	height: 80px;
+	overflow: hidden;
+	border-radius: 50px;
+	background-image: url(../images/user-detailed/empty-bg.png);
+	}
+.profit-pic span img{
+	width: 100%;
+}
+.profit-cont{ 
+	float: left; 
+	width: 70%;
+	margin-top: 30px;
+	overflow: hidden;
+	}
+.pro-current{
+	color: #FFFFFF; 
+	font-size: 14px; 
+	line-height: 48px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.pro-current span{ 
+	margin-left: 10px;
+	font-size: 36px;
+	color: #FFFFFF; 
+}
+.pro-td{ 
+	overflow: hidden; 
+}
+.pro-td a{ 
+	float: left;
+	width: 50%;
+	font-size: 12px;
+	color: #f4f5f5;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.pro-td a span{
+	 margin-left: 3px;
+	 font-size: 15px;
+	 color: #FFFFFF;
+}
+
+/*明细列表*/
+.refine-details{ 
+	overflow: hidden;
+	}
+.refine-details ul{ 
+}
+.refine-details li{ 
+	overflow: hidden; 
+	background-color: #FFFFFF; 
+	padding-top: 20px;
+	border-bottom: 1px solid #ECECEC;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+.refine-details li .refine-plus{
+	float: left;
+	width: 10%;
+}
+.refine-details li .refine-plus span{
+	display: block;
+	margin: auto;
+	width: 24px;
+	height: 24px;
+	border-radius: 10px;
+	background-image: url(../images/user-detailed/plus.png);
+	background-size:100%;
+	margin-top: 10px;
+}
+
+.refine-details li .refine-reduce{
+	float: left;
+	width: 10%;
+}
+.refine-details li .refine-reduce span{
+	display: block;
+	margin: auto;
+	width: 24px;
+	height: 24px;
+	border-radius: 10px;
+	background-image: url(../images/user-detailed/reduce.png);
+	background-size:100%;
+	margin-top: 10px;
+}
+.refine-re{
+	float: left;
+	width: 90%;
+	overflow: hidden;
+}
+.ref-number{
+	 font-size: 14px;
+	 line-height: 24px;
+}
+.ref-number span{
+	margin-right: 5px;
+}
+.ref-event{
+	overflow: hidden;
+	width: 100%;
+}
+.ref-event p{
+	float: left;
+	font-size: 12px;
+	width: 65%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.ref-event span{
+	float: left;
+	font-size: 12px;
+}
+.ref-event span.ref-date{
+	width: 24%;
+}
+.ref-event span.ref-time{
+	width:11%;
+}
+/*切换开关*/
+.int-switch{
+	 padding: 10px 10px;
+	 background-color: #FFFFFF;
+	 border-bottom: 1px solid #ECECEC;
+}
+.switch{ 
+	width: 80%;
+	height: 48px;
+	line-height:48px;
+	margin: auto;
+	background-color: #F1F2F6;
+	border: 1px solid #dddddd;
+	border-radius: 24px;
+	position: relative;
+}
+.switch span{
+	 width: 50%;
+	 text-align: center;
+	 display: block;
+	 position: absolute;
+	 color: #333333;
+	 font-size: 14px;
+}
+.switch span.on{ 
+	left: 0;
+	z-index: 2;
+}
+.switch span.off{ 
+	right: 0;
+	z-index: 2;
+
+}
+.switch span.activ{ 
+	width: 55%;
+	background-color: #39B4BF;
+	color: #FFFFFF;
+	border-radius: 24px;
+	z-index: 1;
+}
+
+/*购入积分列表*/
+#integral li{
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #ECECEC;
+	padding: 10px 20px;
+}
+.int-list{
+	overflow: hidden;
+	line-height: 24px;
+}
+.int-list p{
+	float: right;
+	text-align: right;
+}
+.int-list p:first-child{
+	float: left;
+	text-align: left;
+}
+.int-list p span{
+	margin:0 5px;
+}

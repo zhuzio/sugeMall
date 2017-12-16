@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /><!--公用css-->
+		<link rel="stylesheet" href="{res file=css/introducer.css}" />
+		<script type="text/javascript" src="{res file=js/jquery.min.js}" ></script>
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.go(-1);" class="back"></a>
+			<h1 class="tit">推荐人</h1>
+		</header>
+		<div class="content mtop44">
+			<form>
+				<div class="introducer">
+					<p class="name"><label>推荐人</label><input placeholder="请输入推荐人手机号" name="tuijian_phone"></p>
+					<p class="submint"><button type="button" id="tuijian">确定</button></p>
+				</div>
+			</form>	
+			<div class="Popup">
+				<!--发货弹窗-->
+				<div class="Withdrawals" id="tuijian_cell">
+					<div class="withdra-box">
+						<div class="intr-nr">
+							<p>你确定将<span id="queding"></span><span id="rea_name">()</span>作为你的推荐人吗?</p>
+						</div>
+						<div class="pop-operation">
+							<button id="intro" type="button">取消</button>
+							<button type="button" id="is_ok">确定</button>
+						</div>
+					</div>
+					<div class="withdra-bg"></div>
+				</div>
+			<!-- 弹框结束 -->
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="{res file=js/introducer.js}" ></script>
+</html>

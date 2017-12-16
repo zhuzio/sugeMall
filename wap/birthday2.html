@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>生日</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/birthday2.css">
+            <link rel="stylesheet" href="css/a.css">
+            <link rel="stylesheet" href="css/mobiscroll.custom-2.6.2.min.css">
+            <script src="js/zepto.js"></script>
+
+    <!--Includes-->
+	
+
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: arial, verdana, sans-serif;
+            font-size: 12px;
+            background: #ddd;
+        }
+        input, select {
+            width: 10%;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #aaa;
+            box-sizing: border-box;
+            border-radius: 5px;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -webkit-border-radius: 5px;
+        }
+        .header {
+            border: 1px solid #333;
+            background: #111;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 -1px 1px black;
+            background-image: linear-gradient(#3C3C3C,#111);
+            background-image: -webkit-gradient(linear,left top,left bottom,from(#3C3C3C),to(#111));
+            background-image: -moz-linear-gradient(#3C3C3C,#111);
+        }
+        .header h1 {
+            text-align: center;
+            font-size: 16px;
+            margin: .6em 0;
+            padding: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .content {
+            padding: 15px;
+            background: #fff;
+        }
+        .car {
+            position: relative;
+            height: 100%;
+        }
+        .car img {
+            height: 28px;
+            display: block;
+            margin: 0 auto;
+        }
+        .car .img-cont {
+            width: 80px;
+            height: 28px;
+            text-align: center;
+            float: left;
+            position: relative;
+            top: 50%;
+            margin-top: -14px;
+        }
+        .car span {
+            float: left;
+        }
+        body{
+            background-color: #fff;
+        }
+        .bars{
+            height: 4.3rem;
+            position: relative;
+            background-color: #ebebeb;
+        }
+        .bars a{
+            height: 4.3rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4.3rem;
+            line-height: 4.3rem;
+            width: 4rem;
+            text-align: center;
+            z-index: 10;
+         }
+          .bars a img{
+            /*width: 3.7rem;*/
+            height: 2rem;
+            vertical-align: middle;
+          }
+         .bars .p2{
+            height: 4.3rem;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 4.3rem;
+            /*z-index: ;*/
+          }
+            .bars span{
+            height: 4.3rem;
+            position: absolute;
+            top: 0;
+            right: 1rem;
+            height: 4.3rem;
+            line-height: 4.3rem;
+            width: 8rem;
+            text-align: center;
+            font-size: 3.4rem;
+            color: #333;
+            text-align: right;
+         }
+    </style>
+</head>
+<body>
+	<!-- <div class="page-group"> -->
+        <!-- 单个page ,第一个.page默认被展示-->
+	        <!-- <div class="page"> -->
+	            <!-- 标题栏 -->
+	            <header class="bars">
+	               <a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">	
+			<img src="images/back.png" alt="返回首页">
+		</a>
+		<p class="p2">生日</p>
+		<span>保存</span>
+	            </header>
+	            <!-- 这里是页面内容区 -->
+              	<div style="display: none;">
+		            <label for="demo">Demo</label>
+		            <select name="demo" id="demo" class="changes"></select>
+		 </div>
+		<div id="demo_default" class="demos">   
+		<span>出生年月：</span>         
+		            <input type="text" name="test_default" id="test_default" onBlur="getToAge()"/>			
+		</div>       
+		
+		</div>
+       	        <!-- </div> -->
+	<!-- </div> -->
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/mobiscroll.custom-2.6.2.min.js"></script>
+<script type="text/javascript" src="js/url.js"></script>
+<script type="text/javascript">
+  //         $("#datetime-picker").datetimePicker({
+  //   value: ['1950', '01', '01', '0', '00']
+  // });
+
+        $(function () {
+            var curr = new Date().getFullYear();
+            var opt = {
+
+            }
+
+     opt.date = {preset : 'date'};
+	opt.datetime = { preset : 'datetime', minDate: new Date(2012,3,10,9,22), maxDate: new Date(2014,7,30,15,44), stepMinute: 5  };
+	opt.time = {preset : 'time'};
+	opt.tree_list = {preset : 'list', labels: ['Region', 'Country', 'City']};
+	opt.image_text = {preset : 'list', labels: ['Cars']};
+	opt.select = {preset : 'select'};
+	<!--Script-->
+
+            $('select.changes').bind('change', function() {
+                var demo = "date";
+                $(".demos").hide();
+                if (!($("#demo_"+demo).length))
+                    demo = 'default';
+
+                $("#demo_" + demo).show();
+                $('#test_'+demo).val('').scroller('destroy').scroller($.extend(opt["date"], { theme: "default", mode: "mixed", display: "modal", lang: "zh" }));
+            });
+
+            $('#demo').trigger('change');
+        });
+		
+		
+	function getToAge(){
+		var dateVal = $("#test_default").val();
+		var dateVals = ages(dateVal);
+		$("#ageVal").val(dateVals);
+	}
+
+  function ages(str)   
+  {   
+		var r = str.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);     
+		if(r==null)return   0;     
+		var d = new Date(r[1], r[3]-1, r[4]);     
+		if(d.getFullYear()==r[1]&&(d.getMonth()+1)==r[3]&&d.getDate()==r[4])   
+		{   
+			 var Y = new Date().getFullYear();   
+			 return((Y-r[1]));   
+		} 
+		return 0;
+  }
+ 
+    </script>
+    <script>
+  
+ var tokens=localStorage.getItem ("token");
+	var html="";
+	var birthdays;
+	$("#datetime-picker").on("change",function(){
+		 birthdays=$("#datetime-picker").val();
+	})
+	$(".bars span").on("click",function(){
+		birthdays=$("#test_default").val();
+		// console.log(birthdays);
+		$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=user&f=setbirthday",
+		         	dataType: "json",
+		       	data: { token : tokens,birthday:birthdays},
+		        	success: function(data){
+		                      // console.log(data);
+		                      location.href="personalData.html";
+			} ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+		})
+	$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=user&f=information",
+		         	dataType: "json",
+		       	data: { token : tokens},
+		        	success: function(data){
+		                      // console.log(data);
+		                    
+		                      $("#test_default").val(data.data.birthday);
+		                  },
+		                  error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+		
+    </script>
+    <script>
+        (function (doc, win) {
+        
+        var docEle = doc.documentElement,
+                dpr=Math.min(win.devicePixelRatio, 3),
+                scale = 1 / dpr,
+
+                resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize';
+
+        var metaEle = doc.createElement('meta');
+        metaEle.name = 'viewport';
+        metaEle.content = 'initial-scale=' + 1 + ',maximum-scale=' + 1;
+        docEle.firstElementChild.appendChild(metaEle);
+        var recalCulate = function () {
+            var width = docEle.clientWidth;
+            docEle.style.fontSize = 10 * (width / 750) + 'px';
+        };
+        recalCulate();
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvent, recalCulate, false);
+    })(document, window);
+    </script>
+</html>

@@ -1,0 +1,143 @@
+@import url(m_reset.css);
+.full(@w,@h,@b){
+	width: @w;
+	height: @h;
+	background: @b;
+}
+.box(@tan){
+	display: -webkit-box;
+	-webkit-box-orient:@tan;
+}
+html,body,.container{
+	.full(100%,100%,#f3f5f7);
+	.box(vertical);
+	font-size: 62.5%;
+}
+.r{
+	position: relative;
+}
+.a{
+	position: absolute;
+}
+header{
+	.full(100%,8.8rem,#fff);
+	.r;
+	.box(horizontal);
+	span{
+		.full(4.4rem,4.4rem,url(../images/saoyisao.png)no-repeat);
+		.a;
+		left: 3.0rem;
+		top: 2.2rem;
+		background-size: 4.4rem 4.4rem;
+	}
+	input{
+	    display: block;
+	    -webkit-box-flex: 1;
+		.full(0,6.0rem,#efeff4 url(../images/sousuo.png)no-repeat);
+		background-size: 3.2rem 3.2rem;
+		background-position: 2.0rem 1.4rem;
+		margin: 1.4rem 9.5rem 0 9.5rem;
+		border-radius: 2.0rem;
+		border: none;
+		text-align: center;
+		color: #999999;
+		font-size: 2.4rem;
+		letter-spacing:0.7rem;
+		outline: none;
+	}
+	a{
+		.full(4.2rem,3.8rem,url(../images/xinxi.png)no-repeat);
+		.a;
+		right: 3.0rem;
+		top: 2.5rem;
+		background-size: 4.2rem,3.8rem;
+	}
+}
+section{
+	-webkit-box-flex:1;
+	overflow: auto;
+	.wrap{
+		.box(hsorizontal);
+	
+		.uls{
+//		    -webkit-box-flex: 1;
+		    .full(18.0rem,auto,#fff);
+            background: #fff;
+		    line-height: 13.8rem;
+		    text-align: center;
+		    li{
+		        border: solid 0.1rem #e5e5e5;
+		        border-left: none;
+		        font-size: 2.8rem;
+		        text-align: center;
+		        color: #333;
+		    }
+		    
+		    .lis{
+		        border-left: solid 0.4rem #ffc500;
+		        background: #f3f5f7;
+		        color: #ffc500;
+		    }
+		}
+		.box{
+			-webkit-box-flex:1;
+		     .div{
+		         font-size: 24px;
+		         display: none;
+		         img{
+		         	width: 100%;
+		         	padding: 4.1rem 3.0rem 0 2.9rem;
+		         	box-sizing: border-box;
+		         }
+		        p{
+		         	font-size: 2.4rem;
+		         	margin-left: 3.0rem;
+		         	margin-top: 6.0rem;
+		         	color: #666;
+		         }
+		         .right{
+		         	-webkit-box-flex: 1;
+		         	background: #fff;
+		         	margin-left: 3.0rem;
+		         	margin-top: 3.0rem;
+		         	margin-right: 3.0rem;
+		         }
+		        .tu{
+		        	.box(horizontal);
+		        	dl{
+		        	    -webkit-box-flex: 1;
+		        	    font-size: 2.2rem;
+		        	}
+		        	dd{
+		        		text-align: center;
+		        		color: #666;
+                       			 margin-top: 2.8rem;
+		        	}
+		        }
+		        .tus{
+		            .box(horizontal);
+		            dl{
+		                        -webkit-box-flex: 1;
+		                        margin-top: 4.0rem;
+		                        margin-bottom: 2.5rem;
+		                         dd{
+		                         	font-size: 2.2rem;
+			                        text-align: center;
+			                        color: #666;
+			                        margin-top: 2.8rem;
+		                        }
+                    		}
+	                     dl:nth-child(2){
+	                        visibility: hidden;
+	                    }
+	                     dl:nth-child(3){
+	                        visibility: hidden;
+	                    }
+		        }
+		     }
+		     .div:first-child{
+		         display: block;
+		  }
+        }
+    }
+}

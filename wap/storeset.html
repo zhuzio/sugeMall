@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>店铺设置</title>
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <link rel="stylesheet" href="css/m_reset.css">
+    <link rel="stylesheet" href="css/storeset.css">
+</head>
+<style type="text/css">
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .iw_poi_title {
+        color: #CC5522;
+        font-size: 14px;
+        font-weight: bold;
+        overflow: hidden;
+        padding-right: 13px;
+        white-space: nowrap
+    }
+
+    .iw_poi_content {
+        font: 12px arial, sans-serif;
+        overflow: visible;
+        padding-top: 4px;
+        white-space: -moz-pre-wrap;
+        word-wrap: break-word
+    }
+
+    .ldw {
+        height: 25rem;
+    }
+
+    .avatorUpload {
+        margin: 0 auto;
+        position: relative;
+        width: 80px;
+        height: 80px;
+        background-size: 100%;
+        background-image: url('../images/user.png');
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        /*border-radius: 50%;*/
+        overflow: hidden;
+    }
+
+    .avatorUpload .uploadify-button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+
+    .avatorUpload .uploadify-queue {
+        display: none;
+    }
+
+    .avatarImg {
+        width: 10rem;
+        display: block;
+    }
+
+    .re-term {
+        /*border: 1px solid red;*/
+        margin-left: 4.5%;
+        margin-top: 1.2rem;
+        line-height: 11.5rem;
+    }
+    .re-term-img,
+    .re-term-img1 {
+        display: inline-block;
+        width: 4.7rem;
+        height: 4.7rem;
+        /*border: 1px solid red;*/
+        border-radius: 100%;
+        background: url("images/z-132.png") no-repeat;
+        background-size: 100% 100%;
+        /*margin-top: 2.0rem;*/
+        position: relative;
+        top: 1.3rem;
+    }
+
+    .re-term-img1 {
+        background: url("images/z-133.png") no-repeat !important;
+        background-size: 100% 100% !important;
+    }
+
+    .re-term span {
+        font-size: 3.0rem;
+    }
+
+    .re-term span:nth-child(2) {
+        color: #999;
+        margin-left: 2.2rem;
+    }
+
+    .re-term span:nth-child(3) {
+        color: #ffc600;
+        margin-left: 1.5rem;
+    }
+    /*.xieyi{
+position: fixed;
+z-index: 1000;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+overflow: scroll;
+}
+.xieyi p{
+width: 90%;
+font-size: 3rem;
+}*/
+
+    .ltans {
+        position: fixed;
+    ;
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+        display: none;
+    }
+
+    .ltans p {
+        width: 70%;
+        height: 20rem;
+        background-color: #fff;
+        color: #333;
+        font-size: 3.2rem;
+        line-height: 10rem;
+        text-align: center;
+        margin-top: 60%;
+        margin-left: 15%;
+        border-radius: 1rem;
+    }
+    .avatorUpload{
+        position: relative;
+    }
+    .yuimg{
+        position: absolute;
+        top:0rem;
+        left:0rem;
+    }
+    section .photo .photo2 .left dl{
+        position: relative;
+    }
+    .avatorUpload>input{
+        display: none;
+    }
+</style>
+
+<body>
+<div class="container">
+    <!-- 头部 -->
+    <header>
+        <a href="javascript:history.go(-1)"><img src="images/w_sback.png" alt="返回首页"></a>
+        <p>店铺设置</p>
+    </header>
+    <!-- 主体部分 -->
+    <section>
+        <div class="name">
+            <p>店铺名称<span>*</span></p><input type="text" id="storename" name="storename" placeholder="输入店铺名称">
+        </div>
+        <div class="type">
+            <p>店铺类型<span>*</span></p>
+            <ul>
+                <li><input class="z-input" type="radio" name="o2o" value="online">商城（厂家）</li>
+                <li><input class="z-input1" type="radio" name="o2o" value="offline" checked="checked">联盟商家</li>
+            </ul>
+        </div>
+        <div class="type1">
+            <span>(请注意选择您的店铺类型)</span>
+        </div>
+        <div class="fenlei">
+            <p>店铺分类<span>*</span></p>
+            <select name="storecate" id="storecate">
+                <option value="">请选择分类</option>
+            </select>
+        </div>
+        <div class="photo">
+            <div class="photo1">
+                <h1>上传执照<span>:</span></h1>
+                <h1 class="h1_right">上传店铺标志<span>:</span></h1>
+            </div>
+            <div class="photo2">
+                <div class="left">
+                    <dl>
+                        <dt class="submit1">
+                        <div id="avatorUpload" class="avatorUpload" name="store_banner" style="background-image:url('images/w_stu.jpg');width:10rem;height:10rem;background-size:cover;">
+                            <input type="file" id="file1" name="pic1" multiple  enctype="multipart/form-data"/>
+                        </div>
+                        <div style="clear: both;"></div>
+                        </dt>
+                        <dd>
+                            <!--<canvas id="myCanvas1" style="display: none"></canvas>-->
+                            <br>
+                            <h3>点击添加图片</h3>
+                        </dd>
+                    </dl>
+                    <p>请尽量拍摄清晰，更快速的通过审核。</p>
+                </div>
+                <div class="left">
+                    <dl>
+                        <dt class="submit2">
+                        <div id="logoUpload" class="avatorUpload"  name="store_logo" style="background-image:url('images/w_stu.jpg');width:10rem;height:10rem;background-size:cover;">
+                            <input type="file" id="file2" name="pic2" multiple  enctype="multipart/form-data"/>
+                        </div>
+                        <div style="clear: both;"></div>
+                        </dt>
+                        <dd>
+                            <!-- <canvas id="myCanvas2" style="display: none"></canvas>-->
+                            <br>
+                            <h3>点击添加图片</h3>
+                        </dd>
+                    </dl>
+                    <p>此处为您的店铺标志，将显示在店铺信息栏里；建议尺寸100*100像素。</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="s_top">
+                <p>上传商铺幻灯片：<span>幻灯片建议尺寸(750px*485px)</span></p>
+            </div>
+            <div class="s_bottom">
+                <dl>
+                    <dd>店铺展示图片1</dd>
+                    <dt class="submit3">
+                    <div id="img1Upload" class="avatorUpload" name="image_1" style="background-image:url('images/w_stu.jpg');width:10rem;height:10rem;background-size:cover;">
+                        <input type="file" id="file3" name="pic3" multiple  enctype="multipart/form-data"/>
+                    </div>
+                    <div style="clear: both;"></div>
+                    </dt>
+                    <dd>
+                        <!--<input type="file" id="file3" name="pic3" />
+                        <canvas id="myCanvas3" style="display: none"></canvas>-->
+                        <br>
+                        <h3>点击添加图片</h3>
+                    </dd>
+                </dl>
+                <dl>
+                    <dd>店铺展示图片2</dd>
+                    <dt class="submit4">
+                    <div id="img2Upload" class="avatorUpload" name="image_2" style="background-image:url('images/w_stu.jpg');width:10rem;height:10rem;background-size:cover;">
+                        <input type="file" id="file4" name="pic4" multiple  enctype="multipart/form-data"/>
+                    </div>
+                    <div style="clear: both;"></div>
+                    </dt>
+                    <dd>
+
+                        <!--  <canvas id="myCanvas4" style="display: none"></canvas>-->
+                        <br>
+                        <h3>点击添加图片</h3>
+                    </dd>
+                </dl>
+                <dl class="there">
+                    <dd>店铺展示图片3</dd>
+                    <dt class="submit5">
+                    <div id="img3Upload" class="avatorUpload" name="image_3" style="background-image:url('images/w_stu.jpg');width:10rem;height:10rem;	background-size:cover;">
+                        <input type="file" id="file5" name="pic5" multiple  enctype="multipart/form-data"/>
+                    </div>
+                    <div style="clear: both;"></div>
+                    </dt>
+                    <dd>
+
+                        <!--<canvas id="myCanvas5" style="display: none"></canvas>-->
+                        <br>
+                        <h3>点击添加图片</h3>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="dizhi">
+            <p>店铺位置<span>*</span></p>
+            <input type="hidden" id="province" name="province" />
+            <input type="hidden" id="city" name="city" />
+            <input type="hidden" id="area" name="area" />
+            <input type='text' disabled="true" id='area_cn' name='area_cn' value='' />
+        </div>
+        <div class="dizhi">
+            <p>详细地址<span>*</span></p><input type="text" id="local" name="address" placeholder="输入您的详细地址">
+            <!--<img id="map_position" src="images/w_sditu_06.jpg" width="5%" style="vertical-align: text-bottom;margin-top:2.8rem;margin-right:3rem;width:3rem;"/>-->
+        </div>
+        <!--
+<div class="xuanqu">
+    <h1>当前位置
+        <span>:</span>
+        <input type="text" style="height: 6.6rem;line-height: 6.6rem;font-size: 3rem;color: #999999;outline: none;border: none;margin-left: 6rem;border-bottom: 1px solid black;" id="local" name="local" placeholder="点击右边图标进行地图选点"/>
+        <img id="map_position" src="images/w_sditu_06.jpg" width="5%" style="vertical-align: text-bottom;margin-left:30px;"/>
+    </h1>
+    <div style="width: 100%; height: 600px;" border:#ccc solid 1px;" id="dituContent"></div>
+
+    <div class="ldw">
+        <iframe src="http://m.amap.com/picker/?key=7e62760db2e3b0b1d9bde5bf408b7662" frameborder="0"></iframe>
+    </div>
+    <p><img src="images/w_sditu_06.jpg"/>当前位置<span class="ddww">百万庄子区38号院</span><button>确定</button></p>
+    <p><img src="images/w_sditu_06.jpg"/>当前位置<span class="ddww">百望庄子区38号院</span><button>确定</button></p>
+</div>
+-->
+        <div class="call">
+            <h1>联系方式<span>:</span></h1>
+            <div class="ca">
+                <p>联系电话1<span>*</span></p><input id="tel" type="tel" placeholder="输入您的联系电话">
+            </div>
+            <div class="ca">
+                <p>联系电话2<span>*</span></p><input id="tel1" type="tel" placeholder="输入您的联系电话">
+            </div>
+        </div>
+        <div class="store">
+            <h1>店铺活动<span>:</span></h1>
+            <textarea name="activity" id="activity" rows="" cols="" placeholder="输入您的店铺活动信息"></textarea>
+        </div>
+        <div class="store">
+            <h1>店铺简介<span>:</span></h1>
+            <textarea name="description" id="description" rows="" cols="" placeholder="输入您的店铺简介信息"></textarea>
+        </div>
+        <input type="hidden" name="lng" id="lng" value="" />
+        <input type="hidden" name="lat" id="lat" value="" />
+        <div class="re-term">
+            <!--<img class="re-term-img" src="images/z-132.png"/>-->
+            <span class="re-term-img"></span>
+            <span>我已阅读并同意条款</span>
+            <span class="dpxy">(店铺协议)</span>
+        </div>
+        <div class="tj">
+            <span id="submit">提交</span>
+        </div>
+    </section>
+    <!-- <div class="xieyi"></div> -->
+</div>
+<div class="ltans">
+    <p>请重新选择店铺类型</p>
+</div>
+</body>
+<script src="js/box.js"></script>
+<script src="js/url.js"></script>
+<script src="js/jquery-1.8.3.min.js"></script>
+<!-- <script src="js/city.js" type="text/javascript"></script> -->
+<!--<script src="js/file.js" type="text/javascript" charset="utf-8"></script>-->
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+<script src="js/map.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="js/jquery.Huploadify.js"></script>-->
+<script>
+    //		$("#area_cn").click(function() {
+    //			location.href = 'bdmap.html';
+    //		})
+    var ltypes = localStorage.getItem('type');
+    console.log(ltypes);
+    if(ltypes == 1) {}
+
+    function getArea(id, next) {
+        if(next == '') {
+            return;
+        }
+        //当getChildArea 的执行完了之后  执行done这个函数为    设置地址的函数
+        getChildArea(id).done(function(res) {
+            if(res.ret == 'ok') {
+                console.log(res.ret);
+                if(next == 'city') {
+                    //如果 next=“city”为ID为area这个隐藏的提交项   增加一个option元素
+                    $("#area").html('').append('<option value="">请选择</option>');
+                }
+                var list = res.data;
+                //否则就将id为 next的元素在添加option
+                $("#" + next).html('').append('<option value="">请选择</option>');
+                var html;
+                for(var i = 0; i < list.length; i++) {
+                    html = '<option value="' + list[i].id + '">' + list[i].name + '</option>';
+                    $("#" + next).append(html);
+                }
+            }
+        });
+    }
+
+    function getChildArea(id) {
+        var dtd = $.Deferred();
+        $.ajax({
+            url: Url + 'api/index.php?n=my_address&f=get_child_area',
+            type: 'POST',
+            data: {
+                'id': id
+            },
+            dataType: 'JSON',
+            crossDomain: true,
+            beforeSend: function() {},
+            complete: function() {},
+            success: function(res) {
+                dtd.resolve(res);
+            },
+            error: function(error) {
+                dtd.reject(error);
+            }
+        });
+        return dtd.promise();
+    }
+</script>
+<script>
+    // var imgList = {'store_banner':'images/w_stu.jpg','store_logo':'images/w_stu.jpg','image_1':'images/w_stu.jpg','image_2':'images/w_stu.jpg','image_3':'images/w_stu.jpg'};
+    var imgList = {
+        'store_banner': '',
+        'store_logo': '',
+        'image_1': '',
+        'image_2': '',
+        'image_3': ''
+    };
+    var lng = '',
+            lat = '';
+    var shopInfo = '',
+            userInfo = '',
+            cateList = '';
+    var adds;
+    var zarea;
+    $(function() {
+        //ID为map—locate绑定鼠标点击事件
+        $("#map-locate").click();
+        //获得当前的位置 保存在a中
+        var a = $("item").eq(0).find(".poicard-name").eq(0).html();
+        //将class为ddww的元素  也就是当前元素的span元素的HTML的内容设置为a
+        $(".ddww").html(a);//
+        //取出tokens的值
+        var tokens = localStorage.getItem('token');
+        /* 店铺名称
+         * 取出input的name属性为storwname的元素
+         * */
+        var store_name = $('input[name="storename"]').val();
+        /* 店铺名称
+         * 取出select的name属性为storwcate的元素
+         * */
+        var store_cate = $('select[name="storecate"]').val();
+        //当前位置   为ID为map_position的元素绑定鼠标点击事件  点击元素跳转到bdmap.html页面
+        $("#map_position").on('click', function() {
+            location.href = 'bdmap.html';
+        });
+        //为ID为local的元素绑定获得焦点的事件
+        $("#local").on('focus', function() {
+            //当前元素的值
+            local = this.value;
+            console.log(local);
+            // console.log(imgList);
+            //如果local的值为空字符串
+            if(local == '') {
+                //找到input元素name=o2o元素遍历   index是开始的位置   object是遍历的当前元素
+                $("input[name=o2o]").each(function(index, obj) {
+                    if(obj.checked) {
+                        //如果当前元素的checked的属性为true话    就将offon的值设置为当前元素的值
+                        localStorage.setItem('offon', obj.value); //店铺类型
+                        console.log(localStorage.getItem('offon'));
+                    }
+                });
+                localStorage.setItem('limgLists', JSON.stringify(imgList)); //店铺图片
+                localStorage.setItem('dplxsz', $("#storecate").val()); //店铺分类
+                localStorage.setItem('dpnm', $("#storename").val()); //店铺名字
+                localStorage.setItem('dptel1', $("#tel").val()); //电话1
+                localStorage.setItem('dptel2', $("#tel1").val()); //电话2
+                localStorage.setItem('dpxx', $("#activity").val()); //店铺活动信息
+                localStorage.setItem('dpjs', $("#description").val()); //店铺介绍
+                location.href = 'bdmap.html';
+
+            }
+        });
+
+        if(localStorage.getItem('offon')) {
+            var offons = localStorage.getItem('offon');
+            console.log(offons);
+            if(offons == "online") {//
+                $("section .type ul li").css("background-image", "url('images/jtchoose.png')");
+                //parent()遍历$(".z_input")的元素的父元素    并设置他的背景图片
+                $(".z-input").parent().css("background-image", "url('images/jtchoose1.png')");
+            } else {
+                $("section .type ul li").css("background-image", "url('images/jtchoose.png')");
+                //parent()遍历$(".z_input1")的元素的父元素    并设置他的背景图片
+                $(".z-input1").parent().css("background-image", "url('images/jtchoose1.png')");
+            }
+
+            $("input[name=o2o]").each(function(index, obj) {
+                if(obj.value == offons) {
+                    obj.checked = true;
+                    // console.log($(this).index());
+                    // $("section .type ul li").css("background-image","url('images/jtchoose1.png')");
+                    // $(this).parent().css("background-image","url('images/jtchoose1.png')");
+                }
+            });
+        }
+        $("section .type ul li input").on("click", function() {
+            $("section .type ul li").css("background-image", "url('images/jtchoose.png')");
+            $(this).parent().css("background-image", "url('images/jtchoose1.png')");
+        })
+        if(localStorage.getItem('dpnm')) {
+            //设置店铺的名称
+            $("#storename").val(localStorage.getItem('dpnm'));
+        }
+        if(localStorage.getItem('dptel1'))
+        {   //设置联系方式1
+            $("#tel").val(localStorage.getItem('dptel1'));
+        }
+        if(localStorage.getItem('dptel2')) {
+            //设置联系方式2
+            $("#tel1").val(localStorage.getItem('dptel2'));
+        }
+        if(localStorage.getItem('dpxx')) {
+            //设置店铺的信息
+            $("#activity").val(localStorage.getItem('dpxx'));
+        }
+        if(localStorage.getItem('dpjs')) {
+            //设置店铺的简介
+            $("#description").val(localStorage.getItem('dpjs'));
+        }
+        // var imgList = {'store_banner':'','store_logo':'','image_1':'','image_2':'','image_3':''};
+        if(localStorage.getItem('limgLists')) {
+            var limgListl = localStorage.getItem('limgLists');
+            //将json字符串转化为一个对象
+            var limgList = JSON.parse(limgListl);
+            //将转化的结果  赋值给imglist
+            imgList = limgList;
+            console.log(imgList);
+            if(imgList['store_banner'] == "") {
+                $("#avatorUpload").css("backgroundImage", "url(images/w_stu.jpg)");
+            } else {
+                $("#avatorUpload").css("backgroundImage", "url(/" + imgList['store_banner'] + ")");
+            }
+            if(imgList['store_logo'] == "") {
+                $("#logoUpload").css("backgroundImage", "url(images/w_stu.jpg)");
+            } else {
+                $("#logoUpload").css("backgroundImage", "url(/" + imgList['store_logo'] + ")");
+            }
+            if(imgList['image_1'] == "") {
+                $("#img1Upload").css("backgroundImage", "url(images/w_stu.jpg)");
+            } else {
+                $("#img1Upload").css("backgroundImage", "url(/" + imgList['image_1'] + ")");
+            }
+            if(imgList['image_2'] == "") {
+                $("#img2Upload").css("backgroundImage", "url(images/w_stu.jpg)");
+            } else {
+                $("#img2Upload").css("backgroundImage", "url(/" + imgList['image_2'] + ")");
+            }
+            if(imgList['image_3'] == "") {
+                $("#img3Upload").css("backgroundImage", "url(images/w_stu.jpg)");
+            } else {
+                $("#img3Upload").css("backgroundImage", "url(/" + imgList['image_3'] + ")");
+            }
+        } else {
+
+        }
+        var loptions;
+        //为店铺分类的元素绑定  选择项改变事件
+        $("#storecate").on("change", function() {
+            console.log($("#storecate").val());
+            localStorage.setItem('duval', $("#storecate").val());
+            loptions = document.getElementById('storecate').options;
+            // console.log(loptions);
+            // console.log(loptions.length);
+            // loptions=options = document.getElementById('storecate').options;
+        })
+        // $("#storecate").on("click",function(){
+        // 	$("#storecate").val(fls);
+        // 	})
+        if(localStorage.getItem('fl')) {
+            // var fls=localStorage.getItem('fl');
+            // console.log(fls);
+            // $("#storecate").val(fls);
+            // console.log($("#storecate").val());
+            // $(".ltans").css("display","block");
+        }
+        //为重新选店铺绑定鼠标点击事件
+        $(".ltans").on("click", function() {
+            $(".ltans").css("display", "none");
+        })
+        if(localStorage.getItem('position')) {
+            position = localStorage.getItem('position').split(',');
+            console.log(position);
+            $("#lng").val(position[0]);
+            $("#lat").val(position[1]);
+        }
+        if(localStorage.getItem('mapAddress')) {
+            $("#local").val(localStorage.getItem('mapAddress'));
+        }
+        function set_huancun_s(){
+            //找到input元素name=o2o元素遍历   index是开始的位置   object是遍历的当前元素
+            $("input[name=o2o]").each(function(index, obj) {
+                if(obj.checked) {
+                    //如果当前元素的checked的属性为true话    就将offon的值设置为当前元素的值
+                    localStorage.setItem('offon', obj.value); //店铺类型
+                    console.log(localStorage.getItem('offon'));
+                }
+            });
+            localStorage.setItem('limgLists', JSON.stringify(imgList)); //店铺图片
+            localStorage.setItem('dplxsz', $("#storecate").val()); //店铺分类
+            localStorage.setItem('dpnm', $("#storename").val()); //店铺名字
+            localStorage.setItem('dptel1', $("#tel").val()); //电话1
+            localStorage.setItem('dptel2', $("#tel1").val()); //电话2
+            localStorage.setItem('dpxx', $("#activity").val()); //店铺活动信息
+            localStorage.setItem('dpjs', $("#description").val()); //店铺介绍
+        }
+        function huancun_s(){
+            if(localStorage.getItem('position')) {
+                position = localStorage.getItem('position').split(',');
+                console.log(position);
+                $("#lng").val(position[0]);
+                $("#lat").val(position[1]);
+            }
+            if(localStorage.getItem('dpnm')) {
+                //设置店铺的名称
+                $("#storename").val(localStorage.getItem('dpnm'));
+            }
+            if(localStorage.getItem('dptel1'))
+            {   //设置联系方式1
+                $("#tel").val(localStorage.getItem('dptel1'));
+            }
+            if(localStorage.getItem('dptel2')) {
+                //设置联系方式2
+                $("#tel1").val(localStorage.getItem('dptel2'));
+            }
+            if(localStorage.getItem('dpxx')) {
+                //设置店铺的信息
+                $("#activity").val(localStorage.getItem('dpxx'));
+            }
+            if(localStorage.getItem('dpjs')) {
+                //设置店铺的简介
+                $("#description").val(localStorage.getItem('dpjs'));
+            }
+            //为店铺分类
+            if(localStorage.getItem('duval')){
+                $("#storecate option[value='"+localStorage.getItem("duval")+"']").attr("selected",true);
+            }
+            if(localStorage.getItem('mapAddress')){
+                $("#local").val(localStorage.getItem('mapAddress'));//设置val值
+            }
+            if(localStorage.getItem('offon')) {
+                var offons = localStorage.getItem('offon');
+                console.log(offons);
+                if(offons == "online") {//
+                    $("section .type ul li").css("background-image", "url('images/jtchoose.png')");
+                    //parent()遍历$(".z_input")的元素的父元素    并设置他的背景图片
+                    $(".z-input").parent().css("background-image", "url('images/jtchoose1.png')");
+                } else {
+                    $("section .type ul li").css("background-image", "url('images/jtchoose.png')");
+                    //parent()遍历$(".z_input1")的元素的父元素    并设置他的背景图片
+                    $(".z-input1").parent().css("background-image", "url('images/jtchoose1.png')");
+                }
+
+                $("input[name=o2o]").each(function(index, obj) {
+                    if(obj.value == offons) {
+                        obj.checked = true;
+                        // console.log($(this).index());
+                        // $("section .type ul li").css("background-image","url('images/jtchoose1.png')");
+                        // $(this).parent().css("background-image","url('images/jtchoose1.png')");
+                    }
+                });
+            }
+        }
+        //商家分类
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            url: Url + '/api/index.php?n=collection&f=shopclass',
+            data: {
+                token: tokens
+            },
+            success: function(data) {
+                // console.log(data);
+                if(data) {
+                    var list = data.data;
+                    // console.log(list);
+                    $("#storecate").html('').append('<option value="">请选择</option>');
+                    var html;
+                    cid = 0;
+                    if(shopInfo != '') {
+                        cid = shopInfo.cate.cate_id;
+                    }
+                    for(var i = 0; i < list.length; i++) {
+                        select = '';
+                        if(cid == list[i].cate_id) {
+                            select = 'selected';
+                        }
+                        html = '<option value="' + list[i].cate_id + '" ' + select + '>' + list[i].cate_name + '</option>';
+                        $('#storecate').append(html);
+                    }
+                    cateList = data.data;
+                    leixing();
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            },
+        });
+
+        function leixing() {
+            if(localStorage.getItem('dplxsz')) {
+                var dplxszs = localStorage.getItem('dplxsz');
+                //设置ID为storecate的元素的值为dplxszs
+                $("#storecate").val(dplxszs);
+                var lloptions = document.getElementById('storecate').options;
+                for(i in lloptions) {
+                    if(lloptions[i].value == dplxszs) {
+                        document.getElementById('storecate').options.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            url: Url + '/api/index.php?n=shop_center&f=getUserInfo',
+            data: {
+                token: tokens
+            },
+            success: function(res) {
+                //				 console.log(data);
+                if(res.ret == 'ok') {
+                    $("#province").val(res.data.province);
+                    $("#city").val(res.data.city);
+                    $("#area").val(res.data.area);
+                    $('#area_cn').val(res.data.province_cn + ' ' + res.data.city_cn + ' ' + res.data.area_cn);
+                    userInfo = res.data;
+                    adds = res.data.city_cn + ' ' + res.data.area_cn;
+                    localStorage.setItem('aadds', adds);
+                    console.log(adds)
+                    if(res.data.type == 2) {
+                        ifsj();
+                    }
+                } else {
+                    alert('请先补全您的区域信息');
+                    history.back();
+                }
+            },
+            error: function(data) {
+                console.log(data);
+            },
+        });
+        $(".dpxy").on("click", function() {//class为dpxy元素绑定鼠标点击事件
+            location.href = "dpxy.html";
+        })
+        var ass = localStorage.getItem('mapAddress')
+        console.log($("#local").val());
+        console.log($("#local"));
+        function ifsj() {
+            $.ajax({
+                type: 'POST',
+                dataType: 'JSON',
+                url: Url + '/api/index.php?n=shop_center&f=getShopInfo',
+                data: {
+                    token: tokens
+                },
+                success: function(res) {
+                    if(res.ret == 'ok') {
+                        shopInfo = res.data;
+                        console.log(shopInfo);
+                        $("#storename").val(res.data.store_name);
+                        $("#local").val(res.data.address);
+                        $("input[name=o2o]").each(function(index, obj) {
+                            if(obj.value == res.data.o2o) {
+                                obj.checked = true;
+                                // console.log(res.data.o2o);
+                                if(res.data.o2o == "online") {
+                                    $("section .type ul li").css("background-image", "url('images/jtchoose.png')");
+                                    $(".z-input").parent().css("background-image", "url('images/jtchoose1.png')");
+                                } else {
+                                    $("section .type ul li").css("background-image", "url('images/jtchoose.png')");
+                                    $(".z-input1").parent().css("background-image", "url('images/jtchoose1.png')");
+                                }
+
+                            }
+                        });
+                        if(cateList != '') {
+                            options = document.getElementById('storecate').options;
+                            for(i in options) {
+                                if(options[i].value == shopInfo.cate.cate_id) {
+                                    document.getElementById('storecate').options.selectedIndex = i;
+                                    break;
+                                }
+                            }
+                        }
+                        if(shopInfo.store_banner==""){
+                            imgList['store_banner']=(shopInfo.store_banner)
+                        }else{
+                            imgList['store_banner']=(shopInfo.store_banner).slice(0,-4).concat(".jpg");
+                        }
+
+                        console.log(imgList['store_banner']);
+                        if(shopInfo.store_banner != '') {
+                            $("#avatorUpload").css('background-image', 'url(' + Url + imgList['store_banner'] + ')');
+                        }
+                        if(shopInfo.store_logo==""){
+                            imgList['store_logo']=(shopInfo.store_logo)
+                        }else{
+                            imgList['store_logo']=(shopInfo.store_logo).slice(0,-4).concat(".jpg");
+                        }
+                        console.log(shopInfo.store_logo);
+                        if(shopInfo.store_logo != '') {
+                            $("#logoUpload").css('background-image', 'url(' + Url + imgList['store_logo'] + ')');
+                        }
+                        if(shopInfo.image_1==""){
+                            imgList['image_1']=(shopInfo.image_1)
+                        }else{
+                            imgList['image_1']=(shopInfo.image_1).slice(0,-4).concat(".jpg");
+                        }
+                        if(shopInfo.image_1 != '') {
+                            $("#img1Upload").css('background-image', 'url(' + Url + imgList['image_1'] + ')');
+                        }
+                        if(shopInfo.image_2==""){
+                            imgList['image_2']=(shopInfo.image_2)
+                        }else{
+                            imgList['image_2']=(shopInfo.image_2).slice(0,-4).concat(".jpg");
+                        }
+                        if(shopInfo.image_2 != '') {
+                            $("#img2Upload").css('background-image', 'url(' + Url + imgList['image_2'] + ')');
+                        }
+                        if(shopInfo.image_3==""){
+                            imgList['image_3']=(shopInfo.image_3)
+                        }else{
+                            imgList['image_3']=(shopInfo.image_3).slice(0,-4).concat(".jpg");
+                        }
+                        if(shopInfo.image_3 != '') {
+                            $("#img3Upload").css('background-image', 'url(' + Url +imgList['image_3']  + ')');
+                        }
+
+                        $('#tel').val(shopInfo.tel);
+                        $('#tel1').val(shopInfo.tel1);
+                        $("#activity").val(shopInfo.activity);
+                        $("#description").val(shopInfo.description);
+                        $("#lng").val(shopInfo.lng);
+                        $("#lat").val(shopInfo.lat);
+                        $("#province").val(shopInfo.province);
+                        $("#city").val(shopInfo.city);
+                        $("#area").val(shopInfo.area);
+                        console.log(shopInfo.lng);
+                        console.log(shopInfo.lat);
+                        huancun_s();
+                    } else {
+                        alert('请先补全您的区域信息');
+                        history.back();
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                },
+            });
+        }
+//   压  缩  图  片
+        //查找上传文件的ID为file1的input的元素  存入file1中
+        var file1=document.getElementById("file1");
+        var file2=document.getElementById("file2");
+        var file3=document.getElementById("file3");
+        var file4=document.getElementById("file4");
+        var file5=document.getElementById("file5");
+        //    用于压缩图片的canvas
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext('2d');
+        //    瓦片canvas
+        var tCanvas = document.createElement("canvas");
+        var tctx = tCanvas.getContext("2d");
+        //上传文件的限制大小2M
+        var maxsize = 2048 * 1024;
+        //点击ID为avatorUpload的元素  绑定点击事件   在事件处理函数中  为file1绑定点击事件
+        $("#avatorUpload").on("click",function(){
+            file1.click();
+        })
+                .on("touchstart", function() {
+                    $(this).addClass("touch")
+                    console.log($(this));
+                })
+                .on("touchend",function(){
+                    $(this).removeClass("touch")
+                })
+        $("#logoUpload").on("click",function(){
+            file2.click();
+        })
+                .on("touchstart", function() {
+                    $(this).addClass("touch")
+                    console.log($(this));
+                })
+                .on("touchend",function(){
+                    $(this).removeClass("touch")
+                })
+        $("#img1Upload").on("click",function(){
+            file3.click();
+        })
+                .on("touchstart", function() {
+                    $(this).addClass("touch")
+                    console.log($(this));
+                })
+                .on("touchend",function(){
+                    $(this).removeClass("touch")
+                })
+        $("#img2Upload").on("click",function(){
+            file4.click();
+        })
+                .on("touchstart", function() {
+                    $(this).addClass("touch")
+                    console.log($(this));
+                })
+                .on("touchend",function(){
+                    $(this).removeClass("touch")
+                })
+        $("#img3Upload").on("click",function(){
+            file5.click();
+        })
+                .on("touchstart", function() {
+                    $(this).addClass("touch")
+                    console.log($(this));
+                })
+                .on("touchend",function(){
+                    $(this).removeClass("touch")
+                })
+        //为filechooser绑定onchange事件
+        file1.onchange = function() {
+            console.log( $("#file1"));
+            //如果选择为空   返回操作
+            if (!this.files.length) return;
+            //创建上传图片的的数组
+            var files = Array.prototype.slice.call(this.files);
+            //如果file的长度大于1的话    就alert   最多同时只可上传1张图片
+            if (files.length > 1) {
+                alert("一次只可上传1张图片");
+                return;
+            }
+            //遍历上传图片的文件数组   可不用遍历  直接去即可
+            files.forEach(function(file, i) {
+                //判断图片的格式
+                if (!/\/(?:jpeg|png|gif)/i.test(file.type)) return;
+//            实例化一个FileReader
+                var reader = new FileReader();
+                console.log(reader);
+                console.log(i);//第几个图片
+                /*var li = document.createElement("li");*/
+                //
+                /*var imgDiv = document.createElement("div");*/
+//          获取图片大小
+                console.log(file.size);
+                var size = file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB";
+                /* $("").append($(imgDiv));*/
+                console.log(size);
+                reader.onload = function() {
+                    //获取U图片的URL地址
+                    var result = this.result;
+                    console.log(result);
+                    var img = new Image();
+                    img.src = result;
+                    console.log(img.src);
+                    $("#avatorUpload").css("background-image", "url(" + result + ")");
+                    //如果图片大小小于2048kb，则直接上传
+                    if (result.length <= maxsize) {
+                        img = null;
+                        upload(result, file.type, $("#avatorUpload"));
+                        return;
+                    }
+//      图片加载完毕之后进行压缩，然后上传
+                    if (img.complete) {
+                        callback();
+                    } else {
+                        img.onload = callback;
+                    }
+
+                    function callback() {
+                        var data = compress(img);
+
+                        upload(data, file.type, $("#avatorUpload"));
+
+                        img = null;
+                    }
+
+                };
+
+                reader.readAsDataURL(file);
+            })
+        };
+        file2.onchange = function() {
+            console.log( $("#file2"));
+            //如果选择为空   返回操作
+            if (!this.files.length) return;
+            //创建上传图片的的数组
+            var files = Array.prototype.slice.call(this.files);
+            //如果file的长度大于1的话    就alert   最多同时只可上传1张图片
+            if (files.length > 1) {
+                alert("一次只可上传1张图片");
+                return;
+            }
+            //遍历上传图片的文件数组   可不用遍历  直接去即可
+            files.forEach(function(file, i) {
+                //判断图片的格式
+                if (!/\/(?:jpeg|png|gif)/i.test(file.type)) return;
+//            实例化一个FileReader
+                var reader = new FileReader();
+                console.log(reader);
+                console.log(i);//第几个图片
+                /*var li = document.createElement("li");*/
+                //
+                /*var imgDiv = document.createElement("div");*/
+//          获取图片大小
+                console.log(file.size);
+                var size = file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB";
+                /* $("").append($(imgDiv));*/
+                console.log(size);
+                reader.onload = function() {
+                    var result = this.result;
+                    var img = new Image();
+                    img.src = result;
+
+                    $("#logoUpload").css("background-image", "url(" + result + ")");
+
+                    //如果图片大小小于2048kb，则直接上传
+                    if (result.length <= maxsize) {
+                        img = null;
+
+                        upload(result, file.type, $("#logoUpload"));
+
+                        return;
+                    }
+
+//      图片加载完毕之后进行压缩，然后上传
+                    if (img.complete) {
+                        callback();
+                    } else {
+                        img.onload = callback;
+                    }
+
+                    function callback() {
+                        var data = compress(img);
+
+                        upload(data, file.type, $("#logoUpload"));
+
+                        img = null;
+                    }
+
+                };
+
+                reader.readAsDataURL(file);
+            })
+        };
+        file3.onchange = function() {
+            console.log( $("#file3"));
+            //如果选择为空   返回操作
+            if (!this.files.length) return;
+            //创建上传图片的的数组
+            var files = Array.prototype.slice.call(this.files);
+            //如果file的长度大于1的话    就alert   最多同时只可上传1张图片
+            if (files.length > 1) {
+                alert("一次只可上传1张图片");
+                return;
+            }
+            //遍历上传图片的文件数组   可不用遍历  直接去即可
+            files.forEach(function(file, i) {
+                //判断图片的格式
+                if (!/\/(?:jpeg|png|gif)/i.test(file.type)) return;
+//            实例化一个FileReader
+                var reader = new FileReader();
+                console.log(reader);
+                console.log(i);//第几个图片
+                /*var li = document.createElement("li");*/
+                //
+                /*var imgDiv = document.createElement("div");*/
+//          获取图片大小
+                console.log(file.size);
+                var size = file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB";
+                /* $("").append($(imgDiv));*/
+                console.log(size);
+                reader.onload = function() {
+                    var result = this.result;
+                    var img = new Image();
+                    img.src = result;
+
+                    $("#img1Upload").css("background-image", "url(" + result + ")");
+
+                    //如果图片大小小于2048kb，则直接上传
+                    if (result.length <= maxsize) {
+                        img = null;
+
+                        upload(result, file.type, $("#img1Upload"));
+
+                        return;
+                    }
+
+//      图片加载完毕之后进行压缩，然后上传
+                    if (img.complete) {
+                        callback();
+                    } else {
+                        img.onload = callback;
+                    }
+
+                    function callback() {
+                        var data = compress(img);
+                        console.log(data);
+                        upload(data, file.type, $("#img1Upload"));
+
+                        img = null;
+                    }
+
+                };
+
+                reader.readAsDataURL(file);
+            })
+        };
+        file4.onchange = function() {
+            console.log( $("#file4"));
+            //如果选择为空   返回操作
+            if (!this.files.length) return;
+            //创建上传图片的的数组
+            var files = Array.prototype.slice.call(this.files);
+            //如果file的长度大于1的话    就alert   最多同时只可上传1张图片
+            if (files.length > 1) {
+                alert("一次只可上传1张图片");
+                return;
+            }
+            //遍历上传图片的文件数组   可不用遍历  直接去即可
+            files.forEach(function(file, i) {
+                //判断图片的格式
+                if (!/\/(?:jpeg|png|gif)/i.test(file.type)) return;
+//            实例化一个FileReader
+                var reader = new FileReader();
+                console.log(reader);
+                console.log(i);//第几个图片
+                /*var li = document.createElement("li");*/
+                //
+                /*var imgDiv = document.createElement("div");*/
+//          获取图片大小
+                console.log(file.size);
+                var size = file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB";
+                /* $("").append($(imgDiv));*/
+                console.log(size);
+                reader.onload = function() {
+                    var result = this.result;
+                    var img = new Image();
+                    img.src = result;
+
+                    $("#img2Upload").css("background-image", "url(" + result + ")");
+
+                    //如果图片大小小于2048kb，则直接上传
+                    if (result.length <= maxsize) {
+                        img = null;
+
+                        upload(result, file.type, $("#img2Upload"));
+
+                        return;
+                    }
+
+//      图片加载完毕之后进行压缩，然后上传
+                    if (img.complete) {
+                        callback();
+                    } else {
+                        img.onload = callback;
+                    }
+
+                    function callback() {
+                        var data = compress(img);
+
+                        upload(data, file.type, $("#img2Upload"));
+
+                        img = null;
+                    }
+
+                };
+
+                reader.readAsDataURL(file);
+            })
+        };
+        file5.onchange = function() {
+            console.log( $("#file5"));
+            //如果选择为空   返回操作
+            if (!this.files.length) return;
+            //创建上传图片的的数组
+            var files = Array.prototype.slice.call(this.files);
+            //如果file的长度大于1的话    就alert   最多同时只可上传1张图片
+            if (files.length > 1) {
+                alert("一次只可上传1张图片");
+                return;
+            }
+            //遍历上传图片的文件数组   可不用遍历  直接去即可
+            files.forEach(function(file, i) {
+                //判断图片的格式
+                if (!/\/(?:jpeg|png|gif)/i.test(file.type)) return;
+//            实例化一个FileReader
+                var reader = new FileReader();
+                console.log(reader);
+                console.log(i);//第几个图片
+                /*var li = document.createElement("li");*/
+                //
+                /*var imgDiv = document.createElement("div");*/
+//          获取图片大小
+                console.log(file.name);
+                var size = file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB";
+                /* $("").append($(imgDiv));*/
+                console.log(size);
+                reader.onload = function() {
+                    var result = this.result;
+                    var img = new Image();
+                    img.src = result;
+
+                    $("#img3Upload").css("background-image", "url(" + result + ")");
+
+                    //如果图片大小小于2048kb，则直接上传
+                    if (result.length <= maxsize) {
+                        img = null;
+                        //图片的路径   图片的类型   //显示图片的ID
+                        upload(result, file.type, $("#img3Upload"));
+
+                        return;
+                    }
+
+//      图片加载完毕之后进行压缩，然后上传
+                    if (img.complete) {
+                        callback();
+                    } else {
+                        img.onload = callback;
+                    }
+
+                    function callback() {
+                        var data = compress(img);
+
+                        upload(data, file.type, $("#img3Upload"));
+
+                        img = null;
+                    }
+
+                };
+
+                reader.readAsDataURL(file);
+            })
+        };
+        //    使用canvas对大图片进行压缩
+        function compress(img) {
+            var initSize = img.src.length;
+            var width = img.width;
+            var height = img.height;
+
+            //如果图片大于四百万像素，计算压缩比并将大小压至400万以下
+            var ratio;
+            if ((ratio = width * height / 4000000) > 1) {
+                ratio = Math.sqrt(ratio);
+                width /= ratio;
+                height /= ratio;
+            } else {
+                ratio = 1;
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+//        铺底色
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            //如果图片像素大于100万则使用瓦片绘制
+            var count;
+            if ((count = width * height / 1000000) > 1) {
+                count = ~~(Math.sqrt(count) + 1); //计算要分成多少块瓦片
+
+//            计算每块瓦片的宽和高
+                var nw = ~~(width / count);
+                var nh = ~~(height / count);
+
+                tCanvas.width = nw;
+                tCanvas.height = nh;
+
+                for (var i = 0; i < count; i++) {
+                    for (var j = 0; j < count; j++) {
+                        tctx.drawImage(img, i * nw * ratio, j * nh * ratio, nw * ratio, nh * ratio, 0, 0, nw, nh);
+
+                        ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);
+                    }
+                }
+            } else {
+                ctx.drawImage(img, 0, 0, width, height);
+            }
+
+            //进行最小压缩
+            var ndata = canvas.toDataURL('image/jpeg', 0.1);
+
+            console.log('压缩前：' + initSize);
+            console.log('压缩后：' + ndata.length);
+            console.log('压缩率：' + ~~(100 * (initSize - ndata.length) / initSize) + "%");
+
+            tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0;
+
+            return ndata;
+        }
+
+        //    图片上传，将base64的图片转成二进制对象，塞进formdata上传
+        //upload的第一个参数
+        function upload(basestr,type,$img) {
+            var tokens=localStorage.getItem('token');
+            var tyname = ($img.selector).substring(1);
+            //console.log( $img.selector);
+            var n=document.getElementById(tyname);
+            console.log(tyname);
+           //console.log( $img);
+            var typename= $(n).attr('name');
+            console.log(typename);
+            var blob=basestr;
+            console.log(blob);
+            var xhr = new XMLHttpRequest();
+            var formdata = getFormData();
+            formdata.append('imagefile', blob);
+            formdata.append('token', tokens);
+            formdata.append('typename', typename);
+            console.log(formdata);
+            var url=Url+  '/api/index.php?n=yf&f=qd_storeimage'
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var txt=JSON.parse(xhr.responseText)
+                    console.log(txt);
+                    if(txt.ret=="err"){
+                        alert("上传失败"+txt.msg)
+                        console.log('上传失败：' + xhr.responseText);
+                    }else{
+                        console.log('上传成功：' + xhr.responseText);
+                        var tn=txt.data;
+                        console.log(tn);
+                        imgList[typename]=tn;
+                        console.log(imgList);
+                        console.log(imgList[typename]);
+                    }
+                }
+            };
+            xhr.open('post',url,true );
+            //发送请求的信息
+            xhr.send(formdata);
+        }
+
+        /**
+         /**
+         * 获取formdata
+         */
+        function getFormData() {
+            var isNeedShim = ~navigator.userAgent.indexOf('Android')
+                    && ~navigator.vendor.indexOf('Google')
+                    && !~navigator.userAgent.indexOf('Chrome')
+                    && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534;
+
+            return isNeedShim ? new FormDataShim() : new FormData()
+        }
+
+        /**
+         * formdata 补丁, 给不支持formdata上传blob的android机打补丁
+         * @constructor
+         */
+        function FormDataShim() {
+            console.warn('using formdata shim');
+            var o = this,
+                    parts = [],
+                    boundary = Array(21).join('-') + (+new Date() * (1e16 * Math.random())).toString(36),
+                    oldSend = XMLHttpRequest.prototype.send;
+            this.append = function (name, value, filename) {
+                parts.push('--' + boundary + '\r\nContent-Disposition: form-data; name="' + name + '"');
+                if (value instanceof Blob) {
+                    parts.push('; filename="' + (filename || 'blob') + '"\r\nContent-Type: ' + value.type + '\r\n\r\n');
+                    parts.push(value);
+                }
+                else {
+                    parts.push('\r\n\r\n' + value);
+                }
+                parts.push('\r\n');
+            };
+            // Override XHR send()
+            XMLHttpRequest.prototype.send = function (val) {
+                var fr,
+                        data,
+                        oXHR = this;
+                if (val === o) {
+                    // Append the final boundary string
+                    parts.push('--' + boundary + '--\r\n');
+                    // Create the blob
+                    data = getBlob(parts);
+                    // Set up and read the blob into an array to be sent
+                    fr = new FileReader();
+                    fr.onload = function () {
+                        oldSend.call(oXHR, fr.result);
+                    };
+                    fr.onerror = function (err) {
+                        throw err;
+                    };
+                    fr.readAsArrayBuffer(data);
+                    // Set the multipart content type and boudary
+                    this.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+                    XMLHttpRequest.prototype.send = oldSend;
+                }
+                else {
+                    oldSend.call(this, val);
+                }
+            };
+        }
+
+        /*
+         * 同意相关条款的店铺相关的操作
+         * */
+        var re = true;//声明一个re变量   将值设置为true
+        $(".re-term-img").on("click", function() {
+            //为class为re-term-img绑定鼠标点击事件
+            if(re) {
+                //re如果是true 的话  就将当前元素的   添加一个class为re—term-img1
+                $(this).addClass("re-term-img1");
+                //将class为tj下的span的class设置为tjsp
+                $(".tj span").addClass("tjsp");
+                re = false;
+                //最后将re设置为false
+            } else {
+                $(this).removeClass("re-term-img1");
+                $(".tj span").removeClass("tjsp");
+                re = true;
+            }
+        })
+
+
+       /* console.log(ass)*/
+      /*  var zass = ass.substring(0, 7);*/
+        /*console.log(zass)*/
+        // $("#submit").on('click',function(){
+        $(".tj").on('click', ".tjsp", function() {
+            console.log("点击提交");
+            /*if(zass != adds) {
+                alert("店铺地址不一致，请重新选择");
+                location.href = 'bdmap.html';
+            } else {*/
+            if(1){
+                var o2o = '';
+                $("input[name=o2o]").each(function(index, obj) {
+                    if(obj.checked) {
+                        o2o = obj.value;
+                    }
+                });
+                data = {
+                    'token': localStorage.getItem('token'),
+                    'store_name': $("#storename").val(),
+                    'o2o': o2o,
+                    'store_banner': imgList['store_banner'],
+                     'store_logo': imgList['store_logo'],
+                     'image_1': imgList['image_1'],
+                     'image_2': imgList['image_2'],
+                     'image_3': imgList['image_3'],
+                    'province': $("#province").val(),
+                    'city': $("#city").val(),
+                    'area': $("#area").val(),
+                    'address':ass,
+                    'lat': $("#lat").val(),
+                    'lng': $("#lng").val(),
+                    'tel1': $("#tel").val(),
+                    'tel2': $("#tel1").val(),
+                    'activity': $("#activity").val(),
+                    'description': $("#description").val(),
+                    'cate_id': $("#storecate").val()
+                }
+                console.log(data.lat);
+                console.log(data.lng);
+                if(data.store_name == '') {
+                    alert('请填写商店名称');
+                    return;
+                }
+                if(data.o2o == '') {
+                    alert('请选择分类');
+                    return;
+                }
+                if(data.store_banner == '') {
+                    alert('请上传执照');
+                    return;
+                }
+                if(data.store_logo == '') {
+                    alert('请上传店铺照片');
+                    return;
+                }
+                if(data.image_1 == '') {
+                    alert('请上传幻灯片');
+                    return;
+                }
+                if(data.image_2 == '') {
+                    alert('请上传幻灯片');
+                    return;
+                }
+                if(data.image_3 == '') {
+                    alert('请上传幻灯片');
+                    return;
+                }
+                if(data.address == '') {
+                    alert('请填写商铺详细地址');
+                    return;
+                }
+                if(data.tel == '') {
+                    alert('请填写商店电话');
+                    return;
+                }
+                if(data.tel1 == '') {
+                    alert('请填写商店电话');
+                    return;
+                }
+                //			if(data.description == ''){
+                //				alert('请填写商铺简介');
+                //				return;
+                //			}
+                //			if(data.activity == ''){
+                //				alert('请填写活动');
+                //				return;
+                //			}
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'JSON',
+                    url: Url + '/api/index.php?n=collection&f=shopupgrade',
+                    data: data,
+                    success: function(res) {
+                        //console.log(data);
+                        if(res.ret == 'ok') {
+                            set_huancun_s();
+                            alert('操作成功');
+                            // localStorage.clear();
+                            localStorage.setItem('limgLists', "");
+                            localStorage.setItem('fl', "");
+                            localStorage.setItem('dplxsz', "");
+                            if(ltypes == 1) {
+                                location.href = "z-member.html";
+                            } else if(ltypes == 2) {
+                                location.href = "z-unicon.html";
+                            }
+                        } else {
+                            alert(res.msg);
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    },
+                });
+            }
+
+        });
+
+    });
+</script>
+</html>

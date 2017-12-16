@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人资料</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/personalData.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		form{
+			display: none;
+		}
+		.avatorUpload {
+			margin: 0 auto;
+			position: relative;
+			width: 80px;
+			height:80px;
+			background-size: 100%;
+			/*background-image: url('../images/user.png');*/
+			background-repeat:no-repeat;
+			-webkit-background-size:cover;
+			background-size:cover;
+			background-position: center center;
+			/*border-radius: 50%;*/
+			overflow: hidden;
+		}
+		.avatorUpload .uploadify-button {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+		}
+		.avatorUpload .uploadify-queue {
+			display: none;
+		}
+		.avatarImg {
+			width: 10rem;
+			display: block;
+		}
+		.no_change{
+			height: 27.5rem;
+			width: 100%;
+		}
+		#avatorUpload{
+			background-size: 100% 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="d_header">
+	<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+		<p class="p1">
+		<img src="images/back.png" alt="返回首页">
+		</p>
+	</a>
+		<p class="p2">个人资料</p>
+	</div>
+	<div class="head_set">
+		<span class="ltx">头像</span>
+		<p>
+			<!-- <img src="images/headerf.png" alt="" class="hs_img1"> -->
+			<span id="avatorUpload" class="avatorUpload hs_img1" style="width:10rem;height:10rem;background-size:cover;"></span>
+			<img src="images/left.png" alt="" class="hs_img2">
+		</p>
+	</div>
+	
+	<ul class="no_change">
+		<li>
+			<p>昵称<span class="l-name"></span></p>
+		</li>
+		<li>
+			<p>账号<span class="l-number"></span></p>
+		</li>
+		<li>
+			<p>地区<span class="l-city"></span></p>
+		</li>
+	</ul>
+	<div class="kong"></div>
+	<ul class="change">
+		<li class="cli1">
+			<p>我的二维码<a href="mycode.html"><img src="images/left.png" alt=""></a></p>
+		</li>
+		<li class="cli2">
+			<p>性别 <span class="bm">保密</span><span class="nv">男 <i class="i1"><img src="images/women.png" alt=""></i> 女 <i class="i2"><img src="images/women.png" alt=""></i></span></p>
+		</li>
+		<li class="cli3">
+			<p>生日<a href="birthday2.html"><img src="images/left.png" alt=""></a></p>
+		</li>
+		<li class="cli4">
+			<p>邮箱<a href="mailbox.html"><img src="images/left.png" alt=""></a></p>
+		</li>
+		<li class="cli5">
+			<p>QQ号码<a href="qq.html"><img src="images/left.png" alt=""></a></p>
+		</li>
+	</ul>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+<script src="js/jquery.Huploadify.js"></script>
+
+<script>
+	$(".cli1").click(function(){
+			location.href = "mycode.html";
+		});
+	$(".cli3").click(function(){
+			location.href = "birthday2.html";
+		});
+	$(".cli4").click(function(){
+			location.href = "mailbox.html";
+		});
+	$(".cli5").click(function(){
+			location.href = "qq.html";
+		});
+	$(".bm").on("click",function(){
+		$(this).css("display","none");
+		$(".nv").css("display","block");
+	})
+
+	$(function(){
+		$("i").on("touchend",function(){
+			var src="images/man.png",src1="images/women.png";
+			$(".i1").find("img").attr("src",src1);
+			$(".i2").find("img").attr("src",src1);
+			// if ($(this).find("img").attr("src")==src) {
+			// 	$(this).find("img").attr("src",src1);
+			// }else{
+			// 	$(this).find("img").attr("src",src);
+			// }
+			$(this).find("img").attr("src",src);
+			// alert($(this).index());
+			var num=$(this).index()+1;
+			$.ajax({	
+			           type: 'POST',
+			           url: Url + "api/index.php?n=user&f=setsex",
+			         	dataType: "json",
+			       	data: { token : tokens,
+			       		gender:num},
+			        	success: function(data){
+			                      // console.log(data);
+			                     
+			                      },
+			            error:function(data){
+			                      	  // console.log(data);
+			                      }
+			})
+		})
+	})
+	var tokens=localStorage.getItem ("token");
+	$(".tok").val(tokens);
+	var html="";
+		$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=user&f=information",
+		         	dataType: "json",
+		       	data: { token : tokens},
+		        	success: function(data){
+		                      // console.log(data);
+		                      var xian=data.data.area;
+		                      var shi=data.data.city;
+		                      var tx=data.data.portrait;
+		                      var sheng=data.data.province;
+		                      var name=data.data.real_name;
+		                      var phone=data.data.user_name;
+		                       var sex=data.data.gender;
+		                       var src="images/man.png",src1="images/women.png";
+		                      if (sex==1) {
+		                      		$(".i1").find("img").attr("src",src);
+					$(".i2").find("img").attr("src",src1);
+					$(".bm").css("display","none");
+					$(".nv").css("display","block");
+		                      }else if (sex==0){
+		                      		$(".i1").find("img").attr("src",src1);
+					$(".i2").find("img").attr("src",src);
+					$(".bm").css("display","none");
+					$(".nv").css("display","block");
+		                      }else{
+		                      		$(".i1").find("img").attr("src",src1);
+					$(".i2").find("img").attr("src",src1);
+					$(".bm").css("display","block");
+					$(".nv").css("display","none");
+		                      }
+		                      // $('.comm-head').find("img").attr("src",tx);
+		                      $('.l-city').html(sheng+" "+shi+" "+xian);
+		                      $('#avatorUpload').css("backgroundImage","url("+Url+""+tx+")");
+		                      $('.l-name').html(name);
+		                      $('.l-number').html(phone);
+		                  },
+		                  error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+// 头像上传
+	// $(".hs_img1").click(function(){
+	// $("#portrait").click();
+	// $("#portrait").change(function(){
+	// 	var objUrl = getObjectURL(this.files[0]) ;
+	// 	console.log("objUrl = "+objUrl) ;
+	// 	if (objUrl) {
+	// 		$(".hs_img1").attr("src", objUrl) ;
+	// 		$("form").submit();
+	// 	}
+	// }) ;
+	//建立一個可存取到該file的url
+	// function getObjectURL(file) {
+	// 	var url = null ; 
+	// 	if (window.createObjectURL!=undefined) { // basic
+	// 		url = window.createObjectURL(file) ;
+	// 	} else if (window.URL!=undefined) { // mozilla(firefox)
+	// 		url = window.URL.createObjectURL(file) ;
+	// 	} else if (window.webkitURL!=undefined) { // webkit or chrome
+	// 		url = window.webkitURL.createObjectURL(file) ;
+	// 	}
+	// 	return url;
+	// }
+// });
+function getData(typename,id){
+			var uploadData = {
+				auto: true,
+				fileTypeExts: '*.jpg;*.jpeg;*.png;*.JPG;*.JPEG;*.PNG;',
+				multi: false,
+				fileObjName: typename,
+				formData: {
+					'token': localStorage.getItem('token'),
+					
+				},
+				fileSizeLimit: 99999999999,
+				showUploadedPercent: false,
+				showUploadedSize: false,
+				removeTimeout: 9999999,
+				uploader: Url+"/api/index.php?n=wendy&f=update_portrait",
+				//uploader:"http://aapi.vipiao.com/client" + "/user/header",
+				//uploader: api"' + Url + 'uploadFace",
+				onUploadStart: function(file) {
+					console.log(file.name + '开始上传');
+				},
+				onInit: function(obj) {
+					console.log('初始化');
+				},
+				onUploadComplete: function(file, res) {
+					console.log(res);
+					res = JSON.parse(res);
+					$("#"+id).css("backgroundImage", "url('/"+res.data+"')");
+					imgList[typename] = res.data;
+
+				},
+				onCancel: function(file) {
+					console.log(file.name + '删除成功');
+				},
+				onClearQueue: function(queueItemCount) {
+					console.log('有' + queueItemCount + '个文件被删除了');
+				},
+				onDestroy: function() {
+					console.log('destroyed!');
+				},
+				onSelect: function(file) {
+					console.log(file.name + '加入上传队列');
+				},
+				onQueueComplete: function(queueData) {
+					console.log('队列中的文件全部上传完成', queueData);
+				}
+			};
+			return uploadData;
+		}
+		var logoUp = $("#avatorUpload").Huploadify(getData('portrait','avatorUpload'));		
+// });
+// });	
+	</script>
+</html>

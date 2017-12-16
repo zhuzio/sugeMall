@@ -1,0 +1,393 @@
+@import url(m_reset.css);
+html,
+body,
+.container {
+  width: 100%;
+  height: 100%;
+  background: #f1f2f6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 62.5%;
+}
+.r {
+  position: relative;
+}
+.a {
+  position: absolute;
+}
+header {
+  width: 100%;
+  height: 8.8rem;
+  background: #ffffff;
+  border-bottom: 1px solid #d5d5d5;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+header .left {
+  width: 2.2rem;
+  margin-left: 3rem;
+  margin-top: 2.5rem;
+}
+header .left img {
+  width: 2.2rem;
+  height: 3.4rem;
+}
+header .center {
+  -webkit-box-flex: 1;
+}
+header .center p {
+  line-height: 8.8rem;
+  font-size: 3.4rem;
+  color: #333333;
+  text-align: center;
+  letter-spacing: 0.2rem;
+}
+header .right p {
+  line-height: 8.8rem;
+  font-size: 2.8rem;
+  color: #ffc600;
+  text-align: center;
+  margin-right: 3rem;
+  letter-spacing: 0.2rem;
+}
+section {
+  width: 100%;
+  height: auto;
+  background: #ffffff;
+  border-top: 0.1rem solid #e3e3e3;
+}
+section .w-tel {
+  width: 100%;
+  height: 8.6rem;
+  background: #ffffff;
+  border-bottom: 0.1rem solid #e3e3e3;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .w-tel p {
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+  padding-left: 3rem;
+  -webkit-box-sizing: border-box;
+}
+section .w-tel input {
+  display: block;
+  height: 8.6rem;
+  line-height: 8.6rem;
+  -webkit-box-flex: 1;
+  font-size: 2.8rem;
+  text-indent: 1rem;
+  outline: none;
+  border: none;
+  letter-spacing: 0.2rem;
+}
+section .w-tel span {
+  -webkit-box-flex: 1;
+  font-size: 2.8rem;
+  line-height: 8.6rem;
+  padding-left: 1rem;
+  -webkit-box-sizing: border-box;
+}
+section .w-num {
+  width: 100%;
+  height: 8.6rem;
+  background: #ffffff;
+  border-bottom: 0.1rem solid #e3e3e3;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .w-num p {
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+  padding-left: 3rem;
+  -webkit-box-sizing: border-box;
+}
+section .w-num span {
+  display: block;
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #ffc600;
+  margin-left: 1rem;
+  -webkit-box-flex: 1;
+}
+section .w-num button {
+  width: 8rem;
+  height: 4rem;
+  background: #ee7f24;
+  line-height: 4rem;
+  font-size: 2.8rem;
+  color: #ffffff;
+  margin-top: 2.5rem;
+  margin-right: 3rem;
+  border: none;
+  outline: none;
+  letter-spacing: 0.2rem;
+}
+section .w-sjgive {
+  width: 100%;
+  height: 8.6rem;
+  background: #ffffff;
+  border-bottom: 0.1rem solid #e3e3e3;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .w-sjgive p {
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+  padding-left: 3rem;
+  -webkit-box-sizing: border-box;
+}
+section .w-sjgive input {
+  display: block;
+  height: 8.6rem;
+  line-height: 8.6rem;
+  -webkit-box-flex: 1;
+  font-size: 2.8rem;
+  text-indent: 1rem;
+  outline: none;
+  border: none;
+  letter-spacing: 0.2rem;
+}
+section .w-cjje {
+  width: 100%;
+  height: 8.6rem;
+  background: #ffffff;
+  border-bottom: 0.1rem solid #e3e3e3;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .w-cjje p {
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+  padding-left: 3rem;
+  -webkit-box-sizing: border-box;
+}
+section .w-cjje input {
+  display: block;
+  height: 8.6rem;
+  line-height: 8.6rem;
+  -webkit-box-flex: 1;
+  font-size: 2.8rem;
+  text-indent: 1rem;
+  outline: none;
+  border: none;
+  letter-spacing: 0.2rem;
+}
+section .w-scgive {
+  width: 100%;
+  height: 8.6rem;
+  background: #ffffff;
+  border-bottom: 0.1rem solid #e3e3e3;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .w-scgive p {
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+  padding-left: 3rem;
+  -webkit-box-sizing: border-box;
+}
+section .w-scgive span {
+  display: block;
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+  -webkit-box-flex: 1;
+  margin-left: 65%;
+}
+section .w-goodsname {
+  width: 100%;
+  height: 8.6rem;
+  background: #ffffff;
+  border-bottom: 0.1rem solid #e3e3e3;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  position: relative;
+}
+section .w-goodsname p {
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+  padding-left: 3rem;
+  -webkit-box-sizing: border-box;
+}
+section .w-goodsname h1 {
+  -webkit-box-flex: 1;
+  font-size: 2.8rem;
+  line-height: 8.6rem;
+  padding-left: 1rem;
+}
+section .w-goodsname span {
+  position: absolute;
+  display: block;
+  line-height: 8.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+  right: 3rem;
+}
+section .w-goodsname span img {
+  width: 1.2rem;
+  height: 2.2rem;
+  background: none;
+}
+footer {
+  width: 100%;
+  height: 13.5rem;
+  background: none;
+}
+footer span {
+  display: block;
+  width: 80%;
+  height: 7.5rem;
+  background: #ffc600;
+  margin-left: 10%;
+  margin-top: 6rem;
+  border-radius: 1rem;
+  text-align: center;
+  line-height: 7.5rem;
+  font-size: 3rem;
+  color: #ffffff;
+}
+.cd-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  z-index: 9999;
+}
+.cd-popup.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+.cd-popup-container {
+  position: relative;
+  width: 70%;
+  margin: 40% auto;
+  height: 20rem;
+  background: #FFF;
+  border-radius: .4rem .4rem .4rem .4rem;
+  text-align: center;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(1.2);
+  -webkit-backface-visibility: hidden;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 0.3s;
+}
+.is-visible .cd-popup-container {
+  -webkit-transform: scale(1);
+}
+.tanchu {
+  width: 100%;
+  height: 100%;
+  background: none;
+  padding: 0 15%;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+  border-radius: 5rem;
+  line-height: 20rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+}
+.tkstate {
+  color: #de1800;
+}
+.cd-reason {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  z-index: 9999;
+}
+.cd-reason.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+.cd-reason-container {
+  position: relative;
+  width: 90%;
+  margin: 30% auto;
+  height: auto;
+  background: #FFF;
+  border-radius: .4rem .4rem .4rem .4rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(1.2);
+  -webkit-backface-visibility: hidden;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 0.3s;
+}
+.cd-reason-container .reason {
+  overflow-y: auto;
+  width: 100%;
+  height: 60rem;
+  font-size: 3.2rem;
+}
+.cd-reason-container .reason ul {
+  height: 12rem;
+  line-height: 12rem;
+}
+.cd-reason-container .reason ul li {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  border-bottom: 0.1rem solid #efeff4;
+}
+.cd-reason-container .reason ul li p {
+  -webkit-box-flex: 1;
+  margin-left: 3rem;
+}
+.cd-reason-container .reason ul li h5 {
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 0.3rem solid #ffa442;
+  border-radius: 5rem;
+  margin-right: 5rem;
+  margin-top: 4rem;
+}
+.cd-reason-container .reason ul li h5 span {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 5rem;
+  margin: 17% auto;
+}
+.cd-reason-container .reason ul li h5 .spans {
+  background: #ffa442;
+}
+.cd-reason-container .reason ul li h5 .spans2 {
+  background: #ffa442;
+  display: none;
+}
+.cd-reason-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 10;
+  width: auto;
+  height: 1.25rem;
+  display: block;
+  font-size: 14px;
+}
+.is-visible .cd-reason-container {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}

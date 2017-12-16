@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>我的退款申请</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/wdtksq.css">
+		<link rel="stylesheet" href="css/a.css">
+		<style>
+			.img {
+				/*display: none;*/
+			}
+			
+			.sure {
+				display: none;
+			}
+			
+			.fs {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)" class="ha1">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">我的退款申请</p>
+			<!-- <a class="ha2">商城订单</a> -->
+		</div>
+		<div class="xq">
+			<p class="bh">
+				买家发起了申请
+				<span>退款编号：201628187588</span>
+			</p>
+			<p class="js">2016秋季简约时尚商务休闲男款休闲开衫鳄鱼毛衣1856</p>
+			<p class="mj mj1">卖家：露之乐贸易</p>
+			<p class="mj mj2">商品总额：199.00元</p>
+			<p class="mj mj3">该商品退款总额：199.00元</p>
+			<p class="tkje">退款金额：199.00元</p>
+			<p class="mj mj4">退路费：0.00元</p>
+			<p class="mj mj5">收货情况：已收到货，需要退货退款</p>
+			<p class="mj mj6">退款原因：其他</p>
+			<p class="mj mj7">退款说明：商品质量有问题，脱线</p>
+			<p class="mj mj8">申请时间：2016-10-08 10:39:59</p>
+			<div class="img">
+			<!--<p><img src=""></p>
+			<p><img src=""></p>
+			<p><img src=""></p>
+			<p><img src=""></p>-->
+			</div>
+
+		</div>
+		<div class="sure">
+			<!-- <p class="time">10-03 10:36</p> -->
+			<div class="xx">
+				<p class="xxp1">等待卖家处理</p>
+				<p class="xxp2">如果卖家拒绝，需要您修改退款申请<br>果卖家在 <img src="images/wdthtime.png"> <span><!-- 04天23时59分 -->五天</span>内未处理，系统将自动退款给您</p>
+			</div>
+		</div>
+
+		<div class="kong"></div>
+		<div class="fs">
+			<a href="tksq2.html">
+				<p class="fp1">修改申请</p>
+			</a>
+			<a href="connection_us.html">
+				<p class="fp2">申请客服介入</p>
+			</a>
+			<p class="fp3">撤销申请</p>
+		</div>
+		<div class="cxc">
+			<div>
+				你确定要撤销申请吗
+				<p class="cxp1">撤销</p>
+				<p class="cxp2">确定</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script>
+		var refund_ids = localStorage.getItem("refund_id");
+		$(function() {
+
+			var tokens = localStorage.getItem("token");
+			$(".fp3").on("click", function() {
+				$(".cxc").css("display", "block");
+			})
+			$(".cxp1").on("click", function() {
+					$(".cxc").css("display", "none");
+				})
+				// $(".fp1").on("click",function(){
+				// 	// localStorage.setItem('zorderid', refund_ids);
+				// 	location.href="tksq2.html";
+				// })
+			$(".cxp2").on("click", function() {
+				$(".cxc").css("display", "none");
+				console.log(refund_ids);
+				$.ajax({
+					//			contentType:"application/x-www-form-urlencoded; charset=gb2312",
+					type: 'POST',
+					url: Url + "api/index.php?n=refund&f=cancle_apply",
+					dataType: "json",
+					data: {
+						token: tokens,
+						refund_id: refund_ids, //退款申请id
+					},
+					success: function(data) {
+						console.log(data);
+						if(data.msg == "撤销申请成功") {
+							setTimeout(function() {
+								$(".cxc2").css("display", "block");
+							}, 0);
+							setTimeout(function() {
+								$(".cxc2").css("display", "none");
+								location.href = "tkxq.html";
+							}, 1000);
+						}
+					},
+				});
+			})
+
+			var imgs = "' + Url + 'api/";
+			var type;
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=refund&f=info",
+				dataType: "json",
+				data: {
+					token: tokens,
+					refund_id: refund_ids,
+				},
+				success: function(data) {
+					console.log(data);
+					if(data.ret == "ok") {
+						$(".js").html(data.data.goods_name);
+						$(".bh span").html("退款编号：" + data.data.refund_sn);
+						$(".mj1").html("卖家：" + data.data.store_name);
+						$(".mj2").html("商品总额：" + data.data.refund_goods_fee + "元");
+						$(".mj3").html("该商品退款总额：" + data.data.total_fee + "元");
+						$(".tkje").html("退款金额：" + data.data.refund_fee + "元");
+						$(".mj4").html("退运费：" + data.data.refund_shipping_fee + "元");
+						$(".mj5").html("退货情况：" + data.data.shipped_name);
+						$(".mj6").html("退款原因：" + data.data.refund_reason);
+						$(".mj7").html("退款说明：" + data.data.refund_desc); //还没数据
+						$(".mj8").html("申请时间：" + data.data.created);
+						type = data.data.refund_status;
+						console.log(type);
+						if(type == "WAIT_SELLER_AGREE"){
+							$(".sure").show();
+							$(".fs").show();
+						}
+						if(data.data.buyer_img == "") {
+							$(".img").hide();
+						} else {
+							var limgs = data.data.buyer_img;
+							// var limgs="cajifsafafaj|famfnlasdfnlaflklkafk|fmskaofddsafdlasf|fafdafsafsag";
+							var ins = [];
+							var iml = limgs.length;
+							for(var i = 0; i < 20; i++) {
+								var as = limgs.indexOf("|");
+								if(as != -1) {
+									ins[i] = limgs.substr(0, as);
+									limgs = limgs.substr(as + 1, iml);
+
+								}
+								if(as == -1) {
+									// ins[i]=limgs.substr(0,as);
+									// limgs=limgs.substr(as+1,iml);
+									// console.log(limgs);
+									ins[i] = limgs;
+									break;
+								}
+							};
+							// console.log(ins);
+							for(var i = 0; i < ins.length; i++) {
+								var htmlimg = '<p><img src="' + Url + ins[i] + '"></p>';
+								$(".img").append(htmlimg);
+							};
+
+							// for (var i = 0; i < limgs.length; i++) {
+
+							// 	if (true) {};
+							// };
+							// var imgarr=[];
+							// var ins=[];
+							// var imgl=1;
+							// var imgurl=data.data.buyer_img;
+							// var sleng=imgurl.length;
+							// var inds=imgurl.indexOf("|");
+							// if (inds!=-1) {
+							// 	ins.push(inds);
+							// 	imgarr.push(imgurl.substr(0,inds));
+							// 	inds=imgurl.indexOf("|");
+							// 	if (inds!=-1) {
+
+							// 	}else{
+
+							// 	}
+							// }else{
+							// 	imgarr.push(imgurl);
+							// }
+
+							// data.data.buyer_img.indexOf("|");
+						}
+
+					};
+				},
+			});
+		})
+	</script>
+
+</html>

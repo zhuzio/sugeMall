@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>设置发票信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/z-invoice.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+	</head>
+	<body>
+		<div class="d_header">
+			<a class="black" href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">设置发票信息</p>
+		</div>
+		<ul class="z-infor">
+			<li>发票类型</li>
+			<li class="z-papeall">
+				<span class="z-pape z-papes">纸质发票</span>
+				<!--<span class="z-pape1">电子发票</span>-->
+			</li>
+		</ul>
+		<ul class="z-people">
+			<li>发票抬头</li>
+			<li><span class="z-pec z-pecsf"></span><span>个人</span><span class="z-pec1"></span><span>单位</span></li>
+		</ul>
+		<div class="z-pecz" style="display: none;">
+		<input class="z-peczs" type="" name="" id="" value="" placeholder="请填写单位名称"/>
+		</div>
+		<ul class="z-recp" style="display: none;">
+			<li>收票人信息</li>
+			<li>
+				<lable class="z-label">*收票人手机</lable>
+				<input class="z-label1" type="text" name="" id="" value="" placeholder="135****9534"/>
+			</li>
+			<li>
+				<lable class="z-label">收票人邮箱</lable>
+				<input class="z-label2" type="text" name="" id="" value="" placeholder="用来接收电子发票邮箱，可选填"/>
+			</li>
+		</ul>
+		<div class="z-labele">发票添加成功</div>
+		<div class="z-acco">确定</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+	  $(function(){
+	  var tokens = localStorage.getItem("token");
+	  var bol = true;
+	  var typef = "paper";
+	  var peof = "personal";
+	  var fcom;
+	  var fmobel;
+	  var femal;
+	  //公司名
+	  fcom = $(".z-peczs").val();
+	  $(".z-peczs").keyup(function(){
+	  	fcom = $(".z-peczs").val();
+//	  	console.log(fcom);
+	  });
+	  //手机号
+	  fmobel = $(".z-label1").val();
+	   $(".z-label1").keyup(function(){
+	  	fmobel = $(".z-label1").val();
+//	  	console.log(fmobel);
+	  });
+	  //邮箱
+	  femal = $(".z-label2").val();
+	   $(".z-label2").keyup(function(){
+	  	femal = $(".z-label2").val();
+//	  	console.log(femal);
+	  });  
+	  $(".z-pape").click(function(){
+	  		  $(this).addClass("z-papes");
+	  		  $(this).siblings(".z-pape1").removeClass("z-papes");
+	  		  $(".z-recp").hide(); 
+//	  		  $(".z-pecz").show();
+//	  		  PecFn();
+	  		  typef = "paper";
+	  });
+	  $(".z-pape1").click(function(){
+	  		  $(this).addClass("z-papes");
+	  		  $(this).siblings(".z-pape").removeClass("z-papes");
+	  		  $(".z-recp").show();
+//	  		  $(".z-pecz").hide();
+	  		  PecFn1();
+	  		  typef = "emil";
+	  		  // console.log(typef)
+	  });
+	  PecFn()
+	  function PecFn(){
+	  	$(".z-pec").click(function(){
+	  		$(".z-pec").addClass("z-pecsf");
+	  		if($('.z-pec').is('.z-pecsf')){
+			  	$('.z-pecz').hide()
+			}
+	  		$(".z-recp").hide();
+	  		$(this).siblings(".z-pec1").removeClass("z-pecsf");	
+	  		peof = "personal";
+	  	});
+	  	$(".z-pec1").click(function(){
+	  		$(".z-pec1").addClass("z-pecsf");
+	  		$(".z-recp").hide();
+	  		if($('.z-pec1').is('.z-pecsf')){
+			  $('.z-pecz').show()
+			}
+	  		$(this).siblings(".z-pec").removeClass("z-pecsf");
+	  		peof = "company";
+	  	});
+	  }
+	  function PecFn1(){
+	  	$(".z-pec").click(function(){
+	  		$(".z-pec").addClass("z-pecsf");
+	  		if($('.z-pec').is('.z-pecsf')){
+			  	$('.z-pecz').hide()
+			}
+	  		if($('.z-pape1').is('.z-papes')){
+	  		  	$(".z-recp").show();
+	  		  }else{
+	  		  	$(".z-recp").hide();
+	  		  }
+	  		$(this).siblings(".z-pec1").removeClass("z-pecsf");	
+	  		peof = "personal";
+	  	});
+	  	$(".z-pec1").click(function(){
+	  		$(".z-pec1").addClass("z-pecsf");
+	  		if($('.z-pape1').is('.z-papes')){
+	  		  	$(".z-recp").show();
+	  		}else{
+	  			$(".z-recp").hide();
+	  		}
+	  		if($('.z-pec1').is('.z-pecsf')){
+			  	$('.z-pecz').show()
+			}
+	  		$(this).siblings(".z-pec").removeClass("z-pecsf");
+	  		peof = "company";
+	  	});
+	  }
+	  var fcomss = localStorage.getItem("fcoms");
+	  $(".z-peczs").val(fcomss);
+	  console.log(fcomss);
+	  //发票接口
+	  $(".z-acco").click(function(){
+	  	$.ajax({
+//			contentType:"application/x-www-form-urlencoded; charset=gb2312",
+            type: 'POST',
+            url: Url + "api/index.php?n=goods&f=invoice",
+     		dataType: "json",
+    		data: {
+    			"token": tokens,
+    			"type": typef,
+    			"head":peof,
+    			"phone":fmobel,
+    			"company":fcom,
+    			"emil":femal,
+    		},
+    	success: function(data){
+    	console.log(data);
+    	if(data.msg == "请先登录"){	
+	 		window.location.href = "denglu.html";
+		}
+	     if(data.msg == "身份错误，请重新登录"){	
+	 		window.location.href = "denglu.html";
+		}	
+    	var invonum = data.data;
+    	localStorage.setItem('invonums',  invonum);
+    	if(data.msg=="单位信息不能为空"){
+    		$(".z-labele").html("请输入您的公司名").show();
+    	}
+    	if(data.msg=="发票添加成功"){
+    			$(".z-labele").show();
+    			localStorage.setItem('fcoms',  fcom);
+    			window.location.href = "acc-order.html";    			
+    		}
+    		setTimeout(function(){
+				$(".z-labele").hide();
+				},1000);
+    		
+       },
+      error:function(data){
+	},
+	})	  	
+  })
+	});
+	</script>
+</html>

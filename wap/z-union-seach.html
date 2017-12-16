@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>联盟商家搜索</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/z-union-seach.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=CAd14de4d13fa18ebecbd5ab92af71bc"></script>
+	</head>
+
+	<body>
+		<header class="z-location-a">
+			<div class="z-location-h">
+				<a class="black" href="javascript:history.go(-1)">
+					<img class="z-location-b" src="images/z-88.png" />
+				</a>
+				<div class="z-location-input">
+					<img src="images/z-89.png" />
+					<input class="z-locai" type="" name="" id="" value="" placeholder="100万商品线上抢购" />
+				</div>
+				<span class="z-location-c">搜索</span>
+			</div>
+		</header>
+		<div class="z-location-hg">
+		</div>
+		<ul class="none">
+			<img src="images/syflss.png" alt="">
+			<p>没有搜索结果<br><span>没有找到相关的宝贝</span></p>
+		</ul>
+	</body>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var lgts = localStorage.getItem("lgt");
+			var lats = localStorage.getItem("lat");
+			var lgtss = localStorage.getItem("zlgt");
+			var latss = localStorage.getItem("zlat");
+			var sw = localStorage.getItem("ss");
+			var storeId = [];
+			var html = '';
+			var dis;
+			var disn;
+			$(".z-location-input input").val(sw);
+			var ztxt = $(".z-locai").val();
+			function jzz(zval) {
+				$.ajax({
+					type: "POST",
+					url: Url + "api/index.php?n=store&f=searchstore",
+					dataType: "json",
+					data: {
+						"lat": lats,
+						"lng": lgts,
+						"store_name": zval,
+					},
+					success: function(data) {
+						console.log(data);
+						if(data.msg == "数据获取失败") {
+							$(".none").css("display", "block");
+						};
+						var datas = data.data;
+						var html = '';
+						for(i = 0; i < datas.length; i++) {				
+							var lgt = datas[i].lng;
+							var lat = datas[i].lat;
+							var map = new BMap.Map();
+							var pointA = new BMap.Point(lgtss, latss); // 创建点坐标A
+							var pointB = new BMap.Point(lgt, lat); // 创建点坐标B
+//							console.log((map.getDistance(pointA, pointB)).toFixed(2));
+							var distance = (map.getDistance(pointA, pointB)).toFixed(2);
+							dis = distance / 1000;
+							disn = dis.toFixed(2);
+							html += '<div class="z-location-d"><div class="z-location-e"><img src="' + Url + '' + datas[i].store_logo + '" alt=""/></div><ul class="z-location-f"><li class="z-location-g">' + datas[i].store_name + '</li><li class="z-location-s">地址：' + datas[i].address + '</li><li><span class="z-location-w">' + datas[i].cate_name + '</span><p><span>距我</span><span class="z-location-m">' + disn + '</span><span>km</span></p></li></ul></div>';
+							storeId.push(datas[i].store_id)
+						}
+						$(".z-location-hg").html(html);
+						StoreFun();
+						word(10);
+						storew(8)
+					},
+					error: function(data) {}
+				});
+			}
+			jzz(sw);
+			//输入框里面的搜索
+			$(".z-location-c").click(function() {
+                 ztxt=$(".z-locai").val();	
+                 jzz(ztxt);
+			})
+				//    跳转的方法
+			function StoreFun() {
+				$(".z-location-d").each(function() {
+					$(this).click(function() {
+						var a = $(this).index();
+//						console.log(a);
+						var stid = storeId[a];
+//						console.log(stid);
+						localStorage.setItem('stid', stid);
+//						console.log(stid);
+						location.href = "lmsjdpxq.html";
+					})
+				})
+			}
+
+			//限制地址字数方法
+			function word(len) {
+				$(".z-location-s").each(function() {
+					var counter = $(this).text().length; //获取文本域的字符串长度
+					var txt = $(this).text();
+					// 	 	console.log(counter);
+					if(counter >= len) {
+						var num = $(this).text().substr(0, len);
+						$(this).text(num + '....');
+						//		alert("你已经超过字数限制");
+					} else {
+						$(this).text(txt);
+					}
+				});
+			}
+			//限制商家名字数方法
+			function storew(slen) {
+				$(".z-location-g").each(function() {
+					var counter = $(this).text().length; //获取文本域的字符串长度
+					var txt = $(this).text();
+					// 	 	console.log(counter);
+					if(counter >= slen) {
+						var num = $(this).text().substr(0, slen);
+						$(this).text(num + '....');
+						//		alert("你已经超过字数限制");
+					} else {
+						$(this).text(txt);
+					}
+				});
+			}
+
+		});
+	</script>
+
+</html>

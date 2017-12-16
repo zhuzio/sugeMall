@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>订单资料</title>
+	<link rel="stylesheet" href="css/unorderinformation.css">
+	<style type="text/css">
+</style>
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+				<a class="black" href="javascript:history.go(-1)"><img src="images/w_tback.png" alt="返回首页"></a>
+				<p class="title">订单资料</p>
+		</header>
+		<section>
+			<div class="banner">
+				<p>等待买家付款</p>
+				<span class="zpayz">剩2天23小时自动关闭</span>
+				<img src="images/w_bo.png" alt="">
+			</div>
+			<div class="address">
+				<div class="images">
+					<img src="images/w_address.png" alt="">
+				</div>
+				<div class="word">
+					<p class="p1"><i class="speo"></i><span class="sdetel"></span></p>
+					<p class="p2"></p>
+				</div>
+				
+			</div>
+			<div class="goods">
+				<div class="logo">
+					<div class="logo-left">
+						<dl>
+							<dt><img src="images/w-logo.png" alt=""></dt>
+							<dd>啥都行旗舰店</dd>
+						</dl>
+					</div>
+					<div class="logo-center"></div>
+					<div class="logo-right">
+						<dl>
+							<dt><img src="images/w-tel.png" alt=""></dt>
+							<dd><a href="tel:13412341234">13412341234</a></dd>
+						</dl>
+					</div>
+				</div>
+				<div class="z-detailed">
+				<div class="detailed">
+					<div class="detailed-left">
+						<dl>
+							<dt><img src="images/w-sp.png" alt=""></dt>
+							<dd>
+								<h1>黄金叶超长版黄金叶超长版黄金叶超长版黄金叶超长版</h1>
+								<p>颜色分类：白色高大上品牌挎包</p>
+								<p>尺码：XXXL</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="detailed-right">
+						<p class="p1">￥69.00</p>
+						
+						<button class="flag">去支付</button>
+					</div>
+				</div>
+			</div>
+				<div class="price1">
+					<p><i>商品总价</i><span class="z-count">￥69.00</span></p>
+					<p class="p_p1 "><i>运费（快递）</i><span class="z-count1">￥0.00</span></p>
+					<p class="p_p2"><i>订单总价</i><span class="z-count2">￥69.00</span></p>
+				</div>
+				<div class="price2">
+					<p class="p_p2"><i>订单总价</i><span class="z-count3">￥69.00</span></p>
+				</div>
+			</div>
+		</section>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+   $(function(){
+   	 $('.flag').on('tap',function(){
+        	$(this).css('color','#fff');
+        	$(this).css('background','#ffa442');
+       });
+       
+       var goodsId = localStorage.getItem("good");
+			// console.log(goodsId);
+		var dpointss = localStorage.getItem("dpoints");
+		var dmoneyss = localStorage.getItem("dmoneys");
+		var daddressdss = localStorage.getItem("daddressds");
+		var daddresspss = localStorage.getItem("daddressps");
+		var daddressmss = localStorage.getItem("daddressms");
+//		var dgoodsiss = localStorage.getItem("dgoodsis");
+//		var dgoodsnss = localStorage.getItem("dgoodsns");
+//		var dgoodspss = localStorage.getItem("dgoodsps");
+		var dshippingpss = localStorage.getItem("dshippingps");
+		var dshippingssh = localStorage.getItem("dshippingss");
+		var dshippingnss = localStorage.getItem("dshippingns");
+		var dcolorcss = localStorage.getItem("dcolorcs");
+		var dstorenss = localStorage.getItem("dstorens");
+		var dsums = localStorage.getItem("dsum");
+		var dstorewss = localStorage.getItem("dstorews");
+		var dsountss = localStorage.getItem("dsounts");
+		// console.log(dsountss)
+		var dgoodssf = localStorage.getItem("dgoodss");
+		var obj = JSON.parse(dgoodssf);
+		// console.log(obj);
+		
+		$(".speo").html('收货人：'+daddresspss);
+		$(".sdetel").html(daddressmss);
+		$(".p2").html('收货地址：'+daddressdss);
+		$(".z-count").html('￥'+dsums);
+		$(".z-count2").html('￥'+dsums);
+		$(".z-count3").html('￥'+dsums);
+		
+		var html1 = " ";
+	    var lengs = obj.length;
+	   console.log(lengs);
+	   $(".z-detailed").html(" ");
+        for (var i = 0; i < obj.length; i++) {
+    	var html1 = '<div class="detailed"><div class="detailed-left"><dl><dt><img src="' + Url + ''+obj[i].goods_image+'"" alt=""></dt><dd><h1>'+obj[i].goods_name+'</h1><p class="z-spec">颜色分类：'+obj[i].specification+'</p><p class="z-quan">数量：'+obj[i].quantity+'</p></dd></dl></div><div class="detailed-right"><p class="p1">￥ '+obj[i].price+'</p><span class="z-qx">取消订单</span><button class="flag">去支付</button></div></div>';
+        $(".z-detailed").append(html1);
+        var quans = $(".z-quan").text();
+        var quan = quans.substr(3,quans.length);
+        var colors = $(".z-spec").text();
+        var color = colors.substr(5,colors.length);
+         word(21);
+        if(quan =="undefined"){
+        	$(".z-quan").text('数量：  '+ dsountss);
+        }
+        if(color =="undefined"){
+        	$(".z-spec").text('颜色分类：  '+dcolorcss);
+        }
+    }
+	$(".acc-total").html(lengs);	
+	
+function word(len){
+  	$(".goods-name").each(function(){
+   	 	var counter = $(this).text().length;//获取文本域的字符串长度
+   	 	var txt = $(this).text();
+	  	if(counter >= len) {
+		var num = $(this).text().substr(0, len);
+		$(this).text(num+'....');
+	}else { 
+	  $(this).text(txt);
+		} 
+   	});
+  }
+  });
+</script>
+</html>

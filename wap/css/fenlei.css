@@ -1,0 +1,149 @@
+@import url(m_reset.css);
+html,
+body,
+.container {
+  width: 100%;
+  height: 100%;
+  background: #f3f5f7;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 62.5%;
+}
+.r {
+  position: relative;
+}
+.a {
+  position: absolute;
+}
+header {
+  width: 100%;
+  height: 8.8rem;
+  background: #ffffff;
+  position: relative;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+header span {
+  width: 4.4rem;
+  height: 4.4rem;
+  background: url(../images/saoyisao.png) no-repeat;
+  position: absolute;
+  left: 3.0rem;
+  top: 2.2rem;
+  background-size: 4.4rem 4.4rem;
+}
+header input {
+  display: block;
+  -webkit-box-flex: 1;
+  width: 0;
+  height: 6rem;
+  background: #efeff4 url(../images/sousuo.png) no-repeat;
+  background-size: 3.2rem 3.2rem;
+  background-position: 2.0rem 1.4rem;
+  margin: 1.4rem 9.5rem 0 9.5rem;
+  border-radius: 2.0rem;
+  border: none;
+  text-align: center;
+  color: #999999;
+  font-size: 2.4rem;
+  letter-spacing: 0.7rem;
+  outline: none;
+}
+header a {
+  width: 4.2rem;
+  height: 3.8rem;
+  background: url(../images/xinxi.png) no-repeat;
+  position: absolute;
+  right: 3.0rem;
+  top: 2.5rem;
+  background-size: 4.2rem,3.8rem;
+}
+section {
+  -webkit-box-flex: 1;
+  overflow: auto;
+  margin-bottom: 10.1rem;
+}
+section .wrap {
+  display: -webkit-box;
+  -webkit-box-orient: hsorizontal;
+}
+section .wrap .uls {
+  width: 18rem;
+  height:130.0rem !important;
+  height: auto;
+  background: #ffffff;
+  background: #fff;
+  line-height: 13.8rem;
+  text-align: center;
+  overflow-y: scroll;
+}
+section .wrap .uls li {
+  border: solid 0.1rem #e5e5e5;
+  border-left: none;
+  font-size: 2.8rem;
+  text-align: center;
+  color: #333;
+}
+section .wrap .uls .lis {
+  border-left: solid 5px #ffc500;
+  background: #f3f5f7;
+  color: #ffc500;
+}
+section .wrap .box {
+  -webkit-box-flex: 1;
+  height: 130.0rem;
+  overflow-y:scroll;
+}
+section .wrap .box .div {
+  font-size: 24px;
+  /*display: none;*/
+}
+section .wrap .box .div img {
+  width: 100%;
+  padding: 1.9rem 1.0rem 0 1.0rem;
+  box-sizing: border-box;
+}
+section .wrap .box .div p {
+  font-size: 2.4rem;
+  margin-left: 3.0rem;
+  margin-top: 6.0rem;
+  color: #666;
+}
+section .wrap .box .div .right {
+  -webkit-box-flex: 1;
+  background: #fff;
+  margin-top: 3.0rem;
+  margin-right: 3.0rem;
+}
+
+.right dl{
+	width: 26.5%;
+	float: left;
+  margin-left: 6%;
+  text-align: center;
+  margin-top: 3.0rem;
+}
+.right dl dd{
+	font-size: 2.0rem !important;
+}
+.div-onee{
+	height: 15.0rem;
+}
+.z-prompt5,.z-prompt6{
+	width: 50%;
+	height: 10.0rem;
+	background: rgba(0,0,0,0.7);
+	position: absolute;
+	left: 25%;
+	bottom: 40.0rem;
+	border-radius: 1.0rem;
+	font-size: 2.8rem;
+	text-align: center;
+	line-height: 10.0rem;
+	color: #fff;
+}
+.z-prompt6{
+	width: 80% !important;
+	position: absolute;
+	left: 10% !important;
+}

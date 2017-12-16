@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title>购物积分明细</title>
+		<link rel="stylesheet" href="{res file=css/profit.css}" />
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+	</head>
+	<body>
+		<header class="header">
+			<a  href="javascript:history.back(-1)" class="back"></a>
+			<h1 class="tit">购物积分明细</h1>
+		</header>
+		<div class="content mtop44">
+			<div class="profit-top">
+				<div class="profit-pic">
+					<span>
+						<img src="{res file=images/profit/balance.png}">
+					</span>
+				</div>
+				<div class="refine">
+					<h4>{$allbalance}</h4>
+					<p>{$model_name}</p>
+				</div>
+			</div>
+			<!--
+            	时间：2016-06-16
+            	描述：收益top
+            -->
+            <div class="refine-details">
+            	<ul>
+                {foreach from=$balance item=list}
+            		<li>
+            			<div class="refine-reduce">
+            				<span></span>
+            			</div>
+            			<div class="refine-re">
+            				<p class="ref-number"><span>{$list[get_money]}</span>收益</p>
+            				<div class="ref-event">
+            					<p>{$list[content]}</p>
+            					<span class="ref-date" style="width:35%">{$list[createtime]}</span>
+            				
+            				</div>
+            			</div>
+            		</li>
+                {/foreach}
+            		
+            	</ul>
+            </div>
+		</div>
+		{include file="footer.html"}
+	</body>
+</html>

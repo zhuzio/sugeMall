@@ -1,0 +1,396 @@
+@import url(reset.css);
+html {
+  font-size: 62.5%;
+}
+html,
+body,
+.wrap {
+  width: 100%;
+  height: 100%;
+  background: #e7e7e7;
+}
+.wrap {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  background: #efeff4;
+}
+.z-hk{
+	width: 100%;
+	height: 37.2rem;
+	background: url("../images/z-1220.png") no-repeat;
+	background-size: 100% 100%;
+}
+header {
+  width: 100%;
+  height: 8.8rem;
+  background: 0;
+  /*background: #54ceee;*/
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  text-align: center;
+}
+header .one {
+  width: 2rem;
+  height: 4rem;
+  background: 0;
+  padding: 2rem;
+}
+header p {
+  -webkit-box-flex: 1;
+  line-height: 8.8rem;
+  font-size: 3.4rem;
+  color: #fff;
+}
+header .two {
+  width: 4rem;
+  height: 4rem;
+  background: 0;
+  padding: 2rem;
+}
+/*section {
+  -webkit-box-flex: 1;
+  overflow: hidden;
+}*/
+.banner {
+  width: 100%;
+  height: 28rem;
+  background: 0;
+  /*background: #54ceee;*/
+}
+.banner .b_left {
+  float: left;
+  padding-left: 3rem;
+}
+.banner .b_left p {
+  font-size: 2.8rem;
+  line-height: 8rem;
+  color: #fff;
+}
+.banner .b_left p img {
+  vertical-align: middle;
+  padding-left: 1rem;
+}
+.banner .b_left span {
+  font-size: 10rem;
+  color: #fff;
+  line-height: 10rem;
+}
+.banner .b_right {
+  padding-right: 3rem;
+  float: right;
+  margin-top: 10.0rem;
+}
+.z-leftri{
+	width: 92%;
+	height: 10.3rem;
+	position: absolute;
+	top: 26.5rem;
+	left: 4%;
+	display: flex;
+	justify-content: space-between;
+	line-height:10.3rem;
+}
+
+.banner .b_right p ,.z-leftri p{
+  font-size: 2.8rem;
+  line-height: 8rem;
+  color: #fff;
+  /*text-decoration: underline;*/
+  text-align: right;
+}
+.z-leftri p{
+	margin-top: 1.0rem;
+}
+.z-zhan{
+	font-size: 3.0rem;
+	position: relative;
+	top: -3.2rem;
+	left: 8%;
+	color: #fff;
+}
+section .main1 {
+  width: 100%;
+  height: 13.2rem;
+  background: 0;
+  background: #fff;
+  /*margin-top: 3rem;*/
+  border-bottom: 1px solid #999999;
+}
+section .main1 .img {
+  padding: 1.5rem;
+  vertical-align: middle;
+  float: left;
+  width: 7rem;
+  margin-top: 1.8rem;
+}
+section .main1 .right{
+  position: relative;
+  top: 2.0rem;
+}
+section .main1 .right p {
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 5rem;
+}
+section .main1 .right span {
+  font-size: 2.6rem;
+  line-height: 3rem;
+  color: #666666;
+}
+section .main2 {
+  width: 100%;
+  height: 13.2rem;
+  background: 0;
+  border-bottom: 1px solid #999999;
+  font-size: 3rem;
+  /*padding-left: 3rem;*/
+  background: #fff;
+  line-height: 13.2rem;
+}
+section .main2 b {
+  color: #000;
+  line-height: 8rem;
+  font-weight: normal;
+  margin-left: 4.0%;
+}
+section .main2 input {
+  line-height: 4rem;
+  width: 60%;
+  border: none;
+  border-bottom: 1px solid #999999;
+  /*border: 1px solid red;*/
+  margin-left: 14.5%;
+  text-align: right;
+  color: red;
+}
+section .main3 {
+  width: 100%;
+  height: 10rem;
+  background: 0;
+  background: #fff;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  line-height: 10rem;
+  position: relative;
+}
+section .main3 p {
+  color: #666;
+  font-size: 3rem;
+  padding-left: 3rem;
+  /*border: 1px solid red;*/
+}
+section .main3 p span {
+  padding-left: 2rem;
+  position: absolute;
+  right: 4.6%;
+}
+section .main3 b {
+  position: absolute;
+  right: 3rem;
+  font-size: 3rem;
+  color: #ffc600;
+  padding-right: 2rem;
+  font-weight: normal;
+}
+section button {
+  width: 80.0%;
+  height: 7.5rem;
+  background: 0;
+  margin-top: 18.6rem;
+  margin-left: 10%;
+  background: #ccc;
+  font-size: 3rem;
+  text-align: center;
+  border-radius: 1.0rem;
+  overflow: hidden;
+  color: #fff;
+}
+.cd-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  z-index: 9999;
+}
+.cd-popup.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+  -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
+  transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+.cd-popup-container {
+  position: relative;
+  width: 80%;
+  margin: 50% auto;
+  height: 54rem;
+  background: #FFF;
+  padding-left: 3rem;
+  border-radius: .4rem .4rem .4rem .4rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  -webkit-backface-visibility: hidden;
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.cd-popup-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  display: block;
+  font-size: 14px;
+}
+.is-visible .cd-popup-container {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+.cd-popup .cd-popup-container h1 {
+  font-size: 3.4rem;
+  line-height: 10rem;
+}
+.cd-popup .cd-popup-container p {
+  font-size: 2.6rem;
+  line-height: 4rem;
+}
+.cd-popup .cd-popup-container span {
+  font-size: 2.6rem;
+  line-height: 10rem;
+}
+.cd-popup .cd-popup-container b {
+  font-size: 3.4rem;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 21rem;
+  display: block;
+  color: #000;
+  font-weight: normal;
+}
+.key {
+  width: 100%;
+  height: 70.7rem;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+}
+.key .k-header {
+  width: 100%;
+  height: 9.3rem;
+  background: none;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+.key .k-header .k-left {
+  width: 1.9rem;
+  margin-left: 3.6rem;
+  margin-top: 3.2rem;
+}
+.key .k-header .k-left img {
+  width: 1.9rem;
+  height: 1.8rem;
+}
+.key .k-header .k-right {
+  -webkit-box-flex: 1;
+}
+.key .k-header .k-right p {
+  line-height: 9.3rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+  padding-right: 10%;
+}
+.key .k-center {
+  width: 100%;
+  height: 9rem;
+  background: none;
+}
+.key .k-center ul {
+  width: 80%;
+  height: 9rem;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  margin-left: 10%;
+  border-radius: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  box-sizing: border-box;
+}
+.key .k-center ul li {
+  border-right: 1px solid #e2e2e2;
+  width: 16.6%;
+  height: 9rem;
+  line-height: 9rem;
+  font-size: 3rem;
+  color: #333;
+  text-align: center;
+  box-sizing: border-box;
+}
+.key .k-center ul .kc-last {
+  border-right: none;
+}
+.key .forget {
+  width: 100%;
+  height: 6.8rem;
+  background: none;
+}
+.key .forget a {
+  line-height: 6.8rem;
+  font-size: 2.6rem;
+  color: #ffc600;
+  margin-left: 75%;
+}
+.key .k-footer {
+  width: 100%;
+  height: 45.6rem;
+  background: #e2e7ed;
+}
+.key .k-footer ul {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  width: 100%;
+  height: 11.3rem;
+  background: none;
+  border-top: 1px solid #e2e7ed;
+}
+.key .k-footer ul li {
+  width: 100%;
+  -webkit-box-flex: 1;
+  background: #fff;
+  text-align: center;
+  line-height: 11.3rem;
+  font-size: 4.4rem;
+  color: #414141;
+  margin-right: 0.1rem;
+}
+.key .k-footer .k-lastline {
+  background: none;
+}
+.key .k-footer .k-lastline img {
+  width: 4.1rem;
+  height: 3.8rem;
+  background: none;
+}

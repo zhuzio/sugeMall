@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />   
+        <title></title>
+        <link rel="stylesheet" href="{res file=css/profit.css}" />
+        <link rel="stylesheet" href="{res file=css/public.css}" />
+    </head>
+    <body>
+        <header class="header">
+            <a href="javascript:history.back(-1)" class="back"></a>
+            <h1 class="tit">商家货款</h1>
+        </header>
+        <div class="content mtop44">
+            <div class="profit-top">
+                <div class="profit-pic">
+                    <span>
+                        <img src="{res file=images/profit/profit.png}">
+                    </span>
+                </div>
+                <div class="profit-cont">
+                    <p class="pro-current">当前货款<span><!--{$money[current]}--></span></p>
+                    <div class="pro-td">
+                        <a href="#" class="pro-ifi">
+                                已提货款
+                            <span><!--{$money[deposit]}--></span>
+                        </a>
+                        <a href="#" class="pro-cum">
+                            累计货款
+                            <span><!--{$money[all]}--></span>
+                        </a>
+                        <a href="#" class="pro-ifi">
+                                货款购积分
+                            <span><!--{$money[pay_point]}--></span>
+                        </a>
+                        <a href="#" class="pro-cum">
+                            收到的积分
+                            <span><!--{$money[get_point]}--></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--
+                时间：2016-06-16
+                描述：收益top
+            -->
+            <div class="profit-details">
+                <ul>
+                     
+               <li>
+                        <a href="{url  index.php?app=seller_order}">
+                            <p>{$order[online]}</p>
+                            <span>线上订单</span>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="{url app=offline_order&act=business_order}">
+                            <p>{$order[offline]}</p>
+                            <span>线下订单</span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </div>
+            
+        </div>
+       {include file="footer.html"}
+    </body>
+
+</html>

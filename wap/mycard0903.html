@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的银行卡</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/mycard.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<style>
+			.lt{
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			z-index: 10000;
+			background-color: rgba(0,0,0,0.2);
+			top: 0;
+			left: 0;
+			display: none;
+		}
+		.lt p{
+			width: 70%;
+			height: 22rem;
+			background-color: #fff;
+			position: relative;
+			margin-top: 60%;
+			margin-left: 15%;
+			font-size: 3.4rem;
+			color: #333;
+			text-align: center;
+			line-height: 11rem;
+		}
+		</style>
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">绑定银行卡</p>
+		</div>
+		<div class="d_bind">
+			<span>请绑定持卡人本人的银行卡</span>
+		</div>
+		<div class="d_cardholder">
+			<div class="d_cardholder1">
+				<label for="" class="d_person">持卡人</label>
+				<input type="text" class="d_input" id="" value=""/>
+				<img class="d_img" src="images/z-13.png"/>
+			</div>
+			<ul class="d_cardholder3">
+				<li class="d_card"><span>开户行</span><span class="cardblank">请选择开户行</span><img src="images/z-202.png"/></li>
+				<ul class="d_cardholder31">
+				</ul>
+			</ul>
+			<div class="d_cardholder2">
+				<label for="" class="d_person1">卡号</label>
+				<input type="text" class="d_input1" id="" value="" placeholder="银行卡号"/>
+			</div>
+		</div>
+		<span class="d_nexth">下一步</span>
+		<div class="d_card-p">
+			<span>持卡人</span>
+			<p>为了保障账户资金安全，只能绑定认证用户本人的银行卡</p>
+		</div>
+		<div class="d_success">
+			添加银行卡成功
+		</div>
+		<div class="lt">
+			<p></p>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    	var txtli;
+    	var value1;
+    	var value;
+    	var tokens=localStorage.getItem ("token");
+    	var tf=true;
+//    console.log(tokens);
+		//银行卡列表开始
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=userset&f=bank_list",
+			dataType: "json",
+			data: {
+				"token": tokens,
+			},
+			success: function(data) {
+			console.log(data);
+			var datas = data.data;
+			for (var i = 0; i < datas.length; i++) {
+				var html1 = '<li>'+datas[i].bank_name+'</li>';
+				$(".d_cardholder31").append(html1);	
+		     }
+			//  	选择银行卡界面
+	        	$(".d_card").click(function(){
+	        	 $(".d_cardholder31").show();
+	        	});
+        	
+        	//选择银行卡银行卡列表消失
+        	$(".d_cardholder31 li").each(function(){
+			$(this).click(function(){
+			var b = $(this).index();
+			txtli = $(this).text();
+			$(".cardblank").text(txtli);
+			$(".d_cardholder31").hide();
+			});
+		});
+		},
+	    error: function(data) {　　　　
+		}
+			});			
+		//银行卡列表结束
+    	$(".d_img").click(function(){
+    		$(".d_card-p").show();
+    	});
+    	$(".d_card-p").click(function(){
+    		$(".d_card-p").hide();
+    	});
+    	$(".d_next").click(function(){
+    		$(".d_success").show();
+    	});
+    	$(".d_success").click(function(){
+    		$(".d_success").hide();
+    	})    
+
+  
+		
+    $(".d_input").keyup(function(){
+    	value1 = $(this).val();
+    	// console.log(value1);
+    }); 
+	$(".d_input1").keyup(function() {
+		value = $(this).val();
+		if ($(this).val()!="") {
+			$(".d_nexth").addClass("d_next");
+		}else{
+			$(".d_nexth").removeClass("d_next");
+		}
+	});
+//	添加银行卡下一步
+  $(".d_nexth").click(function(){
+  	if (tf) {
+  		tf=false;
+  		//  	添加银行卡ajax
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=userset&f=addcard",
+			dataType: "json",
+			data: {
+				"token": tokens,
+				"user_name":value1,
+				"bank_name":txtli,
+				"bank_num":value,
+				"type":"0"
+			},
+			success: function(data) {
+				console.log(data);
+				tf=true;
+				if(data.msg=="添加成功"){
+					
+					location.href="bank.html";
+				}else{
+					$(".lt").css("display","block");
+					$(".lt p").html(data.msg);
+				}
+				$(".lt").on("click",function(){
+					$(this).css("display","none");
+				})
+				
+			},
+			error: function(data) {
+				}
+			});		
+  	}
+  		
+  })
+	});
+    </script>
+</html>

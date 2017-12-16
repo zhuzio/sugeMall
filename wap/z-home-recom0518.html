@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页推荐榜</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/z-home-recom.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+	</head>
+	<body>
+		<div class="d_header">
+			<a class="black" href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">超值推荐</p>
+		</div>
+		<!--<ul class="z-hr-list">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<span class="z-hr-back1"><img class="z-hr-back" src="images/z-85.png"/></span>
+		</ul>
+		<div class="z-hr-down">
+			<ul class="z-hr-ul">
+				<li>
+					<ul class="z-hr-ul1 z-hr-ul11">
+					</ul>
+				</li>
+				<li>
+					<ul class="z-hr-ul1 z-hr-ul12">
+					</ul>
+				</li>
+				<li>
+					<ul class="z-hr-ul1 z-hr-ul13">
+					</ul>
+				</li>
+				<li>
+					<ul class="z-hr-ul1 z-hr-ul14">
+					</ul>
+				</li>
+			</ul>
+		</div>-->
+		<div class="z-hr-wp">
+			
+			<ul class="z-hr-pro">
+			</ul>
+			<div class="z-load"><img src="images/add.gif"/></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+	$(function(){
+//	下拉点击事件
+        var bol = false;
+		$(".z-hr-back").click(function(){
+			if(bol == false){
+			$(".z-hr-down").slideDown("show");
+			bol = true;
+			$(".z-hr-back").attr("src" , "images/z-87.png");
+			}else if(bol == true){
+			$(".z-hr-down").slideUp("hide");
+			bol = false;
+			$(".z-hr-back").attr("src" , "images/z-85.png");
+			}
+		});
+		var tokens=localStorage.getItem ("token");
+		var index;
+		var num;
+		var catename;
+		var goodArr = [];
+	    $.ajax({
+
+            type: 'POST',
+            url: Url + "api/index.php?n=store&f=storeclass",
+     		dataType: "json",
+    		data: {token:tokens},
+    		success: function(data){
+    		$(".z-load").show();
+    		if(data.msg == "请先登录"){	
+	 			window.location.href = "denglu.html";
+			}
+	    	if(data.msg == "身份错误，请重新登录"){	
+	 			window.location.href = "denglu.html";
+			}	
+    			for (var i = 0; i < 5; i++) {
+    				$($(".z-hr-list li")[i]).html(data.data[i].cate_name);
+    				//		导航订单的点击事件 
+    				};
+                      $(".z-hr-list li").on("click",function(){
+						catename = $(this).text();
+             			 $(this).css({"color":"#ffa442",})
+             			 cateFun();
+              			$(this).siblings().css({
+              			"color":"#666",
+             			
+						});
+					});	
+    			for(var i = 5; i < 10; i++) {
+    				html1 = '<li>'+data.data[i].cate_name+'</li>';
+    				$(".z-hr-ul11").append(html1);
+    			};
+    			for(var i = 10; i < 15; i++) {
+    				html1 = '<li>'+data.data[i].cate_name+'</li>';
+    				$(".z-hr-ul12").append(html1);
+    			};
+    			for(var i = 15; i < 20; i++) {
+    				html1 = '<li>'+data.data[i].cate_name+'</li>';
+    				$(".z-hr-ul13").append(html1);
+    			};
+    			for(var i = 20; i < 25; i++) {
+    				html1 = '<li>'+data.data[i].cate_name+'</li>';
+    				$(".z-hr-ul14").append(html1);
+    			};
+    		  $(".z-hr-ul1 li").click(function(){
+		     	catename = $(this).text();
+		    	cateFun();
+             	$(this).css({"color":"#ffa442",})
+              	$(this).siblings().css({
+              		"color":"#666",
+             	});
+		    });
+		  setTimeout(function(){
+			$(".z-load").hide();
+		  },300);
+    		},
+    		error:function(data){
+			},
+		})
+	  cateFun();
+      function cateFun(){
+      	$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=goods&f=mrecgoods",
+		         	dataType: "json",
+		       		data: {
+		       		"cate_name":catename,
+       				"page":1
+		       			},
+		        	success: function(data){
+		        		$(".z-load").show();
+//		        		console.log(data);
+		                     var datas = data.data;
+		                     num = data.totalpage;
+		                     var html = '';
+		                     for (var i = 0; i <datas.length; i++) {
+								 if(i==0)
+								 {
+									 html += '<li><ul class="z-hr-pro1" style="margin-top: 100px"><li class="z-namer">'+datas[i].goods_name+'</li><li><img class="z-caimg" src="'+Url+''+datas[i].default_image+'"/></li><li><span class="z-hr-price">售价</span><span class="z-hr-price1">￥'+datas[i].price+'</span></li></ul></li>';
+									 goodArr.push(datas[i].goods_id);
+								 }else
+								 {
+									 html += '<li><ul class="z-hr-pro1"><li class="z-namer">'+datas[i].goods_name+'</li><li><img class="z-caimg" src="'+Url+''+datas[i].default_image+'"/></li><li><span class="z-hr-price">售价</span><span class="z-hr-price1">￥'+datas[i].price+'</span></li></ul></li>';
+									 goodArr.push(datas[i].goods_id);
+								 }
+
+		                       }
+			      		    $(".z-hr-pro").html(html);
+			      		    word(15)
+			      		    $(".z-hr-pro li").click(function(){
+			      			var a = $(this).index();
+			      			localStorage.setItem('good',  goodArr[a]);
+			      			location.href ="goods-order.html";		
+			      	   });
+			      	$('.z-caimg').error(function(){
+    			     $(this).attr('src', 'images/z-logo.png');
+		             });
+		             
+		            setTimeout(function(){
+					$(".z-load").hide();
+		  			},300)
+					} ,
+		            error:function(data){
+			        // console.log(data);
+				   },
+		});
+      }
+    
+//  预加载
+ var pages=1; //当前页的页码
+ var allpage=num; //总页码，会从后台获取
+		var sc=true;
+		function showAjax(){
+			$.ajax({
+				 type: 'POST',
+				 dataType: "json",
+				 url:Url + "api/index.php?n=goods&f=mrecgoods",
+				 data: {
+//				     	"token":tokens,
+				     	"page":pages,
+				     	"cate_name":catename,
+				     	
+				     },
+				success:function(data){
+					$(".z-load").show();
+					//要执行的内容
+					// showContent();
+						//页数加1
+//					console.log(data);
+					var datas = data.data;
+				    	var htmls=" ";
+				    	for (var i = 0; i < datas.length; i++) {
+				    	 htmls = '<li><ul class="z-hr-pro1"><li class="z-namer">'+datas[i].goods_name+'</li><li><img class="z-caimg" src="'+Url+''+datas[i].default_image+'"/></li><li><span class="z-hr-price">售价</span><span class="z-hr-price1">￥'+datas[i].price+'</span></li></ul></li>';
+				    	sc=true;
+	    				$(".z-hr-pro").append(htmls);
+	    				 word(15)
+	    				 goodArr.push(datas[i].goods_id);
+				    	};
+				    	$(".z-hr-pro li").click(function(){
+			      			var a = $(this).index();
+			      			// console.log(a);
+			      			localStorage.setItem('good',  goodArr[a]);
+			      			location.href ="goods-order.html";		
+			      	  });			      	   
+			      	   //添加图片本地
+			      	 $('.z-caimg').error(function(){
+    			     $(this).attr('src', 'images/z-logo.png');
+		             });
+		    	//添加本地图片结束
+				    setTimeout(function(){
+					$(".z-load").hide();
+		  			},300)	
+					// 分页加载/
+				}
+			})
+		}
+		function scrollFn(){
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+				if (sc) {
+				sc=false;
+				pages++;
+				if (pages<=num) {
+					console.log(pages);
+					showAjax();
+				}
+				
+			}
+		       }
+		}
+		$(window).bind("scroll",scrollFn);	//绑定滚动事件  
+  });
+	
+function word(len){
+  	$(".z-namer").each(function(){
+   	 	var counter = $(this).text().length;//获取文本域的字符串长度
+   	 	var txt = $(this).text();
+	  	if(counter >= len) {
+		var num = $(this).text().substr(0, len);
+		$(this).text(num+'....');
+	}else { 
+	  $(this).text(txt);
+		} 
+   	});
+  }
+		
+	</script>
+</html>

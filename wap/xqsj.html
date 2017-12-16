@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>辖区商家</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/w_member.css">
+		<link rel="stylesheet" href="css/a.css">
+		<meta name="format-detection" content="telephone=no" />
+		<style>
+			.ldtt {
+				position: fixed;
+				z-index: 1000;
+				height: 3.2rem;
+				text-align: center;
+				bottom: 12rem;
+				left: 0;
+				width: 100%;
+				display: none;
+			}
+			
+			.ldtt img {
+				width: 3.2rem;
+			}
+			.zff{
+				display: inline-block;
+				width: 40.0rem !important;
+				/*border: 1px solid red;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="ldtt"><img src="images/add.gif" alt=""></div>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">辖区商家</p>
+			<!-- <button>保存</button> -->
+		</div>
+		<div class="searcher">
+			<p class="search">
+				<i><img src="images/l_search.png" alt=""></i>
+				<input type="text" placeholder="收索店铺名或手机号查看团队成员">
+			</p><span>搜索</span></div>
+		<div class="kong"></div>
+		<ul class="memer">
+			<li>
+			</li>
+
+		</ul>
+		<div class="none">
+			<img src="images/none.png" alt="">
+		</div>
+		<div class="numk"></div>
+		<div class="num">当前人数（<span></span>）</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script>
+		$(function() {
+			function getLocalTime(timestamp){
+		    var d = new Date(timestamp * 1000);    //根据时间戳生成的时间对象
+			var date = (d.getFullYear()) + "-" + 
+			           (d.getMonth() + 1) + "-" +
+			           (d.getDate()) ;
+			           // + " " + 
+			           // (d.getHours()) + ":" + 
+			           // (d.getMinutes()) + ":" + 
+			           // (d.getSeconds());
+			          return date; 
+		    }
+			var numm;
+			var xia = true;
+			var tokens = localStorage.getItem("token");
+			var types = localStorage.getItem("type");
+			var imgss = "";
+			types = 2;
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=user&f=jurisdictionshop",
+				dataType: "json",
+				data: {
+					"token": tokens,
+				},
+				success: function(data) {
+					// console.log("总");
+					 console.log(data);
+					var datas = data.data;
+					// var leng = datas.length;
+					// console.log(datas);
+					var n;
+					numm = data.totalpage;
+					for(var j = 0; j < 10000000; j++) {
+						if(!data.data[j]) {
+							n = j;
+							break;
+						}
+					};
+					// console.log(n);
+					for(var i = 0; i < n; i++) {
+						var html = '<div class="con"><div class="left"><img class="zleft" src="' + Url + '' + datas[i].store_logo + '" alt=""></div><div class="right"><p class="rp1"><span class="zff">店铺名：' + datas[i].store_name + '</span></p><p class="rp2"><span>电话：' + datas[i].tel + '</span></p><p class="rp3"><span>注册时间：' + getLocalTime(datas[i].add_time) + '</span></p></div><a href="tel: '+datas[i].tel+'"><img src="images/mmtel.png" alt=""></a></div>';
+						$(".memer li").append(html);	
+					}
+					word(15) 
+					$('.zleft').error(function() {
+						$(this).attr('src', 'images/z-logo.png');
+					});
+
+					sl();
+				},
+				error: function(data) {
+				}
+			});
+			//    
+			//搜索会员ajax开始
+			$(".searcher span").on("click", function() {
+				xia = false;
+				var intxt = $(".search input").val();
+				console.log(intxt);
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=user&f=jurisdictionshop",
+						dataType: "json",
+						data: {
+							"token": tokens,
+							"user_value": intxt,
+						},
+						success: function(data) {
+							console.log(data);
+							$(".memer li").html("");							
+							var datas = data.data.sum;
+							var data1 = data.data;
+							console.log(data1);
+							var html = "";
+							for(var i = 0; i < data1.length; i++) {
+								html += '<div class="con"><div class="left"><img class="zleft" src="' + Url + '' + data1[i].store_logo + '" alt=""></div><div class="right"><p class="rp1"><span class="zff">店铺名：' + data1[i].store_name + '</span></p><p class="rp2"><span>电话：' + data1[i].tel + '</span></p><p class="rp3"><span>注册时间：' + getLocalTime(data1[i].add_time) + '</span></p></div><a href="tel: '+data1[i].tel+'"><img src="images/mmtel.png" alt=""></a></div>';
+							}
+							$(".memer li").html(html);
+							word(15)
+							$('.zleft').error(function() {
+								$(this).attr('src', 'images/z-logo.png');
+							});
+							sl();
+						},
+						error: function(data) {
+						}
+					});
+			});
+
+			function sl() {
+				// alert($(".con").length)
+				$(".num span").html($(".con").length);
+				if($(".num").find("span").html() < 1) {
+					$(".num").css("display", "none");
+					$(".none").css("display", "block");
+				} else {
+				}
+			}
+			// sl();
+			var pages = 1; //当前页的页码
+			var allpage = numm; //总页码，会从后台获取
+			var sc = true;
+			function showAjax() {
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=user&f=jurisdictionshop",
+					data: {
+						token: tokens,
+						page: pages,
+					},
+					success: function(data) {
+						//要执行的内容
+						// showContent();
+						//页数加1
+						 console.log(data);
+
+						var datas = data.data;
+						var n;
+						for(var j = 0; j < 10000000; j++) {
+							if(!data.data[j]) {
+								n = j;
+								break;
+							}
+						};
+						var html = "";
+						for(var i = 0; i < n; i++) {
+							// alert(1);
+							html= '<div class="con"><div class="left"><img class="zleft" src="' + Url + '' + datas[i].store_logo + '" alt=""></div><div class="right"><p class="rp1"><span class="zff">店铺名：' + datas[i].store_name + '</span></p><p class="rp2"><span>电话：' + datas[i].tel + '</span></p><p class="rp3"><span>注册时间：' + getLocalTime(datas[i].add_time) + '</span></p></div><a href="tel: '+datas[i].tel+'"><img src="images/mmtel.png" alt=""></a></div>';
+							$(".memer li").append(html);
+						    sc = true;
+							word(15);
+						};
+						$('.zleft').error(function() {
+							$(this).attr('src', 'images/z-logo.png');
+						});
+						sl();
+						// 分页加载/
+					}
+				})
+			}
+			function scrollFn() {
+
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 100) { //如果满足触发条件，执行
+					if(sc) {
+						// alert(2);
+						// alert(pages+":"+allpage)
+						sc = false;
+						pages++;
+						if(pages <= numm) {
+							if(xia) {
+								// console.log(pages);
+								showAjax();
+								// alert(0);
+							}
+
+							// alert(1);
+						}
+
+					}
+				}
+			}
+			$(window).bind("scroll", scrollFn); //绑定滚动事件
+			
+			
+			function word(len) {
+				$(".zff").each(function() {
+					var counter = $(this).text().length; //获取文本域的字符串长度
+					var txt = $(this).text();
+					if(counter >= len) {
+						var num = $(this).text().substr(0, len);
+						$(this).text(num + '....');
+					} else {
+						$(this).text(txt);
+					}
+				});
+			}
+		})
+	</script>

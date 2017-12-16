@@ -1,0 +1,226 @@
+.z-commwp{
+	width: 100%;
+	height: 100%;
+	background-color: #efeff4;
+}
+.z-combanner{
+	width: 100%;
+	height: 38.0rem;
+	background: url("../images/z-60.png") no-repeat;
+	background-size: 100% 100%;
+	/*text-align: center;*/
+	border: 1px solid #bfbfc3;
+	position: relative;
+}
+.z-com-set{
+	width: 92%;
+	height: 5.0rem;
+	/*border: 1px solid red;*/
+	margin: 0 auto;
+	position: relative;
+	top: 2.2rem;
+}
+.z-com-set img{
+	width: 4.5rem;
+}
+.comm-set{
+	position: absolute;
+	left: 0;
+}
+.comm-info{
+	position: absolute;
+	right: 0;       
+}
+.comm-head{
+	width: 12.6rem;
+	height: 12.6rem;
+	/*border: 1px solid red;*/
+	/*margin: -28.0rem auto 0;*/
+	/*background-color: #000;*/
+	border-radius: 100%;
+	/*display: none;*/
+	position: absolute;
+	overflow: hidden;
+	top: 15.5rem;
+	left: 4rem;
+	border: 1px solid #E3B10B;
+}
+.comm-head img{
+	width: 12.6rem;
+	height: 12.6rem;
+	border-radius: 100%;
+}
+.comm-left{
+	width: 18.4%;
+	/*height: 13.9rem;*/
+	/*border: 1px solid red;*/
+	    display: inline-block;
+	    /*margin: 18.7rem 0 0 3.0rem;*/
+	    position: absolute;
+	    width: 10rem;
+	    height: 10rem;
+	    right: 10rem;
+	    top: 16.5rem;
+
+}
+.comm-left img{
+	width: 8rem;
+	height: 8rem;
+	margin-top: 1rem;
+
+}
+.comm-user{
+	font-size: 3.0rem;
+	color: #333;
+	/*line-height: 4.5rem;
+	margin-left: 43.8%;*/
+	position: absolute;
+	left: 18.2rem;
+	top: 18rem;
+
+}
+.z-comm-glod{
+	width: 14.5rem;
+	position: relative;
+	left: 18rem;
+	top: 17.5rem;
+}
+.z-comm-glod1{
+	width: 8.8rem !important; 
+}
+.z-comm-dl{
+	font-size: 2.0rem;
+	padding: 0.6rem 2.7rem;
+	border: 2px solid #ccc;
+	background-color: #fff;
+	border-radius: 1.5rem;
+	/*margin-left: -2.6rem;*/
+	margin-left: 36%;
+	/*outline: 1px solid #333;*/
+}
+.z-comm-sj{
+	width: 6.5rem;
+	position: relative;
+	top: 17rem;
+	left: 18rem;
+}
+.z-comm-sjw{
+	font-size: 1.7rem;
+	color: #f83d3d;
+}
+.z-comm-more{
+	width: 2.7rem;
+	position: absolute;
+	right: 3.0rem;
+	top: 19.0rem;
+
+}
+.menu{
+	margin: 4rem 3rem;
+	height: 35.1rem;
+	background: url(../images/menu.png) 0 0 no-repeat;
+	background-size: 100% 100%; 
+	overflow: hidden;
+
+
+}
+.menu ul{
+	margin-left: 4rem;
+	height: 34.1rem;
+	/*width: 63rem;*/
+	margin-top: 1rem;
+}
+.menu ul li{
+	width: 33%;
+	height: 100%;
+	border-right: 0.1rem dotted #efeff4;
+	float: left;
+}
+.menu img{
+	height: 10rem;
+	width: 10rem;
+	margin-top: 2.5rem;
+}
+.menu_p1{
+	height: 17.1rem;
+	/*text-align: center;*/
+	border-bottom: 0.1rem dotted #efeff4;
+}
+.menu_p2{
+	height: 17rem;
+	/*text-align: center;*/
+	/*border-bottom: 0.1rem dotted #efeff4;*/
+}
+.menu li a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 2.4rem;
+	/*font-family: simsun;*/
+	font-family: Microsoft YaHei;
+	font-weight: bold;
+	color: #333;
+	line-height: 3.5rem;
+}
+.footer{
+	height: 9.8rem;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+}
+.footer a{
+	float: left;
+	width: 20%;
+	height: 9.8rem;
+	text-align: center;
+	line-height: 9.8rem;
+
+}
+.footer a img{
+	/*width: 4.7rem;*/
+	vertical-align: middle;
+	height: 7.1rem;
+}
+.union{
+	width: 9.7rem !important;
+}
+
+.tan{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.6);
+	display: none;
+	z-index: 1000000;
+}
+.tan img{
+	width: 70%;
+	/*height: 22rem;*/
+	margin-top: 50%;
+	margin-left: 15%;
+	background-color: #fff;
+}
+.z-prompt6{
+	width: 50%;
+	height: 10.0rem;
+	background: rgba(0,0,0,0.7);
+	position: absolute;
+	left: 25%;
+	bottom: 40.0rem;
+	border-radius: 1.0rem;
+	font-size: 2.8rem;
+	text-align: center;
+	line-height: 10.0rem;
+	color: #fff;
+}
+.z-prompt6{
+	width: 80% !important;
+	position: absolute;
+	left: 10% !important;
+	z-index: 1000;
+	
+}

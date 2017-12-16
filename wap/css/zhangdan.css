@@ -1,0 +1,217 @@
+@import url(m_style.css);
+.full {
+  width: 100%;
+}
+html,
+body,
+.wrap {
+  width: 100%;
+  font-size: 62.5%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+header {
+  width: 100%;
+  height: 21rem;
+}
+header .header-top {
+  width: 100%;
+  height: 8.8rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  background: #efeff4;
+}
+header .header-top .left {
+  width: 8rem;
+  height: 8.8rem;
+  text-align: center;
+  font-size: 3.4rem;
+  margin-top: 2rem;
+}
+header .header-top .right {
+  -webkit-box-flex: 1;
+  text-align: center;
+  line-height: 8.8rem;
+  font-size: 3.4rem;
+  color: #323333;
+  padding-right: 8rem;
+  -webkit-box-sizing: border-box;
+}
+header .header-bottom {
+  width: 100%;
+  height: 12rem;
+  background: white;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+header .header-bottom .box {
+  width: 25%;
+  height: 7rem;
+  margin-left: 6%;
+  margin-top: 3.5rem;
+  text-align: center;
+  line-height: 7rem;
+  font-size: 3.4rem;
+  color: #999;
+  border: 0.1rem solid #999;
+}
+header .header-bottom .box a {
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+header .header-bottom .box1 {
+  color: #de1800;
+  border: 0.1rem solid #de1800;
+}
+section {
+  -webkit-box-flex: 1;
+  overflow: auto;
+  background: #fff;
+}
+section .content1 .kong {
+  width: 100%;
+  height: 2rem;
+  background: #efeff4;
+}
+section .content1 .sec-h {
+  width: 94%;
+  height: 14.5rem;
+  background: #fff;
+  margin: 0 3%;
+  -webkit-box-sizing: border-box;
+  position: relative;
+}
+section .content1 .sec-h .sec-h-top {
+  width: 100%;
+  height: 10.5rem;
+  border-bottom: 0.1rem dashed #dcdcdc;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  /*position: relative;*/
+}
+section .content1 .sec-h .sec-h-top h1 {
+  font-size: 3rem;
+  padding-top: 4.5rem;
+  font-weight: normal;
+  padding-left: 1.5rem;
+}
+section .content1 .sec-h .sec-h-top h3 {
+  -webkit-box-flex: 1;
+}
+section .content1 .sec-h .sec-h-top h2 {
+  font-size: 2.4rem;
+  color: #d81e05;
+  padding-top: 5rem;
+  padding-right: 0.5rem;
+}
+section .content1 .sec-h .sec-h-bottom {
+  width: 100%;
+  height: 4rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  line-height: 4rem;
+}
+section .content1 .sec-h .sec-h-bottom h1 {
+  -webkit-box-flex: 1;
+}
+section .content1 .sec-h .sec-h-bottom p {
+  font-size: 2.4rem;
+  margin-left: 1.5rem;
+}
+section .content2 .kong {
+  width: 100%;
+  height: 2rem;
+  background: #efeff4;
+}
+section .content2 .con2-g {
+  width: 94%;
+  height: 27.5rem;
+  background: #fff;
+  margin: 0 3%;
+}
+section .content2 ul {
+  width: 100%;
+  height: 20rem;
+  border-bottom: 0.1rem dashed #dcdcdc;
+  padding-top: 1.5rem;
+}
+section .content2 ul li {
+  line-height: 5.5rem;
+  font-size: 3rem;
+  width: 100%;
+  height: 6rem;
+  line-height: 6rem;
+  color: #666666;
+}
+section .content2 ul li span {
+  color: #d81e05;
+}
+section .content2 ul .li-b {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .content2 ul .li-b h1 {
+  font-size: 3rem;
+  font-weight: normal;
+}
+section .content2 ul .li-b h3 {
+  -webkit-box-flex: 1;
+}
+section .content2 ul .li-b h2 {
+  font-size: 3rem;
+  font-weight: normal;
+}
+section .content2 .con2-g-bottom {
+  width: 100%;
+  height: 6rem;
+  line-height: 6rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .content2 .con2-g-bottom h1 {
+  -webkit-box-flex: 1;
+}
+section .content2 .con2-g-bottom p {
+  font-size: 2.4rem;
+  margin-left: 1.5rem;
+}
+section .content3 .kong {
+  width: 100%;
+  height: 2rem;
+  background: #efeff4;
+}
+section .content3 .con3 {
+  width: 94%;
+  height: 30rem;
+  margin: 0 3%;
+}
+section .content3 .con3 ul {
+  width: 100%;
+  height: 24rem;
+  padding-top: 2.5rem;
+}
+section .content3 .con3 ul li {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  font-size: 3.0rem;
+  height: 6rem;
+  line-height: 6rem;
+}
+section .content3 .con3 ul li .p1 {
+  width: 30% ;
+}
+section .content3 .con3 ul li .p1 img {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+}
+section .content3 .con3 ul li .p2 {
+  -webkit-box-flex: 1;
+}
+section .content3 .con3 ul li .p3 img {
+  width: 5rem;
+  height: 4rem;
+  padding-right: 1rem;
+  -webkit-box-sizing: border-box;
+}

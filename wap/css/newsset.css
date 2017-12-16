@@ -1,0 +1,84 @@
+.d_header{
+	height: 8.8rem;
+	background-color: #f0f0f0;
+	position: relative;
+	
+}
+.d_header a{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.d_header button{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width:11rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3.4rem;
+	color: #333;
+	text-align: right;
+	background-color: #f0f0f0;
+}
+ul{
+	margin-top: 2rem;
+	overflow: hidden;
+	border-bottom: 1px solid #d5d5d5;
+}
+ul li{
+	height: 9.4rem;
+	width: 100%;
+	border-top: 1px solid #d5d5d5;
+	/*box-sizing:border-box;*/
+}
+ul li p{
+	margin: 0 3rem;
+}
+ul li p span{
+	float: left;
+	line-height: 9.3rem;
+	font-size: 2.8rem;
+	color: #333;
+}
+ul li p button{
+	float: right;
+	width: 7.5rem;
+	height: 9.4rem;
+	line-height: 9.3rem;
+	background-color: #fff;
+}
+ul li p button img{
+	vertical-align: middle;
+	width: 7.2rem;
+	height: 4rem;
+}
+

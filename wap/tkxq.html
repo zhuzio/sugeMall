@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>退款详情</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/tkxq.css">
+		<link rel="stylesheet" href="css/a.css">
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)" class="ha1">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">退款详情</p>
+			<a href="order_on.html" class="ha2">商城订单</a>
+		</div>
+		<div class="xq">
+			<p class="bh">
+				退款编号：
+			</p>
+			<p class="zt">
+				退款状态：<span class="jsp7"></span><br> 商品总额：
+				<span class="zsp1"></span>元<br> 该商品退款总额：
+				<span class="zsp2"></span>元
+			</p>
+			<p class="je">
+				退款金额：<span class="jsp1"></span><br> 退路费：
+				<span class="jsp2"></span><br> 收货情况：
+				<span class="jsp3"></span><br> 退款原因：
+				<span class="jsp4"></span><br> 退款说明：
+				<span class="jsp5"></span><br> 申请时间：
+				<span class="jsp6"></span>
+			</p>
+			<p class="kong"></p>
+		</div>
+	</body>
+	<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script>
+		$(function() {
+			var tokens = localStorage.getItem("token");
+			var refund_ids = localStorage.getItem("refund_id");
+			var imgs = "' + Url + 'api/";
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=refund&f=info",
+				dataType: "json",
+				data: {
+					token: tokens,
+					refund_id: refund_ids,
+				},
+				success: function(data) {
+					console.log(data);
+					if(data.ret == "ok") {
+						// $(".js").html(data.data.goods_name);
+						$(".bh").html("退款编号：" + data.data.refund_sn);
+						// $(".mj1").html("卖家："+data.data.store_name);
+						$(".zsp2").html(data.data.refund_goods_fee);
+						$(".zsp1").html(data.data.total_fee);
+						$(".jsp1").html(data.data.refund_goods_fee);
+						$(".jsp2").html(data.data.refund_shipping_fee);
+						$(".jsp3").html(data.data.shipped);
+						$(".jsp4").html(data.data.refund_reason);
+						$(".jsp5").html(data.data.refund_desc);
+						$(".jsp6").html(data.data.created);
+						console.log(data.data.refund_status);
+						if(data.data.refund_status=="SUCCESS"){
+							$(".jsp7").html("退款成功");
+						}
+						if(data.data.refund_status=="SELLER_REFUSE_BUYER"){
+							$(".jsp7").html("卖家拒绝退款");
+						}
+						if(data.data.refund_status=="WAIT_SELLER_AGREE"){
+							$(".jsp7").html("等待买家退款");
+						}
+						if(data.data.refund_status=="CLOSED"){
+							$(".jsp7").html("取消退款");
+						}
+
+					};
+				},
+			});
+		})
+	</script>
+
+</html>

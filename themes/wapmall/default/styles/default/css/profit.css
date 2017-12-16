@@ -1,0 +1,850 @@
+/*板块样式*/
+
+/*top*/
+
+.profit-top{
+
+	width: 100%;
+
+	height: 160px;
+
+	background-image: url(../images/profit/bg.png);
+
+	background-size:100% 160px;
+
+}
+
+.profit-pic{ 
+
+	float: left;
+
+	width: 30%;
+
+	overflow: hidden;
+
+	}
+
+.profit-pic span{ 
+
+	display: block;
+
+	margin: auto;
+
+	margin-top: 40px;
+
+	width: 80px; 
+
+	height: 80px;
+
+	overflow: hidden;
+
+	border-radius: 50px;
+
+	background-image: url(../images/profit/empty-bg.png);
+
+	}
+
+.profit-pic span img{
+
+	width: 100%;
+
+}
+
+.profit-cont{ 
+
+	float: left; 
+
+	width: 70%;
+
+	margin-top: 30px;
+
+	overflow: hidden;
+
+	}
+
+.pro-current{
+
+	color: #FFFFFF; 
+
+	font-size: 14px; 
+
+	line-height: 48px;
+
+	white-space: nowrap;
+
+	text-overflow: ellipsis;
+
+	overflow: hidden;
+
+}
+
+.pro-current span{ 
+
+	margin-left: 10px;
+
+	font-size: 36px;
+
+	color: #FFFFFF; 
+
+}
+
+.pro-td{ 
+
+	overflow: hidden; 
+
+}
+
+.pro-td a{ 
+
+	float: left;
+
+	width: 50%;
+
+	font-size: 12px;
+
+	color: #f4f5f5;
+
+	white-space: nowrap;
+
+	text-overflow: ellipsis;
+
+	overflow: hidden;
+
+}
+
+.pro-td a span{
+
+	 margin-left: 3px;
+
+	 font-size: 15px;
+
+	 color: #FFFFFF;
+
+}
+
+/*收益-余额*/
+
+.profit-details{ 
+
+	margin-top: 10px;
+
+	background-color: #FFFFFF;
+
+	border-bottom: 1px solid #ececec;
+
+	border-top: 1px solid #ececec;
+
+}
+
+.profit-details ul{
+
+	 overflow: hidden;
+
+}
+
+.profit-details ul li{ 
+
+	width: 50%;
+
+	float: left;
+
+}
+
+.profit-details ul li a{
+
+	display: block;
+
+	padding: 15px 0;
+
+	text-align: center;
+
+	border-right: 1px solid #ECECEC;
+
+	margin-right: -1px; 
+
+	border-bottom: 1px solid #ECECEC;
+
+	margin-bottom: -1px;
+
+}
+
+.profit-details ul li a:hover{
+
+}
+
+.profit-details ul li a p{
+
+	 line-height: 36px;
+
+	 font-size: 22px;
+
+	 color: #333333;
+
+	 
+
+}
+
+.profit-details ul li a span{
+
+	color: #666666;
+
+	line-height: 36px;
+
+}
+
+.thaw{
+
+	overflow: hidden;
+
+	text-align: center;
+
+	margin: 15px;
+
+}
+
+.thaw button{
+
+	width: 80%;
+
+	height: 44px;
+
+	background-color: #00A4A6;
+
+	color: #FFFFFF;
+
+	border-radius: 3px;
+
+	font-size:16px;
+
+}
+
+/*细化*/
+
+.refine{
+
+	 width: 70%;
+
+	 float: left;
+
+	 margin-top: 50px;
+
+}
+
+.refine h4{ 
+
+	font-size: 32px;
+
+	color: #FFFFFF;
+
+	font-weight: 500;
+
+}
+
+.refine p{
+
+	color: #FFFFFF;
+
+	font-size: 16px;
+
+	line-height: 36px;
+
+}
+
+/*明细列表*/
+
+.refine-details{ 
+
+	overflow: hidden;
+
+	}
+
+.refine-details ul{ 
+
+}
+
+.refine-details li{ 
+
+	overflow: hidden; 
+
+	background-color: #FFFFFF; 
+
+	padding-top: 20px;
+
+	border-bottom: 1px solid #ECECEC;
+
+	padding-left: 10px;
+
+	padding-right: 10px;
+
+	padding-bottom: 10px;
+
+}
+
+.refine-details li .refine-plus{
+
+	float: left;
+
+	width: 10%;
+
+}
+
+.refine-details li .refine-plus span{
+
+	display: block;
+
+	margin: auto;
+
+	width: 24px;
+
+	height: 24px;
+
+	border-radius: 10px;
+
+	background-image: url(../images/profit/plus.png);
+
+	background-size:100%;
+
+	margin-top: 10px;
+
+}
+
+
+
+.refine-details li .refine-reduce{
+
+	float: left;
+
+	width: 10%;
+
+}
+
+.refine-details li .refine-reduce span{
+
+	display: block;
+
+	margin: auto;
+
+	width: 24px;
+
+	height: 24px;
+
+	border-radius: 10px;
+
+	background-image: url(../images/profit/plus.png);
+
+	background-size:100%;
+
+	margin-top: 10px;
+
+}
+
+.refine-re{
+
+	float: left;
+
+	width: 90%;
+
+	overflow: hidden;
+
+}
+
+.ref-number{
+
+	 font-size: 14px;
+
+	 line-height: 24px;
+
+}
+
+.ref-number span{
+
+	margin-right: 5px;
+
+}
+
+.ref-event{
+
+	overflow: hidden;
+
+	width: 100%;
+
+}
+
+.ref-event p{
+
+	float: left;
+
+	font-size: 12px;
+
+	width: 65%;
+
+	/*overflow: hidden;
+
+	white-space: nowrap;
+
+	text-overflow: ellipsis;*/
+
+}
+
+.ref-event span{
+
+	float: left;
+
+	font-size: 12px;
+
+}
+
+.ref-event span.ref-date{
+
+	width: 25%;
+
+}
+
+.ref-event span.ref-time{
+
+	width:10%;
+
+}
+
+/*切换开关*/
+
+.int-switch{
+
+	 padding: 10px 10px;
+
+	 background-color: #FFFFFF;
+
+	 border-bottom: 1px solid #ECECEC;
+
+}
+
+.switch{ 
+
+	width: 80%;
+
+	height: 48px;
+
+	line-height:48px;
+
+	margin: auto;
+
+	background-color: #F1F2F6;
+
+	border: 1px solid #dddddd;
+
+	border-radius: 24px;
+
+	position: relative;
+
+}
+
+.switch span{
+
+	 width: 50%;
+
+	 text-align: center;
+
+	 display: block;
+
+	 position: absolute;
+
+	 color: #333333;
+
+	 font-size: 14px;
+
+}
+
+.switch span#on{ 
+
+	left: 0;
+
+	z-index: 2;
+
+}
+
+.switch span#off{ 
+
+	right: 0;
+
+	z-index: 2;
+
+
+
+}
+
+.switch span.activ{ 
+
+	width: 55%;
+
+	background-color: #39B4BF;
+
+	color: #FFFFFF;
+
+	border-radius: 24px;
+
+	z-index: 1;
+
+}
+
+/*文本列表*/
+
+.text-list{ 
+
+	border-top: 1px solid #ECECEC;\
+
+}
+
+.text-list li{ 
+
+	padding:10px 20px; 
+
+	background-color: #FFFFFF;
+
+	border-bottom: 1px solid #ECECEC;
+
+}
+
+.textlist-name-tel{ 
+
+	overflow: hidden; 
+
+	margin-top: 10px;
+
+}
+
+.textlist-name-tel p{ 
+
+	float: left;
+
+	line-height: 24px;
+
+	color: #333333;
+
+}
+
+.textlist-name-tel p.textlist-name{ 
+
+	font-size: 16px;
+
+	font-weight: 500;
+
+	margin-right: 10px;
+
+}
+
+.textlist-name-tel p.textlist-tel{ 
+
+	font-size: 12px;
+
+	color: #666666;
+
+}
+
+.textlist-name-tel p.textlist-tel span{ 
+
+	 margin-left: 5px;
+
+}
+
+.textlist-number-time{ 
+
+	overflow: hidden;
+
+}
+
+.textlist-number-time p{
+
+	color: #666666;
+
+	line-height: 24px;
+
+}
+
+.textlist-number-time p.textlist-number{ 
+
+	float: left; 
+
+	font-size: 14px;
+
+}
+
+.textlist-number-time p.textlist-number span{
+
+	margin-left: 5px;
+
+	font-size: 16px;
+
+	color: #333333;
+
+}
+
+.textlist-number-time p.textlist-time{
+
+	 float: right;
+
+	 font-size: 12px;
+
+}
+
+.textlist-number-time p.textlist-time time{
+
+	 margin-left: 10px;
+
+}
+
+/*商家收款二维码*/
+
+.qr-code{
+
+	 width: 70%;
+
+	 overflow: hidden;
+
+	 margin: auto;
+
+	 margin-top: 30px;
+
+}
+
+.qr-code img{
+
+	 width: 100%;
+
+}
+
+.qr-code p{ 
+
+	margin-top: 20px;
+
+	text-align: center;
+
+}
+
+.qr-code p button{
+
+	width: 100%;
+
+	background-color: #00A4A6;
+
+	height: 44px;
+
+	border-radius: 5px;
+
+	font-size: 16px;
+
+	color: #FFFFFF;
+
+}
+
+/*购入积分列表*/
+
+#integral li{
+
+	background-color: #FFFFFF;
+
+	border-bottom: 1px solid #ECECEC;
+
+	padding: 10px;
+
+}
+
+.int-list{
+
+	overflow: hidden;
+
+	line-height: 24px;
+
+}
+
+.int-list p{
+
+	float: right;
+
+	text-align: right;
+
+}
+
+.int-list p:first-child{
+
+	float: left;
+
+	text-align: left;
+
+}
+
+.int-list p span{
+
+	margin:0 5px;
+
+}
+
+/*弹窗*/
+
+/*弹窗*/
+
+.Withdrawals{
+
+	position: fixed;
+
+	width: 100%;
+
+	height: 100%;
+
+	top: 0;
+
+	left: 0;
+
+	z-index: 99;
+
+}
+
+.withdra-bg{
+
+	 position: absolute;
+
+	 width: 100%;
+
+	 min-height:100%;
+
+	 height:100% ;
+
+	 background-color: #000000;
+
+	 opacity: 0.3;
+
+	 top: 0;
+
+	 left: 0;
+
+	 z-index: 100;
+
+}
+
+.withdra-box{
+
+	 width: 80%;
+
+	 margin: auto;
+
+	 min-height: 10%;
+
+	 background-color: #FFFFFF;
+
+	 z-index: 101;
+
+	 position: absolute;
+
+	 margin-left: -40%;
+
+	 left: 50%;
+
+	 top: 20%;
+
+	 box-shadow: 0 1px 6px #CCCCCC;
+
+	 border-radius: 5px;
+
+	 overflow: hidden;
+
+}
+
+
+
+.pop-operation{
+
+	overflow: hidden;
+
+	border-radius: 5px;
+
+	width: 70%;
+
+	margin:auto;
+
+	margin-bottom: 20px;
+
+}
+
+.pop-operation button{
+
+	width: 50%;
+
+	float: left;
+
+	height: 32px;
+
+	background-color: #00A4A6;
+
+	color: #FFFFFF; 
+
+	cursor: pointer;
+
+}
+
+.pop-operation button:first-child{
+
+	 background-color: #eaeaea;
+
+	 color: #999999;
+
+}
+
+.pop-operation button:hover{
+
+	background-color: #09C9CC;
+
+	color: #FFFFFF;
+
+}
+
+.thaw-inf{
+
+	padding: 20px;
+
+}
+
+.thaw-news{
+
+	padding: 10px;
+
+	background-color: #f1f2f6;
+
+}
+
+.thaw-news p{
+
+	line-height: 24px;
+
+	overflow: hidden;
+
+	color: #999999;
+
+}
+
+.thaw-news p span{
+
+	margin-left: 10px;
+
+}
+
+.thaw-news p span.thaw-number{
+
+	color: #00A4A6;
+
+}
+
+.impot{
+
+	text-align: center;
+
+	line-height: 24px;
+
+	font-size: 12px;
+
+}
+
+.impot span{
+
+	margin: 0 5px;
+
+}
+

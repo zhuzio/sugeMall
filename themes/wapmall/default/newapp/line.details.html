@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+		<link rel="stylesheet" href="{res file=css/line.css}" />
+	</head>
+	<body>
+		<header class="header">
+			<a  href="javascript:history.go(-1)" class="back"></a>
+			<h1 class="tit">订单详情</h1>
+		</header>
+		<div class="content mtop44">
+			<div class="line-details">
+				<ul>
+					<li class="line-list">
+						<div class="line-tit">
+							<p class="order-number">订单号:<span>{$detail2.order_sn}</span></p>
+							{if $detail2.status eq 40}
+								<p class="state">
+									<span>已付款</span>
+									<img src="{res file=images/line/fukuan.png}">
+								</p>
+							
+							{elseif $detail2.status eq 11}
+								<p class="state">
+									<span>等待买家付款</span>
+									<img src="{res file=images/line/dai.png}">
+								</p>
+							{else}
+
+							{/if}
+						</div>
+						<div class="order-nr">
+							<ul>
+								<li>
+									<p><img src="{res file=images/line/user.png}"><span>用户名:</span><span>{$detail2.buyer_name}</span></p>
+									<p><img src="{res file=images/line/shang.png}"><span>商品种类:</span><span>{$detail2.classname}</span></p>
+								</li>
+								<li>
+									<p><img src="{res file=images/line/zhifu.png}"><span>状态:</span>
+									{if $detail2.status eq 40}
+									<span>已支付</span>
+									{elseif $detail2.status eq 11}
+									<span>未支付</span>	
+									</p>
+									{/if}
+
+									<p><img src="{res file=images/line/jine.png}"><span>消费金额:</span><span>￥{$detail2.order_amount}</span></p>
+								</li>
+								<li>
+									<p><img src="{res file=images/line/jifen.png}"><span>商家赠送:</span><span>{$detail.shops_point}</span></p>
+									<p><img src="{res file=images/line/jifen.png}"><span>苏格赠送:</span><span>{$detail.system_point}</span></p>
+								</li>
+								<li>
+									<p><img src="{res file=images/line/time.png}"><span>{$detail2.add_time|date_format:"%Y-%m-%d %H:%M"}</span></p>
+									<p><img src="{res file=images/line/beizhu.png}"><span>订单备注:</span><span>{$detail2.pay_message}</span></p>
+								</li>   
+								<li>
+								</li>
+								<li>
+									<p><img src="{res file=images/line/tel.png}"><span>用户电话:</span><span>{$phone.user_name}</span></p></p>
+								</li>
+								<!-- <li>
+									<p><img src="{res file=images/line/qr.png}"><span>订单二维码</span></p>
+								</li> -->
+								
+								
+							</ul>
+							<!-- <p class="qrma"><img src="{res file=images/line/qrwei.png}"></p> -->
+							{if $detail2.status eq 40}
+							{else}
+							<p class="quxiao">
+								<a href="{url app=offline_order&act=cancel_order&id=$detail2.order_id}">取消订单</a>
+							</p>
+							{/if}
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	{include file="footer.html"}
+	</body>
+</html>

@@ -1,0 +1,225 @@
+/*input输入框*/
+.register{ margin-top: 15px;}
+.register-input{
+	overflow: hidden;
+	background-color: #FFFFFF;
+	border-top: 1px solid #DDDDDD;
+	border-bottom: 1px solid #DDDDDD;
+	margin-top: -1px;
+	line-height: 50px;
+	overflow: hidden;
+}
+.register-input label{
+	float: left;
+	margin-left: 10px;
+	width: 20%;
+	font-size: 14px;
+	line-height: 50px;
+	color: #333333;
+}
+.register-input input{ 
+	float: left;
+	line-height: 50px;
+	font-size: 14px;
+	width: 50%;
+}
+
+.register-input select{
+	float: left;
+	line-height: 50px;
+	font-size: 14px;
+	height: 50px;
+	width:70%;
+	color:#666666;
+}
+.register-input select option{
+	
+	line-height: 32px;
+	font-size: 14px;
+}
+.register-input span{
+	float: right;
+	width: 20px;
+	height: 20px;
+	margin-top: 15px;
+	margin-right: 10px;
+}
+.register-input span.register-clear{
+	font-family: Muiicons;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    color: #999999;
+    cursor: pointer;
+}
+.register-input span.register-clear:before{
+	content: '\e460';
+}
+/*获取验证码*/
+.register-input button{
+	float: right;
+	height: 50px;
+	background-color: #ECECEC;
+	width: 22%;
+	color: #666666;
+	font-size: 12px;
+}
+.register-input button:hover{
+	color:red;
+}
+.register-input button.active{
+	 color: #CCCCCC;
+}
+/*会员类别*/
+.register-input a{
+	overflow: hidden;\
+	display: block;
+}
+.register-class{
+	float: left;
+	text-align: right;
+	width: 65%;
+	font-size: 14px;
+	color: #999999;
+}
+/*右箭头*/
+.register-input span.register-fold{
+	font-family: Muiicons;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    color: #666666;
+    cursor: pointer;
+}
+.register-input span.register-fold:before{
+	content: '\e583';
+}
+/*选择地区*/
+.region{
+	overflow: hidden;
+	width: 80%;
+	margin:auto;
+	margin-top: 15px;
+}
+.region div{ 
+	float: left;
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	height: 32px;
+	width: 30%;
+	margin-left: 3%;
+	overflow: hidden;
+	position: relative;
+}
+.region div:first-child{
+	margin-left: 0;
+}
+.region div select{
+	width: 120px;
+	line-height: 32px;
+	height: 32px;
+	font-size: 14px;
+	color: #666666;
+    text-indent: 0.2em;
+}
+.region div span{
+	position: absolute;
+	font-family: Muiicons;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    right: 5px;
+    top: 7px;
+    color: #666666;
+}
+.region div span:before{
+	content: '\e581';
+}
+/*同意条款*/
+.clause{
+	width: 80%;
+	margin: auto;
+	margin-top: 20px;
+	overflow: hidden;
+}
+.clause-box{
+	float: left;
+	font-size: 12px;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	position: relative;
+	margin-right: 5px;
+}
+.clause-box input{
+	width: 16px;
+	height: 16px;
+	z-index:99;
+	opacity: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.clause-box span{
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	background-color: #CCCCCC;
+	border-radius: 10px;
+	z-index: 1;
+	font-family: Muiicons;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    line-height:16px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    color: #FFFFFF;
+}
+.clause-box span:before{
+	content: '\e472';
+    margin-left: -2px;
+}
+.clause-box span.activ{
+	background-color: #00a4a6;
+}
+.clause label{
+	font-size: 12px;
+	line-height: 16px;
+	float: left;
+	color: #666666;
+	margin-right: 5px;
+}
+.clause a{
+	color: #00A4A6;
+	font-size: 12px;
+	float: left;
+}
+/*添加银行卡*/
+.add-bank{
+	width: 80%;
+	margin: auto;
+	margin-top: 15px;
+}
+.add-bank button{
+	width: 100%;
+	height: 44px;
+	background-color: #00A4A6;
+	border-radius: 5px;
+	color: #FFFFFF;
+	font-size: 16px;
+}

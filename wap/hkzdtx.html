@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>货款账单提现</title>
+	<link rel="stylesheet" type="text/css" href="css/zhangdan.css"/>
+	<style>
+		.ldtt{
+			position: fixed;
+			z-index: 1000;
+			height: 3.2rem;
+			text-align: center;
+			bottom: 3rem;
+			left: 0;
+			width: 100%;
+			display: none;
+
+		}
+		.ldtt img{
+			width: 3.2rem;
+		}
+		header{
+			height: 8.8rem;
+		}
+		body{
+			background-color: #efeff4;
+		}
+		.mon{
+			color: #fd1e1e;
+		}
+		section .content3 .con3 ul li .p1{
+			width: 33%;
+		}
+		section .content3 .con3 ul li .p1 img{
+			width: 3rem;
+			height: 3rem;
+		}
+		section .content3 .con3 ul li{
+			font-size: 2.8rem;
+			color: #272727;
+		}
+		section .content3 .con3 ul li .p3 img{
+			width: 3rem;
+			height: 3rem;
+			padding:0;
+			margin-right: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="ldtt"><img src="images/add.gif" alt=""></div>
+	<div class="wrap">
+		<header>
+			<div class="header-top">
+				<div class="left"><a href="javascript:history.go(-1)"><img src="images/fanhui.png"/></a></div>
+				<div class="right">
+					<p>货款账单提现</p>
+				</div>
+			</div>
+			<!-- <div class="header-bottom">
+				<div class="box"><a href="zhangdan.html">收入</a></div>
+				<div class="box box2"><a href="zhangdan2.html">支出</a></div>
+				<div class="box box3 box1">提现</div>
+			</div> -->
+		</header>
+		<section>
+			
+			<div class="content content3"> 
+				
+				
+			</div>
+		</section>
+	</div>
+</body>
+<script src="js/box.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	
+</script>
+<script src="js/url.js"></script>
+<!-- 明细 -->
+<script>
+	$(function(){
+	    var tokens=localStorage.getItem ("token");
+	    var times=localStorage.getItem ("times");
+	    var html="";
+	    var num;
+		$.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + "api/index.php?n=addjson&f=shopDeposit",
+		     data: {
+		     	token:tokens,
+		     	month:times,
+		     	},
+		    success: function(data){
+		    	console.log(data);
+		    	
+				    	var count;
+				    	num=data.totalpage;
+				    	for (var j = 0; j < 100000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	// console.log(count);
+				    	for (var i = 0; i < count; i++) {
+				    		var card=data.data[i].bank_code;
+				    		var ip=data.data[i].ispay;
+				    		// var card="hellllllloodsd";
+				    		var lengs=card.length;
+				    		var lengs1=lengs-4;
+				    		var cards=card.substr(0,3)+"***********"+card.substr(lengs1,4);
+				    		// console.log(moneys);
+				    		// console.log(timer1);
+				    		// console.log(cards);
+				    		if (ip==0) {
+				    			var a="待审核";
+				    			var src="images/dz0.jpg";
+				    			var timer2="待审核";
+				    		}else if(ip==1){
+				    			var a="已到账";	
+				    			var src="images/dz1.png";
+				    		}else if(ip==2){
+				    			var a="已拒绝";	
+				    			var src="images/dz2.png";
+				    		}
+
+				    	// images/w_dsh.jpg/
+				    	html+="<div class='kong'></div><div class='con3'><ul><li><p class='p1'><img src='images/w_tmoney.png'/>提现金额</p><p class='p2 mon'>"+data.data[i].money+"</p><p class='p3'><img src="+src+">"+a+"</p></li><li><p class='p1'><img src='images/w_ttime.png'/>申请时间</p><p class='p2'>"+data.data[i].createtime+"</p></li><li><p class='p1'><img src='images/w_tcard.png' class='card'/>到账银行卡</p><p class='p2'>"+cards+"</p></li><li><p class='p1'><img src='images/w_ttime.png'/>到账时间</p><p class='p2'>"+data.data[i].operatortime+"</p></li></ul></div>";
+				    		// console.log(i);
+				    	};
+				    	
+				    	
+				    	$(".content3").html(html);
+				    	// alert($(".section1").length)
+				  
+
+		    } ,
+		    error:function(data){
+		    	// console.log(data);
+		    }
+		});
+		var pages=1; //当前页的页码
+		var allpage=num; //总页码，会从后台获取
+		var sc=true;
+		function showAjax(){
+			$(".ldtt").css("display","block");
+			$.ajax({
+				 type: 'POST',
+				 dataType: "json",
+				 url:Url + "api/index.php?n=addjson&f=shopDeposit",
+				 data: {
+				     	token:tokens,
+				     	page:pages,
+				     	month:times,
+				     },
+				success:function(data){
+					//要执行的内容
+					// showContent();
+						//页数加1
+					// console.log(data);
+				    	
+				    	var count;
+				    	var html="";
+				    	for (var j = 0; j < 10000000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	// console.log(count);
+				    	
+				    	for (var i = 0; i < count; i++) {
+				    		
+
+						var card=data.data[i].bank_code;
+				    		var ip=data.data[i].ispay;
+				    		// var card="hellllllloodsd";
+				    		var lengs=card.length;
+				    		var lengs1=lengs-4;
+				    		var cards=card.substr(0,3)+"***********"+card.substr(lengs1,4);
+				    		// console.log(moneys);
+				    		// console.log(timer1);
+				    		// console.log(cards);
+				    		if (ip==0) {
+				    			var a="待审核";
+				    			var src="images/dz0.jpg";
+				    			var timer2="待审核";
+				    		}else if(ip==1){
+				    			var a="已到账";	
+				    			var src="images/dz1.png";
+				    		}else if(ip==2){
+				    			var a="已拒绝";	
+				    			var src="images/dz2.png";
+				    		}
+
+				    	// images/w_dsh.jpg/
+				    	html+="<div class='kong'></div><div class='con3'><ul><li><p class='p1'><img src='images/w_tmoney.png'/>提现金额</p><p class='p2 mon'>"+data.data[i].money+"</p><p class='p3'><img src="+src+">"+a+"</p></li><li><p class='p1'><img src='images/w_ttime.png'/>申请时间</p><p class='p2'>"+data.data[i].createtime+"</p></li><li><p class='p1'><img src='images/w_tcard.png' class='card'/>到账银行卡</p><p class='p2'>"+cards+"</p></li><li><p class='p1'><img src='images/w_ttime.png'/>到账时间</p><p class='p2'>"+data.data[i].operatortime+"</p></li></ul></div>";
+				    		// console.log(i);
+				    	
+				    		// console.log(i);
+				    	sc=true;
+	    		
+				    	};
+				    	// console.log(html);
+				    	$(".content3").append(html);
+					// 分页加载/
+					setTimeout(function(){
+						$(".ldtt").css("display","none");
+					},300)
+				}
+			})
+		}
+		function scrollFn(){
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+				if (sc) {
+				// alert(2);
+				// alert(pages+":"+allpage)
+				sc=false;
+				pages++;
+				if (pages<=num) {
+					// console.log(pages);
+					showAjax();
+					// alert(1);
+				}
+				
+			}
+		       }
+		}
+		$(window).bind("scroll",scrollFn);	//绑定滚动事件
+	})
+</script>
+</html>

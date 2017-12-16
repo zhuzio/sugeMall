@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>升级-市</title>
+	<link rel="stylesheet" href="css/choice_shi.css">
+	<link rel="stylesheet" href="css/choice_sheng.css">
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+			<div class="left"><a href="javascript:history.go(-1)"><img src="images/fanhui.png" alt=""></a></div>
+			<div class="center"><p>选择代理位置</p></div>
+		</header>
+		<input type="hidden" value="6" id="type" >
+		<!-- 主体部分 -->
+		<section>
+			<div class="sheng">
+				<p>请选择省份</p>
+				<select name="province" class="provinces">
+					<option value=""></option>
+				</select>
+			</div>
+			<div class="shi">
+				<p>请选择城市</p>
+				<select name="city" class="citys">
+					<option value=""></option>
+				</select>
+			</div>
+				<span id="tijiao">提交</span>
+			<div class="alert" style="display:none">
+				<!-- <p>申请提交已成功<br><span>我们会尽快与您联系</span></p> -->
+				<p>申请提交已成功<br>我们会尽快与您联系</p>
+			</div>
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+<script>
+$(function(){
+	var tokens=localStorage.getItem('token');
+	// console.log(tokens);
+	var type =$('#type').val();
+	$.ajax({
+		type:'POST',
+		dataType:'JSON',
+		data:{token:tokens},
+		url: Url+'/api/index.php?n=my_address&f=province',
+		success:function(data){
+			// console.log(data);
+			if(data){
+				var list =data.data;
+				$('.provinces').html('');
+				$('.provinces').append('<option value="">请选择</option>');
+				var html;
+				for(var i=0;i<list.length;i++){
+				 html ='<option value="'+list[i].id+'">'+list[i].name+'</option>';
+				 $('.provinces').append(html);
+				}
+
+			}else{
+				$(".alert").css("display","block");
+				$(".alert p").html('出错了');
+				setTimeout(function(){
+					$(".alert").css("display","none");
+				},1000);
+			}
+		}
+	});
+
+	//获取市
+	$('.provinces').change(function(){
+		var proid =$(this).val();
+		$.ajax({
+			type: 'POST',
+			dataType: 'JSON',
+			data: {token:tokens,id:proid},
+			url: Url+'/api/index.php?n=my_address&f=city',
+			success:function(data){
+				if(data){
+					var list =data.data;
+					$('.citys').html('').append('<option value="">请选择</option>');
+					var html;
+					for (var i=0;i<list.length;i++){
+						html ='<option value="'+list[i].id+'">'+list[i].name+'</option>';
+						$('.citys').append(html);
+					}
+
+				}else{
+					$(".alert").css("display","block");
+					$(".alert p").html('出错了');
+					setTimeout(function(){
+						$(".alert").css("display","none");
+					},1000);
+				}
+			}
+		})
+	})
+
+	//提交数据
+	$('#tijiao').click(function(){
+		var pro =$('select[name="province"]').val();
+		var city =$('select[name="city"]').val();
+		// var area =$('select[name="area"]').val();
+		if(pro.length <=0){
+			$(".alert").css("display","block");
+				$(".alert p").html('省份不能为空');
+				setTimeout(function(){
+					$(".alert").css("display","none");
+				},1000);
+			// alert('省份不能为空');
+			return false;
+		}
+		if(city.length <=0){
+			// alert('城市不能为空');
+			$(".alert").css("display","block");
+			$(".alert p").html('城市不能为空');
+				setTimeout(function(){
+					$(".alert").css("display","none");
+				},1000);
+			return false;
+		}
+		$(".alert p").html('申请提交已成功我们会尽快与您联系');
+		$(".alert").css("display","block");
+				setTimeout(function(){
+				$(".alert").css("display","none");
+				},1000)
+
+		$.ajax({
+			type: 'POST',
+			dataType: 'JSON',
+			data: {token:tokens,region_id:city,type:type},
+			url: Url+'/api/index.php?n=userset&f=upgrade',
+			success:function(data){
+					$(".alert p").html(data.msg);
+					$(".alert").css("display","block");
+					// $(".alert p").html('不能重复提交申请');
+				setTimeout(function(){
+					$(".alert").css("display","none");
+					if (data.ret=="ok") {
+							location.href="z-member.html";
+						};
+				},1000);
+					// return;
+				// }
+			}
+		})
+		
+	})
+
+})
+</script>
+</html>

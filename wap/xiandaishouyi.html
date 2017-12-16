@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>县代收益</title>
+	<link rel="stylesheet" href="css/dailijiangli.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.ldtt{
+			position: fixed;
+			z-index: 1000;
+			height: 3.2rem;
+			text-align: center;
+			bottom: 3rem;
+			left: 0;
+			width: 100%;
+			display: none;
+
+		}
+		.ldtt img{
+			width: 3.2rem;
+		}
+	</style>
+</head>
+</head>
+<body>
+	<div class="ldtt"><img src="images/add.gif" alt=""></div>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+		<a href="javascript:history.go(-1)"><img src="images/back.png" alt="返回首页"></a>
+		<p>县代收益</p>
+			<div class="header1">
+				<span></span><br/><span class="leiji">累计收益</span>
+			</div>
+			<p class="border"></p>	
+		</header>
+		<!-- 主体部分 -->
+		<section>
+			
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	$(function(){
+	    var tokens=localStorage.getItem ("token");
+	var html="";
+$.ajax({
+     type: 'POST',
+      dataType: "json",
+      url:Url + "api/index.php?n=member_wealth&f=countyReward",
+     data: {
+     	token:tokens,
+     	page:1,
+     	},
+    success: function(data){
+    	// console.log(data);
+    	// console.log(data.data.allmoney);
+    	$(".header1 span").eq(0).html("￥"+data.data.allmoney);
+    	var totle=data.totalpage+1;
+    	for (var k = 1; k < totle; k++) {
+    		$.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + "api/index.php?n=member_wealth&f=countyReward",
+		     data: {
+		     	token:tokens,
+		     	page:k,
+		     	},
+		    success: function(data){
+		    	var count;
+		    	for (var j = 0; j < 100000; j++) {
+		    		
+		    		if (data.data[j]==data.data.totalpage) {
+		    			count=j;
+		    			
+		    			break;
+		    		}
+		    	};
+		    	// console.log(count);
+		    	// alert(count);
+		    	for (var i = 0; i < count; i++) {
+		    		var namess=data.data[i].info;
+		    		// console.log(data.data[i].info);
+		    		// console.log(data.data[i].createtime);
+		    	html+="<div class='section1'><p class='p1'>"+namess+"<span class='money'>+￥"+data.data[i].money+"</span></p><p class='p2'>"+data.data[i].createtime+"</p></div>";
+		    		
+		    	};
+		    	
+		    	$("section").append(html);
+		    },
+		    error:function(data){
+		    	// console.log(data);
+		    }
+		    })
+    	};
+    } ,
+    error:function(data){
+    	// console.log(data);
+    }
+});
+	})
+</script>
+</html>

@@ -1,0 +1,153 @@
+/*列表*/
+.Payment{
+	margin-top: 10px;
+	overflow: hidden;
+}
+.Payment li{
+	padding:15px 10px;
+	background-color: #FFFFFF;
+	overflow: hidden;
+	border-bottom: 1px solid #ECECEC;
+}
+.Payment li .Multiselect{
+	margin-right: 10PX;
+	float: right;
+}
+.Payment li .class-name{
+	line-height: 1.25rem;
+	float: left;
+}
+.Payment li img{
+	float: left;
+	width: 20px;
+	margin-right: 10px;
+}
+.Payment li label{
+	float: left;
+	width: 30%;
+	line-height: 1.25rem;
+	color: #999999;
+}
+.Payment li select{
+	float: left;
+	height: 1.25rem;
+	line-height: 1.25rem;
+	width: 70%;
+}
+.next{
+	text-align: center;
+	margin: 20px;
+}
+.next button{
+	width: 80%;
+	height: 44px;
+	background-color: #00A4A6;
+	color: #FFFFFF;
+	border-radius: 3px;
+}
+/*复选框样式*/
+.Multiselect{
+	float: right;
+	width: 20px;
+	height: 20px;
+	overflow: hidden;
+	position: relative;
+}
+.Multiselect span{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	background-image: url(../images/Payment/radios.png);
+	background-size: 100% 20px;
+	z-index: 1;
+}
+.Multiselect span.active{
+	background-image: url(../images/Payment/radio.png);
+	background-size: 100% 20px;
+}
+.Multiselect input{
+	position: absolute;
+	z-index: 3;
+	width: 20px;
+	height: 20px;
+	opacity: 0;
+}
+/*弹窗*/
+.Withdrawals{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 99;
+}
+.withdra-bg{
+	 position: absolute;
+	 width: 100%;
+	 min-height:100%;
+	 height:100% ;
+	 background-color: #000000;
+	 opacity: 0.3;
+	 top: 0;
+	 left: 0;
+	 z-index: 100;
+}
+.withdra-box{
+	 width: 80%;
+	 margin: auto;
+	 min-height: 10%;
+	 background-color: #FFFFFF;
+	 z-index: 101;
+	 position: absolute;
+	 margin-left: -40%;
+	 left: 50%;
+	 top: 20%;
+	 box-shadow: 0 1px 6px #CCCCCC;
+	 border-radius: 3px;
+	 overflow: hidden;
+}
+.pop-operation{
+	overflow: hidden;
+	border-radius: 3px;
+	width: 80%;
+	margin:auto;
+	margin-bottom: 20px;
+}
+.pop-operation button{
+	width: 50%;
+	float: left;
+	height: 32px;
+	background-color: #00A4A6;
+	color: #FFFFFF; 
+	cursor: pointer;
+}
+
+.pop-operation button:first-child{
+	 background-color: #eaeaea;
+	 color: #999999;
+}
+.pop-operation button:hover{
+	background-color: #09C9CC;
+	color: #FFFFFF;
+}
+.up-nr{
+	margin: 20px;
+	margin-bottom: 10px;
+	padding: 10px;
+	background-color: #F1F2F6;
+}
+.up-nr p{
+	line-height: 24px;
+}
+.up-nr p span{
+	color: #333333;
+	margin-left: 5px;
+}
+.up-nr p.region span{
+	color: #00A4A6;
+}
+.prompt{
+	margin: 0 20px;
+	color: red;
+	margin-bottom: 10px;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/z-storeinfo.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+	</head>
+
+	<body>
+		<header class="z-location-a">
+			<div class="z-location-h">
+				<a class="black" href="javascript:history.go(-1)">
+					<img class="z-location-b" src="images/z-88.png" />
+				</a>
+				<div class="z-location-input">
+					<img src="images/z-89.png" />
+					<input type="" name="" value="" placeholder="搜索店铺内商品" />
+				</div>
+				<span class="z-location-c">搜索</span>
+			</div>
+		</header>
+		<div class="z-sta">
+			<span class="z-sta1">啥都行商城</span>
+			<span class="z-sta2"></span>
+		</div>
+		<ul class="z-stain">
+			<li>
+				<span>开店时间:</span><span class="time1">2015-06-01</span>
+			</li>
+			<li>
+				<span>所在地区:</span><span class="zaddress1">广东省 深圳市</span>
+			</li>
+			<li>
+				<span>具体地址:</span><span class="zaddress2">南阳市 卧龙区 车站南路苏格时代苏格商城</span>
+			</li>
+			<li>
+				<span>在线商家:</span><span class="zstore1">金果农场</span>
+			</li>
+			<li>
+				<span>商家电话:</span><span class="ztel1">6799-2574256</span>
+				<img class="z-storeimg" src="images/z-177.png" />
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var tokens = localStorage.getItem("token");
+			var storeidss = localStorage.getItem("storeids");
+			var addtimes = localStorage.getItem("addtime");
+			var addresss = localStorage.getItem("address");
+			var ownernames = localStorage.getItem("ownername");
+			var regionnames = localStorage.getItem("regionname");
+			var storenames = localStorage.getItem("storename");
+			var storetels = localStorage.getItem("storetel");
+			var zcolls = localStorage.getItem("zcolls");
+			$(".z-sta1").html(storenames);
+			var addtime=addtimes;
+		    var addtimes=Date(parseInt(addtime) * 1000).toLocaleString().substr(10,14);
+			$(".time1").html(addtimes);
+			$(".zaddress1").html(regionnames);
+			$(".zaddress2").html(addresss);
+			$(".zstore1").html(storenames);
+			$(".ztel1").html(storetels);	
+			$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=store&f=storegoods",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"store_id": storeidss,
+						"page": 1,
+					},
+					success: function(data) {
+						$(".z-load").show();
+						var datas = data.data;
+						if(data.msg == "请先登录") {
+							window.location.href = "denglu.html";
+						}
+						if(data.msg == "身份错误，请重新登录") {
+							window.location.href = "denglu.html";
+						}
+						var colls = data.arr;
+						if(colls == "1") {
+							$(".z-sta2").html("已收藏");
+							$(".z-sta2").click(function() {
+								$(".z-sta2").html("收藏");
+								$.ajax({
+									type: 'POST',
+									url: Url + "api/index.php?n=collection&f=uncollectstore",
+									dataType: "json",
+									data: {
+										"token": tokens,
+										"type": "store",
+										"store_id": storeidss,
+									},
+									success: function(data) {
+										window.location.reload();
+										
+										var datas = data.data;
+									},
+									error: function(data) {}
+								});
+							});						
+						}
+						if(colls == "0") {
+							$(".z-sta2").html("收藏");
+							$(".z-sta2").click(function() {
+								$(".z-sta2").html("已收藏");
+								$.ajax({
+									type: 'POST',
+									url: Url + "api/index.php?n=goods&f=shopcollect",
+									dataType: "json",
+									data: {
+										"token": tokens,
+										"type": "store",
+										"store_id": storeidss,
+									},
+									success: function(data) {
+										window.location.reload();										
+										var datas = data.data;
+									},
+									error: function(data) {　}
+								});
+							});
+						}
+					},
+					error: function(data) {},
+				});
+
+		});
+	</script>
+
+</html>

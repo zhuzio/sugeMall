@@ -1,0 +1,60 @@
+<div class="jd2015_floor5 w mb20">
+
+    <div class="mt">
+
+        <span>{$widget_data.model_name}</span>
+
+    </div>
+
+    <div class="mc w" style="height:250px">
+
+        <div class="spacer">
+
+            <i></i>
+
+        </div>
+
+        <ul style="height:230px">
+
+            <!-- {foreach from=$widget_data.goods_list_1 item=goods name=fe_goods} -->
+
+            <li style="width:240px;">
+
+                <div class="p_img">
+
+                    <a href="{url app=goods&id=$goods.goods_id}" target="_blank">
+
+                        <img src="{$goods.default_image}" width="150" height="150">
+
+                    </a>
+
+                </div>
+
+                <div class="p_info">
+
+                    <div class="p_name">
+
+                        <a href="{url app=goods&id=$goods.goods_id}" target="_blank">{$goods.goods_name|escape}</a>
+
+                    </div>
+
+                    <div class="p_price" style="float:left">
+
+                        <i>￥</i>
+                        {$goods.price}
+                        
+                         <span style="color:#898989;font-weight:lighter;font-size:13px;margin-left:8px;">赠送积分:&nbsp;{$goods.point}</span>
+                    </div>
+               
+            
+                </div>
+
+            </li>
+
+            <!-- {/foreach} -->
+
+        </ul>
+
+    </div>
+
+</div>

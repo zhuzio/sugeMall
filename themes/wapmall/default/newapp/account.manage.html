@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+		<link rel="stylesheet" href="{res file=css/business.css}" />
+		<link rel="stylesheet" href="{res file=css/set-up.css}" />
+		<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.back(-1);" class="back"></a>
+			<div><a href="{url app=member&act=profile}" style="z-index:10;float:right;margin-top:15px">编辑</a></div>
+			
+			<h1 class="tit">帐户管理</h1>
+		</header>
+		<div class="content mtop44">
+			<ul class="setup">
+			<li>
+					<a href="#">
+						<p class="setup-inf">头像</p>
+						<p class="setup-explain">
+							<img src="{$userinfo.portrait}" class="srtup-pic">
+							<em></em>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="{url app=account_manage&act=my_qrcode}">
+						<p class="setup-inf">二维码</p>
+						<p class="setup-explain">
+							<img src="{res file=images/qrcode/qrcode.png}" class="srtup-qr">
+							<em></em>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+
+
+
+						<p class="setup-inf">真实姓名</p>
+
+
+
+						<p class="setup-explain">
+
+
+
+							<span>{$userinfo.real_name}</span>
+
+
+
+							<em></em>
+
+
+
+						</p>
+
+					</a>
+
+				</li>
+				<li>
+					<a href="#">
+					<p class="setup-inf">手机号</p>
+					<p class="setup-explain">
+							<span>{$userinfo.phone_mob}</span>
+							<em></em>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<p class="setup-inf">性别</p>
+						<p class="setup-explain">
+							<span>
+
+							<!-- 根据不同状态输出不同值 0保密 1 男 2 女  -->
+
+							{if $userinfo.gender eq 0}
+								保密
+
+							{elseif $userinfo.gender eq 1}	
+								男
+							{else}
+								女
+							{/if}
+							</span>
+							<em></em>
+						</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<p class="setup-inf">出生日期</p>
+						<p class="setup-explain">
+							<span>{$userinfo.birthday}</span>
+							<em></em>
+						</p>
+					</a>
+				</li>
+			
+				<li>
+					<a href="{url app=account_manage&act=wx_delete&id=$userinfo.user_id}">
+
+						<p class="setup-inf">解除微信绑定</p>
+
+						<p class="setup-explain">
+
+						<span>点击解除</span>
+						<em></em>
+
+						</p>
+
+					</a>
+
+				</li>
+				<li>
+				<a href="{url app=bank&act=manage_bankcard}">
+						<p class="setup-inf">管理银行卡</p>
+						<p class="setup-explain">
+							<span>点击进入</span>
+							<em></em>
+						</p>
+					</a>
+				</li>
+				<li class="account">
+					<a href="{url app=account_manage&act=save_pwdshow&$userinfo.phone_mob}">
+						<p class="setup-inf">修改账户密码</p>
+						<p class="setup-explain">
+							<span class="save_pwd">点击修改</span>
+							<em></em>
+						</p>
+					</a>
+				</li>
+				<li class="account">
+					<a href="{url app=account_manage&act=show_paypass&$userinfo.phone_mob}">
+						<p class="setup-inf">支付密码设置</p>
+						<p class="setup-explain">
+							<span class="save_pwd">点击进入</span>
+							<em></em>
+						</p>
+					</a>
+				</li>
+			</ul>
+
+			<!-- 修改用户信息弹窗 -->
+			<div class="business-main" style="display:none">	    				
+				<ul>
+					<li>
+						<em></em>
+						<input placeholder="请输入购买积分数量" type="number" name="num">
+					</li>
+				</ul>
+				<p class="determine"><a href="#" id="determine">确定</a></p>	    				
+	    	</div>
+
+			<p class="sign-out"><a href="{url app=member&act=logout}">退出登录</a></p>
+		</div>
+		
+
+		{include file="footer.html"}
+	</body>
+
+</html>
+
+
+

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的--联盟商家</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/agency.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css"/>
+		<script>
+		token=localStorage.getItem ("token");
+		if(!token){
+			location.href='denglu.html';
+		}
+
+		</script>
+	<style>
+		.footer{
+			    border-top: 1px solid #efeff4;
+			}
+	</style>
+	</head>
+	<body>
+		<div class="z-commwp">
+			<div class="z-combanner">
+				<div class="z-com-set">
+					<img class="comm-set" src="images/z-61.png"/>
+					<img class="comm-info" src="images/z-62.png"/>
+				</div>
+				<div class="comm-left">
+					<img src="images/sjewm.jpg"/>
+				</div>
+				<div class="comm-head"><img src="" alt=""></div>
+				<span class="comm-user"></span><br>
+				<img class="z-comm-glod" src="images/z-70.png"/>
+				<!--<span class="z-comm-dl">联盟商家</span>-->
+				<!-- <img class="z-comm-sj" src="images/z-68.png"/> -->
+				<img class="z-comm-more" src="images/z-67.png"/>
+			</div>
+			<!--轮播图开始-->
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			        <div class=" swiper-slide ">
+			         	<div class="menu">
+							<ul>
+								<li>
+									<p class="menu_p1">
+										<a href="sjewm.html">
+											<img src="images/z-160.png" alt=""><br>
+											收款
+										</a>
+									</p>
+									<p class="menu_p2">
+										<a href="fajifen.html">
+											<img src="images/z-76.png" alt=""><br>
+											发积分
+										</a>
+									</p>
+								</li>
+								<li>
+									<p class="menu_p1">
+										<a href="goujifen.html">
+											<img src="images/z-77.png" alt=""><br>
+											购积分
+										</a>
+									</p>
+									<p class="menu_p2">
+										<a href="hktx.html">
+											<img src="images/z-78.png" alt=""><br>
+											货款
+										</a>
+									</p>
+								</li>
+								<li>
+									<p class="menu_p1">
+										<a class="shop_order" href="l-order1.html">
+											<img src="images/z-79.png" alt=""><br>
+											<span class="shop_order_text">商家订单</span>
+										</a>
+									</p>
+									<p class="menu_p2">
+										<a href="storeset.html">
+											<img src="images/z-80.png" alt=""><br>
+											店铺设置
+										</a>
+									</p>
+								</li>
+							</ul>
+						</div>	
+					</div>
+					<div class="swiper-slide">
+						<div class="menu">
+							<ul>
+								<li>
+									<p class="menu_p1 m-scan">
+										<a>
+											<img src="images/sys.png" alt=""><br>
+											扫一扫
+										</a>
+									</p>
+									<p class="menu_p2">
+										<a href="https://m.kuaidi100.com">
+											<img src="images/wuliu.png" alt=""><br>
+											物流查询
+										</a>
+									</p>
+								</li>
+								<li>
+									<p class="menu_p2">
+									<a href="order_off.html">
+										<img src="images/order.png" alt=""><br>
+										我的订单
+									</a>
+									</p>
+									<p class="menu_p1">
+										<a href="store-coll.html">
+											<img src="images/collect.png" alt=""><br>
+											我的收藏
+										</a>
+									</p>
+								</li>
+								<li>
+									<p class="menu_p1">
+										<a href="manage-address.html">
+											<img src="images/adder.png" alt=""><br>
+											收货地址
+										</a>
+									</p>
+									<p class="menu_p2">
+										<!-- <a href="sj_member.html">
+											<img src="images/mmember.png" alt=""><br>
+											我的会员
+										</a> -->
+										<a href="sj_member.html">
+											<img src="images/mmember.png" alt=""><br>
+											我的会员
+										</a>
+									</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="tan">
+				<img src="" alt="">
+			</div>
+		</div>
+		<!--底部界面开始-->
+		<div class="footer">
+			<a href="index.html" class="ssy"><img src="images/souye.png" alt=""></a>
+			<a href="fenlei.html"><img src="images/kinds.png" alt=""></a>
+			<a href="coalition.html"><img src="images/union.png" alt=""></a>
+			<a href="jfmember.html" class="lcf"><img src="images/wealth.png" alt=""></a>
+			<a href="" class="lcf1"><img src="images/me2.png" alt=""></a>
+		</div>
+		<div class="z-prompt6" style="display: none;"></div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/swiper-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="js/wx_qrCode.js"></script>
+	<script>
+
+	</script>
+	<script type="text/javascript">
+		var types=localStorage.getItem ("type");
+		    if (types==1) {
+		    	$(".lcf").attr("href","jfmember.html");
+		    }else{
+		     	$(".lcf").attr("href","jffortune.html");
+		    }
+	    $(".ssy").on("click",function(){
+		location.href="index.html";
+	})
+	    $(function(){			 
+		    var swiper = new Swiper('.swiper-container', {
+		    	direction: 'horizontal',
+		        pagination: '.swiper-pagination',
+		        paginationClickable: true,
+		//      spaceBetween: 30,
+		        loop:false,
+			});
+		});
+			
+		$('.comm-left img').on('click',function(){
+			$(".tan").css("display","block");
+		})
+		$(".tan").on("click",function(){
+			$(".tan").css("display","none");
+		})
+	</script>
+	<script type="text/javascript">
+		$(".z-comm-sj").click(function(){
+			location.href = "shengji.html";
+		});
+		$(".comm-set").click(function(){
+			location.href = "information.html";
+		});
+		$(".comm-info").click(function(){
+			location.href = "newscentre.html";
+		});
+		$(".z-comm-more").click(function(){
+			location.href = "personalData.html";
+		});
+		$(".comm-head").click(function(){
+			location.href = "personalData.html";
+		});
+		var tokens=localStorage.getItem ("token");
+		$(".tan img").attr("src",Url + "api/index.php?n=shop_center&f=register_qrc&token="+tokens);
+		//扫一扫开始
+		wxInity('/wap/z-unicon.html');
+	/*
+	//微信扫一扫开始
+	wx.config({
+    debug: false,
+    appId: 'wx10a59d3bf7f7f692',
+    timestamp: '1478075518',
+    nonceStr: 'DaP43TjEgiV6rqA5',
+    signature: '2a84cf207291cdc8a5f81ed5d8a00e5de9ad7937',
+    jsApiList: [
+        'checkJsApi',
+        'scanQRCode',
+    ]
+  });
+
+  wx.ready(function () {
+    // 在这里调用 API
+  });
+  */
+ $(".m-scan").on('click',function(){
+ 	saoyisao();
+ 	/*
+ 	wx.scanQRCode({
+    needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+    success: function (res) {
+    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+    }
+    });
+    */
+ });
+		//扫一扫结束
+		var html="";
+		// $(".comm-left img").attr("src",Url + "api/index.php?n=shop_center&f=pay_barcode&token="+tokens);
+		// $(".tan img").attr("src",Url + "api/index.php?n=shop_center&f=pay_barcode&token="+tokens);
+		$.ajax({	
+			type: 'POST',
+			url: Url + "api/index.php?n=shop_center&f=getShopInfo",
+			dataType: "json",
+			data: { token : tokens},
+			success: function(data){
+				// console.log(data);
+				if(data.ret=='ok'){
+					if(data.data.o2o == 'online'){
+						$(".shop_order").attr("href",'z-union-shop-online-order.html'); 
+						//$(".shop_order_text").html('商家订单');
+					}
+				}
+			} ,
+		    error:function(data){
+		    	// console.log(data);
+		    }
+		})
+		$.ajax({	
+			type: 'POST',
+			url: Url + "api/index.php?n=user&f=userinfo",
+			dataType: "json",
+			data: { token : tokens},
+			success: function(data){
+				console.log(data);
+				if (data.ret=="err") {
+					localStorage.clear();
+					location.href="denglu.html";
+		                      }
+				if (data.data.type==1) {
+				    	$(".lcf").attr("href","jfmember.html");
+				    }else{
+				     	$(".lcf").attr("href","jffortune.html");
+				    }
+			        	var tx=data.data.portrait;
+			            var name=data.data.real_name;
+			            var ewm=data.data.recode;
+			            if (data.data.portrait) {	
+		                           $('.comm-head').find("img").attr("src",Url+tx);
+		                      }else{
+		                      		$('.comm-head').find("img").attr("src","images/headerf2.png");	
+		                      }
+			            $('.comm-user').html(name);
+			           // $('.comm-left').find("img").attr("src",ewm);
+				// $(".tan img").attr("src",Url+ewm);
+					} ,
+				    error:function(data){
+				    	// console.log(data);
+				    }
+		})
+	</script>
+</html>

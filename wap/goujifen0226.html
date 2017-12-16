@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>购积分</title>
+	<link rel="stylesheet" href="css/goujifen.css" />
+	<style>
+		.tan{
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: rgba(0,0,0,0.2);
+			display: none;
+		}
+		.tan p{
+			width: 60%;
+			height: 22rem;
+			margin-top: 50%;
+			margin-left: 20%;
+			background-color: #fff;
+			color: #333;
+			font-size: 3.4rem;
+			text-align: center;
+			line-height: 22rem;
+			border-radius: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<p class="p1">
+			<a href="z-unicon.html"><img src="images/back.png"/></a>
+		</p>
+		<p class="p2">购积分</p>
+		<p class="p3">明细</p>
+	</header>
+	<section>
+		<div class="num">
+			<p>请输入购买积分的数量:<input type="number" name="" id="" value="" /></p>
+		</div>
+		<div class="way">
+			<p>选择支付方式</p>
+		</div>
+		<div class="lianlian">
+			<p><span></span></p>
+			<dl>
+				<dt><img src="images/z-112.png"/></dt>
+				<dd>连连支付</dd>
+			</dl>
+		</div>
+		<div class="huokuan">
+			<p><span></span></p>
+			<dl>
+				<dt><img src="images/z-250.png"/></dt>
+				<dd>货款支付</dd>
+			</dl>
+		</div>
+		<div class="choice">
+			<p>选择更多支付方式</p>
+		</div>
+		<div class="show">
+			<div class="weixin">
+				<p><span></span></p>
+				<dl>
+					<dt><img src="images/z-110.png"/></dt>
+					<dd>微信支付</dd>
+				</dl>
+			</div>
+			<!-- <div class="zhifubao">
+				<p><span></span></p>
+				<dl>
+					<dt><img src="images/z-111.png"/></dt>
+					<dd>支付宝支付</dd>
+				</dl>
+			</div> -->
+		</div>
+		<div class="but">
+			<span>确认</span>
+		</div>
+		<div class="key">
+			<div class="k-header">
+				<div class="k-left"><img src="images/wk-x.png" alt="返回首页"></div>
+				<div class="k-right"><p>输入支付密码</p></div>
+			</div>
+			<div class="k-center">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li class="kc-last hide"></li>
+				</ul>
+			</div>
+			<div class="forget">
+				<a href="czzfmm.html">忘记密码?</a>
+			</div>
+			<div class="k-footer">
+				<ul class="fistline">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+				<ul class="fistline">
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+				</ul >
+				<ul class="fistline">
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+				</ul>
+				<ul>
+					<li class="k-lastline"></li>
+					<li class="fistlines">0</li>
+					<li class="k-lastline"><img src="images/wk-12_03.png" alt=""></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<form action="" method="post">
+	 		<input type="hidden" name="order_id" class="zlpy" value="" />
+	 		<input type="hidden" name="token" class="tok" value="" />
+	 		<!-- <input type="hidden" name="money" class="monss" value="" /> -->
+	 		<input type="hidden" name="payment_id" class="pps" value="16" />
+	 		<!-- <input type="submit" name="" id="weixin" value="提交" /> -->
+	 	</form>
+	<div class="tan"><p></p></div>
+
+	<!-- <div class="tan"><p>请输入购买积分数量</p></div> -->
+
+</body>
+<script src="js/box.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/url.js"></script>
+<script type="text/javascript">
+// var ddh;
+var tokens=localStorage.getItem ("token");
+$(".tok").val(tokens);
+var urls=Url+"api/index.php?n=shop_center&f=online_pay";
+$("form").attr("action",urls);
+var wxtf=true;
+var weixin_limt = false;
+$(".p3").click(function(){
+			location.href = "buymingxi2.html";
+		});
+
+	$('.choice').on('click',function(){
+		$('.show').show();
+		$(this).hide();
+		wxtf=false;
+	})
+	var tfzffs=true;
+	$('.lianlian').on('click',function(){
+		weixin_limt = false;
+		var lval=$(".num input").val();
+		
+		if (parseInt(lval)>0) {
+			tfzffs=true;
+			$('.lianlian span').show();
+			$('.huokuan span').hide();
+			$('.weixin span').hide();
+			$('.zhifubao span').hide();
+			$(".pps").val(16);
+			$(".monss").val(lval);
+			// dd();
+		}else{
+			setTimeout(function(){
+				$(".tan p").html("请输入购买积分数量");
+				$(".tan").css("display","block");
+			},0);
+			setTimeout(function(){
+				$(".tan").css("display","none");
+			},1000);
+		}
+	})
+	
+	$('.huokuan').on('click',function(){
+		weixin_limt = false;
+		var lval=$(".num input").val();
+		if (parseInt(lval)>0) {
+			tfzffs=false;
+			// $('.key').show();
+			$('.lianlian span').hide();
+			$('.huokuan span').show();
+			$('.weixin span').hide();
+			$('.zhifubao span').hide();
+		}else{
+			setTimeout(function(){
+				$(".tan p").html("请输入购买积分数量");
+				$(".tan").css("display","block");
+			},0);
+			setTimeout(function(){
+				$(".tan").css("display","none");
+			},1000);
+		}	
+
+	})
+	
+	$('.weixin').on('click',function(){
+		weixin_limt = true;
+		var lval=$(".num input").val();
+		if(parseInt(lval)>30){
+			setTimeout(function(){
+			$(".tan p").html("单笔不能大于30");
+			$(".tan").css("display","block");
+			},0);
+			setTimeout(function(){
+				$(".tan").css("display","none");
+			},1000);
+		}
+		
+		if (parseInt(lval)>0) {
+			tfzffs=true;
+			$('.lianlian span').hide();
+			$('.huokuan span').hide();
+			$('.weixin span').show();
+			$('.zhifubao span').hide();
+			$(".pps").val("8");
+			$(".monss").val(lval);
+			// dd();
+		}else{
+			setTimeout(function(){
+				$(".tan p").html("请输入购买积分数量");
+				$(".tan").css("display","block");
+			},0);
+			setTimeout(function(){
+				$(".tan").css("display","none");
+			},1000);
+		}
+	})
+	$('.zhifubao').on('click',function(){
+		$('.lianlian span').hide();
+		$('.huokuan span').hide();
+		$('.weixin span').hide();
+		$('.zhifubao span').show();
+	})
+	$('.but span').on('click',function(){
+		var lval=$(".num input").val();
+		if(weixin_limt&&lval>30){
+			setTimeout(function(){
+						$(".tan p").html("微信支付不能大于30");
+						$(".tan").css("display","block");
+					},0);
+					setTimeout(function(){
+						$(".tan").css("display","none");
+					},1000);
+					return;			
+		}
+		if (lval<5000) {
+			if (tfzffs) {
+				
+				if (parseInt(lval)>0) {
+					dd();
+				}else{
+					setTimeout(function(){
+						$(".tan p").html("请输入购买积分数量");
+						$(".tan").css("display","block");
+					},0);
+					setTimeout(function(){
+						$(".tan").css("display","none");
+					},1000);
+				}
+				
+			}else{
+				$('.key').show();
+			}
+		}else{
+			setTimeout(function(){
+						$(".tan p").html("单笔不能大于5000");
+						$(".tan").css("display","block");
+					},0);
+					setTimeout(function(){
+						$(".tan").css("display","none");
+					},1000);
+		}
+		
+	})
+	var tokens=localStorage.getItem ("token");
+	$('.btn button').on('click',function(){
+		// console.log(1);
+		$('.key').show();
+	})
+	$('.k-left').on('click',function(){
+		$('.key').hide();
+	})
+	var arr=[];
+	var zf_passs;
+	var moneys;
+	$('.fistline li').on('touchend',function(){
+		$(this).html();
+		if (arr.length<6) {
+			arr.push($(this).html());
+			// console.log(arr);
+			// console.log(arr.length);
+			for (var i = 0; i < arr.length; i++) {
+				$(".k-center li").eq(i).html("*");
+			};
+		};
+		if (arr.length==6) {
+			zf_passs=arr.join("");
+			// console.log(zf_passs);
+			// console.log(arr);
+			moneys=$(".num input").val();
+			if (parseInt(moneys)>0) {
+				aj();
+				$('.key').hide();
+			}
+			
+		}
+		
+	})
+	var val=$(".num input").val();
+	$('.fistlines').on('touchend',function(){
+		// $(this).html();
+		if (arr.length<6) {
+			arr.push($(this).html());
+			console.log(arr);
+			// console.log(arr.length);
+			for (var i = 0; i < arr.length; i++) {
+				$(".k-center li").eq(i).html("*");
+
+			};	
+		};
+		if (arr.length==6) {
+			val=$(".num input").val();
+			zf_passs=arr.join("");
+			// console.log(zf_passs);
+			// console.log(arr);
+			moneys=$(".num input").val();
+			// parseInt(moneys)
+			if (parseInt(moneys)>0) {
+				aj();
+				$('.key').hide();
+			}
+			
+		}
+	})
+	$('.k-lastline').on('click',function(){
+		arr.pop();
+		for (var i = 0; i < $(".k-center li").length; i++) {
+				$(".k-center li").eq(i).html("");
+			};
+		for (var i = 0; i < arr.length; i++) {
+				$(".k-center li").eq(i).html("*");
+			};
+		// console.log(arr);
+	})
+	//购积分接口
+	
+	//console.log(tokens);
+	// console.log(tokens);
+	// var zf_passs=localStorage.getItem ("zf_pass");
+	
+	// var moneys=localStorage.getItem ("money");
+	// console.log(tokens+";"+zf_passs+";"+moneys);
+	function aj(){
+		  localStorage.setItem('gjfnum',  moneys);		
+		  // console.log(1);
+		  moneys=$(".num input").val();
+		$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=store&f=point",
+		         	dataType: "json",
+		       	data: {  
+		       		token : tokens,
+		       		money:moneys,
+		       	},
+		        	success: function(data){
+		                      console.log(data);
+		                      // zf_passs=
+		                      var llorder_ids=data.data;
+		                      $.ajax({	
+				           type: 'POST',
+				           url: Url + "api/index.php?n=store&f=pointpay",
+				         	dataType: "json",
+				       	data: { 
+				       		token : tokens,
+				       		zf_pass:zf_passs,
+				       		money:moneys,
+				       		order_id:llorder_ids,
+				       	},
+				        	success: function(data){
+				                      // console.log(data);
+				                      if (data.ret=="ok") {
+				                      	// console.log(2);
+				                      	// 回调函数
+				                   $.ajax({	
+						           type: 'POST',
+						           url: Url + "api/index.php?n=store&f=payback",
+						         	dataType: "json",
+						       	data: { 
+						       		token : tokens,
+						       		order_sn:llorder_ids,
+						       		type:"balance",
+						       		money:"moneys",
+						       	},
+						        	success: function(data){
+						        		// console.log(1);
+						        		// console.log(data);
+						        		if (data.ret == "ok") {
+						        			$(".num input").val("");
+				                      			location.href="my-goujifen.html";
+						        			} else{
+						        				setTimeout(function(){
+						        				$(".tan p").html(data.msg);
+										$(".tan").css("display","block");
+										},0);
+										setTimeout(function(){
+											$(".tan").css("display","none");
+										},1500);
+						        			}
+						        		},
+						        			
+						            error:function(data){
+							                      	  // console.log(data);
+							                      	  setTimeout(function(){
+							                      	  $(".tan p").html(data.msg);
+										$(".tan").css("display","block");
+										},0);
+										setTimeout(function(){
+											$(".tan").css("display","none");
+										},1500);
+							             }
+					
+							})
+
+
+				                      	 
+				                      }else{
+				                      	setTimeout(function(){
+								$(".tan p").html(data.msg);
+								$(".tan").css("display","block");
+								},0);
+								setTimeout(function(){
+									$(".tan").css("display","none");
+								},1500);
+						          }
+						          $(".k-center li").html("");
+						          arr=[];
+					         
+					      
+					} ,
+				            error:function(data){
+					                      	  // console.log(data);
+					                      }
+			
+					})
+
+			} ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+			})
+		
+		}
+		function dd(){
+			var valss=$(".num input").val();
+			$.ajax({	
+			           type: 'POST',
+			           url: Url + "api/index.php?n=store&f=point",
+			         	dataType: "json",
+			       	data: {  
+			       		token : tokens,
+			       		money:valss,
+			       	},
+			        	success: function(data){
+			                      // console.log(data);
+			                      // ddh=data.data;
+			                       // console.log(data.data);
+			                      $(".zlpy").val(data.data);
+			                      // console.log($(".zlpy").val());
+			                      // console.log(data.data);
+			                      $("form").submit();
+				} ,
+			            error:function(data){
+				                      	  // console.log(data);
+				                      }
+			})
+		}
+		// dd();
+		$('.num input').on('input propertychange', function() {  
+		               var nuinp=$('.num input').val();
+		               if (nuinp>30) {
+		               	$(".choice").css("display","none");
+		               	$(".show").css("display","none");
+		               }else{
+		               	if (wxtf) {
+		               		$(".choice").css("display","block");
+		               	}else{
+		               		$(".show").css("display","block");
+		               	}
+		               	
+		               	
+		               }
+	            }); 
+</script>
+</html>

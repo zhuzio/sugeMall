@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title>{$opt[title]}</title>
+		<style>
+			body,p{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-color: #c1c2c5;
+			}
+			.result{
+				position: fixed;
+				overflow: hidden;
+				width: 80%;
+				top: 25%;
+				margin-left: -40%;
+				left: 50%;
+				background-color: #FFFFFF;
+				text-align: center;
+				padding-bottom: 50px;
+			}
+			.result img{
+				 width: 60px;
+				 margin-bottom: 20px;
+				 margin-top: 40px;
+				 
+			}
+			.result p{
+				font-size: 16px;
+				line-height: 36px;
+				font-weight: 500;
+			}
+			.result a{
+				text-decoration: none;
+				color: #00A4A6;
+				font-size: 12px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div class="result">
+			<img src="{res file=images/result/}{$opt[type]}.png">
+			<p>{$opt[msg]}</p>
+			<a href="{$opt[url]}"><span id="myspan">{$opt[time]}</span>秒后自动跳转...</a>
+			
+
+
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload=function(){
+		  var myspan=document.getElementById("myspan");
+		  var timer={$opt[time]};
+		  var flag;
+		  function daoji(){
+		     timer=timer-1;
+		     myspan.innerHTML=timer;
+		     if(timer==0){
+               
+		       location.href="{$opt[url]}";
+		       clearInterval(flag);
+		     }
+		  }
+		  flag=setInterval(daoji,1000);
+		}
+		</script> 
+</html>

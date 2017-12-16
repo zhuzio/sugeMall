@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>我的退款申请</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/mjjj.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<style type="text/css">
+    .mj2{
+    	width: 50%;
+    	/*height: 10.0rem;
+    	border: 1px solid red;*/
+    }
+	.mj2 img{
+		width: 50%;
+	}
+	.zmj{
+		width: 30%;
+		height: 15.0rem;
+		margin-left: 22%;
+	}
+	.zmj img{
+		width: 100%;
+		height: 15.0rem;
+	}
+</style>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" class="ha1">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">我的退款申请</p>
+		<!-- <a class="ha2">商城订单</a> -->
+	</div>
+	<div class="xq">
+		<p class="bh">
+			卖家拒绝了您的退款申请
+		</p>
+		<p class="js">卖家拒绝了您的退款申请</p>
+		<p class="mj mj1"></p>
+		<p class="mj mj2">拒绝说明：</p>
+		<p class="zmj"><img src=""/></p>
+		<p class="mj mj3"></p>
+		<p class="pp"></p>
+		<p class="bh1">
+		</p>
+		
+	</div>
+	
+	<div class="time1">09-14  15:32</div>
+	<!--<div class="sure">
+		 <p class="time">10-03 10:36</p> 
+		<div class="xx">
+			<p class="xxp1">等待卖家处理</p>
+			<p class="xxp2">如果卖家拒绝，需要您修改退款申请<br>果卖家在 <img src="images/wdthtime.png"> <span> 04天23时59分 五天</span>内未处理，系统将自动退款给您</p>
+		</div>
+	</div>-->
+
+	<div class="kong"></div>
+	<div class="fs">
+		<a href="tksq.html"><p class="fp1">修改申请</p></a>
+		<a href="connection_us.html"><p class="fp2">申请客服介入</p></a>
+		<p class="fp3">撤销申请</p>
+	</div>
+	<div class="cxc cxc1">
+		<div>
+			你确定要撤销申请吗
+			<p class="cxp1">撤销</p>
+			<p class="cxp2">确定</p>
+		</div>
+	</div>
+	<div class="cxc cxc2">
+		<div>
+			你确定要撤销申请吗
+		</div>
+	</div>
+</body>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	$(function(){
+		var tokens=localStorage.getItem ("token");
+		var refund_ids=localStorage.getItem ("refund_id");
+		$.ajax({
+		            type: 'POST',
+		            url: Url + "api/index.php?n=message&f=refuse_info",
+		     	dataType: "json",
+		    	data: {
+		               	token:tokens,
+	                    refund_id:refund_ids,
+		        	},
+		    	success: function(data){
+		    		console.log(data);
+		    		$(".mj1").html("拒绝原因："+data.data.refund_reason);
+		    		$(".zmj img").attr({"src":Url + data.data.seller_desc});
+		    		$(".mj3").html("该商品退款总额："+data.data.money+"元");
+		    		$(".bh1").html("退款编号："+data.data.refund_sn);
+		    		// $(".dp20").html(data.data.refund_adress);
+		    		// $(".dp21").html(data.data.refund_sn);
+		    		// $(".dp23").html(data.data.refund_desc);
+		    		 function getLocalTime(timestamp){
+				    	var d = new Date(timestamp * 1000);    //根据时间戳生成的时间对象
+					var date = (d.getFullYear()) + "-" + 
+					           (d.getMonth() + 1) + "-" +
+					           (d.getDate()) + " " + 
+					           (d.getHours()) + ":" + 
+					           (d.getMinutes()) + ":" + 
+					           (d.getSeconds());
+					          return date; 
+			   	 }
+		    		$(".time1").html(getLocalTime(data.data.times));
+		    		
+		          },
+		          error: function(data){
+		    		console.log(data);
+		    		
+		          },
+		})
+		$(".fp3").on("click",function(){
+			$(".cxc1").css("display","block");
+		})
+		$(".cxp1").on("click",function(){
+			$(".cxc1").css("display","none");
+		})
+		$(".cxp2").on("click",function(){
+			$(".cxc1").css("display","none");
+
+			$.ajax({
+//			contentType:"application/x-www-form-urlencoded; charset=gb2312",
+	                                 type: 'POST',
+	                                 url: Url + "api/index.php?n=refund&f=cancle",
+	                          		dataType: "json",
+	                         		data: {
+	                         			token:tokens,
+	                         			// refund_id:refund_ids,退款申请id
+
+	                         		},
+	                         		success: function(data){
+	                         		console.log(data);
+	                         		if (data.msg=="撤销申请成功") {
+	                         			setTimeout(function(){
+	                         				$(".cxc2").css("display","block");
+	                         			},0);
+	                         			setTimeout(function(){
+	                         				$(".cxc2").css("display","none");
+	                         			},1000);
+	                         		}
+	                               },
+	                            });
+			})
+	})
+</script>
+</html>

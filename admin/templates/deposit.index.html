@@ -1,0 +1,97 @@
+{include file="header.html"}
+<script type="text/javascript">
+$(function(){
+    $('#add_time_from').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#add_time_to').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+<div id="rightTop">
+    <p>{$lang.order_manage}</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+             <div class="left">
+                <input type="hidden" name="app" value="deposit" />
+                <input type="hidden" name="act" value="index" />
+                <select class="querySelect" name="field">{html_options options=$search_options selected=$smarty.get.field}
+                </select>:<input class="queryInput" type="text" name="search_name" value="{$query.search_name|escape}" />
+                <select class="querySelect" name="status">
+                    <option value="">{$lang.search_status}</option>
+                    {html_options options=$order_status_list selected=$query.status}
+                </select>
+                {$lang.add_time_from}:<input class="queryInput2" type="text" value="{$query.add_time_from}" id="add_time_from" name="add_time_from" class="pick_date" />
+                {$lang.add_time_to}:<input class="queryInput2" type="text" value="{$query.add_time_to}" id="add_time_to" name="add_time_to" class="pick_date" />
+                {$lang.order_amount_from}:<input class="queryInput2" type="text" value="{$query.order_amount_from}" name="order_amount_from" />
+                {$lang.order_amount_to}:<input class="queryInput2" type="text" style="width:60px;" value="{$query.order_amount_to}" name="order_amount_to" class="pick_date" />
+                <input type="submit" class="formbtn" value="{$lang.query}" onclick="$('[name=act]').val('index');"/>
+                <input type="submit" class="formbtn" value="导出" onclick="$('[name=act]').val('export');" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=deposit">{$lang.cancel_query}</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {if $orders}{include file=page.top.html}{/if}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $orders}-->
+        <tr class="tatr1">
+            <td width="6%" class="firstCell"><span ectype="order_by" fieldname="seller_id">{$lang.true_name}</span></td>
+            <td width="8%"><span ectype="order_by" fieldname="order_sn">用户名</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="order_sn">所属区域</span></td>
+            <td width="8%"><span ectype="order_by" fieldname="createtime">{$lang.dp_createtime}</span></td>
+            <td width="6%"><span ectype="order_by" fieldname="money">{$lang.deposit_money}</span></td>
+            <td width="6%"><span ectype="order_by" fieldname="type">提现类型</span></td>
+            <td width="15%"><span ectype="order_by" fieldname="open_bank">支行名称</span></td>
+            <td width="15%"><span ectype="order_by" fieldname="bank_code">银行卡号</span></td>
+            <td width="10%"><span ectype="order_by" fieldname="bank_num">开户行号</span></td>
+            <td width="5%"><span ectype="order_by" fieldname="ispay">{$lang.ispay}</span></td>
+            <td width="10%">{$lang.handler}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$orders item=order}-->
+        <tr class="tatr2">
+            <td class="firstCell">{$order.truename|escape}</td>
+            <td>{$order.mobile|escape}</td>
+            <td>{$order.region_name}</td>
+            <td>{$order.createtime}</td>
+            <td>{$order.money}</td>
+            <td>{$order.type_cn}</td>
+            <td>{$order.open_bank}</td>
+            <td>{$order.bank_code}</td>
+            <td>{$order.bank_num}</td>
+            <td>{$order.ispay_cn}</td>
+            <td>
+                <!--<a href="index.php?app=deposit&amp;act=view&amp;id={$order.deid}">{$lang.view}</a>-->
+                <!--{if $order.ispay == 0}-->
+                <a href="index.php?app=deposit&amp;act=accept&amp;id={$order.deid}" onclick="return confirm('确定通过审核吗？');"><span style="color:green;">通过</span></a>
+                <a href="index.php?app=deposit&amp;act=cancle&amp;id={$order.deid}" onclick="return confirm('确定驳回请求吗？');"><span style="color:red;">驳回</span></a>
+                <!--{/if}-->
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+        <tr class="tatr2">
+            <td colspan="4" style="text-align:right">合计：</td>
+            <td>￥ {$totalMoney} 元</td>
+            <td></td>
+        </tr>
+    </table>
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {if $orders}{include file=page.bottom.html}{/if}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{include file="footer.html"}

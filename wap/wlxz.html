@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>物流选择</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/wlxz.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1);" class="ha1">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">物流选择</p>
+		<!-- <a class="ha2">完成</a> -->
+		<span class="ha2">完成</span>
+	</div>
+	<div class="kd">
+		
+	</div>
+</body>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	$(function(){
+		var tokens=localStorage.getItem ("token");
+		$(".kd").on("click","p",function(){
+			$(".kd p img").attr("src","images/wlxz_w.png");
+			$(this).find("img").attr("src","images/wlxz_y.png");
+			// console.log($(this).index()+1);
+			var wli=$(this).index()+1;
+			 localStorage.setItem('wlid',wli);
+			
+
+		})
+		
+		$(".ha2").on("click",function(){
+			window.history.go(-1);
+		})
+		$.ajax({
+			            type: 'POST',
+			            url: Url + "api/index.php?n=message&f=logistics",
+			     	dataType: "json",
+			    	data: {
+			    		
+			               	token:tokens
+			        	},
+			    	success: function(data){
+			    		// console.log(data);
+			    		var html="";
+			    		
+			    		 for(i in data.data){
+			    		 	html+="<p>"+data.data[i]+"<img src='images/wlxz_w.png'></p>"
+			    		 }
+			    		
+			    		$(".kd").html(html);
+			    		
+			          },
+			          error: function(data){
+			    		// console.log(data);
+			    		
+			          },
+			})
+		
+	})
+</script>
+</html>

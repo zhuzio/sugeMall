@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /> <!--公用css-->
+		<link rel="stylesheet" href="{res file=css/business-index.css}" />
+	</head>
+	<body>
+		<header class="header search-header">
+			<a class="back"></a>
+			<div class="search" style="text-align:center;font-size:1.5em;">
+				{$store.store_name}
+			</div>
+			<!--<a href="#" class="menu-iocn"></a>-->
+		</header>
+		<div class="content mtop44">
+			<div class="business-top" style="background-image:url('{res file=images/tit-bg.jpg}');">
+				<div class="bus-logo">
+					<span></span>
+					<img src="<!--{if $store.store_logo}-->{$store.store_logo}<!--{else}-->{res file=images/tit.png}<!--{/if}-->">
+				</div>
+				<div class="bus-tit">
+					<p class="bus-name">{$store.store_name}</p>
+					<!--
+					<p class="bus-commodity">
+						<div class="bus-icon">
+							<em class="icon-Collection"></em>
+							<p>收藏<span>（2600）</span></p>
+						</div>
+						<div class="bus-icon">
+							<em class="icon-score"></em>
+							<p>评分<span>（4.9）</span></p>
+						</div>
+					</p>
+					-->
+				</div>
+				<!--<button class="bus-button">收藏</button>-->
+			</div>
+			<div class="business-nav">
+				<ul>
+					<li>
+						<a href="#" id="index-nav">首页</a>
+					</li>
+					<!--
+					<li>
+						<a href="#" id="share-nav">分享商城</a>
+					</li>
+					-->
+				</ul>
+			</div>
+			<!--
+			<div class="business-share" id="share">
+				<img src="images/business_index/qrcode.png">
+				<p>感觉这家商店不错哦！<br />扫描二维码分享给你的好友吧！</p>
+			</div>
+			-->
+			<div class="business-index" id="index">
+				<!--轮播图-->
+				<div class="Carousel">
+					<div class="addWrap">
+					  <div class="swipe" id="mySwipe">
+					    <div class="swipe-wrap">
+							<!--{foreach from=$store.pics item=pic}-->
+					      <div>
+							  <a href="javascript:;"><img class="img-responsive" src="/{$pic}"/></a>
+						  </div>
+							<!--{/foreach}-->
+
+
+					    </div>
+					  </div>
+					  <ul id="position">
+						  <!--{foreach from=$store.pics item=pic}-->
+					    <li class="cur"></li>
+                          <!--{/foreach}-->
+					  </ul>
+					</div>
+				</div>
+				<div class="information">
+					<p class="inf-tit">商家信息</p>
+					<div class="inf-details">
+						<div class="des-lf">
+							<p class="des-name" style="font-weight: 600;">{$store.store_name}</p>
+							<p class="des-id"><span>地址：</span>{$store.address}</p>
+							<p class="des-ids">								
+
+								<a href="http://api.map.baidu.com/direction?origin=latlng:{$lat},{$lng}|name=起点&destination=latlng:{$store.lat},{$store.lng}|name=终点&mode=driving&region={$store.cityname}&output=html"><span></span>{$store.distance}</a>
+								<!--<a href="http://daohang.map.baidu.com/mobile/#navi/naving/sy=0&endp={$store.lng},{$store.lat}&start={$lng},{$lat}&fromprod=ziyou/vt=map&state=entry" id="daohang"><span></span>{$store.distance}</a>-->
+							</p>
+						</div>
+						<div class="des-right">
+							<a href="tel:{$store.tel}"><span></span></a>
+						</div>
+					</div>
+					<div class="inf-details">
+						<p class="inf-text"><span>简介：</span>{$store.description}</p>
+					</div>
+					<div class="inf-Telephone">
+						<a href="tel:{$store.tel}">联系电话：<span>{$store.tel}</span></a>
+						<!--{if $store.tel1}-->
+						<a href="tel:{$store.tel1}">联系电话1：<span>{$store.tel1}</span></a>
+						<!--{/if}-->
+						<!--{if $store.tel2}-->
+						<a href="tel:{$store.tel2}">联系电话2：<span>{$store.tel2}</span></a>
+						<!--{/if}-->
+						<!--{if $store.tel3}-->
+						<a href="tel:{$store.tel3}">联系电话3：<span>{$store.tel3}</span></a>
+						<!--{/if}-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/business-index.js}" ></script>
+	
+	<!--轮播图-->
+	<script src="{res file=js/swipe.js}"></script>
+	<script type="text/javascript">
+	var bullets = document.getElementById('position').getElementsByTagName('li');
+	var banner = Swipe(document.getElementById('mySwipe'), {
+		auto: 3000,
+		continuous: true,
+		disableScroll:false,
+		callback: function(pos) {
+			var i = bullets.length;
+			while (i--) {
+			  bullets[i].className = ' ';
+			}
+			bullets[pos].className = 'cur';
+		}
+	});
+	</script>
+</html>

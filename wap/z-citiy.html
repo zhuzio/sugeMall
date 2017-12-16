@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>选择地址</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=7e62760db2e3b0b1d9bde5bf408b7662"></script>
+		<script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/z-city.css" />
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+	</head>
+	<style type="text/css">
+		#container {
+			display: none;
+		}		
+		#input {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<div class="d_header">
+			<a class="black" href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">选择城市</p>
+		</div>
+		<div class="z-citya">
+			<!--<div class="xzcs">
+				<img src="images/z-221.png" alt="">
+				<input class="z-cinput" type="text" value="" placeholder="输入城市名或拼音查询">
+			</div>-->
+		</div>
+		<div class="z-cityb">
+			<span>当前:</span><span class="z-cityz">北京</span>
+			<span class="z-cityb1">选择县区
+  		    <img class="z-cityb2" src="images/z-288.png"/>
+  	</span>
+		</div>
+		<div class="z-cityc">当前定位城市</div>
+		<div class="z-cityd">北京</div>
+		<!--<div class="z-cityc">最近访问的城市</div>-->
+		<ul class="z-citye z-cityw">
+			<!--<li>北京</li>
+  	<li>北京</li>
+  	<li>北京</li>
+  	<li>北京</li>
+  	<li>北京</li>
+  	<li>北京</li>-->
+		</ul>
+		<div class="z-cityc">热门城市</div>
+		<ul class="z-citye z-cityf">
+			<li>北京</li>
+			<li>成都</li>
+			<li>重庆</li>
+			<li>广州</li>
+			<li>杭州</li>
+			<li>南京</li>
+			<li>上海</li>
+			<li>深圳</li>
+			<li>天津</li>
+			<li>武汉</li>
+			<li>西安</li>
+		</ul>
+		<!--点击弹出地址-->
+		<div class="z-cityadd" style="display: none;">
+			<div class="z-cityadd1">
+				<span class="z-cityadd1a">所在地区</span>
+				<img class="z-cityadd1b" src="images/z-197.png" />
+				<ul class="re-address area-wrap">
+					<li id="proname">
+						<span class="re-address-pro z-pro">请选择省</span>
+						<ul class="proname-ul"></ul>
+					</li>
+					<li>|</li>
+					<li id="cityname">
+						<span class="re-address-pro z-city">请选择市</span>
+						<ul class="cityname-ul"></ul>
+					</li>
+					<li>|</li>
+					<li id="areaname">
+						<span class="re-address-pro z-area">请选择县</span>
+						<ul class="areaname-ul"></ul>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+		<div id="container" tabindex="0"></div>
+		<input id='input' value='驻马店火车站'></input>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/adress.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var tokens = localStorage.getItem("token");
+			var a = $(".z-citye li").length;
+			var n = Math.ceil(a / 3);
+			$(".z-citye li:nth-child(3n+1)").css({
+				"margin-left": "3.2%",
+			});
+			$(".z-cityb1").click(function() {
+				$(".z-cityadd").slideDown("show");
+			});
+			$(".z-cityadd1b").click(function() {
+					$(".z-cityadd").slideUp("hide");
+				})
+				//定义一个省级的id数组
+			var proArr = [];
+			//定义一个市级的id
+			var cityArr = [];
+			var proId, cityId, areaId;
+			var first_city, first_area;
+			var zaddress;
+			//省级接口      
+			function proajax() {
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=my_address&f=province",
+					dataType: "json",
+					data: {
+						token: tokens
+					},
+					success: function(data) {
+						// console.log(data);
+						//						if(data.msg == "请先登录") {
+						//							window.location.href = "denglu.html";
+						//						}
+						//						if(data.msg == "身份错误，请重新登录") {
+						//							window.location.href = "denglu.html";
+						//						}
+						var datas = data.data;
+						var html = " ";
+						for(var i = 0; i < datas.length; i++) {
+							html += '<li data-params="' + datas[i].id + '">' + datas[i].name + '</li>';
+						}
+						$("#proname ul").html(html);
+					},
+					error: function(data) {},
+				});
+			}
+			//市级ajax接口
+			function cityajax() {
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=my_address&f=city",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"id": proId
+					},
+					success: function(data) {
+						var datas = data.data;
+						var html = " ";
+						for(var i = 0; i < datas.length; i++) {
+							html += '<li data-params="' + datas[i].id + '">' + datas[i].name + '</li>';
+						}
+						$("#cityname ul").html(html);
+						var frist_txt = $(".cityname-ul>li:first").text()
+						cityId = $(".cityname-ul>li:first").attr("data-params");
+						$("#cityname>.z-city").text(frist_txt);
+						//县区列表加载出来，但不显示，防止客户，默认第一个城市没有点直接点县
+						var bol = false;
+						areaajax(bol);
+						areaClick();
+					},
+					error: function(data) {},
+				});
+			}
+			//县级ajax
+			function areaajax(bol) {
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=my_address&f=area",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"id": cityId
+					},
+					success: function(data) {
+						var datas = data.data;
+						var html = " ";
+						for(var i = 0; i < datas.length; i++) {
+							html += '<li data-params="' + datas[i].id + '">' + datas[i].name + '</li>';
+						}
+						$("#areaname ul").html(html);
+						if(bol) {
+							var firstTxt = $('.areaname-ul li:first').text();
+							$("#areaname>.z-area").text(firstTxt);
+						}
+
+					},
+					error: function(data) {},
+				});
+			}
+			//省级点击事件开始
+			$("#proname span").click(function() {
+				proajax();
+				$(".proname-ul").show();
+				$(".proname-ul").on("click", "li", function() {
+					var txt = $(this).text();
+					proId = $(this).attr("data-params");
+					$(".z-pro").text(txt);
+					$(".z-pro").attr("data-params", proId);
+					//拿到省id请求市
+					cityajax();
+					$(".proname-ul").hide();
+					cityClick();
+					//县级恢复默认
+					$("#areaname>.z-area").text("请选择县");
+					$("#areaname ul").html("");
+					//防止个人奇葩人点击bug
+					$(".cityname-ul").hide();
+					$(".areaname-ul").hide();
+				});
+
+			});
+
+			//市级点击事件开始
+			function cityClick() {
+				$("#cityname span").click(function() {
+					$(".cityname-ul").show();
+					$(".cityname-ul").on("click", "li", function() {
+						var txt = $(this).text();
+						cityId = $(this).attr("data-params");
+						$(".z-city").text(txt);
+						$(".z-city").attr("data-params", cityId);
+						//拿到市id 请求县
+						var bol = true;
+						areaajax(bol);
+						areaClick();
+						$(".cityname-ul").hide();
+						$(".areaname-ul").hide();
+					});
+				});
+			}
+			//县级点击事件
+			function areaClick() {
+				$("#areaname span").click(function() {
+					$(".areaname-ul").show();
+					$(".areaname-ul").on("click", "li", function() {
+						var txt = $(this).text();
+						areaId = $(this).attr("data-params");
+						$(".areaname-ul").hide();
+						$(".z-area").text(txt);
+						$(".z-area").attr("data-params", areaId);
+						zaddress = $(this).text();
+						localStorage.setItem('zadd', zaddress);
+						var ssx = $(".z-pro").html() + $(".z-city").html() + $(".z-area").html();
+						$("#input").val(ssx);
+						input.onchange();
+//						window.location.href = "coalition.html";
+
+					});
+				});
+			}
+			var zaddss = localStorage.getItem("zzaadd1");
+//			console.log(zadds)
+			if(zaddss == null){
+			    var zaadds = localStorage.getItem("zaddsa11");
+//			    console.log(zaadds)
+			    $(".z-cityz").text(zaadds);
+			    $(".z-cityd").text(zaadds);
+			}else{
+			var zaddsa = zaddss.substr(0, 3);
+			//当前城市
+			$(".z-cityz").text(zaddsa);
+			$(".z-cityd").text(zaddsa);				
+			}
+			$(".z-cityd").on("click", function() {
+				window.location.href = "coalition.html";
+			})
+
+			$(".z-cityf").on("click", "li", function() {
+				zaddress = $(this).text();
+				localStorage.setItem('zadd', zaddress);
+				var vals = $(this).html();
+				$("#input").val(vals);
+				input.onchange();
+//				window.location.href = "coalition.html";
+
+			});
+			//地区搜索
+			zaddress = $(".z-cinput").val();
+			$(".z-cinput").keyup(function() {
+				zaddress = $(".z-cinput").val();
+				SeachAdd();
+			});
+
+			function SeachAdd() {
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=my_address&f=seracharea",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"name": zaddress
+					},
+					success: function(data) {
+						var datas = data.data;
+					},
+					error: function(data) {},
+				});
+			}
+			// 获取经纬度
+			var map = new AMap.Map('container', {
+				resizeEnable: true,
+				zoom: 13,
+				center: [116.39, 39.9]
+			});
+			AMap.plugin('AMap.Geocoder', function() {
+				var geocoder = new AMap.Geocoder({
+					city: "015" //城市，默认：“全国”
+				});
+				var marker = new AMap.Marker({
+					map: map,
+					bubble: true
+				})
+				var input = document.getElementById('input');
+				input.onchange = function(e) {
+						var address = input.value;
+						geocoder.getLocation(address, function(status, result) {
+							if(status == 'complete' && result.geocodes.length) {
+								marker.setPosition(result.geocodes[0].location);
+								localStorage.setItem('lat', result.geocodes[0].location.lat);
+								localStorage.setItem('lgt', result.geocodes[0].location.lng);
+								console.log(result.geocodes[0].location.lat);
+								console.log(result.geocodes[0].location.lng);
+								window.location.href = "coalition.html";
+							}
+						})
+					}
+					// input.onchange();
+					// $("#input").val("南阳市火车站");
+					// input.onchange();
+			});
+
+		});
+	</script>
+
+</html>

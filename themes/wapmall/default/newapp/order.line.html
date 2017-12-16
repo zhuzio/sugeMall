@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<meta charset="UTF-8">
+
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+
+		<title></title>
+
+		<link rel="stylesheet" href="{res file=css/public.css}" />
+
+		<link rel="stylesheet" href="{res file=css/line.css}" />
+
+	</head>
+
+	<body>
+
+		<header class="header">
+
+			<a  href="javascript:history.go(-1)" class="back"></a>
+
+			<h1 class="tit">我的线下订单</h1>
+
+		</header>
+
+		<div class="content mtop44">
+
+			<div class="line">
+
+				<ul>
+
+				{foreach from =$orderlist item=item2}
+
+					<li class="line-list">
+
+						<div class="line-tit">
+
+							<p class="order-number">订单号:<span>{$item2.order_sn}</span></p>
+
+
+
+						{if $item2.status eq 40}
+
+						<p class="state">
+
+								<span>已付款</span>
+
+								<img src="{res file=images/line/fukuan.png}">
+
+							</p>
+
+						{elseif $item2.status eq 11}
+
+							<p class="state">
+
+								<span>等待买家付款</span>
+
+								<img src="{res file=images/line/dai.png}">
+
+							</p>
+
+						{elseif $item2.status eq 0}
+
+							<p class="state">
+
+								<span>订单已取消</span>
+
+								<img src="{res file=images/line/cancel.png}">
+
+							</p>
+
+
+
+						{/if}	
+
+						</div>
+
+						<div class="order-nr">
+
+							<ul>
+
+								<li>
+
+									<p><img src="{res file=images/line/user.png}"><span>用户:</span><span>{$item2.buyer_name}</span></p>
+
+									<p><img src="{res file=images/line/shang.png}"><span>商品种类:</span><span>{$item2.classname}</span></p>
+
+								</li>
+
+								<li>
+
+									<p><img src="{res file=images/line/zhifu.png}"><span>{$item2.payment_name}</span></p>
+
+									<p><img src="{res file=images/line/jine.png}"><span>消费金额:</span><span>￥{$item2.order_amount}</span></p>
+
+								</li>
+
+								<li>
+
+									<p><img src="{res file=images/line/beizhu.png}"><span>订单备注:</span><span>{$item2.pay_message}</span></p>
+
+								</li>
+
+							</ul>
+
+							<div class="time">
+
+								<p><!-- <span>2016-5-14</span> --><time>{if $item2.status eq 40}<span>付款时间:</span>{$item2.pay_time|date_format:"%Y-%m-%d %H:%M"}{else}<span>下单时间:</span>{$item2.add_time|date_format:"%Y-%m-%d %H:%M"}{/if}</time></p>
+
+
+
+							{if $item2.status eq 11}
+
+								<a href="{url app=offline_order&act=cancel_order&id=$item2.order_id}">取消订单</a>
+
+								<a href="{url app=offline_order&act=order_detail&id=$item2.order_id}">查看详情</a>
+
+							{else}
+
+								<a href="{url app=offline_order&act=order_detail&id=$item2.order_id}">查看详情</a>
+								
+							{/if}	
+
+							</div>
+
+						</div>
+
+					</li>
+
+				{/foreach}
+
+
+
+				<!-- 	<li class="line-list">
+
+						<div class="line-tit">
+
+							<p class="order-number">订单号<span>235894698</span></p>
+
+							<p class="state">
+
+								<span>已付款</span>
+
+								<img src="{res file=images/line/fukuan.png}">
+
+							</p>
+
+						</div>
+
+						<div class="order-nr">
+
+							<ul>
+
+								<li>
+
+									<p><img src="{res file=images/line/user.png}"><span>suge-567</span></p>
+
+									<p><img src="{res file=images/line/shang.png}"><span>商品种类</span><span>黑茶</span></p>
+
+								</li>
+
+								<li>
+
+									<p><img src="{res file=images/line/zhifu.png}"><span>货款支付</span></p>
+
+									<p><img src="{res file=images/line/jine.png}"><span>消费金额</span><span>￥258.00</span></p>
+
+								</li>
+
+								<li>
+
+									<p><img src="{res file=images/line/beizhu.png}"><span>订单备注</span><span>黑茶两壶</span></p>
+
+								</li>
+
+							</ul>
+
+							<div class="time">
+
+								<p><span>2016-5-14</span><time>16:25</time></p>
+
+								
+
+							</div>
+
+						</div>
+
+					</li> -->
+
+				</ul>
+
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+
+	</body>
+
+</html>
+

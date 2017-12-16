@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>联盟订单-商家</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/l-order1.css" />
+		<link rel="stylesheet" href="css/a.css">
+		<style>
+			.ldtt {
+				position: fixed;
+				z-index: 1000;
+				height: 3.2rem;
+				text-align: center;
+				bottom: 3rem;
+				left: 0;
+				width: 100%;
+				display: none;
+			}
+			
+			.ldtt img {
+				width: 3.2rem;
+			}
+			
+			.zdp2 {
+				/*border: 1px solid red;*/
+				position: absolute;
+				right: 4%;
+				/*top: 1.0rem;*/
+				margin-top: 1.5rem;
+			}
+			
+			.zdss {
+				width: 10.0rem;
+				/*border: 1px solid red;*/
+				/*margin-left: 10%;*/
+				position: absolute;
+				right: 4%;
+			}
+			
+			.zdss img {
+				width: 100%;
+				transform: rotate(-10deg);
+				-ms-transform: rotate(-10deg);
+				/* IE 9 */
+				-moz-transform: rotate(-10deg);
+				/* Firefox */
+				-webkit-transform: rotate(-10deg);
+				/* Safari 和 Chrome */
+				-o-transform: rotate(-10deg);
+				/* Opera */
+			}
+		</style>
+	</head>
+	<div class="kong2"></div>
+
+	<body>
+		<div class="ldtt"><img src="images/add.gif" alt=""></div>
+		<div class="head">
+			<div class="d_header">
+				<a class="back" href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+					<p class="p1">
+						<img src="images/back.png" alt="返回首页">
+					</p>
+				</a>
+				<p class="p2">联盟订单</p>
+				<p class="p3">
+					<img src="images/messge.png" />
+				</p>
+
+			</div>
+		</div>
+		<div class="part2">
+			<ul>
+			</ul>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script>
+		$(function() {
+			var tokens = localStorage.getItem("token");
+			//console.log(tokens);
+			$(".p3").click(function() {
+				location.href = "newscentre.html";
+			})
+
+			//			function getLocalTime(timestamp) {
+			//							var d = new Date(timestamp * 1000); //根据时间戳生成的时间对象
+			//							var date = (d.getFullYear()) + "-" +
+			//								(d.getMonth() + 1) + "-" +
+			//								(d.getDate()) + " " +
+			//								(d.getHours()) + ":" +
+			//								(d.getMinutes()) + ":" +
+			//								(d.getSeconds());
+			//							return date;
+			//						}
+
+			function getLocalTime(nS) {
+				return new Date(parseInt(nS) * 1000).Format("yyyy-MM-dd hh:mm:ss");
+			}
+			Date.prototype.Format = function(fmt) { //author: meizz   
+					var o = {
+						"M+": this.getMonth() + 1, //月份   
+						"d+": this.getDate(), //日   
+						"h+": this.getHours(), //小时   
+						"m+": this.getMinutes(), //分   
+						"s+": this.getSeconds(), //秒   
+						"q+": Math.floor((this.getMonth() + 3) / 3), //季度   
+						"S": this.getMilliseconds() //毫秒   
+					};
+					if(/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+					for(var k in o)
+						if(new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+					return fmt;
+				}
+				//联盟订单开始
+			var html = "";
+			var num;
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=order&f=storeorderoffline",
+				dataType: "json",
+				data: {
+					"token": tokens,
+					"page": "1"
+				},
+				success: function(data) {
+					console.log(data);
+					num = data.totalpage;
+					var datas = data.data;
+					for(var i = 0; i < datas.length; i++) {
+						if(datas[i].status == "40") {
+							var st = "交易成功";
+						} else if(datas[i].status == "30") {
+							var st = "卖家已发货";
+						} else if(datas[i].status == "20") {
+							var st = "买家已付款，等待卖家发货";
+						} else if(datas[i].status == "11") {
+							var st = "等待买家付款";
+						} else if(datas[i].status == "0") {
+							var st = "交易已取消";
+						} else if(datas[i].status == "10") {
+							var st = "货到付款，卖家即将发货";
+						}
+						if(data.data[i].is_check == "0") {
+							var srcs = "images/yz0.png";
+						} else if(data.data[i].is_check == "1") {
+							var srcs = "images/yz1.png";
+						} else if(data.data[i].is_check == "2") {
+							var srcs = "images/yz2.png";
+						}
+						html += '<li><p class="p2_p1"><span class="p2_p1_sp1">订单号：' + datas[i].order_sn + '</span><span class="p2_p1_sp2">' + st + '</span></p><div><p class="d_p1">商家：' + datas[i].seller_name + '</p><p class="d_p2"><span>商品种类：' + datas[i].classname + '</span></p></div><div><p class="d_p1">用户电话：' + datas[i].phone_mob + '</p><p class="d_p2">消费金额：<font>' + datas[i].goods_amount + '</font></p></div><div class="p2ud"><p class="d_p1">赠送积分：<font>' + datas[i].point + '</font></p><p class="d_p2 zdp2">' + datas[i].payment_name + '</p></div><p class="p2_p4"></p><p class="p2_p5"><span class="p25sp1">付款时间：' + getLocalTime(datas[i].pay_time) + '</span><span class="zdss"><img src="' + srcs + '"></span></p><p class="p2_p6"></p></li>';
+					}
+					$(".part2 ul").html(html);
+				},
+				error: function(data) {
+					console.log(data);
+				}
+			});
+
+			//联盟订单结束
+			var pages = 1; //当前页的页码
+			var allpage = num; //总页码，会从后台获取
+			var sc = true;
+
+			function showAjax() {
+				$(".ldtt").css("display", "block");
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=order&f=storeorderoffline",
+					data: {
+						token: tokens,
+						page: pages,
+					},
+					success: function(data) {
+						//要执行的内容
+						// showContent();
+						//页数加1
+						//						console.log(data);
+
+						var count;
+						var htmls = "";
+						for(var j = 0; j < 10000000; j++) {
+
+							if(!data.data[j]) {
+								count = j;
+
+								break;
+							}
+						};
+						//						console.log(count);
+
+						var datas = data.data;
+						for(var i = 0; i < datas.length; i++) {
+							if(datas[i].status == "40") {
+								var st = "交易成功";
+							} else if(datas[i].status == "30") {
+								var st = "卖家已发货";
+							} else if(datas[i].status == "20") {
+								var st = "买家已付款，等待卖家发货";
+							} else if(datas[i].status == "11") {
+								var st = "等待买家付款";
+							} else if(datas[i].status == "0") {
+								var st = "交易已取消";
+							} else if(datas[i].status == "10") {
+								var st = "货到付款，卖家即将发货";
+							}
+							if(data.data[i].is_check == "0") {
+								var srcs = "images/yz0.png";
+							} else if(data.data[i].is_check == "1") {
+								var srcs = "images/yz1.png";
+							} else if(data.data[i].is_check == "2") {
+								var srcs = "images/yz2.png";
+							}
+							htmls += '<li><p class="p2_p1"><span class="p2_p1_sp1">订单号：' + datas[i].order_sn + '</span><span class="p2_p1_sp2">' + st + '</span></p><div><p class="d_p1">商家：' + datas[i].seller_name + '</p><p class="d_p2"><span>商品种类：' + datas[i].classname + '</span></p></div><div><p class="d_p1">用户电话：' + datas[i].phone_mob + '</p><p class="d_p2">消费金额：<font>' + datas[i].goods_amount + '</font></p></div><div class="p2ud"><p class="d_p1">赠送积分：<font>' + datas[i].point + '</font></p><p class="d_p2 zdp2">' + datas[i].payment_name + '</p></div><p class="p2_p4"></p><p class="p2_p5"><span class="p25sp1">付款时间：' + getLocalTime(datas[i].pay_time) + '</span><span class="zdss"><img src="' + srcs + '"></span></p><p class="p2_p6"></p></li>';
+						}
+
+						sc = true;
+
+						// console.log(html);
+						$(".part2 ul").append(htmls);
+						// 分页加载/
+						setTimeout(function() {
+							$(".ldtt").css("display", "none");
+						}, 300)
+					},
+					error: function(data) {
+						console.log(data);
+					}
+				})
+			}
+
+			function scrollFn() {
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+					if(sc) {
+						// alert(2);
+						// alert(pages+":"+allpage)
+						sc = false;
+						pages++;
+						if(pages <= num) {
+							console.log(pages);
+							showAjax();
+							// alert(1);
+						}
+
+					}
+				}
+			}
+			$(window).bind("scroll", scrollFn); //绑定滚动事件
+		})
+	</script>
+
+</html>

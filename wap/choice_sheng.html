@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>升级-省</title>
+	<link rel="stylesheet" href="css/choice_sheng.css">
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+			<div class="left"><a href="javascript:history.go(-1)"><img src="images/fanhui.png" alt=""></a></div>
+			<div class="center"><p>选择代理位置</p></div>
+		</header>
+		<!-- 主体部分 -->
+		<input type="hidden" value="7" id="type">
+		<section>
+			<div class="sheng">
+				<p>请选择省份</p>
+				<select name="province" class="provinces">
+					<option value=""></option>
+				</select>
+			</div>
+			<span id="tijiao">提交</span>
+			<div class="alert" style="display:none">
+				<p>申请提交已成功<br>我们会尽快与您联系</p>
+			</div>
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+<!-- <script src="js/city.js" type="text/javascript" charset="utf-8"></script> -->
+<script>
+$(function(){
+	var tokens=localStorage.getItem('token');
+	// console.log(tokens);
+	var type =$('#type').val();
+
+	$.ajax({
+		type:'POST',
+		dataType:'JSON',
+		data:{token:tokens},
+		url: Url+'/api/index.php?n=my_address&f=province',
+		success:function(data){
+			// console.log(data);
+			if(data){
+				var list =data.data;
+				$('.provinces').html('');
+				$('.provinces').append('<option value="">请选择</option>');
+				var html;
+				for(var i=0;i<list.length;i++){
+				 html ='<option value="'+list[i].id+'">'+list[i].name+'</option>';
+				 $('.provinces').append(html);
+				}
+
+			}else{
+				// alert('出错啦');
+				$(".alert").css("display","block");
+					$(".alert p").html('出错了');
+					setTimeout(function(){
+						$(".alert").css("display","none");
+					},1000);
+			}
+		}
+	});
+
+	$("#tijiao").click(function(){
+		var pro =$('select[name="province"]').val();
+		if(pro.length <=0){
+			// alert('省份不能为空');
+			$(".alert").css("display","block");
+					$(".alert p").html('省份不能为空');
+					setTimeout(function(){
+						$(".alert").css("display","none");
+					},1000);
+			return false;
+		}
+		$(".alert p").html('申请提交已成功我们会尽快与您联系');
+		$(".alert").css("display","block");
+					setTimeout(function(){
+					$(".alert").css("display","none");
+					},1500);
+		$.ajax({
+			type: 'POST',
+			dataType: 'JSON',
+			data: {token:tokens,region_id:pro,type:type},
+			async:true,
+			url: Url+'/api/index.php?n=userset&f=upgrade',
+			success:function(res){	
+					$(".alert p").html(res.msg);
+					$(".alert").css("display","block");
+					setTimeout(function(){
+					$(".alert").css("display","none");
+						if (data.ret=="ok") {
+							location.href="z-member.html";
+						}
+					},1000)
+				
+			}
+		})
+
+	})
+});
+</script>
+</html>

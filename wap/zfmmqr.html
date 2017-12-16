@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>重置支付密码</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/zfmmqr.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.ltan{
+			position: fixed;
+			z-index: 1000;
+			background: rgba(0,0,0,0.3);
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			display: none;
+
+		}
+		.ltan p{
+			width:70%;
+			height: 18rem;
+			text-align: center;
+			line-height: 12rem;
+			font-size: 3.4rem;
+			color: #333;
+			background-color:#fff; 
+			margin-top: 60%;
+			margin-left: 15%;
+			border-radius: 1rem;
+		}
+		.ltan2{
+			position: fixed;
+			z-index: 1000;
+			background: rgba(0,0,0,0.3);
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			display: none;
+
+		}
+		.ltan2 p{
+			width:70%;
+			height: 18rem;
+			text-align: center;
+			line-height: 12rem;
+			font-size: 3.4rem;
+			color: #333;
+			background-color:#fff; 
+			margin-top: 60%;
+			margin-left: 15%;
+			border-radius: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">重置支付密码</p>
+	</div>
+	<form action="">
+		<p class="fo_p1">
+			<span>输入新支付密码：</span>
+			<input type="password"  class="inp1">
+			<!-- <button>获取验证码</button> -->
+		</p>
+		<p class="fo_p1">
+			<span>再次输入支付密码：</span>
+			<input type="password"  class="inp2">
+			<!-- <button class="fbtn">60秒内重发</button> -->
+		</p>
+		<p class="sm">支付密码必须为6位数字</p>
+		<div class="next"><p>完成</p></div>
+		
+	</form>
+	<div class="byz byz1"><div><p>两次密码输入不一致请重新输入</p></div></div>
+	<div class="byz byz2"><div><p></p></div></div>
+	<div class="ltan"><p>支付密码必须为6位数字</p></div>
+	<div class="ltan2">
+		<p></p>
+	</div>
+</body>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	$(function(){
+		var tokens = localStorage.getItem("token");
+		console.log(tokens);
+		$(".inp1").on("blur",function(){
+				var vue=$(".inp1").val();
+				var zfmmzz=/^\d{6}$/;
+				if (zfmmzz.test(vue)) {
+
+				}else{
+					$(".ltan").show();
+					$(".inp1").focus();
+				}
+			})
+		$(".ltan").on("click",function(){
+			$(".ltan").hide();
+		})
+		$(".ltan2").on("click",function(){
+			$(".ltan").hide();
+		})
+		$(".inp2").on("input propertychange",function(){
+				var vue1=$(".inp2").val();
+				if (vue1) {
+					$(".next p").addClass("next1");
+				}else{
+					$(".next p").removeClass("next1");
+				}
+				})
+		$(".next").on("click",function(){
+			var yzz=/\d{6}/;
+					var vue=$(".inp1").val();
+					var vue1=$(".inp2").val();
+					if (yzz.test(vue1)) {
+						if (vue1==vue) {
+							var dlphones=localStorage.getItem('dlphones');
+							$.ajax({	
+								 type: 'POST',
+								 url: Url + "api/index.php?n=user&f=updateZfpw",
+								dataType: "json",
+								data: { 
+									phone:dlphones,
+									token:tokens,
+									zf_pass:vue1,
+								},
+								success: function(data){
+									  // console.log(data);
+									  if (data.ret=="ok") {
+									  	 // location.href = "";
+									  	 $(".byz2 p").html(data.msg);
+									  	 setTimeout(function(){
+										$(".byz2").css("display","block");
+										},0);
+										setTimeout(function(){
+											$(".byz2").css("display","none");
+										},1000);
+										// window.history.back(-2);
+										window.history.go(-2);
+								  	}else{
+								  		$(".byz2 p").html(data.msg);
+								  		setTimeout(function(){
+										$(".byz2").css("display","block");
+										},0);
+										setTimeout(function(){
+											$(".byz2").css("display","none");
+										},1000);
+								  	}
+									  
+									 
+								} ,
+								            error:function(data){
+									                      	  $(".ltan2 p").html(data.msg);
+									                      	  $(".ltan2")
+									                      }
+							})
+					}else{
+					setTimeout(function(){
+							$(".byz1").css("display","block");
+						},0);
+						setTimeout(function(){
+							$(".byz1").css("display","none");
+						},1000)
+					}
+				}else{
+					$(".byz2 p").html("请输入6位数字");
+			  		setTimeout(function(){
+					$(".byz2").css("display","block");
+					},0);
+					setTimeout(function(){
+						$(".byz2").css("display","none");
+					},1000);
+				}	
+			})
+	})
+</script>
+</html>

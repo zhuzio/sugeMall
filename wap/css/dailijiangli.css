@@ -1,0 +1,97 @@
+@import url(m_reset.css);
+html,
+body,
+.container {
+  width: 100%;
+  height: 100%;
+  background: #ebebeb;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 62.5%;
+}
+.r {
+  position: relative;
+}
+.a {
+  position: absolute;
+}
+.zdaili{
+	width: 100%;
+	/*height: 17.2rem;*/
+	margin-top: 8.8rem;
+	/*background:url("../images/tit.png") no-repeat;
+	background-size: 100% 100%;*/
+}
+/*.zdaili span{
+	margin-left: 5.7%;
+}
+.zzdaili{
+	font-size: 6.0rem;
+	color: #323333;
+	position: relative;
+	top: 3.0rem;
+}
+.zzdaili1{
+	font-size: 2.6rem;
+	color: #323333;
+	position: relative;
+	top: 3.0rem;
+}*/
+.z-liwp{
+	width: 100%;
+}
+.z-liwp ul{
+	width: 100%;
+	height: 16.2rem;
+	background-color: #fff;
+	margin-top: 1.0rem;
+}
+.z-liwp ul li:nth-child(1){
+	width: 100%;
+	height: 9.5rem;
+	line-height: 9.5rem;
+	border-bottom: 1px dashed #efeff4;
+	
+}
+.z-liwp ul li:nth-child(2){
+	line-height: 6.7rem;
+	margin-left: 56%;
+}
+.z-liwp ul li:nth-child(2) img{
+	width: 2.7rem;
+	height: 3.0rem;
+	position: relative;
+	top: 1.0rem;
+}
+.z-liwp ul li:nth-child(2) span{
+	font-size: 2.6rem;
+	color: #212121;
+	margin-left: 4.8%;
+}
+
+.z-liwp ul li:nth-child(1) span:nth-child(1){
+	font-size: 2.6rem;
+	color: #333;
+	margin-left: 3.0%;
+	
+	
+}
+.z-liwp ul li:nth-child(1) span:nth-child(2){
+	width: 2.2rem;
+	height: 2.2rem;
+	display: inline-block;
+	margin-left: 1.0%;
+}
+.z-liwp ul li:nth-child(1) span:nth-child(2) img{
+	width: 100%;
+}
+.z-liwp ul li:nth-child(1) span:nth-child(3){
+	font-size: 3.2rem;
+	color: #39c340;
+	margin-left: 1.0%;
+}
+.z-liwp ul li:nth-child(1) span:nth-child(4){
+	font-size: 2.6rem;
+	color: #323333;
+	margin-left: 1.0%;
+}

@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>订单审核</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/ddsh.css">
+		<link rel="stylesheet" type="text/css" href="css/date.css" />
+	</head>
+
+	<body>
+		<div class="head">
+			<div class="d_header">
+				<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+					<p class="p1">
+						<img src="images/back.png" alt="返回首页">
+					</p>
+				</a>
+				<p class="p2">订单审核</p>
+				<span class="pl">批量操作</span>
+			</div>
+		</div>
+
+		<div class="tabw">
+			<div class="tab">
+				<p>
+					<span class="sc add">联盟订单</span>
+					<span class="lm">商城订单</span>
+				</p>
+			</div>
+		</div>
+
+		<div class="dk"></div>
+		
+		<div class="box" style="display: block;">
+			<div class="biao b1">
+				<!--<li>
+					<div class="divs1 ">
+						<p class="d1p1">
+							<span class="disp1">订单号</span><br>
+							<span class="disp2">21132112111</span>
+						</p>
+						<p class="d1p2">
+							<span class="disp1">支付方式</span><br>
+							<span class="disp2">现金消费</span>
+						</p>
+						<p class="d1p3">
+							<span class="disp1">商家名称</span><br>
+							<span class="disp2">麻辣小龙虾</span>
+						</p>
+						<p class="d1p4">
+							<span class="disp1">买家名称</span><br>
+							<span class="disp2">龙埃及</span>
+						</p>
+					</div>
+					<div class="divs2">
+						<p class="d2p1">
+							<span class="disp1">买家联系方式</span><br>
+							<span class="disp2">13132112111</span>
+						</p>
+						<p class="d2p2">
+							<span class="disp1">消费金额</span><br>
+							<span class="disp2">100</span>
+						</p>
+						<p class="d2p3">
+							<span class="disp1">赠送积分</span><br>
+							<span class="disp2">30</span>
+						</p>
+						<p class="d2p4">
+							<span class="disp1-l">审核时间</span><br>
+							<span class="disp2  disp21">2016-07-05</span><br>
+							<span class="disp3">12:00:31</span>
+						</p>
+					</div>
+					<div class="divs3 div3-r">
+						<span class="d3sp1">通过</span>
+						<span class="d3sp2">驳回</span>
+						<p>已驳回</p>
+					</div>
+					<div class="choose">
+						<img src="images/ldpy1.png" alt="">
+					</div>
+				</li>
+				<li>
+					<div class="divs1 ">
+						<p class="d1p1">
+							<span class="disp1">订单号</span><br>
+							<span class="disp2">21132112111</span>
+						</p>
+						<p class="d1p2">
+							<span class="disp1">支付方式</span><br>
+							<span class="disp2">现金消费</span>
+						</p>
+						<p class="d1p3">
+							<span class="disp1">商家名称</span><br>
+							<span class="disp2">麻辣小龙虾</span>
+						</p>
+						<p class="d1p4">
+							<span class="disp1">买家名称</span><br>
+							<span class="disp2">龙埃及</span>
+						</p>
+					</div>
+					<div class="divs2">
+						<p class="d2p1">
+							<span class="disp1">买家联系方式</span><br>
+							<span class="disp2">13132112111</span>
+						</p>
+						<p class="d2p2">
+							<span class="disp1">消费金额</span><br>
+							<span class="disp2">100</span>
+						</p>
+						<p class="d2p3">
+							<span class="disp1">赠送积分</span><br>
+							<span class="disp2">30</span>
+						</p>
+						<p class="d2p4">
+							<span class="disp1-l">审核时间</span><br>
+							<span class="disp2  disp21">2016-07-05</span><br>
+							<span class="disp3">12:00:31</span>
+						</p>
+					</div>
+					<div class="divs3 div3-y">
+						<span class="d3sp1">通过</span>
+						<span class="d3sp2">驳回</span>
+						<p>已通过</p>
+					</div>
+					<div class="choose">
+						<img src="images/ldpy1.png" alt="">
+					</div>
+				</li>
+				<li>
+					<div class="divs1 ">
+						<p class="d1p1">
+							<span class="disp1">订单号</span><br>
+							<span class="disp2">21132112111</span>
+						</p>
+						<p class="d1p2">
+							<span class="disp1">支付方式</span><br>
+							<span class="disp2">现金消费</span>
+						</p>
+						<p class="d1p3">
+							<span class="disp1">商家名称</span><br>
+							<span class="disp2">麻辣小龙虾</span>
+						</p>
+						<p class="d1p4">
+							<span class="disp1">买家名称</span><br>
+							<span class="disp2">龙埃及</span>
+						</p>
+					</div>
+					<div class="divs2">
+						<p class="d2p1">
+							<span class="disp1">买家联系方式</span><br>
+							<span class="disp2">13132112111</span>
+						</p>
+						<p class="d2p2">
+							<span class="disp1">消费金额</span><br>
+							<span class="disp2">100</span>
+						</p>
+						<p class="d2p3">
+							<span class="disp1">赠送积分</span><br>
+							<span class="disp2">30</span>
+						</p>
+						<p class="d2p4">
+							<span class="disp1-l">审核时间</span><br>
+							<span class="disp2  disp21">2016-07-05</span><br>
+							<span class="disp3">12:00:31</span>
+						</p>
+					</div>
+					<div class="divs3 div3-y">
+						<span class="d3sp1">通过</span>
+						<span class="d3sp2">驳回</span>
+						<p></p>
+					</div>
+					<div class="choose">
+						<img src="images/ldpy1.png" alt="">
+					</div>
+				</li>
+				<li>
+					<div class="divs1 ">
+						<p class="d1p1">
+							<span class="disp1">订单号</span><br>
+							<span class="disp2">21132112111</span>
+						</p>
+						<p class="d1p2">
+							<span class="disp1">支付方式</span><br>
+							<span class="disp2">现金消费</span>
+						</p>
+						<p class="d1p3">
+							<span class="disp1">商家名称</span><br>
+							<span class="disp2">麻辣小龙虾</span>
+						</p>
+						<p class="d1p4">
+							<span class="disp1">买家名称</span><br>
+							<span class="disp2">龙埃及</span>
+						</p>
+					</div>
+					<div class="divs2">
+						<p class="d2p1">
+							<span class="disp1">买家联系方式</span><br>
+							<span class="disp2">13132112111</span>
+						</p>
+						<p class="d2p2">
+							<span class="disp1">消费金额</span><br>
+							<span class="disp2">100</span>
+						</p>
+						<p class="d2p3">
+							<span class="disp1">赠送积分</span><br>
+							<span class="disp2">30</span>
+						</p>
+						<p class="d2p4">
+							<span class="disp1-l">审核时间</span><br>
+							<span class="disp2  disp21">2016-07-05</span><br>
+							<span class="disp3">12:00:31</span>
+						</p>
+					</div>
+					<div class="choose">
+						<img src="images/ldpy1.png" alt="">
+					</div>
+				</li>-->
+			</div>
+			<div style="height:9.8rem"></div>
+			<div class="footer footer1">
+				<li class="flis1">全选</li>
+				<li class="flis2">反选</li>
+				<li class="flis3">全部通过</li>
+				<li class="flis4">全部驳回</li>
+			</div>
+		</div>
+
+		
+		<div class="ts">
+			<p></p>
+		</div>
+	</body>
+	<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script type="text/javascript" src="js/datash.js"></script>
+	<script type="text/javascript" src="js/jquery.date_input.pack.js"></script>
+	<script src="js/url.js"></script>
+	<script>
+		var tokens;
+		var types;
+
+		function tok(toks, typs) {
+			tokens = toks;
+			types = typs;
+			//tokens=toks;
+			localStorage.setItem('token', tokens);
+			localStorage.setItem('type', types);
+			inity();
+		}
+
+		function inity() {
+			//var tokens=localStorage.getItem ("token");
+			var num;
+			//日历插件		
+			$('.date_picker').date_input();
+			$(".sel-on").click(function() {
+				var obj = $(this).parent(".sel").find("ul");
+				obj.show();
+			})
+			$(".sel ul li").click(function() {
+				var selectvalue = $(this).data("value");
+				$(this).parent("ul").hide();
+				var obj = $(this).parents(".sel").find("input");
+				obj.val(selectvalue);
+			})
+			$(".box").on("click", ".choose", function() {
+				// console.log($(this).find("img").attr("src"));
+				if($(this).find("img").attr("src") == "images/ldpy1.png") {
+					$(this).find("img").attr("src", "images/ldpy2.png");
+					$(this).addClass("lchoose");
+				} else {
+					$(this).find("img").attr("src", "images/ldpy1.png");
+					$(this).removeClass("lchoose");
+				}
+			})
+			$(".flis1").on("click", function() {
+				$(".choose").find("img").attr("src", "images/ldpy2.png");
+				quanxuan = true;
+			})
+			$(".flis2").on("click", function() {
+					$(".choose").each(function() {
+						if($(this).find("img").attr("src") == "images/ldpy1.png") {
+							$(this).find("img").attr("src", "images/ldpy2.png");
+						} else {
+							$(this).find("img").attr("src", "images/ldpy1.png");
+						}
+					})
+				})
+				// 全部通过
+			$(".flis3").on("click", function() {
+					var xzs = true;
+					order_sns = "";
+					is_checks = 1;
+					// console.log(order_sns);
+					if($(".add").html() == "联盟订单") {
+						order_types = "offline";
+					} else {
+						order_types = "online";
+					}
+					$(".choose").each(function() {
+						if($(this).find("img").attr("src") == "images/ldpy2.png") {
+							// console.log($(this).parent().index());
+							var indexs = $(this).parent().index();
+							if(xzs) {
+
+								xzs = false;
+								order_sns = $(this).parent().find(".disp2").html();
+							} else {
+
+								order_sns += ",";
+								order_sns += $(this).parent().find(".disp2").html();
+							}
+							// order_sns=$(this).parent().find(".disp2").html();
+
+						}
+
+					})
+					// console.log(order_sns);
+					handle();
+				})
+				// 全部驳回
+			$(".flis4").on("click", function() {
+					if($(".add").html() == "联盟订单") {
+						order_types = "offline";
+					} else {
+						order_types = "online";
+					}
+					var is_checks = 2;
+					var xzs = true;
+					$(".choose").each(function() {
+						if($(this).find("img").attr("src") == "images/ldpy2.png") {
+							// var order_sns=$(this).parent().find(".disp2").html();
+							console.log($(this).parent().index());
+							var indexs = $(this).parent().index();
+							if(xzs) {
+
+								xzs = false;
+								order_sns = $(this).parent().find(".disp2").html();
+							} else {
+
+								order_sns += ",";
+								order_sns += $(this).parent().find(".disp2").html();
+							}
+						}
+					})
+					// console.log(order_sns);
+					handle();
+
+				})
+				//商城订单批量操作
+			$(".footer #fli1 #fli2 #fli3 #fli4").on("click", function() {
+				$(".foo").removeClass("foo");
+				$(this).addClass("foo");
+			})
+			$(".d_header .pl").on("click", function() {
+					//				alert(11115)
+					piliang = true;
+					var index = -1;
+					if($(".tab span").eq(0).hasClass("add")) {
+						index = 0;
+					} else if($(".tab span").eq(1).hasClass("add")) {
+						index = 1;
+					}
+					// if(index==0){
+					$(".footer1").show();
+					// $(".footer2").hide();
+					$('.choose').show();
+
+					// }else if(index==1){
+					// 	$(".footer1").hide();
+					// 	$(".footer2").show();
+					// 	$('.choose').show();
+					// }
+				})
+				// $('.tab span').on('click',function(){
+				// 	$('.footer').hide();
+
+			// })
+			//联盟商城切换
+			var tfsl = true; //用来判断是商城还是联盟的滚动加载
+			$('.tab span').on('click', function() {
+				quanxuan = false;
+				piliang = false;
+				pages = 1;
+				var index = $(this).index();
+				// $('.box').hide().eq(index).show();
+				// console.log(index);
+				if(index == 0) {
+					offline("offline");
+					tfsl = true;
+				} else {
+					offline("online");
+					tfsl = false;
+				}
+				$(this).addClass('add').siblings().removeClass('add');
+				$('.footer').hide();
+				$('.choose').hide();
+			})
+
+			// 订单操作处理
+			var order_sns, is_checks, order_types;
+
+			function handle() {
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=shop_center&f=check_order",
+					dataType: "json",
+					data: {
+						token: tokens,
+						order_type: order_types,
+						order_sn: order_sns,
+						is_check: is_checks,
+					},
+					success: function(data) {
+						$(".ts").css("display", "block").find("p").html(data.msg);
+						location.reload();
+					},
+					error: function(data) {
+						console.log(data);
+					}
+				})
+			}
+
+			// 遮罩层点击消失
+			$(".ts").on("click", function() {
+				$(this).css("display", "none")
+			})
+			$(".biao").on("click", ".d3sp1,.d3sp2", function() {
+					if($(this).html() == "通过") {
+						is_checks = 1;
+					} else {
+						is_checks = 2;
+					}
+					if($(".add").html() == "联盟订单") {
+						order_types = "offline";
+					} else {
+						order_types = "online";
+					}
+
+					order_sns = $(this).parent().parent().find($(".divs1 .d1p1 .disp2")).html();
+					handle();
+				})
+				// $(".biao").on("click",".d3sp1",function(){
+
+			// 		is_checks=1;
+
+			// 	if ($(".add").html()=="联盟订单") {
+			// 		order_types="offline";
+			// 	}else{
+			// 		order_types="online";
+			// 	}
+
+			// 	order_sns=$(this).parent().parent().find($(".divs1 .d1p1 .disp2")).html();
+			// 	handle();
+			// })
+			// 联盟订单数据列表获取
+			function offline(or) {
+
+				$.ajax({
+
+					type: 'POST',
+					url: Url + "api/index.php?n=order&f=auditorder",
+					dataType: "json",
+					data: {
+						token: tokens,
+						order_type: or,
+					},
+
+					success: function(data) {
+						// console.log(data);
+
+						num = data.totalpage;
+						allpage = data.totalpage;
+						pages = 1;
+						var htmls = "";
+						// console.log(data.data.length);
+						for(var i = 0; i < data.data.length; i++) {
+								if(data.data[i].is_check == "0") {
+								var tgs = "";
+								var times = "";
+								var tg = '<span class="d3sp1">通过</span><span class="d3sp2">驳回</span>';
+								var cho = '<div class="choose"><img src="images/ldpy1.png" alt=""></div>';
+							}else if(data.data[i].is_check == "1") {
+								var tgs = "已通过";
+								var times = getLocalTime(data.data[i].check_time);
+								var tg = '';
+								var cho = "";
+							} else if(data.data[i].is_check == "2") {
+								var tgs = "已驳回";
+								var times = getLocalTime(data.data[i].check_time);
+								var tg = '';
+								var cho = "";
+							}
+							htmls += '<li><div class="divs1 "><p class="d1p1"><span class="disp1">订单号</span><br><span class="disp2">' + data.data[i].order_sn + '</span></p><p class="d1p2"><span class="disp1">支付方式</span><br><span class="disp2">'+data.data[i].payment_name+'</span></p><p class="d1p3"><span class="disp1">商家名称</span><br><span class="disp2">' + data.data[i].seller_name + '</span></p><p class="d1p4"><span class="disp1">买家名称</span><br><span class="disp2">' + data.data[i].buyer_name + '</span></p></div><div class="divs2"><p class="d2p1"><span class="disp1">买家联系方式</span><br><span class="disp2">' + data.data[i].user_name + '</span></p><p class="d2p2"><span class="disp1">消费金额</span><br><span class="disp2">' + data.data[i].order_amount + '</span></p><p class="d2p3"><span class="disp1">赠送积分</span><br><span class="disp2">' + data.data[i].point + '</span></p><p class="d2p4"><span class="disp1-l">审核时间</span><br><span class="disp2  disp21">' + times + '</span></p></div><div class="divs3 div3-y">' + tg + '<p class="d3sp3">' + tgs + '</p></div>' + cho + '</li>'
+						};
+						$(".biao").html(htmls);
+						$(".btn").on('click', function() {
+							if($(this).html() == "通过") {
+								is_checks = 1;
+							} else {
+								is_checks = 2;
+							}
+							if($(".add").html() == "联盟订单") {
+								order_types = "offline";
+							} else {
+								order_types = "online";
+							}
+							order_sns = $(this).parent().parent().find($(".divs1 .d1p1 .disp2")).html();
+							handle();
+						});
+					},
+					error: function(data) {
+						// console.log(data);
+					}
+				});
+			}
+
+			offline("offline");
+
+			var gun = "offline";
+			var pages = 1; //当前页的页码
+			var allpage = num; //总页码，会从后台获取
+			var piliang = false;
+			var quanxuan = false; //判断是不是全选下加载的
+			function showAjax() {
+				if(tfsl) {
+					gun = "offline";
+				} else {
+					gun = "online";
+				}
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=order&f=auditorder",
+					data: {
+						token: tokens,
+						page: pages,
+						order_type: gun,
+					},
+					success: function(data) {
+						//要执行的内容
+						// showContent();
+						//页数加1
+						// console.log(data);
+
+						var count;
+						var html = "";
+						for(var j = 0; j < 10000000; j++) {
+
+							if(!data.data[j]) {
+								count = j;
+
+								break;
+							}
+						};
+
+						var html = "";
+						if(quanxuan) {
+							var lujing = "images/ldpy2.png";
+							// var sty="display:block";
+						} else {
+							var lujing = "images/ldpy1.png";
+							// var sty="display:none";
+						}
+						if(piliang) {
+
+							var sty = "display:block";
+						} else {
+
+							var sty = "display:none";
+						}
+						for(var i = 0; i < count; i++) {
+
+							if(data.data[i].is_check == "0") {
+								var tgs = "";
+								var times = "";
+								var tg = '<span class="d3sp1">通过</span><span class="d3sp2">驳回</span>';
+								var cho = '<div class="choose" style=' + sty + '><img src=' + lujing + ' alt=""></div>';
+							} else if(data.data[i].is_check == "1") {
+								var tgs = "已通过";
+								var times = getLocalTime(data.data[i].check_time);
+								var tg = '';
+								var cho = "";
+							} else if(data.data[i].is_check == "2") {
+								var tgs = "已驳回";
+								var times = getLocalTime(data.data[i].check_time);
+								var tg = '';
+								var cho = "";
+							}
+							html += '<li><div class="divs1 "><p class="d1p1"><span class="disp1">订单号</span><br><span class="disp2">' + data.data[i].order_sn + '</span></p><p class="d1p2"><span class="disp1">支付方式</span><br><span class="disp2">'+data.data[i].payment_name+'</span></p><p class="d1p3"><span class="disp1">商家名称</span><br><span class="disp2">' + data.data[i].seller_name + '</span></p><p class="d1p4"><span class="disp1">买家名称</span><br><span class="disp2">' + data.data[i].buyer_name + '</span></p></div><div class="divs2"><p class="d2p1"><span class="disp1">买家联系方式</span><br><span class="disp2">' + data.data[i].user_name + '</span></p><p class="d2p2"><span class="disp1">消费金额</span><br><span class="disp2">' + data.data[i].order_amount + '</span></p><p class="d2p3"><span class="disp1">赠送积分</span><br><span class="disp2">' + data.data[i].point + '</span></p><p class="d2p4"><span class="disp1-l">审核时间</span><br><span class="disp2  disp21">' + times + '</span></p></div><div class="divs3 div3-y">' + tg + '<p class="d3sp3">' + tgs + '</p></div>' + cho + '</li>'
+						};
+
+						$(".biao").append(html);
+						$(".btn").on('click', function() {
+							if($(this).html() == "通过") {
+								is_checks = 1;
+							} else {
+								is_checks = 2;
+							}
+							if($(".add").html() == "联盟订单") {
+								order_types = "offline";
+							} else {
+								order_types = "online";
+							}
+							order_sns = $(this).parent().parent().find($(".divs1 .d1p1 .disp2")).html();
+							handle();
+						});
+						scg = true;
+						// 分页加载/
+					}
+				})
+			}
+			var scg = true;
+
+			function scrollFn() {
+				// console.log(scg);
+				// alert(1);
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				// console.log(pageHeight - viewportHeight - scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) {
+					//如果满足触发条件，执行
+					console.log(scg);
+					if(scg) {
+						// console.log(1);
+						// alert(2);
+						// alert(pages+":"+allpage)
+
+						pages++;
+						if(pages <= allpage) {
+							// console.log(pages);
+							showAjax();
+							// alert(1);
+						}
+						scg = false;
+
+					}
+				}
+			}
+			$(window).bind("scroll", scrollFn); //绑定滚动事件
+			// console.log(scg);	
+
+		}
+	</script>
+
+</html>

@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>退款申请</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/tksq.css">
+	<link rel="stylesheet" href="css/a.css">
+<style>
+.avatorUpload {	
+	position: relative;
+	width: 13rem;
+	height:13rem;
+	background-size: 100%;
+	background-image: url('images/upload.png');
+	background-repeat:no-repeat;
+	-webkit-background-size:cover;
+	background-size:cover;
+	background-position: center center;
+	/*border-radius: 50%;*/
+	overflow: hidden;
+	float: left;
+	margin-left:1rem;
+}
+.avatorUpload .uploadify-button {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+.avatorUpload .uploadify-queue {
+	display: none;
+}
+.avatarImg {
+	width: 13rem;
+	display: block;
+}
+</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">退款申请</p>
+		<!-- <button>保存</button> -->
+	</div>
+	<ul class="uls">
+		<li class="lis lis1">
+			<p class="lp1"><font>*</font>申请服务<span>请选择退款服务类型</span><img src="images/jtkw_more.png" alt=""></p>
+			<p class="lp2"><img src="images/yy_kong.png" alt="">不可为空</p>
+
+		</li>
+		<!-- <li class="lis lis2">
+			<p class="lp1"><font>*</font>货物状态<span>已收到货</span><img src="images/jtkw_more.png" alt=""></p> -->
+			<!-- <p class="lp21">卖家已发货，请先查看物流信息，或联系卖家</p> -->
+
+		<!-- </li> -->
+		<li class="lis lis3">
+			<p class="lp1"><font>*</font>退款原因<span>请选择退款原因</span><img src="images/jtkw_more.png" alt=""></p>
+			<p class="lp2"><img src="images/yy_kong.png" alt="">不可为空</p>
+
+		</li>
+		<li class="lis lis4">
+			<p class="lp1"><font>*</font>退款金额<span class="lsp1">￥</span><input type="text" value=""><!-- <img src="images/jtkw_more.png" alt=""> --></p>
+			<p class="lp21">（最多<span>15.00</span>元，退款金额=实际购买单价*数量</p>
+			<p class="lp2"><img src="images/yy_kong.png" alt="">退款金额不能大于商品总额：<span>0.00元</span></p>
+
+		</li>
+		<li class="lis lis6">
+			<p class="lp1"><font>*</font>退运费<i>退</i><span class="lsp1">￥</span><input type="text" value=""><!-- <img src="images/jtkw_more.png" alt=""> --></p>
+			<p class="lp21">（最多<span>2.00</span>元，如果不是质量问题，或服务出现问题，卖家可以拒绝</p>
+			<p class="lp2"><img src="images/yy_kong.png" alt="">退运费金额不能大于该商品分摊的运费金额：<span>0.00元</span></p>
+
+		</li>
+		<li class="lis lis5">
+			<p class="lp1"><font>*</font>退货说明<span class="lsp1">最多200字</span><img src="images/jtkw_more.png" alt=""></p>
+			<p class="lp2"></p>
+
+		</li>
+		<div class="sming">
+			<textarea name="" id=""  placeholder="说明原因"></textarea>
+		</div>
+
+	</ul>
+	<div class="upload">
+		<div id="avatorUpload" class="avatorUpload" style="background-image:url('images/upload.png');width:13rem;height:13rem;background-size:cover;"></div>
+		<div class="img_list">
+		</div>		
+	</div>
+	<!-- <div class="fil"><input type="file"></div> -->
+	<form action="" method="post" class="fil"></form>
+	<div class="ykong"></div>
+	<div class="foot">提交申请</div>
+	<div class="sqfw"> 
+		<p>
+			<span href="" class="sqa1"><font>未收到货，需要退款</font><img src="images/jtchoose.png" alt=""></span>
+			<span href="" class="sqa1"><font>已收到货，不退货只退款</font><img src="images/jtchoose.png" alt=""></span>
+			<span href="" class="sqa1"><font>已收到货，需退货退款</font><img src="images/jtchoose.png" alt=""></span>
+		</p>
+	</div>
+	<div class="tkyy"> 
+		<div>
+		<li>
+			<p><span>请选择退款原因</span><img src="images/jtchoose1.png" alt=""></p>
+			<p><span>缺货</span><img src="images/jtchoose.png" alt=""></p>
+			<p><span>未按约定时间发货</span><img src="images/jtchoose.png" alt=""></p>
+			<p><span>收到假货</span><img src="images/jtchoose.png" alt=""></p>
+			<p><span>商品有质量问题</span><img src="images/jtchoose.png" alt=""></p>
+			<p><span>商品错发/漏发</span><img src="images/jtchoose.png" alt=""></p>
+			<p><span>收到的商品破损</span><img src="images/jtchoose.png" alt=""></p>
+			<p><span>收到的商品描述不符</span><img src="images/jtchoose.png" alt=""></p>
+			<p><span>其他</span><img src="images/jtchoose.png" alt=""></p>
+		</li></div>
+	</div>
+	<div class="cgtj">
+		<p>退款申请提交</p>
+	</div>
+	<div class="zscoll" style="display: none;"></div>
+</body>
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/tksq.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script src="js/jquery.Huploadify.js"></script>
+<script>
+var tokens=localStorage.getItem ("token");
+var rec_ids=localStorage.getItem ("rec_id");
+// console.log(rec_ids);
+	$(function(){
+		// 退款申请
+		$("form").attr("action",Url+"api/index.php?n=refund&f=img");
+		$.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + "api/index.php? n=refund&f=apply_page",
+		     data: {
+		     	token:tokens,
+		     	rec_id:rec_ids,
+		     	},
+		    success: function(data){
+		    	console.log(data);
+				if(data.ret=="ok"){
+					console.log(rec_ids);
+					$(".lis4 .lp21 span").html(data.data.refund_fee);
+					$(".lis4 .lp2 span").html(data.data.refund_fee);
+					$(".lis6 .lp21 span").html(data.data.shipping_fee);
+					$(".lis6 .lp2 span").html(data.data.shipping_fee);
+				}else{
+					$(".zscoll").html(data.msg);
+					$(".zscoll").css("display","block");
+				}
+		    },
+		    error:function(data){
+			}
+			
+		})
+		var tf1=false;
+		var tf2=false;
+		var tf3=false;
+		var tf4=false;
+		var tf5=false;
+		var lindex1,lindex2;
+		$(".lis1").on("click",function(){
+			$(".sqfw").css("display","block");
+			$(".lis1 .lp2").css("display","none");
+			$(".lis1 .lp1").css("background-color","#ebebeb")
+		})
+		$(".sqfw span").on("click",function(){
+			$(".sqfw span").find("img").attr("src","images/jtchoose.png");
+			$(this).find("img").attr("src","images/jtchoose1.png");
+			var tx=$(this).find("font").html();
+			// $(".tkyy").css("display","none");
+			$(".lis1 .lp1 span").html(tx);
+			$(".sqfw").css("display","none");
+			tf1=true;
+			lindex1=$(this).index();
+			console.log(lindex1);
+		})
+		$(".lis3").on("click",function(){
+			$(".tkyy").css("display","block");
+		})
+		$(".tkyy p").on("click",function(){
+			$(".tkyy p").find("img").attr("src","images/jtchoose.png");
+			$(this).find("img").attr("src","images/jtchoose1.png");
+			var tx=$(this).find("span").html()
+			$(".tkyy").css("display","none");
+			$(".lis3 .lp1 span").html(tx);
+			if (tx=="请选择退款原因") {
+				$(".lis3").find(".lp2").css("display","block");
+				$(".lis3 .lp1").css("background-color","#ffcccc")
+				tf2=false;
+			}else{
+				$(".lis3").find(".lp2").css("display","none");
+				$(".lis3 .lp1").css("background-color","#ebebeb")
+				tf2=true;
+				lindex2=$(this).index();
+				console.log(lindex2);
+			}
+		})
+
+		// $(".lis4 .lp21 span").html();
+		$(".lis4 .lp2 span").html($(".lis4 .lp21 span").html());
+		$(".lis4 .lp1 input").on("input propertychange",function(){
+			// alert(1);
+
+			lis4();
+			
+		})
+		function lis4(){
+			var s=parseInt($(".lis4 .lp21 span").html());
+			s=$(".lis4 .lp21 span").html();
+			// console.log(s);
+			// console.log(typeOf(s));
+			// var s1=$(".lis4 .lp1 input").val();
+				if ($(".lis4 .lp1 input").val()*1>s*1) {
+				// if ($(".lis4 .lp1 input").val()>s) {
+				$(".lis4 .lp2").css("display","block");
+				tf3=false;
+				}else{
+					$(".lis4 .lp2").css("display","none");
+					tf3=true;
+				}
+			}
+		$(".lis6 .lp1 input").on("input propertychange",function(){
+			// alert(1);
+			// console.log($(".lis6 .lp21 span").html());
+			var s=parseInt($(".lis6 .lp21 span").html())
+			if ($(this).val()>s) {
+				$(".lis6 .lp2").css("display","block");
+				tf4=false;
+			}else{
+				$(".lis6 .lp2").css("display","none");
+				tf4=true;
+			}
+		})
+		// $(".lis4 .lp1 input").val($(".lis4 .lp21 span").html());
+		$(".lis5").on("touchend",function(){
+			$(".sming").css("display","block");
+			
+			// $(".sming").click();
+
+		})
+		$(".sming textarea").on("keyup",function(){
+			if ($(".sming textarea").val()) {
+			
+			console.log($(".sming textarea").val());
+			tf5=true;
+
+		}
+		})
+		
+		
+		$(".foot").on("click",function(){
+			// 提交图片开始
+   //       			if ($(".fil input").length>1) {
+			// var ss=$(".fil input").length;
+			// if ($(".ulp").length==$(".ulps").length) {
+			// 	console.log(1);
+			// }else{
+			// 	$(".fil input").eq(ss-1).remove();
+			// }
+			
+			// $(".fil").append('<input type="hidden" name="token" value='+tokens+' />');
+			// if ($(".fil input").length>$(".ulp").length) {
+			// 	$(".fil").submit();
+			// }
+			// }
+			// 提交图片结束
+			if (tf1) {
+				if (tf2) {
+					if (tf3) {
+						if (tf4) {
+							if (tf5) {
+								var rec_ids=localStorage.getItem ("rec_id");// 未有数
+								var rec_ids=rec_ids;// 未有数
+								var refund_goods_fees=$(".lis4 input").val();
+								var shippeds=$(".lis1 span").html();
+								var refund_reasons=$(".lis3 span").html();
+								var refund_descs=$(".sming textarea").val();
+								var refund_shipping_fees=$(".lis6 input").val();
+								imgs = [];
+								for(i in imgList){
+									if(imgList[i] != ''){
+										imgs.push(imgList[i]);
+									}
+								}
+								$.ajax({
+						//			contentType:"application/x-www-form-urlencoded; charset=gb2312",
+	                                type: 'POST',
+	                                url: Url + "api/index.php?n=refund&f=apply",
+	                          		dataType: "json",
+	                         		data: {
+	                         			token:tokens,
+	                         			rec_id:rec_ids,
+	                         			refund_goods_fee:refund_goods_fees,
+	                         			shipped:lindex1,
+	                         			refund_reason:lindex2,
+	                         			refund_desc:refund_descs,
+	                         			refund_shipping_fee:refund_shipping_fees,
+	                         			'buyer_img' : imgList.join('|')
+	                         		},
+	                         		success: function(data){
+		                         		console.log(data);
+		                         		if (data.ret=="ok") {
+		                         			setTimeout(function(){
+		                         				$(".cgtj").css("display","block");
+		                         				  localStorage.setItem('refund_id',  data.data);
+		                         			},0);
+		                         			setTimeout(function(){
+		                         				$(".cgtj").css("display","none");
+
+		                         			},1500);
+											location.href="wdtksq.html";
+		                         		}else{
+		                         			alert(data.msg);
+		                         		}
+	                               },
+	                            });
+								 // $(".fil").submit();
+							}else{
+								
+								$(".sming").css("display","block");
+								$(".sming textarea").focus();
+							}
+						}else{
+							
+							$(".lis6 input").focus();
+							$(".lis6 .lp2").css("display","block");
+						}
+					}else{
+						$(".lis4 input").focus();
+						$(".lis4 .lp2").css("display","block");
+
+					}
+				}else{
+					$(".lis3 .lp1").css("background-color","#ffcccc")
+					$(".lis3 .lp2").css("display","block");
+				}
+
+			}else{
+				$(".lis1 .lp1").css("background-color","#ffcccc")
+				$(".lis1 .lp2").css("display","block");
+			}
+		})
+		
+	})
+</script>
+</html>

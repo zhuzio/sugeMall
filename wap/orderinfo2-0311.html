@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>订单详情</title>
+	<link rel="stylesheet" href="css/orderinformation1.css">
+	<style type="text/css">
+	
+		.detailed-left{
+			position: relative;
+		}
+		.ltq{
+			width: 13rem;
+			height: 4.1rem;
+			background-color: #fff;
+			line-height: 4rem;
+			position: absolute;
+			color: #333;
+			text-align: center;
+			right: 4rem;
+			bottom: 0.6rem;
+			font-size: 2.6rem;
+		}
+		.rec_ids{
+			position: absolute;
+			display: none;
+		}
+		#flag{
+			height: 6rem;
+			margin-top: 10rem;
+			width: 14rem;
+			text-align: center;
+			color: #fff;
+			background: #ffa442;
+		}
+		.goods_ids{
+			display: none;
+		}
+		.seller_ids{
+			display: none;
+		}
+		.js{
+			width: 20%;
+			height: 6rem;
+			background-color: #ffc600;
+			line-height: 6rem;
+			text-align: center;
+			position: absolute;
+			bottom: 1rem;
+			right: 2.5rem;
+			color: #fff;
+			font-size: 2.4rem;
+			display: none;
+			/*margin-right: 1rem;*/
+			z-index: 100;
+		}
+		form{
+			display: none;
+		}
+		.is_refunds,.refund_ids{
+			display: none;
+		}
+</style>
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+				<a class="black" href="javascript:history.go(-1)"><img src="images/w_tback.png" alt="返回首页"></a>
+				<p class="title">订单详情</p>
+		</header>
+		<section>
+			<div class="banner">
+				<p>买家已付款</p>
+				<img src="images/w_bo.png" alt="">
+			</div>
+			<div class="address">
+				<div class="images">
+					<img src="images/w_address.png" alt="">
+				</div>
+				<div class="word">
+					<p class="p1"><i class="speo"></i><span class="sdetel"></span></p>
+					<p class="p2"></p>
+				</div>
+			</div>
+			<div class="goods">
+				<div class="logo">
+					<div class="logo-left">
+						<span class="seller_ids"></span>
+						<a href="">
+						<dl>
+							<dt></dt>
+							<dd></dd>
+						</dl></a>
+					</div>
+					<div class="logo-center"></div>
+					<div class="logo-right">
+						<dl>
+							<dt></dt>
+							<dd></dd>
+						</dl>
+					</div>
+				</div>
+				<div class="z-detailed">
+				</div>
+				<div class="price1">
+					<p><i>商品总价</i><span class="z-count"></span></p>
+					<p class="p_p1 "><i>运费（快递）</i><span class="z-count1"></span></p>
+					<p class="p_p2"><i>订单总价</i><span class="z-count2"></span></p>
+				</div>
+				<div class="price2">
+					<!-- <p class="p_p2"><i>订单总价</i><span class="z-count3"></span></p> -->
+					 <p class="p_p2 p_p21"></p> 
+					 <p class="p_p2 p_p22"></p>
+					 <span class="js">去支付</span> 
+				</div>
+			</div>
+		</section>
+		<form action="" method="post">
+	 		<input type="hidden" name="order_id" class="zlpy" value="" />
+	 		<input type="hidden" name="token" class="tok" value="" />
+	 		<input type="hidden" name="payment_id" class="ll" value="16" />
+	 		<input type="submit" name="" id="zftj" value="提交" />
+	 	</form>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script src="js/box.js"></script>
+<script src="js/url.js"></script>
+<!-- <script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script> -->
+<script type="text/javascript">
+  $(function(){
+  	$("form").attr("action",Url+"api/index.php?n=shop_center&f=online_pay")
+  	 var tokens = localStorage.getItem ("token");
+  	 $(".tok").val(tokens);
+  	 var lorder_ids = localStorage.getItem ("lorder_id");
+  	  var lstatuss = localStorage.getItem ("lstatus");
+  	  var lorder_sns;
+  	  // if (lstatuss=="11") {
+  	  // 	$(".js").css("display","block");
+  	  // }
+  	 // console.log(lorder_ids);
+  	 $('.flag').on('tap',function(){
+        $(this).css('color','#fff');
+        $(this).css('background','#ffa442');
+     });
+     		function getLocalTime(timestamp){
+		    	var d = new Date(timestamp * 1000);    //根据时间戳生成的时间对象
+			var date = (d.getFullYear()) + "-" + 
+			           (d.getMonth() + 1) + "-" +
+			           (d.getDate()) + " " + 
+			           (d.getHours()) + ":" + 
+			           (d.getMinutes()) + ":" + 
+			           (d.getSeconds());
+			          return date; 
+		    }
+  	 $.ajax({
+		type: 'POST',
+		url: Url + "api/index.php?n=order&f=orderlist",
+		dataType: "json",
+		data: {
+			"token":tokens,
+			"order_id":lorder_ids,
+		},
+		success: function(data) {
+			console.log(data);
+			$(".logo-left a").attr("href","z-store.html?storeid="+data.data.seller_id);
+			$(".zlpy").val(data.data.order_sn);
+			var counts=0;
+			lorder_sns=data.data.order_sn;
+		var datas = data.data;
+		var daddressp = datas.consignee;
+		var daddress = datas.address;
+		var daddressm = datas.phone_tel;
+		var storel = datas.store_logo;
+		var storen = datas.store_name;
+		var storet = datas.tel;
+		var goodnum = datas.goods_amount;
+		var kd = datas.shipping_fee;
+		// console.log(daddress);
+		$(".speo").html('收货人：'+daddressp);
+		$(".sdetel").html(daddressm);
+		$(".p2").html('收货地址：'+daddress);
+		$(".logo-left dl dt").html('<img src="' + Url + 'api/'+storel+'" alt="">');
+		$(".logo-left dl dd").html(storen);
+		$(".logo-right dd").html('<a href="tel:'+storet+'">'+storet+'</a>');
+		// $(".z-count").html('￥'+goodnum);
+		// $(".z-count2").html('￥'+goodnum);
+		// $(".z-count3").html('￥'+goodnum);
+		$(".z-count1").html('￥'+kd);
+		$(".seller_ids").html(data.data.seller_id);
+		$(".p_p21").html("订单编号："+data.data.order_sn);
+		$(".p_p22").html("创建时间："+getLocalTime(data.data.add_time));
+		var st;
+		var ltk="退款";
+		statues=data.data.status;
+		// console.log(statues);
+		if (data.data.status=="40") {
+			st="交易成功";	
+			$(".ltq").css("display","none");
+
+	   	}else if(data.data.status=="30"){
+	   		st="卖家已发货";
+	   	}else if(data.data.status=="20"){
+	   		st="等待发货";	
+	   		$(".ltq").css("display","none");
+	   	}else if(data.data.status=="11"){
+	   		st="等待买家付款";	
+	   		ltk="付款";
+	   		$(".js").css("display","block");
+	   	}else if(data.data.status=="0"){
+	   		st="交易已取消";
+	   		$(".ltq").css("display","none");
+	   		$(".flag").css("display","none");	
+	   	}else if(data.data.status=="10"){
+	   		st="货到付款，即将发货";
+	   	}
+	   	$(".banner p").html(st);
+		for (var i = 0; i < datas.goods.length; i++) {
+			counts+=(datas.goods[i].price*datas.goods[i].quantity);
+			var recs=datas.goods[i].rec_id;
+			if (datas.goods[i].is_refund==1) {
+				ltk="退款详情";
+			}
+    	var html1 = '<div class="detailed"><span class="is_refunds">'+datas.goods[i].is_refund+'</span><span class="refund_ids">'+datas.goods[i].refund_id+'</span><div class="detailed-left"><span class="goods_ids">'+datas.goods[i].goods_id+'</span><span class="rec_ids">'+recs+'</span><dl><dt><img src="' + Url + ''+datas.goods[i].goods_image+'" alt=""></dt><dd><h1 class="z-name">'+datas.goods[i].goods_name+'</h1><p class="z-spec">颜色分类：'+datas.goods[i].specification+'</p><p class="z-quan">数量：'+datas.goods[i].quantity+'</p></dd></dl></div><div class="detailed-right"><p class="p1">￥'+datas.goods[i].price+'</p><button class="flag" id="flag">'+ltk+'</button></div></div>';
+       		 $(".z-detailed").append(html1);
+
+     	 }
+     	 $(".z-count").text("￥"+counts);
+     	 // console.log(typeof(Number(datas.shipping_fee)));
+     	  $(".z-count2").text("￥"+(counts+Number(datas.shipping_fee)));
+      if (statues=="40") {
+				
+			$(".ltq").css("display","none");	
+	   	}else if(statues=="30"){
+	   		
+	   	}else if(statues=="20"){
+	   			
+	   		$(".ltq").css("display","none");
+	   	}else if(statues=="11"){
+	   		$(".flag").css("display","none");
+	   	}else if(statues=="0"){
+	   		
+	   		$(".ltq").css("display","none");
+	   		$(".flag").css("display","none");	
+	   	}else if(statues=="10"){
+	   			
+	   	}
+    },
+//  $('.logo-left dl dt img').error(function(){
+//  	$(this).attr('src', 'images/z-logo.png');
+//	});
+		error: function(data) {
+		}
+	 });
+	
+	function word(len){
+  	$(".z-name").each(function(){
+   	 	var counter = $(this).text().length;//获取文本域的字符串长度
+   	 	var txt = $(this).text();
+	  	if(counter >= len) {
+		var num = $(this).text().substr(0, len);
+		$(this).text(num+'....');
+	}else { 
+	  $(this).text(txt);
+		} 
+   	});
+  }
+  	$(".z-detailed").on("click",".flag",function(){	
+		if ($(this).text()=="退款") {
+			var rec_ids=$(this).parents(".detailed").find(".rec_ids").html();
+			var refund_ids=$(this).parents(".detailed").find(".refund_ids").text();
+			
+			
+			// console.log(rec_ids);
+			// console.log($(this).parents(".detailed").find(".is_refunds").text());
+			// console.log($(this).parents(".detailed").find(".refund_ids").text());
+			if ($(this).parents(".detailed").find(".is_refunds").text()==1) {
+				localStorage.setItem('refund_id',refund_ids);
+				location.href="wdtksq.html";
+			}else{
+				localStorage.setItem('rec_id',rec_ids);
+				location.href="tksq.html";
+			}
+			
+		}
+	})
+	$(".z-detailed").on("click",".detailed-left",function(){	
+		var lgoods=$(this).find(".goods_ids").html();
+		localStorage.setItem('good', lgoods);
+		location.href="goods-order.html";
+	})
+	$(".logo-left").on("click",function(){	
+		var lorders=$(this).find(".seller_ids").html();
+		localStorage.setItem('stid', lorders);
+		location.href="lmsjdpxq.html";
+	})
+		$(".price2").on("click",".js",function(){
+			console.log(lstatuss);
+			if (lstatuss=="") {
+				localStorage.setItem('zorderid', lorder_ids);
+				localStorage.setItem('order_sn', lorder_sns);
+				location.href="z-order.html";
+			}else if (lstatuss=="epaywapllpay"){
+				// location.href="z-order.html";
+				$(".ll").val("16");
+				$("form").submit();
+			}else if (lstatuss=="epaywxjs"){
+				// location.href="z-order.html";
+				$(".ll").val("8");
+				$("form").submit();
+			}
+		})
+	});
+</script>
+</html>

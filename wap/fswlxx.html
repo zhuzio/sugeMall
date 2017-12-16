@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>发送物流信息</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/fswlxx.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:" onclick="self.location=document.referrer;" class="ha1">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">退款详情</p>
+		<!-- <a class="ha2">商城订单</a> -->
+	</div>
+	<div class="xq">
+		<p class="bh">
+			卖家同意了您的退款申请
+		</p>
+		<div class="dz">
+			<p class="dp1">
+				退货地址：
+			</p>
+			<p class="dp2 dp20">
+				北京市 西城区 百万庄子区38号院 211室  10010
+			</p>
+		</div>
+		<div class="dz sm">
+			<p class="dp1">
+				退货说明：
+			</p>
+			<p class="dp2 dp23">
+				收到货物后，会将货款退给您
+
+			</p>
+		</div>
+		<div class="dz bhs">
+			<p class="dp1">
+				退款编号：
+			</p>
+			<p class="dp2 dp21">
+				20162811464752
+			</p>
+		</div>
+		
+	</div>
+	<div class="sure">
+		<p class="time">10-03 10:36</p>
+		<div class="xx">
+			<p class="xxp1">退货给卖家</p>
+			<p class="xxp2">将申请退货的商品，发送快递到卖家提供的地址并提供该商品的物流信息。<br>卖家收到退回的商品后，会将货款退还给您</p>
+		</div>
+	</div>
+
+	<div class="kong"></div>
+	<div class="fs">
+		<p>发送物流信息</p>
+	</div>
+</body>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	var tokens=localStorage.getItem ("token");
+	var refund_ids=localStorage.getItem ("refund_id");
+	var imgs="' + Url + 'api/";
+	$.ajax({
+	            type: 'POST',
+	            url: Url + "api/index.php?n=message&f=succ_info",
+	     	dataType: "json",
+	    	data: {
+	               	token:tokens,
+                         		refund_id:refund_ids,
+	        	},
+	    	success: function(data){
+	    		// console.log(data);
+	    		$(".dp20").html(data.data.refund_adress);
+	    		$(".dp21").html(data.data.refund_sn);
+	    		$(".dp23").html(data.data.refund_desc);
+	    		 function getLocalTime(timestamp){
+			    	var d = new Date(timestamp * 1000);    //根据时间戳生成的时间对象
+				var date = (d.getFullYear()) + "-" + 
+				           (d.getMonth() + 1) + "-" +
+				           (d.getDate()) + " " + 
+				           (d.getHours()) + ":" + 
+				           (d.getMinutes()) + ":" + 
+				           (d.getSeconds());
+				          return date; 
+		   	 }
+	    		$(".time").html(getLocalTime(data.data.times));
+	    		if (data.ret=="ok") {
+	    			$(".fs p").on("click",function(){
+				location.href="wlxx.html";
+	    		})
+	    		}
+	
+	    		
+	          },
+	          error: function(data){
+	    		// console.log(data);
+	    		
+	          },
+	})
+	
+</script>
+</html>

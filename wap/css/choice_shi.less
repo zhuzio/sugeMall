@@ -1,0 +1,124 @@
+@import url(m_reset.css);
+.full(@w,@h,@b){
+  width: @w;
+  height: @h;
+  background: @b;
+}
+.box(@tan){
+  display: -webkit-box;
+  -webkit-box-orient:@tan;
+}
+.lfc(@l,@f,@c){
+  line-height: @l;
+  font-size: @f;
+  color: @c;
+}
+html,body,.container{
+  .full(100%,100%,#ffffff);
+  .box(vertical);
+  font-size: 62.5%;
+}
+.r{
+  position: relative;
+}
+.a{
+  position: absolute;
+}
+header{
+            .full(100%,8.8rem,#f1f1f1);
+            border-bottom: 1px solid #d5d5d5;
+            .box(horizontal);
+            .left{
+                           width: 2.2rem;
+                           margin-left: 3rem;
+                           margin-top: 2.5rem;
+                           img{
+                                 width: 2.2rem;
+                                 height: 3.8rem;
+                             }
+                   }
+            .center{
+                          -webkit-box-flex:1;
+                          p{
+                                    .lfc(8.8rem,3.4rem,#333333);
+                                    text-align: center;
+                                    padding-right: 5.5rem;
+                                    -webkit-box-sizing:border-box;
+                                }
+                        }
+}
+section{
+       .full(100%,auto,none);
+      .sheng{
+                    .full(100%,9.4rem,#efeff4);
+                    .box(horizontal);
+                    margin-top: 6.1rem;
+                    p{
+                      .lfc(9.4rem,3rem,#333);
+                      margin-left: 5%;
+                    }
+                     select{
+                      display: block;
+                      .full(11.2rem,4.5rem,url(../images/w_fsel.png) no-repeat);
+                      border: 1px solid #666;
+                      -webkit-appearance: none;
+                      background-position: 90% 50%;
+                      outline: none;
+                      font-size: 2.2rem;
+                      margin-top: 3rem;
+                      margin-left: 10rem;
+                }
+          }
+          .shi{
+                  .full(100%,9.4rem,#efeff4);
+                    .box(horizontal);
+                    margin-top: 0.1rem;
+                    p{
+                      .lfc(9.4rem,3rem,#333);
+                      margin-left: 5%;
+                    }
+                     select{
+                      display: block;
+                      .full(11.2rem,4.5rem,url(../images/w_fsel.png) no-repeat);
+                      border: 1px solid #666;
+                      -webkit-appearance: none;
+                      background-position: 90% 50%;
+                      outline: none;
+                      font-size: 2.2rem;
+                      margin-top: 3rem;
+                      margin-left: 10rem;
+                }
+          }
+          span{
+                display: block;
+                .full(60%,7rem,#ffc600);
+                margin-top: 29.8rem;
+                margin-left: 20%;
+                border-radius: 1rem;
+                .lfc(7rem,3rem,#333);
+                text-align: center;
+          }
+// .sj{
+//       background-color: #ffc600;
+//       color: #fff;
+// }
+}
+// .alert{
+//             width: 100%;
+//             height: 100%;
+//             background-color: rgba(30,30,30,0.3);
+//             position: fixed;
+//             z-index: 10;
+//             top: 0;
+//             left: 0;
+//             display: none;
+//              p{
+//                       .full(80%,30.5rem,#fff);
+//                       margin-top: 75%;
+//                       margin-left: 10%;
+//                       text-align: center;
+//                       padding-top: 11.8rem;
+//                       .lfc(4rem,3rem,#8c8c8c);
+//                       border-radius: 2%;
+//           }
+// }

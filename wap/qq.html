@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QQ号码</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/qq.css"/>
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.tan{
+			position: fixed;
+			z-index: 1000;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			background-color: rgba(0,0,0,0.2);
+			display: none;
+		}
+		.tan p{
+			width: 70%;
+			height: 20rem;
+			margin-left: 15%;
+			margin-top: 70%;
+			font-size: 3.4rem;
+			line-height: 10rem;
+			color: #333;
+			text-align: center;
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">QQ号码</p>
+		<span>保存</span>
+	</div>
+	<form action="">
+		<p>
+			<span>QQ号码：</span>
+			<input type="text" placeholder="请输入自己QQ号码" id="qq">
+		</p>
+	</form>
+	<div class="tan"><p></p></div>
+</body>
+<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script>
+	// var lgts = localStorage.getItem("lgt");
+	//      var lats = localStorage.getItem("lat");
+	//     console.log(lats+";"+lgts);
+	 var tokens=localStorage.getItem ("token");
+	var html="";
+	var w_qq;
+	$("#qq").on("keyup",function(){
+		 w_qq=$("#qq").val();
+	})
+	$(".d_header span").on("click",function(){
+		 w_qq=$("#qq").val();
+		 // console.log(w_qq);
+		 var regx =/^[1-9][0-9]{4,9}$/;
+		 var w_qqs=parseInt(w_qq);
+		if (regx.test(w_qqs)) {
+			$.ajax({	
+			           type: 'POST',
+			           url: Url + "api/index.php?n=user&f=setqq",
+			         	dataType: "json",
+			       	data: { 
+			       		token : tokens,
+			       		setqq:w_qq,
+			       	},
+			        	success: function(data){
+			                      	// console.log(data);
+			                      	$(".tan p").html(data.msg);
+			                      	setTimeout(function(){
+			                      		$(".tan").css("display","block");
+			                      	},0)
+			                      		setTimeout(function(){
+			                      		$(".tan").css("display","none");
+			                      	},1000)
+					 // location.href="personalData.html";
+				} ,
+			            error:function(data){
+				                      	  // console.log(data);
+				                      }
+				})
+		}else{
+			$(".tan p").html("请输入正确的qq号码");
+			$(".tan").css("display","block");
+		}
+	})
+	$(".tan").on("click",function(){
+		$(".tan").css("display","none");
+	})
+	$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=user&f=information",
+		         	dataType: "json",
+		       	data: { token : tokens},
+		        	success: function(data){
+		                      // console.log(data);
+		                      $('input').val(data.data.im_qq);
+		                  },
+		                  error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+</script>
+</html>

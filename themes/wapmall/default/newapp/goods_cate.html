@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<meta charset="UTF-8">
+
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+
+		<title>商品分类添加</title>
+
+		<link rel="stylesheet" href="{res file=css/public.css}" /><!--公用css-->
+
+		<link rel="stylesheet" href="{res file=css/class-shop.css}" />		
+		<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+		<script type="text/javascript" src="{res file=js/class-shop.js}" ></script>
+		<script src="{res file=js/layer/layer.js}"></script>
+
+	</head>
+
+	<body>
+
+		<header class="header">
+
+			<a href="javascript:history.go(-1);" class="back"></a>
+
+			<h1 class="tit">添加商品分类</h1>
+
+			<!-- <button class="edit" id="all-edit">编辑</button>
+
+			<button class="edit" id="all-complete" style="display: none;">完成</button> -->
+
+		</header>
+
+		<div class="content mtop44">
+
+			<ul class="class-shop">
+
+			{foreach from=$list item=item2}
+
+				<li>
+
+					<div class="Multiselect">
+
+						<span></span>
+
+						<input type="checkbox" name="follow" >
+
+					</div>
+
+					<span class="class-name">{$item2.name}</span>
+
+					<a class='delCate' href='javascript:void(0);' data-url="{url app=set_shop&act=delete_goodscate_ajax&c_id=$item2.class_id}"><img src="{res file=images/class-shop/dele-icon.png}"></a>
+
+				</li>
+
+			{/foreach}	
+
+
+
+				<p class="add-class">
+
+					<button>增加分类</button>
+
+				</p>
+
+			</ul>
+
+			<div class="shopcar-Total">
+
+				<div class="choice">
+
+					<div class="Multiselect">
+
+						<span></span>
+
+						<input type="checkbox" name="follow">
+
+					</div>
+
+					<label id="all_check">全选</label>
+
+				</div>
+
+				<div class="total">
+
+					<button class="delete">删除</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<!--弹窗-->
+
+		<div class="Withdrawals" id="addclass">
+
+		<form action="{url app=set_shop&act=insert_goodscate}" method="post">
+
+			<div class="withdra-box">
+
+				<div class="add-nr">
+
+					<p>
+
+						<input type="text" placeholder="请输入所要添加的商品分类名称" name="goodscate">
+						<input type="hidden" name="_hash_" value="{$_hash_}">
+					</p>
+
+				</div>
+
+				<div class="pop-operation">
+
+					<button id="add" type="button">取消</button>
+
+					<button>确定</button>
+
+				</div>
+
+			</div>
+
+			</form>
+
+			<div class="withdra-bg"></div>
+
+		</div>
+{include file="footer.html"}
+	</body>	
+	<script>
+	$(function(){
+		$(".add-class").click(function(){
+			$("#addclass").show();
+		});
+		$("#add").click(function(){
+			$("#addclass").hide();
+		});
+		$(".delCate").click(function(){
+			url = $(this).attr('data-url');
+			obj = this;
+			$.ajax({
+				url : url,
+				type : 'GET',
+				dataType : 'JSON',
+				beforeSend:function(){
+					divLoad = layer.open({
+						type:0,
+						shadeClose:false
+					});
+				},
+				success:function(res){
+					if(res.status==0){						
+						$(obj).parent().remove();
+						layer.closeAll();
+					}else{
+						alert(res.msg);
+					}
+				}
+			})
+		})
+	});
+	</script>
+
+</html>
+

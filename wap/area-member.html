@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>辖区会员收益</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/header.css"/>
+		<link rel="stylesheet" type="text/css" href="css/area-member.css"/>  
+		<link rel="stylesheet" href="css/a.css">
+		<style>
+		.ldtt{
+			position: fixed;
+			z-index: 1000;
+			height: 3.2rem;
+			text-align: center;
+			bottom: 12rem;
+			left: 0;
+			width: 100%;
+			display: none;
+
+		}
+		.ldtt img{
+			width: 3.2rem;
+		}
+	</style>
+	</head>
+	<body>
+		<div class="ldtt"><img src="images/add.gif" alt=""></div>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">辖区会员收益</p>
+		</div>
+		<div class="trans-seach">
+			<img src="images/z-40.png"/>
+			<input type="text" name="" id="name_tel" value="" placeholder="搜索会员名或手机号查看"/>
+		</div>
+		<div class="trans-choose">
+			<ul class="trans-year">
+				<li class="trans-y"></li>
+				<li class="trans-a"></li>
+				<ul class="year">
+				        <!-- <li>2014年</li>
+						<li>2015年</li>
+						<li>2016年</li>
+						<li>2017年</li>
+						<li>2018年</li>
+						<li>2019年</li>
+						<li>2020年</li>
+						<li>2021年</li>
+						<li>2022年</li>
+						<li>2023年</li> -->
+					</ul>
+			</ul>
+			<ul class="trans-month">
+				<li class="month-m"></li>
+				<li class="trans-b"></li>
+				<ul class="month">
+					<li>01月</li>
+					<li>02月</li>
+					<li>03月</li>
+					<li>04月</li>
+					<li>05月</li>
+					<li>06月</li>
+					<li>07月</li>
+					<li>08月</li>
+					<li>09月</li>
+					<li>10月</li>
+					<li>11月</li>
+					<li>12月</li>
+				</ul>	
+			</ul>
+			
+			<div class="trans-seek">查找</div>
+		</div>
+		<section>
+			
+		</section>
+		<div class="dk"></div>
+		<div class="di">
+			<div>
+				当前会员数(<span>0</span>)
+				<a href="hyhyd.html">活跃商家(0)</a>
+			</div>
+			
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+	   $(function(){
+	   	var mydate = new Date();
+  		 var years = mydate.getFullYear();
+  		 var months= (mydate.getMonth()+1);
+   		 var days= mydate.getDate();
+   		// console.log(years);
+   		// console.log(months);
+   		// console.log(days);
+   		$(".month-m").html(months+"月");
+   		$(".trans-y").html(years+"年");
+   		// var year2=2013;
+   		var yhtml="";
+   		for (var i = 2013; i <= years; i++) {
+   			yhtml+="<li>"+i+"年</li>";
+   		};
+   		$(".year").append(yhtml);
+	   	//ajax调接口
+	   	var tokens=localStorage.getItem ("token");
+	   	//console.log(token);
+	   	var nums;
+		var htmls="";
+		$.ajax({	
+		           type: 'POST',
+		           url: Url+"api/index.php?n=member_wealth&f=areaMemberEarnings",
+		         	dataType: "json",
+		       	data: { 
+		       		token : tokens,
+		       		page:1,
+		       		},
+		        	success: function(data){
+		                      // console.log(data);
+		                      var pages=data.totalpage;
+		    		  nums=data.totalpage;
+		    		  $(".di span").html(data.arr.members);
+	    			  $(".di a").html("活跃会员("+data.arr.activeMember+")");
+		    	// for (var k= 1; k <= pages; k++) {
+		    		$.ajax({	
+				           type: 'POST',
+				           url: Url+"api/index.php?n=member_wealth&f=areaMemberEarnings",
+				         	dataType: "json",
+				       	data: { 
+				       		token : tokens,
+				       		// page:k
+				       	},
+				        	success: function(data){
+				                      // console.log(data);
+				                     
+				                    
+				    	
+				    	
+
+				                      for (var j = 0; j < 100000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			break;
+				    		}
+				    		 }
+				    	// console.log(count);
+				                       // console.log(data.data.length);
+				                      var hysy=data.data.type;
+				                      for (var i = 0; i < count; i++) {
+				                      	
+				                      	 if (data.data[i].user_name){
+				                      		var name=data.data[i].user_name;
+				                      	}else{
+				                      		var name=" "
+				                      	}
+				                      	var check=data.data[i].is_check;
+				                      	if (check==0) {
+				                      		var tg="未审核";
+				                      		var src="images/w_dsh.jpg";
+				                      	}else if (check==1) {
+				                      		var tg="已通过";
+				                      		var src="images/w_tok.png";
+				                      	}else {
+				                      		var tg="已驳回";
+				                      		var src="images/w_tno.png";
+				                      	}
+				                        	htmls += '<div class="trans-book"><div class="trans-shop">'+name+'</div><ul class="trans-info"><li><span class="trans-profit">收益</span><span class="trans-money">'+data.data[i].earning+'</span></li><li class="trans-bo">'+data.data[i].classname+'</li><li class="lis3"><span class="trans-pass">'+tg+' </span><img class="trans-right" src="'+src+'"/></li></ul><div class="trans-time"><span class="month-time">'+data.data[i].add_time+'</span></div></div><div class="trans-blank"></div>';
+				                       }
+				                      
+				                         $('section').html(htmls);
+				                        // alert($(".trans-book").length); 
+					      
+					} ,
+				            error:function(data){
+					                      	  // console.log(data);
+					                      }
+				})
+			 
+		    	// }
+			} ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+
+// 滚动
+		var pagess=1; //当前页的页码
+		var allpages=nums; //总页码，会从后台获取
+		var scs=true;
+		var scs1=true;
+		function showAjax(){
+			$(".ldtt").css("display","block");
+			$.ajax({
+				 type: 'POST',
+				 dataType: "json",
+				 url:Url+"api/index.php?n=member_wealth&f=areaMemberEarnings",
+				 data: {
+				     	token:tokens,
+				     	page:pagess,
+				     },
+				success:function(data){
+					//要执行的内容
+					// showContent();
+						//页数加1
+					// console.log(data);
+				    	
+				    	var count;
+				    	var html="";
+				    	for (var j = 0; j < 10000000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	// console.log(count);
+				    	
+				    	var hysy=data.data.type;
+		                      html="";
+		                      for (var i = 0; i < count; i++) {
+		                      	if (!data.data[i].store_name) {
+				                      		var name=data.data[i].user_name;
+				                      	}else{
+				                      		var name=data.data[i].store_name;
+				                      	}
+				                      		var check=data.data[i].is_check;
+				                      	if (check==0) {
+				                      		var tg="未审核";
+				                      		var src="images/w_dsh.jpg";
+				                      	}else if (check==1) {
+				                      		var tg="已通过";
+				                      		var src="images/w_tok.png";
+				                      	}else {
+				                      		var tg="已驳回";
+				                      		var src="images/w_tno.png";
+				                      	}
+		                        	html += '<div class="trans-book"><div class="trans-shop">'+name+'</div><ul class="trans-info"><li><span class="trans-profit">收益</span><span class="trans-money">'+data.data[i].earning+'</span></li><li class="trans-bo">'+data.data[i].classname+'</li><li class="lis3"><span class="trans-pass">'+tg+'</span><img class="trans-right" src="'+src+'"/></li></ul><div class="trans-time"><span class="month-time">'+data.data[i].add_time+'</span></div></div><div class="trans-blank"></div>';
+		                       
+				    	scs=true;
+	    		
+				    	};
+				    	// console.log(html);
+				    	$('section').append(html);
+					// 分页加载/
+					setTimeout(function(){
+						$(".ldtt").css("display","none");
+					},300)
+				}
+			})
+		}
+		function scrollFn(){
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+				if (scs) {
+				// alert(2);
+				// alert(pages+":"+allpage)
+				scs=false;
+				pagess++;
+				if (pagess<=nums) {
+					// console.log(pagess);
+					showAjax();
+					// alert(1);
+				}
+				
+			}
+		}
+		}
+		$(window).bind("scroll",function(){
+			if (scs1) {
+			scrollFn();	
+			}
+		});
+//	   	年的点击事件
+	   	$(".trans-a").click(function(){
+	   		$(".year").show();
+	   	 	
+	   	})
+	   $(".year>li").each(function(){
+	   	 $(this).click(function(){
+	   	 	var txt1 = $(this).text();
+//	   	 	console.log(txt);
+	   	 	$(".trans-y").text(txt1);
+	   	 	$(".year").hide();
+	   	 });
+	   	});
+//	   	月份的点击事件
+	   	$(".trans-b").click(function(){
+	   		$(".month").show();
+	   	 	
+	   	})
+	   $(".month>li").each(function(){
+	   	 $(this).click(function(){
+	   	 	var txt2 = $(this).text();
+//	   	 	console.log(txt);
+	   	 	$(".month-m").text(txt2);
+	   	 	$(".month").hide();
+	   	 });
+	   	});
+//	   	天的点击事件
+	   	$(".trans-c").click(function(){
+	   	  $(".day").show();
+	   	});
+	   	
+	   	 $(".day>li").each(function(){
+	   	 $(this).click(function(){
+	   	 	var txt3 = $(this).text();
+//	   	 	console.log(txt);
+	   	 	$(".day-d").text(txt3);
+	   	 	$(".day").hide();
+	   	 });
+	   	 });
+	   $(".trans-seek").on("click",function(){
+	   	scs1=false;
+	   	 	var html="";
+	   	 	var vau=$("#name_tel").val();
+	   	 	console.log(vau);
+	   	 	
+	   	 	if(!vau){console.log(vau);
+	   	 		var vau1=$(".trans-y").html();
+	   	 		var vau2=$(".month-m").html();
+	   	 		var vau3=$(".day-d").html();
+	   	 		//console.log(vau1+vau2+vau3)
+	 			var year=vau1.substr(0,4);
+	 			var month=vau2.substr(0,2);
+	 			// var day=vau3.substr(0,2);
+	 			// console.log(vau1.substr(0,4));
+	 			// console.log(vau2.substr(0,2));
+	 			// console.log(vau3.substr(0,2));
+	 			var tm="startTime";
+	 			var tms=year+"-"+month;
+	 			var num;
+	 			console.log(tm+":"+tms);
+	 			$.ajax({	
+		           type: 'POST',
+		           url: Url+"api/index.php?n=member_wealth&f=memberSearch",
+		         	dataType: "json",
+		       	data: { 
+		       		"token" : tokens,
+		       		startTime:tms,
+		       	},
+		        	success: function(data){
+		        		var pages=data.totalpage;
+		    		// console.log(pages);
+		    		num=pages;
+		    		
+		                      console.log(data);
+		                      for (var j = 0; j < 100000; j++) {
+		    		
+		    		if (!data.data[j]) {
+		    			count=j;
+		    			break;
+		    		}
+		    	};
+		    	console.log(count);
+		                       // console.log(data.data.length);
+		                      var hysy=data.data.type;
+		                      html="";
+		                      for (var i = 0; i < count; i++) {
+		                      	if (!data.data[i].store_name) {
+				                      		var name=data.data[i].user_name;
+				                      	}else{
+				                      		var name=data.data[i].store_name;
+				                      	}
+				                      		var check=data.data[i].is_check;
+				                      	if (check==0) {
+				                      		var tg="未审核";
+				                      		var src="images/w_dsh.jpg";
+				                      	}else if (check==1) {
+				                      		var tg="已通过";
+				                      		var src="images/w_tok.png";
+				                      	}else {
+				                      		var tg="已驳回";
+				                      		var src="images/w_tno.png";
+				                      	}
+		                        	html += '<div class="trans-book"><div class="trans-shop">'+name+'</div><ul class="trans-info"><li><span class="trans-profit">收益</span><span class="trans-money">'+data.data[i].earning+'</span></li><li class="trans-bo">'+data.data[i].classname+'</li><li class="lis3"><span class="trans-pass">'+tg+'</span><img class="trans-right" src="'+src+'"/></li></ul><div class="trans-time"><span class="month-time">'+data.data[i].add_time+'</span></div></div><div class="trans-blank"></div>';
+		                       }
+		                      
+		                          $('section').html(html);
+			      
+			} ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+			// 滚动
+		var pages=1; //当前页的页码
+		var allpage=num; //总页码，会从后台获取
+		var sc=true;
+		function showAjax1(){
+			$(".ldtt").css("display","block");
+			$.ajax({
+				 type: 'POST',
+				 dataType: "json",
+				 url:Url+"api/index.php?n=member_wealth&f=memberSearch",
+				 data: {
+				     	token:tokens,
+				     	startTime:tms,
+				     	page:pages,
+				     },
+				success:function(data){
+					//要执行的内容
+					// showContent();
+						//页数加1
+					// console.log(data);
+				    	
+				    	var count;
+				    	var html="";
+				    	for (var j = 0; j < 10000000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	// console.log(count);
+				    	
+				    	var hysy=data.data.type;
+		                      html="";
+		                      for (var i = 0; i < count; i++) {
+		                      	if (!data.data[i].store_name) {
+				                      		var name=data.data[i].user_name;
+				                      	}else{
+				                      		var name=data.data[i].store_name;
+				                      	}
+				                      		var check=data.data[i].is_check;
+				                      	if (check==0) {
+				                      		var tg="未审核";
+				                      		var src="images/w_dsh.jpg";
+				                      	}else if (check==1) {
+				                      		var tg="已通过";
+				                      		var src="images/w_tok.png";
+				                      	}else {
+				                      		var tg="已驳回";
+				                      		var src="images/w_tno.png";
+				                      	}
+		                        	html += '<div class="trans-book"><div class="trans-shop">'+name+'</div><ul class="trans-info"><li><span class="trans-profit">收益</span><span class="trans-money">'+data.data[i].earning+'</span></li><li class="trans-bo">'+data.data[i].classname+'</li><li class="lis3"><span class="trans-pass">'+tg+'</span><img class="trans-right" src="'+src+'"/></li></ul><div class="trans-time"><span class="month-time">'+data.data[i].add_time+'</span></div></div><div class="trans-blank"></div>';
+		                       
+				    	sc=true;
+	    		
+				    	};
+				    	// console.log(html);
+				    	$('section').append(html);
+					// 分页加载/
+					setTimeout(function(){
+						$(".ldtt").css("display","none");
+					},300)
+				}
+			})
+		}
+		function scrollFn1(){
+			//真实内容的高度
+			var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+			//视窗的高度
+			// console.log(pageHeight);
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+			// console.log(viewportHeight);
+			//隐藏的高度
+			var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			// console.log(scrollHeight);
+			if(pageHeight - viewportHeight - scrollHeight < 10){	//如果满足触发条件，执行
+				if (sc) {
+				// alert(2);
+				// alert(pages+":"+allpage)
+				sc=false;
+				pages++;
+				if (pages<=num) {
+					// console.log(pages);
+					showAjax1();
+					// alert(1);
+				}
+				
+			}
+		}
+		}
+		$(window).bind("scroll",scrollFn1);
+	   	 	}else{
+	   	 		// parseInt(vau);
+	   	 		
+	   	 		if (parseInt(vau)) {
+	   	 			html="";
+	   	 		// 	var tms=parseInt(vau);
+	   	 		// console.log(parseInt(vau));
+	   	 		tm="phone";
+	   	 		tms=vau;
+	   	 		$.ajax({	
+		           type: 'POST',
+		           url: Url+"api/index.php?n=member_wealth&f=memberSearch",
+		         	dataType: "json",
+		       	data: { 
+		       		"token" : tokens,
+		       		phone:tms,
+		       	},
+		        	success: function(data){
+		                      // console.log(data);
+		                      var p=data.totalpage;
+		                      for (var k = 1; k <= p; k++) {
+		                      	$.ajax({	
+				           type: 'POST',
+				           url: Url+"api/index.php?n=member_wealth&f=memberSearch",
+				         	dataType: "json",
+				       	data: { 
+				       		"token" : tokens,
+				       		phone:tms,
+				       		page:k,
+				       	},
+				        	success: function(data){
+				                      console.log(data);
+				                      for (var j = 0; j < 100000; j++) {
+		    		
+		    		if (!data.data[j]) {
+		    			count=j;
+		    			break;
+		    		}
+		    	};
+		    	console.log(count);
+		                       // console.log(data.data.length);
+		                      var hysy=data.data.type;
+		                      for (var i = 0; i < count; i++) {
+		                      	if (!data.data[i].store_name) {
+				                      		var name=data.data[i].user_name;
+				                      	}else{
+				                      		var name=data.data[i].store_name;
+				                      	}
+				                      		var check=data.data[i].is_check;
+				                      	if (check==0) {
+				                      		var tg="未审核";
+				                      		var src="images/w_dsh.jpg";
+				                      	}else if (check==1) {
+				                      		var tg="已通过";
+				                      		var src="images/w_tok.png";
+				                      	}else {
+				                      		var tg="已驳回";
+				                      		var src="images/w_tno.png";
+				                      	}
+		                        	html += '<div class="trans-book"><div class="trans-shop">'+name+'</div><ul class="trans-info"><li><span class="trans-profit">收益</span><span class="trans-money">'+data.data[i].earning+'</span></li><li class="trans-bo">'+data.data[i].classname+'</li><li class="lis3"><span class="trans-pass">'+tg+'</span><img class="trans-right" src="'+src+'"/></li></ul><div class="trans-time"><span class="month-time">'+data.data[i].add_time+'</span></div></div><div class="trans-blank"></div>';
+		                       }
+		                      
+		                          $('section').html(html);
+		                          } ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+		                      };
+		                      
+			      
+			} ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+	   	 		}else{
+	   	 			html="";
+	   	 			var tm="user_name";
+	   	 			var tms=vau;
+	   	 			$.ajax({	
+		           type: 'POST',
+		           url: Url+"api/index.php?n=member_wealth&f=memberSearch",
+		         	dataType: "json",
+		       	data: { 
+		       		"token" : tokens,
+		       		user_name:tms,
+		       	},
+		        	success: function(data){
+		                      // console.log(data);
+		                      var u=data.totalpage;
+		                      for (var k = 1; k <= u; k++) {
+		                      	$.ajax({	
+				           type: 'POST',
+				           url: Url+"api/index.php?n=member_wealth&f=memberSearch",
+				         	dataType: "json",
+				       	data: { 
+				       		"token" : tokens,
+				       		user_name:tms,
+				       		page:k,
+				       	},
+				        	success: function(data){
+				                      // console.log(data);
+				                       for (var j = 0; j < 100000; j++) {
+		    		
+		    		if (!data.data[j]) {
+		    			count=j;
+		    			break;
+		    		}
+		    	};
+		    	// console.log(count);
+		                      console.log(data.data.length);
+		                      var hysy=data.data.type;
+		                      for (var i = 0; i < count; i++) {
+		                      	if (!data.data[i].store_name) {
+				                      		var name=data.data[i].user_name;
+				                      	}else{
+				                      		var name=data.data[i].store_name;
+				                      	}
+				                      		var check=data.data[i].is_check;
+				                      	if (check==0) {
+				                      		var tg="未审核";
+				                      		var src="images/w_dsh.jpg";
+				                      	}else if (check==1) {
+				                      		var tg="已通过";
+				                      		var src="images/w_tok.png";
+				                      	}else {
+				                      		var tg="已驳回";
+				                      		var src="images/w_tno.png";
+				                      	}
+		                        	html += '<div class="trans-book"><div class="trans-shop">'+name+'</div><ul class="trans-info"><li><span class="trans-profit">收益</span><span class="trans-money">'+data.data[i].earning+'</span></li><li class="trans-bo">'+data.data[i].classname+'</li><li class="lis3"><span class="trans-pass">'+tg+'</span><img class="trans-right" src="'+src+'"/></li></ul><div class="trans-time"><span class="month-time">'+data.data[i].add_time+'</span></div></div><div class="trans-blank"></div>';
+		                       }
+		                      
+		                          $('section').html(html);
+		                          } ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+				})
+		                      };
+		                     
+			      
+			} ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+	   	 		}
+	 			
+	   	 	}
+	   	 	// alert(tm+":"+tms);
+	   	 	
+	   	 })
+	   
+	   	 	
+	   });
+		
+	</script>
+</html>
+

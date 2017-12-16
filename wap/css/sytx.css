@@ -1,0 +1,343 @@
+body{
+	background-color: #efeff4;
+}
+.d_header{
+	height: 8.8rem;
+	background-color: #fff;
+	position: relative;
+	width: 100%;
+	
+}
+.d_header .dha1{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.d_header .dha2{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width:15rem;
+	line-height: 8.8rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3rem;
+	color: #ffc600;
+	text-align: right;
+	background-color: #fff;
+}
+.bank{
+	height: 10rem;
+	width:100%;
+	border-bottom: 1px solid #333; 
+	background-color: #fff;
+	margin-top: 3rem;
+	overflow: hidden;
+}
+.bank div{
+	height: 100%;
+	margin: 0 3rem;
+	position: relative;
+	line-height: 10rem;
+
+}
+.bank div img{
+	vertical-align: middle;
+	width: 6rem;
+	height: 6rem;
+}
+.bank div p{
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	left: 8rem;
+	top: 0;
+	line-height: 4rem;
+	padding-top: 1rem;
+
+}
+.bank div p .bank_sp1{
+	font-size: 3rem;
+	color: #333;
+	/*line-height: 5rem;*/
+	/*line-height: 50%;*/
+}
+.bank div p .bank_sp2{
+	font-size: 2.4rem;
+	color: #999;
+	/*line-height: 5rem;*/
+	/*line-height: 50%;*/
+}
+.txian{
+	height: 33.5rem;
+	margin-top: 3rem;
+	width: 100%;
+	background-color: #fff;
+}
+.tx_p1{
+	margin: 0 3rem;
+	line-height: 9rem;
+	font-size: 2.8rem;
+	color: #333;
+}
+.tx_p2{
+	height: 8rem;
+	margin: 0 3rem;
+}
+.tx_p2 span{
+	line-height: 8rem;
+	font-size: 4rem;
+	color: #333;
+	float: left;
+	width: 5rem;
+	height: 8rem;
+}
+.tx_p2 input{
+	height: 8rem;
+	font-size: 3.4rem;
+	margin: 0;
+	padding: 0;
+	/*border-bottom: 1px solid #333;*/
+	width: 50%;
+	float: left;
+}
+.tkong{
+	margin-left: 6rem;
+	height: 1px;
+	background-color: #999;
+}
+.tx_p3{
+	height: 8.8rem;
+	margin: 0 3rem;
+}
+.tx_p3 .tx_sp1{
+	float: left;
+	width: 50%;
+	font-size: 3rem;
+	color: #666;
+	height: 8.8rem;
+	line-height: 8.8rem;
+}
+.tx_p3 .tx_sp2{
+	float: left;
+	width: 50%;
+	font-size: 3rem;
+	color: #ffc600;
+	text-align: right;
+	height: 8.8rem;
+	line-height: 8.8rem;
+}
+.tx_p4{
+	height: 5.5rem;
+	margin: 0 0 0 3rem;
+	border-bottom: 1px solid #333;
+}
+.tx_p4 input{
+	font-size: 3rem;
+	color: #999;
+}
+.about{
+	font-size: 2.4rem;
+	line-height: 8.5rem;
+	height: 8.5rem;
+	margin: 0 3rem;
+	color: #666;
+}
+.ensure{
+	height: 10rem;
+	margin: 7rem 3rem 0;
+	overflow: hidden;
+	border-radius: 1rem;
+
+}
+.ensure p{
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background-color: #d5d5d5;
+	line-height: 100%;
+	text-align: center;
+	font-size: 2.8rem;
+	color: #999;
+	line-height: 10rem;
+}
+.ensure .btn{
+	color: #fff;
+	background-color: #ffc600;
+}
+.ts1{
+	height: 3rem;
+	line-height: 3rem;
+	font-size: 2.6rem;
+	color: red;
+	text-indent: 3rem;
+	background-color: #fff;
+	display: none;
+}
+.cg{
+	background-color: rgba(0,0,0,0.4);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	z-index: 100;
+	display: none;
+}
+.cg p{
+	width: 60%;
+	height: 20rem;
+	margin-top: 50%;
+	margin-left: 20%;
+	background-color: #fff;
+	line-height: 20rem;
+	text-align: center;
+	font-size: 3.4rem;
+	color: #333;
+}
+.key {
+  width: 100%;
+  height: 70.7rem;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+  border-top: 1px solid #999;
+  box-shadow: 0px 2px -2px #666;
+}
+.key .k-header {
+  width: 100%;
+  height: 9.3rem;
+  background: none;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+.key .k-header .k-left {
+  width: 1.9rem;
+  margin-left: 3.6rem;
+  margin-top: 3.2rem;
+}
+.key .k-header .k-left img {
+  width: 1.9rem;
+  height: 1.8rem;
+}
+.key .k-header .k-right {
+  -webkit-box-flex: 1;
+}
+.key .k-header .k-right p {
+  line-height: 9.3rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+  padding-right: 10%;
+}
+.key .k-center {
+  width: 100%;
+  height: 9rem;
+  background: none;
+}
+.key .k-center ul {
+  width: 80%;
+  height: 9rem;
+  background: #ffffff;
+  border: 0.1rem solid #e2e2e2;
+  margin-left: 10%;
+  border-radius: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+.key .k-center ul li {
+  border-right: 0.1rem solid #e2e2e2;
+  width: 16.6%;
+  height: 9rem;
+  line-height: 9rem;
+  font-size: 3rem;
+  color: #333;
+  text-align: center;
+}
+.key .k-center ul .kc-last {
+  border-right: none;
+}
+.key .forget {
+  width: 100%;
+  height: 6.8rem;
+  background: none;
+  position: relative;
+}
+.key .forget a {
+  line-height: 6.8rem;
+  font-size: 2.6rem;
+  color: #ffc600;
+  margin-left: 75%;
+}
+.key .forget p{
+	top: 0;
+  line-height: 6.8rem;
+  font-size: 2.2rem;
+  color: #fb2121;
+  margin-left: 3rem;
+  position: absolute;
+}
+.key .k-footer {
+  width: 100%;
+  height: 45.6rem;
+  background: #e2e7ed;
+}
+.key .k-footer ul {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  width: 100%;
+  height: 11.3rem;
+  background: none;
+  border-top: 0.1rem solid #e2e7ed;
+
+}
+.key .k-footer ul li {
+  width: 100%;
+  -webkit-box-flex: 1;
+  background: #fff;
+  text-align: center;
+  line-height: 11.3rem;
+  font-size: 4.4rem;
+  color: #414141;
+  margin-right: 0.1rem;
+}
+.key .k-footer .k-lastline {
+  background: none;
+}
+.key .k-footer .k-lastline img {
+  width: 4.1rem;
+  height: 3.8rem;
+  background: none;
+}

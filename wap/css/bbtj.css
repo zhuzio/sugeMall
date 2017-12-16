@@ -1,0 +1,183 @@
+.d_header{
+	height: 8.8rem;
+	background-color: #efeff4;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	width: 100%;
+	
+}
+.d_header a{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.d_header .p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+}
+.d_header .p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.d_header .p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;
+	/*font-family: Microsoft YaHei;*/
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.d_header button{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	width:11rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3.4rem;
+	color: #333;
+	text-align: right;
+	background-color: #f0f0f0;
+}
+.kong{
+	height: 8.8rem;
+}
+.date{
+	height: 10rem;
+	position: relative;
+	margin: 0 3rem;
+	overflow: hidden;
+
+}
+.date p{
+	float: left;
+	width: 30%;
+	height: 4.8rem;
+	background: url(../images/bb_date.png) 0 0 no-repeat;
+	background-size: 100% 100%;
+	margin: 2.6rem 0 2.6rem 0rem;
+}
+.date .dtt2{
+	margin: 2.6rem 0 2.6rem 1.5rem; 
+}
+.date p select{
+	float: left;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	-webkit-appearance: none;
+	background: transparent;
+	font-size: 2.6rem;
+	line-height: 4.8rem;
+	color: #666;
+	text-indent: 0.5rem;
+}
+.date span{
+	float: left;
+	width: 15%;
+	height: 4.8rem;
+	background-color: #ffc600;
+	border-radius: 0.5rem;
+	margin: 2.6rem 0 2.6rem 1.5rem;
+	line-height: 4.8rem;
+	text-align: center;
+	font-size: 3rem;
+	color: #fff;
+}
+.dq{
+	position: absolute;
+	list-style: none;
+	width: 13rem;
+	height: 4.8rem;
+	border-bottom: 1px solid #ffc600;
+	float: left;
+	/*margin: 2.6rem 0 2.6rem 3rem;*/
+	right: 0rem;
+	top: 2.6rem;
+	font-size: 3rem;
+	color: #999;
+	line-height: 4.8rem;
+	/*text-align: right;*/
+	text-align: center;
+}
+.data{
+	margin: 0 3rem;
+	overflow: hidden;
+}
+.data ul{
+	overflow: hidden;
+	/*height: 20rem;*/
+	box-sizing:border-box;
+	border-top: 1px solid #333;
+	border-left: 1px solid #333;
+	background-color: #f1f1f1;
+	margin-bottom: 1.5rem;
+}
+.dak{
+	height: 2rem;
+	width: 100%;
+	background-color: #f1f1f1;
+}
+.data li{
+	height: 5rem;
+	line-height: 5rem;
+	color: #333;
+	/*font-size: */
+	box-sizing:border-box;
+	border-bottom: 1px solid #efeff4;
+	background-color: #fff;
+}
+.data .li1,.data .li3{
+	border-bottom: 1px dashed #333;
+}
+.data .li4{
+	border-bottom: 1px solid #333;
+}
+.data .li1 p,.data .li3 p{
+	font-size: 2.6rem;
+	height: 5rem;
+	text-align: center;
+	float: left;
+	border-right: 1px solid #efeff4;
+	box-sizing:border-box;
+}
+.data .li2 p,.data .li4 p{
+	font-size: 2rem;
+	height: 5rem;
+	text-align: center;
+	float: left;
+	border-right: 1px solid #efeff4;
+	box-sizing:border-box;
+}
+.data .li4 .dp4,.data .li3 .dp4,.data .li2 .dp4,.data .li1 .dp4{
+	border-right: 1px solid #333;
+}
+/*.data .dp1{
+	width: 33.3%;
+}*/
+.data .dp2{
+	width: 33.3%;
+}
+.data .dp3{
+	width: 33.3%;
+}
+.data .dp4{
+	width: 33.3%;
+}
+.data span{
+	color: #ffc600;
+}

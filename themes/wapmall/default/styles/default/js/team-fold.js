@@ -1,0 +1,13 @@
+$(".team-one").children("ul").hide();
+		$(".team-one").toggle(
+			function(){
+				$(this).children("ul").show();
+				$(this).children(".team-onenr").addClass("team-onenr-active");
+				$(this).children(".team-onenr").children(".one-iconright").addClass("one-right-active");
+			},
+			function(){
+				$(this).children("ul").hide();
+				$(this).children(".team-onenr").removeClass("team-onenr-active");
+				$(this).children(".team-onenr").children(".one-iconright").removeClass("one-right-active");
+			}
+		);

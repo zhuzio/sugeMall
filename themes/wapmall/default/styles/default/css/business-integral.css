@@ -1,0 +1,334 @@
+/*板块样式*/
+/*top*/
+.profit-top{
+	width: 100%;
+	height: 160px;
+	background-image: url(../images/business-integral/bg.png);
+	background-size:100% 160px;
+}
+.profit-pic{ 
+	float: left;
+	width: 30%;
+	overflow: hidden;
+	}
+.profit-pic span{ 
+	display: block;
+	margin: auto;
+	margin-top: 40px;
+	width: 80px; 
+	height: 80px;
+	overflow: hidden;
+	border-radius: 50px;
+	background-image: url(../images/business-integral/empty-bg.png);
+	}
+.profit-pic span img{
+	width: 100%;
+}
+.profit-cont{ 
+	float: left; 
+	width: 70%;
+	margin-top: 30px;
+	overflow: hidden;
+	}
+.pro-current{
+	color: #FFFFFF; 
+	font-size: 14px; 
+	line-height: 48px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.pro-current span{ 
+	margin-left: 10px;
+	font-size: 36px;
+	color: #FFFFFF;
+}
+.pro-td{ 
+	overflow: hidden; 
+}
+.pro-td a{ 
+	float: left;
+	width: 50%;
+	font-size: 12px;
+	color: #f4f5f5;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.pro-td a span{
+	 margin-left: 3px;
+	 font-size: 15px;
+	 color: #FFFFFF;
+}
+
+/*切换开关*/
+.int-switch{
+	 padding: 10px 10px;
+	 background-color: #FFFFFF;
+	 border-bottom: 1px solid #ECECEC;
+}
+.switch{ 
+	width: 80%;
+	height: 48px;
+	line-height:48px;
+	margin: auto;
+	background-color: #F1F2F6;
+	border: 1px solid #dddddd;
+	border-radius: 24px;
+	position: relative;
+}
+.switch span{
+	 width: 50%;
+	 text-align: center;
+	 display: block;
+	 position: absolute;
+	 color: #666666;
+	 font-size: 14px;
+}
+.switch span.on{ 
+	left: 0;
+	z-index: 2;
+}
+.switch span.off{ 
+	right: 0;
+	z-index: 2;
+
+}
+.switch span.activ{ 
+	width: 55%;
+	background-color: #39B4BF;
+	color: #FFFFFF;
+	border-radius: 24px;
+	z-index: 1;
+}
+
+
+/*列表*/
+.refine-details{ 
+	overflow: hidden;
+	}
+.refine-details ul{ 
+}
+.refine-details .bean-list{ 
+	overflow: hidden; 
+	background-color: #FFFFFF; 
+	padding-top: 20px;
+	border-bottom: 1px solid #ECECEC;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+.refine-details .bean-list .refine-plus{
+	float: left;
+	width: 6%;
+}
+.refine-details .bean-list .refine-plus span{
+	display: block;
+	margin: auto;
+	width: 16px;
+	height: 16px;
+	border-radius: 10px;
+	background-image: url(../images/business-integral/plus.png);
+	background-size:100%;
+	margin-top: 10px;
+}
+
+.refine-details .bean-list .refine-reduce{
+	float: left;
+	width: 6%;
+}
+.refine-details .bean-list .refine-reduce span{
+	display: block;
+	margin: auto;
+	width: 16px;
+	height: 16px;
+	border-radius: 10px;
+	background-image: url(../images/business-integral/reduce.png);
+	background-size:100%;
+	margin-top: 5px;
+}
+.refine-re{
+	float: right;
+	width: 92%;
+	overflow: hidden;
+}
+.integral{
+	overflow: hidden;
+	line-height: 24px;
+}
+.integral p{
+	float: left;
+	width: 50%;
+}
+.integral p span{
+	margin:0 5px;
+	font-size: 16px;
+}
+.integral p:first-child{
+	width: 100%;
+}
+.Buyers{
+	overflow: hidden;
+	line-height: 24px;
+}
+.Buyers p{
+	float: left;
+}
+.Buyers .buyname{
+	float: left;
+	margin-right: 10px;
+}
+.Buyers p span{
+	margin:0 5px;
+	font-size: 16px;
+}
+.ints{
+	overflow: hidden;
+	line-height: 24px;
+}
+.number{
+	overflow: hidden;
+	line-height: 24px;
+}
+.number p{
+	float: left;
+	width: 50%;
+}
+.number p span{
+	margin:0 5px;
+}
+.number p.time{
+	text-align: right;
+}
+/*线上订单*/
+.Mall{
+	overflow: hidden;
+}
+.mall-list{
+	overflow: hidden;
+}
+.mall-list span{
+	float: left;
+	line-height: 24px;
+}
+.mall-list em{
+	font-style: normal;
+	float: right;
+	width: 20px;
+	height: 24px;
+	font-family: Muiicons;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 24px;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;	
+}
+.mall-list em:before{
+	content: '\e583';
+}
+.mall-list em.active:before{
+	content: '\e581';
+}
+.Mall ul{
+	overflow: hidden;
+}
+.Mall li{
+	padding: 10px 0;
+	border-bottom: 1px solid #ECECEC;
+	overflow: hidden;
+}
+.Mall li img{
+	width: 48px;
+	float: left;
+	margin-right: 5px;
+}
+.Mall li .mall-inf{
+	float: left;
+	width: 80%;
+}
+.mall-name{
+	overflow: hidden;
+	height: 32px;
+}
+.mall-name p{
+	float: left;
+	width: 75%;
+	line-height: 16px;
+	overflow: hidden;
+	font-size: 12px;
+}
+.mall-name .Price{
+	float: right;
+	width: 25%;
+}
+.Price span{
+	display: block;
+	font-size: 10px;
+	text-decoration: line-through;
+	text-align: right;
+}
+.Price span:first-child{
+	text-decoration: none;
+	font-size: 12px;
+}
+.mall-number{
+	overflow: hidden;
+}
+.mall-style{
+	float: left;
+	width: 80%;
+}
+.mall-style p{
+	float: left;
+	font-size: 12px;
+	width: 50%;
+}
+.mall-style p span{
+	font-size: 12px;
+	margin-left: 5px;
+}
+.mall-number em{
+	float: right;
+	width: 20%;
+	text-align: right;
+	font-size: 12px;
+	font-style: normal;
+}
+.mall-all{
+	overflow: hidden;
+	text-align: right;
+	border-bottom: 1px solid #ECECEC;
+	margin-bottom: 10px;
+}
+.mall-all p{
+	float: left;
+	line-height: 48px;
+	font-size: 14px;
+}
+.mall-all p:first-child{
+	margin-right: 20px;
+}
+/*购入积分列表*/
+.integral li{
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #ECECEC;
+	padding: 10px;
+}
+.int-list{
+	overflow: hidden;
+	line-height: 24px;
+}
+.int-list p{
+	float: right;
+	text-align: right;
+}
+.int-list p:first-child{
+	float: left;
+	text-align: left;
+}
+.int-list p span{
+	margin-right: 5px;
+}

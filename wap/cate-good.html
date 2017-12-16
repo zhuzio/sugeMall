@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>分类商品</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/sy_flss.css">
+		<link rel="stylesheet" href="css/a.css">
+	</head>
+	<body>
+		<div class="d_header">
+			<a class="black" href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2"><span><img src="images/z-34.png" alt=""></span><input class="z-siu" type="text" name="" id="" value="" placeholder="请输入搜索内容" /></p>
+			<button>搜索</button>
+		</div>
+		<div class="z-sd"></div>
+		<ul class="hot">
+		</ul>
+		<div class="z-load"><img src="images/add.gif" /></div>
+		<ul class="none">
+			<img src="images/syflss.png" alt="">
+			<p>没有搜索结果<br><span>没有找到相关的宝贝</span></p>
+		</ul>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script>
+		$(function() {
+			//商品分类ajax;
+			var gtxts = localStorage.getItem("gtxts");
+			var strid=window.location.href;
+			var arrid=strid.split("=");
+			var cid=arrid[1];
+			  console.log(cid);
+			var goodArr = [];
+			var num;
+			var html = "";
+			var html = "";
+			$(".z-load").show();
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=goods&f=classshop_wx",
+				dataType: "json",
+				data: {
+					"cate_id":cid,
+					"cate_name": gtxts,
+					"page": 1,
+				},
+				success: function(data) {
+					console.log(data);
+					var datas = data.data;
+					num = data.totalpage;
+					$(".hot").html(" ");
+					var htmlr = " ";
+					for(var i = 0; i < datas.length; i++) {
+						htmlr = '<li><span class="z-simg"><img src="' + Url + '' + datas[i].default_image + '"/></span><div class="hp1"><span>' + datas[i].goods_name + '</span><p class="hp2">￥' + datas[i].price + '</p></div></li> ';
+						$(".hot").append(htmlr);
+						goodArr.push(datas[i].goods_id);
+					}
+
+					word(35)
+//					style="background:url(' + Url + data.data[i].default_image + ') no-repeat"
+              	console.log(goodArr);
+					$('.hot li img').error(function() {
+						$(this).attr('src', 'images/z-logo.png');
+					});
+					$(".hot li").each(function() {
+						$(".hot li").click(function() {
+							var a = $(this).index();
+							localStorage.setItem('good', goodArr[a]);
+							window.location.href = "goods-order.html?goodsid="+goodArr[a];
+//							console.log(goodArr[a])
+						});
+					});
+					setTimeout(function() {
+						$(".z-load").hide();
+					}, 300)
+				},
+				error: function(data) {},
+			});
+			//  预加载
+			var pages = 1; //当前页的页码
+			var allpage = num; //总页码，会从后台获取
+			var sc = true;
+			function showAjax() {
+				$(".z-load").show();
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=goods&f=classshop_wx",
+					data: {
+						"page": pages,
+						"cate_name": gtxts,
+						"cate_id":cid
+					},
+					success: function(data) {
+						var datas = data.data;
+						var htmlr = "";
+						for(var i = 0; i < datas.length; i++) {
+							htmlr = '<li><span class="z-simg"><img src="' + Url + '' + datas[i].default_image + '"/></span><div class="hp1"><span>' + datas[i].goods_name + '</span><p class="hp2">￥' + datas[i].price + '</p></div></li> ';
+							sc = true;
+							$(".hot").append(htmlr);
+							goodArr.push(datas[i].goods_id);
+//							var count = datas[i].goods_name.length;
+//							console.log(count)
+						};
+						word(35)
+//						console.log(goodArr);
+						$('.hot li img').error(function() {
+							$(this).attr('src', 'images/z-logo.png');
+						});
+						$(".hot li").each(function() {
+							$(".hot li").click(function() {
+								var a = $(this).index();
+								console.log(a);
+								localStorage.setItem('good', goodArr[a]);
+								console.log(goodArr[a]);
+								console.log(goodArr);
+								window.location.href = "goods-order.html?goodsid="+goodArr[a];
+							});
+						});
+						setTimeout(function() {
+								$(".z-load").hide();
+						}, 300)
+							// 分页加载/
+					}
+				})
+			}
+
+			function scrollFn() {
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+					if(sc) {
+						// alert(2);
+						// alert(pages+":"+allpage)
+						sc = false;
+						pages++;
+						if(pages <= num) {
+							// console.log(pages);
+							showAjax();
+							// alert(1);
+						}
+					}
+				}
+			}
+			$(window).bind("scroll", scrollFn); //绑定滚动事件  
+
+			//商品搜索
+			$(".p2").click(function() {
+				location.href = "history-seach.html";
+			});
+			
+			//限制字数方法
+			function word(len) {
+				$(".hp1 span").each(function() {
+					var counter = $(this).text().length; 
+					//获取文本域的字符串长度
+					var txt = $(this).text();
+					if(counter >= len) {
+						var num = $(this).text().substr(0, len);
+						$(this).text(num + '....');
+					} else {
+						$(this).text(txt);
+					}
+				});
+			}
+		});
+	</script>
+
+</html>

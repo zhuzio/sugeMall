@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>物流信息</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/wlxx.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">物流信息</p>
+		
+	</div>
+	<div class="xx">
+		<p class="gs">
+			<span>物流公司</span>
+			
+			<a href="wlxz.html">选择物流</a>
+		</p>
+		<p class="dh">
+			物流单号
+			<input type="text" placeholder="请输入快递单号">
+		</p>
+	</div>
+	<div class="ensure">确定</div>
+	<div class="tk">
+		<p><span>物流信息已发送至卖家，请耐心等待处理结果</span></p>
+	</div>
+</body>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	var tokens=localStorage.getItem ("token");
+	var wlids=localStorage.getItem ("wlid");
+	if (wlids==1) {
+		var wl="申通快递";
+	}else if(wlids==2){
+		var wl="圆通快递";
+	}else if(wlids==3){
+		var wl="顺丰快递";
+	}else if(wlids==4){
+		var wl="天天快递";
+	}else if(wlids==5){
+		var wl="中通快递";
+	}else if(wlids==6){
+		var wl="韵达快递";
+	}else if(wlids==7){
+		var wl="汇通快递";
+	}else if(wlids==8){
+		var wl="德邦物流";
+	}
+	$(".gs span").html(wl);
+	$(".ensure").on("click",function(){
+		var vals=$("input").val();
+		$.ajax({
+		            type: 'POST',
+		            url: Url + "api/index.php?n=message&f=add_logistics",
+		     	dataType: "json",
+		    	data: {
+		               	token:tokens,
+		               	type:wl,
+		               	logistics_sn:vals,
+		        	},
+		    	success: function(data){
+		    		// console.log(data);
+		    		
+		    		
+		          },
+		          error: function(data){
+		    		// console.log(data);
+		    		
+		          },
+		})
+	})
+	
+</script>
+</html>

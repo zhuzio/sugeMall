@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /> <!--公用css-->
+		<link rel="stylesheet" href="{res file=css/business.css}" />
+        <script src="{res file=js/layer/layer.js}"></script>
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.back(-1)" class="back"></a>
+			<h1 class="tit">发积分            
+                <a href="{url app=point&act=shopSendPointList&action=send}"   style="float: right; display:block;">
+                    明细
+                </a>
+            </h1>
+
+		</header>
+        <form id="myform" name="myform" action="index.php?app=point&act=sendPoint" method='post'>
+		<div class="content mtop44">
+			<div class="business-main">
+				
+					<ul>
+						<li>
+							<p>可用积分<span>{$pay_point}</span></p>
+						</li>
+						<li>
+							<em></em>
+							<input placeholder="请输入电话" type="text"  name="mobile">
+						</li>
+                        <li>
+                            <em></em>
+                            <input placeholder="请输入消费金额" type="number" name="money">
+                        </li>
+						<li>
+							<em></em>
+							<input placeholder="请输入赠送积分数量" type="number" name="point">
+						</li>
+						<li>
+							<div class="classifi">
+								<select name="classid" id="goods_type">
+									<option value='0'>选择商品分类</option>
+                                    {foreach from=$class_goods item=goods}
+                                    <option value="{$goods[class_id]}">{$goods[name]}</option>
+                                    {/foreach}
+								</select>
+								<span class="point-cion"></span>
+							</div>
+						</li>
+						<li>
+							<em></em>
+							<input placeholder="请添加备注" type="text" name="remark">
+						</li>
+						<li>
+							<em></em>
+							<input placeholder="请输入支付密码" type="password" name="passwd">
+                            <input type="hidden" name="_hash_" value="{$_hash_}">
+						</li>
+					</ul>
+					<p class="determine"><a href="#" id="determine">确定</a></p>
+
+			</div>
+		</div>
+		
+		<!--发积分弹窗-->
+		<div class="Popup" id="dete-Popup">
+			<div class="Popup-box">
+				<div class="inf-box">
+					<div class="inf-dete">
+						<p class="inf-name">姓名<span id="checkName"></span></p>
+						<p class="inf-tel">电话<span id="phone">0</span></p>
+                        <p class="inf-number">你将要送出<span id="allPoint">0</span>积分</p>
+						<p class="inf-number">其中商家赠送<span id="shopPoint">0</span>苏格赠送<span id="pingPoint">0</span></p>
+					</div>
+					<p class="remind">是否确认赠送？</p>
+					<p class="inf-inf">
+						<button type="button" class="inf-no" id="no">否</button>
+						<button type="button" id="yes" class="inf-yes">是</button>
+					</p>
+				</div>
+			</div>
+			<div class="Popup-bg"></div>
+		</div>
+        </form>
+    <div class="Popup" id="dete-Popup1" style="display:none">
+      <div class="Popup-box">
+        <div class="inf-box">
+          <div class="inf-dete">   
+            <p class="inf-number">您还没有添加商品分类,请先去添加分类!</p>
+          </div>
+          <p class="inf-inf">
+              <a href="{url app=set_shop&act=goods_cate}" ><button type="button"  class="inf-yes" style="width:100%">是</button></a>
+          </p>
+        </div>
+      </div>
+      <div class="Popup-bg"></div>
+    </div>
+    
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.0.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/business-hairintegral.js}" ></script>
+     <!--为了用户你体验更好这一块用ajax提交-->
+    <script type="text/javascript">
+        $(function(){
+            var status = 0;
+            $("#yes").click(function(){
+                checkForm();
+            });
+            function checkForm(){
+                var moneymath = /^\d+(\.\d+)?$/;
+                var money = $('input[name="money"]').val();
+
+                var point = $('input[name="point"]').val();
+                if(!moneymath.test(money) || money.length <= 0){
+                   alert('你输入的金额不正确');
+                   return false;
+                 }
+
+                 if(point.length <=0 ){
+                    alert('你输入的积分不正确');
+                   return false;
+                 }
+                 //验证付款密码是否真确passwd
+                 var pay_passwd  = $('input[name="passwd"]').val();
+                 if(pay_passwd.length <= 0){
+                     alert('支付密码不能为空');
+                     return false;
+                 }
+                 var classid = $('select[name="classid"]').val();
+                 if(classid == 0){
+                    alert('请选择商品类型');
+                     return false;
+                 }
+                 $.ajax({
+                     type: "get",
+                     url: "index.php?app=pay_balance&act=check_pay_pass",
+                     //dataType:'JSON',
+                     data: { pay_passwd: pay_passwd },
+                     beforeSend : function(){
+                       waitDiv = layer.open({type: 2,shadeClose:false});
+                     },
+                     complete: function(){
+
+                     },
+                     success:function(msg){
+                         console.log(msg);
+                         msg = $.trim(msg);
+                         if(msg == 'ok'){
+                             status = 1;
+                             $("#myform").submit();
+                         }else{
+                             alert('支付密码错误');
+                             layer.closeAll();
+                         }
+                     },
+                     error : function(e){
+                         console.log(e);
+                     }
+                    });
+
+            }
+        $('input[name="mobile"]').blur(function(){
+             $.ajax({
+                      type: "get",
+                      url: "index.php?app=point&act=chechName",
+                      async: false,
+                      data: { mobile: $('input[name="mobile"]').val() }
+                    }).done(function( msg ) {
+                         $('#checkName').html(msg);
+                       $('#phone').html($('input[name="mobile"]').val());
+                    });
+        });
+        $('input[name="point"]').blur(function(){
+             $.ajax({
+                      type: "get",
+                      url: "index.php?app=point&act=checkPoint",
+                      async: false,
+                      data: { point: $('input[name="point"]').val() }
+                    }).done(function( msg ) {
+                        msg = eval("("+msg+")");
+                         $('#allPoint').html(msg.allPoint);
+                         $('#shopPoint').html(msg.shopPoint);
+                         $('#pingPoint').html(msg.pingPoint);
+                    });
+        });
+
+
+      var i = 0;
+      //获取第一个select值
+      $("#goods_type option").each(function(){
+          i ++;
+      });
+      if(i < 2){   
+         $("#dete-Popup1").show();
+      }else{
+         $("#dete-Popup1").hide();
+      }
+
+    });
+ 
+    </script>
+{include file="footer.html"}
+</html>

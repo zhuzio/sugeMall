@@ -1,0 +1,20 @@
+.footer{
+	height: 9.8rem;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+	border-top: 1px solid #efeff4;
+}
+.footer a{
+	float: left;
+	width: 20%;
+	height: 9.8rem;
+	text-align: center;
+	line-height: 9.8rem;
+
+}
+.footer a img{
+	vertical-align: middle;
+	height: 7.1rem;
+}

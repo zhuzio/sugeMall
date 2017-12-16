@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>会员财富</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jfmember.css"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/a.css">
+		<style>
+			.footer{
+				    border-top: 1px solid #efeff4;
+			}
+			.f-bottomr{
+				margin:-2.2rem 0rem 0 54.5%
+			}
+		</style>		
+	</head>
+	<body>
+		<!--导航栏开始-->
+		<div class="f-bar">
+					<a href="shopzdan.html" class="f-bills"><img class="f-bill" src="images/z-2.png" />账单</a>
+					<div class="f-si">
+					<span class="f-shop">购物积分</span>
+					</div>
+					<a href="newscentre.html" class="f-newss">消息<img class="f-news" src="images/z-3.png" /></a>
+				</div>
+	   <!--财富界面开始-->
+		<div class="f-wrap">
+			<div class="f-banner">
+				<div class="f-middle">
+					<p class="f-use">当前可用（分）</p>
+					<p class="f-score"></p>
+					
+				</div>
+				<div class="f-bottom">
+					<span class="f-bottoms">当前权&nbsp;&nbsp;结余积分</span>
+					<img class="f-bottom-i" src="images/z-4.png" />
+				</div>
+				<div class="f-bottomr">
+					<span class="f-x">幸福积分</span>
+					<span class="f-w">50</span>
+					<img class="f-bottom-i" src="images/z-4.png" />
+				</div>
+			</div>
+			<ul class="f-point">
+				<a href="hyjl4.html"><li calss="fli1">
+					<img src="images/z-5.png" /><br>
+					<span>转化记录</span>
+				</li></a>
+				<a href="hyjl3.html"><li calss="fli2">
+					<img src="images/z-6.png" /><br>
+					<span>支付记录</span>
+				</li></a>
+				<a href="hyjl2.html"><li calss="fli3">
+					<img src="images/z-7.png" /><br>
+					<span>获赠积分</span>
+				</li></a>
+				<a href="hyjl1.html"><li calss="fli4">
+					<img src="images/z-8.png" /><br>
+					<span>会员奖励</span>
+				</li></a>
+			</ul>
+		</div>
+		<!--财富界面结束-->
+		<!--结余积分界面开始-->
+		<div class="cash-wp" style="display:none;">
+			<div class="cash-b">
+				<span class="cash-a">当前权:</span>
+				<div class="cash-c">当会员账户一次性或累计300积分时，会员才享有一个受赠权，商城根据自身经营状况，开始每天赠送会员购物积分，直到300积分赠送完毕。每个受赠权可以获赠300购物积分，该积分用于本商城或商城内的联盟商家处消费。</div>
+				<span class="cash-d">结余积分</span>
+				<div class="cash-e">不足300积分的部分列为结余积分，累计300积分后可变为一个受赠权。</div>
+				<div class="cash-f">朕知道了</div>
+			</div>
+		</div>
+		<!--辛福积分界面开始-->
+		 <div class="cash-p" style="display:none;">
+			<div class="cash-b">
+				<span class="cash-a">幸福积分:</span>
+				<div class="cash-c">所有方式获赠的购物积分，以每笔5%转化为幸福积分，用于公益事业，提升社会幸福指数。</div>
+				<div class="cash-g">朕知道了</div>
+			</div>
+		</div>
+		<!--辛福积分界面结束-->
+		<div class="fokong"></div>
+	<div class="footer">
+		<a href="index.html" class="ssy"><img src="images/souye.png" alt=""></a>
+		<a href="fenlei.html"><img src="images/kinds.png" alt=""></a>
+		<a href="coalition.html"><img src="images/union.png" alt=""></a>
+		<a href=""><img src="images/wealth2.png" alt=""></a>
+		<a href="z-member.html" class="lcf1"><img src="images/me.png" alt=""></a>
+	</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+		var tokens;
+		  tokens=localStorage.getItem ("token");
+		  var types=localStorage.getItem ("type");
+		  function tok(toks){
+		  	tokens=toks;
+		  	localStorage.setItem('token',  tokens);
+		  	// return toks;
+		  	
+		  }
+		  $(".ssy").on("click",function(){
+			location.href="index.html";
+		})
+		    $(".f-score").on("click",function(){
+			location.href="shopzdan.html";
+		})
+		$(function(){
+			 
+			 
+		          $(".f-bottoms").click(function(){
+		          	$(".cash-wp").show();
+		          });
+		          $(".cash-wp").click(function(){
+		          	$(".cash-wp").hide();
+		          });
+		          
+		          $(".f-x").click(function(){
+		          	$(".cash-p").show();
+		          });
+		          $(".cash-p").click(function(){
+		          	$(".cash-p").hide();
+		          });
+		         
+		          $.ajax({
+			     type: 'POST',
+			      dataType: "json",
+			      url:Url + "api/index.php?n=member_wealth&f=pointTop",
+			     data: {
+			     	token:tokens,
+			     	},
+			    success: function(data){
+			    	console.log(data);
+			    	$(".f-score").html(data.data.current);
+			    	$(".f-bottoms").html("当前权"+data.data.point_peac+"&nbsp;&nbsp;结余积分"+data.data.point);
+			    	$(".f-w").html(data.data.happiness);
+			    },
+			    error:function(data){
+					    	// console.log(data);
+					    }
+					})
+		});
+		$.ajax({	
+			type: 'POST',
+			url: Url + "api/index.php?n=user&f=userinfo",
+			dataType: "json",
+			data: { token : tokens},
+			success: function(data){
+				// console.log(data);
+				 if (data.ret=="err") {
+		                      	var myphones=localStorage.getItem("myphone");
+					localStorage.clear();
+					localStorage.setItem('myphone', myphones);
+					location.href="denglu.html";
+		                      }
+				// localStorage.setItem('type',  data.data.type);
+				// types=data.data.type;
+				if (data.data.type==types) {
+				}else{
+					
+					var myphones=localStorage.getItem("myphone");
+					localStorage.clear();
+					localStorage.setItem('myphone', myphones);
+					location.href="denglu.html";
+				}
+				
+				     if (types==1) {
+				              $(".lcf1").attr("href","z-member.html");
+				             }else if(types==2){
+				                $(".lcf1").attr("href","z-unicon.html");
+				             }else if(types==3){
+				                $(".lcf1").attr("href","z-sell.html");
+				             }else if(types==4){
+				                $(".lcf1").attr("href","z-comm.html");
+				             }else if(types==5){
+				                $(".lcf1").attr("href","z-county.html");
+				             }else if(types==6){
+				                $(".lcf1").attr("href","z-city.html");
+				             }else if(types==7){
+				                $(".lcf1").attr("href","z-provin.html");
+				             }
+			        	
+					} ,
+				    error:function(data){
+				    	// console.log(data);
+				    }
+		})
+	</script>
+
+</html>
+	</body>
+</html>

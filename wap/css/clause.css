@@ -1,0 +1,10 @@
+.shop_detail{
+	width: 94%;
+	margin: 10.0rem auto 0;
+}
+.shop_detail p{
+	font-size: 1.6rem;
+	color: #666;
+	line-height: 4.2rem;
+	/*text-indent: 3.2rem;*/
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">    
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <!-- <link rel="stylesheet" href="./newstyles/newapp/css/Personal-Center.css" /> -->
+    <link rel="stylesheet" href="{res file=css/Personal-Center.css}">
+    <link rel="stylesheet" href="{res file=css/public.css}" />
+    <script type="text/javascript">
+    	// var SITE_URL = "{$site_url}";
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+   			
+   		});
+   		
+    </script>
+</head>
+<body>
+	<div class="content">
+		<!--
+        	时间：2016-06-15
+        	描述：个人中心top板块
+        -->
+		<div class="top">
+			<a class="setup"></a>
+			<div class="userpic">
+				<a href="#"><img src="{res file=images/personal/User-profile.png}"></a>
+			</div>
+			<div class="userinf">
+				<h4>苏格联盟会员</h4>
+				<div class="user-identity">
+					<div class="user-id">
+						<img src="{res file=images/Personal/gm-sale.png}">
+						<!--
+						<span class="icon-sale"></span>
+                        	时间：2016-06-16
+                        	描述：背景图标样式
+                        -->
+						<a href="#">金牌用户</a>
+						<em class="icon-jx"></em>
+					</div>
+				</div>
+			</div>
+			<!--
+			<div class="useradmin">
+				<a href="#">
+					<sapn>帐户管理</span>
+				</a>
+			</div>
+            	时间：2016-06-15
+            	描述：屏幕宽度不同时无法保证正确显示
+            -->
+            <div class="clear"></div>
+		</div>
+		<div class="capital">
+			<div class="cap-one">
+				<div class="cap-box">
+					<h4>2014</h4>
+					<p class="cap-tit"><span class="icon-balance"></span>当前余额</p>
+					<p class="cap-tay">今日<span>235</span></p>
+					<p class="cap-tay">累计<span>22567</span></p>
+				</div>
+			</div>
+			<div class="cap-one">
+				<div class="cap-box">
+					<h4>1532</h4>
+					<p class="cap-tit"><span class="icon-int"></span>当前积分</p>
+					<p class="cap-tay">今日<span>235</span></p>
+					<p class="cap-tay">累计<span>22567</span></p>
+				</div>
+			</div>
+			<div class="cap-one">
+				<div class="cap-box">
+					<h4>2986</h4>
+					<p class="cap-tit"><span class="icon-pro"></span>当前收益</p>
+					<p class="cap-tay">今日<span>235</span></p>
+					<p class="cap-button"><button>提现</button></p>
+				</div>
+			</div>
+		</div>
+		<!--
+        	时间：2016-06-15
+        	描述：管理
+       -->
+        
+        <div class="recommend">
+        	<div class="rec-one w25 fl">
+        		<a href="#">
+        			<img src="{res file=images/Personal/icon-11.png}">
+        			<p>我的订单</p>
+        		</a>
+        	</div>
+        	<div class="rec-one w25 fl">
+        		<a href="#">
+        			<img src="{res file=images/Personal/icon-12.png}">
+        			<p>商品收藏</p>
+        		</a>
+        	</div>
+        	<div class="rec-one w25 fl">
+        		<a href="#">
+        			<img src="{res file=images/Personal/icon-13.png}">
+        			<p>店铺收藏</p>
+        		</a>
+        	</div>
+        	<div class="rec-one w25 fl">
+        		<a href="#">
+        			<img src="{res file=images/Personal/icon-14.png}">
+        			<p>收货地址</p>
+        		</a>
+        	</div>
+        	<div class="rec-one w25 fl">
+        		<a href="#">
+        			<img src="{res file=images/Personal/icon-15.png}">
+        			<p>物流查询</p>
+        		</a>
+        	</div>
+        	<div class="rec-one w25 fl">
+        		<a href="#">
+        			<img src="{res file=images/Personal/icon-16.png}">
+        			<p>我的推广</p>
+        		</a>
+        	</div>
+        	<div class="rec-one w25 fl">
+        		<a href="#">
+        			<img src="{res file=images/Personal/icon-17.png}">
+        			<p>我的优惠码</p>
+        		</a>
+        	</div>
+        </div>
+	</div>
+</body>
+</html>

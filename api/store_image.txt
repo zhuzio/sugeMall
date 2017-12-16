@@ -1,0 +1,1 @@
+UPDATE `ecm_store`  SET `image_3`='data/files/mall/application/store_49252_3.jpg'  WHERE ( `store_id` = '49252' )

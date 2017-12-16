@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-touch-fullscreen" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	{$page_seo}
+	<meta name="generator" content="vmall_vchuang_cn {$ecmall_version}" />
+	<link href="{res file=css/public.css}" type="text/css" rel="stylesheet" />
+	<link href="{res file=css/index.css}" type="text/css" rel="stylesheet" />
+	<link href="{res file=css/mui.min.css}" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="index.php?act=jslang"></script>
+	<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+	<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+	<script type="text/javascript" src="{res file=js/mui.min.js}" charset="utf-8"></script>
+	<script src="{res file=js/indexss.js}"></script>
+	<script src="{res file=js/currency.js}"></script>
+	{$_head_tags}
+	<script type="text/javascript">
+		//<!CDATA[
+		var SITE_URL = "{$site_url}";
+		var REAL_SITE_URL = "{$real_site_url}";
+		var PRICE_FORMAT = '{$price_format}';
+		var cateid = '{$cateid}';
+		//]]>
+	</script>
+</head>
+
+
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&amp;ak=Pw6hxc1p4yhyUhCczqc4UOUX1UPDOau8"></script>
+	<body>
+		<header class="index-header">
+			<a class="menu-iocn"></a>
+			<form>
+				<div class="search">
+					<!-- <span class="search-icon"></span> -->
+					  <input type="hidden" name="app" value="search_offline"/>
+					  <input type="hidden" name="act" value="store"/>
+					<button type="submit" class="search-icon" style="border:0px;position:absolute;top:-5px;left:-12px;display:inline"></button>
+					<input type="text" placeholder="请输入关键词" id="search" style="margin-left:30px" value="" name="keyword">
+					<span class="clear-icon" style="margin-top:-30px" id="clear_a"></span>
+					<p></p>
+				</div>
+
+			</form>
+			<a href="#" class="weizhi">
+				<span></span>
+				卧龙区
+			</a>
+		</header>
+		<div class="content mtop44">
+			<div class="cation">
+				<div id="Gallery" class="mui-slider" style="margin-top:15px;">
+					<div class="mui-slider-group">
+						<div class="mui-slider-item">
+							<ul class="mui-table-view mui-grid-view mui-grid-9">
+								<!--{foreach from=$cateFirst item=cate}-->
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+									<a href="/index.php?app=offline&cateid={$cate.cate_id}">
+										<img src="{$cate.thumb}" style="width: 48px;">
+										<div class="mui-media-body">{$cate.cate_name}</div>
+									</a>
+								</li>
+								<!--{/foreach}-->
+							</ul>
+						</div>
+						<!--{if $cateSecond}-->
+						<div class="mui-slider-item">
+							<ul class="mui-table-view mui-grid-view mui-grid-9">
+								<!--{foreach from=$cateSecond item=cate}-->
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+									<a href="/index.php?app=offline&cateid={$cate.cate_id}">
+										<img src="{$cate.thumb}" style="width: 48px;">
+										<div class="mui-media-body">{$cate.cate_name}</div>
+									</a>
+								</li>
+								<!--{/foreach}-->
+							</ul>
+						</div>
+						<!--{/if}-->
+						<!-- {if $cateThird} -->
+						<div class="mui-slider-item">
+							<ul class="mui-table-view mui-grid-view mui-grid-9">
+								<!--{foreach from=$cateThird item=cate}-->
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+									<a href="/index.php?app=offline&cateid={$cate.cate_id}">
+										<img src="{$cate.thumb}" style="width: 48px;">
+										<div class="mui-media-body">{$cate.cate_name}</div>
+									</a>
+								</li>
+								<!--{/foreach}-->
+							</ul>
+						</div>
+						<!-- {/if} -->
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+			</div>
+			<div class="mui-content">
+				<div class="list-box">
+					<p class="list-tit">
+						<span></span>
+						附近商家
+					</p>
+					<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="top: 50px;">
+						<div class="mui-scroll">
+							<!--数据列表-->
+							<ul class="mui-table-view mui-table-view-chevron shop_list">
+								<!--{foreach from=$shopList item=shop}-->
+								<li class="cat-list" data-href="index.php?app=offline&act=detail&id={$shop.store_id}">
+									<a clas="mui-table-view" href="index.php?app=offline&act=detail&id={$shop.store_id}">
+										<img src="<!--{if $shop.store_banner}-->{$shop.store_banner}<!--{else}-->{res file=images/default.jpg}<!--{/if}-->">
+										<div class="inf">
+											<p class="name">{$shop.store_name}</p>
+											<p class="names">{$shop.address}</p>
+											<p class="number">
+												<span class="icon-yan"></span>
+												<span>浏览量</span>
+												<span>{$shop.views}</span>
+											</p>
+										</div>
+										<div class="distance">
+											<span class="icon-dis"></span>
+											<span>{$shop.distance}</span>
+										</div>
+									</a>
+								</li>
+								<!--{/foreach}-->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// function t_value(){
+			// 	var a =$('#search').val();
+			// 	alert(a);
+			// 	if(a==undefined || a =='' || a==null){
+			// 		return false;
+			// 	}	
+			// }
+			
+
+			//绑定点击事件
+			$('#clear_a').click(function(){
+				$("#search").attr("value",'');
+						
+			})
+			
+		</script>
+	</body>
+{include file="footer.html"}
+

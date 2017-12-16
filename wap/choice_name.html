@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择商品名称</title>
+	<link rel="stylesheet" href="css/choice_name.css">
+	<style>
+		.section1 .lclass_id{
+			display: none;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+			<div class="left"><a href="javascript:history.go(-1);"><img src="images/fanhui.png" alt=""></a></div>
+			<div class="center"><p>选择商品名称</p></div>
+		</header>
+		<!-- 主体 -->
+		<section>
+			<div class="goods"></div>
+			<div class="tianjia">
+				<img src="images/w-tj1.png" alt="">
+			</div>
+			
+			<div class="cd-popup">
+			    <div class="cd-popup-container">
+			       <div class="tanchu">
+			   			<input type="text" name="" id="" value="" placeholder="请输入所要添加的商品名称"/>
+			   			
+			   				<ul class="but">
+			   					<li class="li1">取消</li>
+			   					<li class="vis"></li>
+			   					<li class="li2">确认</li>
+			   				</ul>
+			       </div>
+			    </div>
+			</div>
+			<div class="kong">
+				<p>您当前还没有添加商品名称</p>
+				<div class="kong_tj">
+				<img src="images/w-tj1.png" alt="">
+				</div>
+			</div>
+		</section>
+		
+	</div>
+</body>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var tokens=localStorage.getItem('token');
+           var names;
+           var arr=[];
+           // $(".tianjia").css("display","none");
+           function gl(){
+           	var secs=$(".goods .section1").length;
+
+           	// console.log($(".goods .section1").length);
+           	if (secs==0) {
+           		// alert(0);
+           		$(".tianjia").css("display","none");
+           		$(".kong").css("display","block");
+
+           	}else{
+           		// alert(1);
+           		$(".tianjia").css("display","block");
+           		$(".kong").css("display","none");
+           	}
+           }
+
+   	$('.tianjia').on('click',function(){
+		   jQuery(document).ready(function($){
+		        //打开窗口
+	            event.preventDefault();
+	            $('.cd-popup').addClass('is-visible');
+		       
+		        //关闭窗口
+		        $('.cd-popup').on('click', function(event){
+		            if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+		            }
+	        	 }) 	
+		        $('.li1').on('click', function(event){
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+	         	 })
+		        $('.li2').off().on('click', function(event){
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+		                names=$(".tanchu input").val();
+		                tj_name();
+		                gl();
+	         	})
+		    })
+	});
+	$('.kong_tj').on('click',function(){
+		   jQuery(document).ready(function($){
+		        //打开窗口
+	            event.preventDefault();
+	            $('.cd-popup').addClass('is-visible');
+		       
+		        //关闭窗口
+		        $('.cd-popup').on('click', function(event){
+		            if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+		            }
+	        	 }) 	
+		        $('.li1').on('click', function(event){
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+	         	 })
+		        $('.li2').off().on('click', function(event){
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+		                names=$(".tanchu input").val();
+		                tj_name();
+		                gl();
+	         	})
+		    })
+	});
+	function tj_name(){
+		var htmlss="<div class='section1'><p>"+names+"</p><span><img src='images/w-goodsn1.png'></span></div>";
+		$(".goods").append(htmlss);
+		// 添加商品接口
+		$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=shop_center&f=addClassName",
+		         	dataType: "json",
+		       	data: { 
+		       		token : tokens,
+		       		classname:names,
+		       	},
+		        	success: function(data){
+		                      // console.log(data);
+		                      atj();
+			      
+			} ,
+		            error:function(data){
+			               // console.log(data);
+		}
+		})
+		gl();
+
+	}
+	 $('.kong_tj').on('click',function(){
+		   jQuery(document).ready(function($){
+		        //打开窗口
+	            event.preventDefault();
+	            $('.cd-popup').addClass('is-visible');
+		       
+		        //关闭窗口
+		        $('.cd-popup').on('click', function(event){
+		            if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+		            }
+	        	 }) 	
+		        $('.li1').on('click', function(event){
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+	         	 })
+		        $('.li2').on('click', function(event){
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+	         	})
+		    })
+	});     
+	$(".goods").on("click","span",function(){
+		// $(this).parent().css("display","none");
+		
+		//删除商品接口
+		// console.log($(this).parent(".section1").index());
+		// console.log($(".goods .section1").length);
+		var classids=arr[$(this).parent().index()];
+		$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=shop_center&f=delClassName",
+		         	dataType: "json",
+		       	data: { 
+		       		token : tokens,
+		       		classid:classids
+		       	},
+		        	success: function(data){
+//		                      console.log(data);
+			      
+			} ,
+		            error:function(data){
+			           // console.log(data);
+			                      }
+		})
+		$(this).parent().remove();
+		gl();
+		atj();
+	})
+	$(".goods").on("click","p",function(){
+		localStorage.setItem('classid', $(this).html());
+		localStorage.setItem('lclass_id', $(this).parent().find(".lclass_id").html());
+		$(".section1").css("background-color","#fff");
+		$(this).parent().css("background-color","#ccc");
+		// location.href="fajifen.html";
+		// $(".left").click();
+		window.history.go(-1);
+
+		
+	})
+	gl();
+
+</script>
+<script>
+	
+	// 商品列表
+	function atj(){
+		$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=shop_center&f=shop_class_list",
+		         	dataType: "json",
+		       	data: { 
+		       		token : tokens,
+
+		       	},
+		        	success: function(data){
+//		                       console.log(data);
+		                      var count;
+		                      arr=[];
+				    	var htmls="";
+				    	for (var j = 0; j < 10000000; j++) {
+				    		
+				    		if (!data.data[j]) {
+				    			count=j;
+				    			
+				    			break;
+				    		}
+				    	};
+				    	// console.log(count);
+				    	for (var i = 0; i < count; i++) {
+				    		arr[i]=data.data[i].class_id;
+				    		   htmls+="<div class='section1'><span class='lclass_id'>"+data.data[i].class_id+"</span><p>"+data.data[i].name+"</p><span><img src='images/w-goodsn1.png'></span></div>";
+				    	};
+		                   	$(".goods").html(htmls);
+		                   	// console.log(arr);
+			      gl();
+			} ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+	}
+		
+		atj();
+
+
+	
+	
+		
+</script>
+</html>

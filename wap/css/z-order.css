@@ -1,0 +1,82 @@
+.order-sumr{
+	width: 100%;
+	border: 1px solid #d5d5d5;
+	/*margin-bottom: 1.8rem;*/
+}
+.order-sum{
+	width: 90%;
+	height: 9.0rem;
+	line-height: 9.0rem;
+	margin-left: 4.0%;
+	display: flex;
+	justify-content: space-between;
+}
+.order-account{
+	font-size: 3.0rem;
+	color: #333;
+}
+.order-money{
+	font-size: 3.0rem;
+	color: #d81e05;
+}
+.order-pay{
+	width: 100%;
+	height: 12.8rem;
+	/*line-height: 12.8rem;*/
+	/*margin-bottom: 3.0rem;*/
+	border-bottom:1px solid #d5d5d5;
+}
+.order-pay img{
+	width: 9.0rem;
+	margin-left: 4.0%;
+	margin-top: 1.9rem;
+}
+.order-pay span{
+	font-size: 3.0rem;
+	color: #333;
+	position: relative;
+	top: -5.0rem;
+	left: 3.0rem;
+}
+.order-pay p{
+	width: 50.0%;
+	font-size: 2.4rem;
+	color: #666;
+	position: relative;
+	left: 15.0rem;
+	top: -2.8rem;
+}
+.order-other{
+	width: 50%;
+	height: 9.0rem;
+	font-size: 3.0rem;
+	color: #999;
+	line-height: 9.0rem;
+	margin: 0rem 0 0 3.0rem;
+}
+.order-payy{
+	border-top: 1px solid #D5D5D5;
+}
+#zftj,#weixin{
+	width: 100%;
+	height: 10.0rem;
+	opacity: 0;
+}
+#zftj{
+  margin-top: -12.0rem;
+}
+#weixin{
+	margin-top: -10.0rem;
+}
+.z-ass{
+	width: 70%;
+	height: 15.0rem;
+	background:rgba(0,0,0,0.6);
+	margin: 0 auto;
+	border-radius: 1.0rem;
+	color: #fff;
+	font-size: 3.0rem;
+	text-align: center;
+	line-height: 15.0rem;
+	display: none;
+}

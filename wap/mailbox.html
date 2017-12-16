@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>邮箱</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/mailbox.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">邮箱</p>
+		<span>保存</span>
+	</div>
+	<form action="">
+		<p>
+			<span>输入邮箱：</span>
+			<input type="text" placeholder="请输入自己邮箱" id="w_email">
+		</p>
+	</form>
+</body>
+<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script>
+	 var tokens=localStorage.getItem ("token");
+	var html="";
+	var w_emails;
+	$("#w_email").on("keyup",function(){
+		 w_emails=$("#w_email").val();
+	})
+	$(".d_header span").on("click",function(){
+		$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=user&f=setemail",
+		         	dataType: "json",
+		       	data: { token : tokens,email:w_emails},
+		        	success: function(data){
+		                      console.log(data);
+		                      location.href="personalData.html"
+			} ,
+		            error:function(data){
+			                      	  console.log(data);
+			                      }
+		})
+		})
+	$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=user&f=information",
+		         	dataType: "json",
+		       	data: { token : tokens},
+		        	success: function(data){
+		                      console.log(data);
+		                    
+		                      $('input').val(data.data.email);
+		                  },
+		                  error:function(data){
+			                      	  console.log(data);
+			                      }
+		})
+</script>
+</html>

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>会员</title>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/w_member1.css">
+		<link rel="stylesheet" href="css/a.css">
+		<meta name="format-detection" content="telephone=no" />
+		<style>
+			.ldtt {
+				position: fixed;
+				z-index: 1000;
+				height: 3.2rem;
+				text-align: center;
+				bottom: 12rem;
+				left: 0;
+				width: 100%;
+				display: none;
+			}
+			
+			.ldtt img {
+				width: 3.2rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="ldtt"><img src="images/add.gif" alt=""></div>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">会员</p>
+			<!-- <button>保存</button> -->
+		</div>
+		<div class="searcher">
+			<p class="search">
+				<i><img src="images/l_search.png" alt=""></i>
+				<input type="text" placeholder="搜索姓名或手机号查看团队成员">
+			</p><span>搜索</span></div>
+		<div class="kong"></div>
+		<ul class="memer">
+			<li>
+				<!--<div class="con">
+					<div class="left">
+						<img src="images/z-1216.png"/>
+						<span>姓名:</span>
+						<span></span>
+					</div>
+					<div class="left">
+						<a href=""><img src="images/z-1217.png"/></a>
+						<span>电话:</span>
+						<a href=""><span></span></a>
+					</div>
+					<div class="right">
+						<img src="images/z-1218.png"/>
+						<span>注册时间:</span>
+					</div>	
+				</div>-->
+			</li>
+		</ul>
+		<div class="none">
+			<img src="images/none.png" alt="">
+		</div>
+		<div class="numk"></div>
+		<div class="num">当前人数（<span></span>）</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script>
+		$(function() {
+			var numm;
+			var xia = true;
+			var tokens = localStorage.getItem("token");
+			var types = localStorage.getItem("type");
+			types = 1;
+
+			function getLocalTime(timestamp) {
+				var d = new Date(timestamp * 1000); //根据时间戳生成的时间对象
+				if(d.getSeconds() < 10) {
+					var ds = "0" + d.getSeconds();
+				} else {
+					var ds = d.getSeconds();
+				}
+				if(d.getMinutes() < 10) {
+					var dm1 = "0" + d.getMinutes();
+				} else {
+					var dm1 = d.getMinutes();
+				}
+				if(d.getHours() < 10) {
+					var dh = "0" + d.getHours();
+				} else {
+					var dh = d.getHours();
+				}
+				if(d.getDate() < 10) {
+					var dd = "0" + d.getDate();
+				} else {
+					var dd = d.getDate();
+				}
+				if((d.getMonth() + 1) < 10) {
+					var dm2 = "0" + (d.getMonth() + 1);
+				} else {
+					var dm2 = (d.getMonth() + 1);
+				}
+				// console.log(typeof(d.getSeconds()));
+				// var date = (d.getFullYear()) + "-" + 
+				//            (d.getMonth() + 1) + "-" +
+				//            (d.getDate()) + " " + 
+				//            (d.getHours()) + ":" + 
+				//            (d.getMinutes()) + ":" + 
+				//            (d.getSeconds());
+				var date = (d.getFullYear()) + "-" +
+					dm2 + "-" +
+					dd + " " +
+					dh + ":" +
+					dm1 + ":" +
+					ds;
+
+				return date;
+			}
+
+			function getLocalTime1(timestamp) {
+				var d = new Date(timestamp * 1000); //根据时间戳生成的时间对象
+				var date = (d.getFullYear()) + "-" +
+					(d.getMonth() + 1) + "-" +
+					(d.getDate());
+				return date;
+			}
+
+			function getLocalTime2(timestamp) {
+				var d = new Date(timestamp * 1000); //根据时间戳生成的时间对象
+				var date = (d.getHours()) + ":" +
+					(d.getMinutes()) + ":" +
+					(d.getSeconds());
+				return date;
+			}
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=user&f=myteam",
+				dataType: "json",
+				data: {
+					"token": tokens,
+					"type": types,
+				},
+				success: function(data) {
+//					console.log(data)
+					$(".num span").html(data.arr);
+					var datas = data.data;
+					var n;
+					numm = data.totalpage;
+					for(var j = 0; j < 10000000; j++) {
+						if(!data.data[j]) {
+							n = j;
+							break;
+						}
+					};
+					for(var i = 0; i < n; i++) {
+
+						 var html = '<div class="con"><div class="left"><img src="images/z-1216.png"/><span>姓名:</span><span>' + datas[i].real_name + '</span></div><div class="left"><a href="tel:' + datas[i].user_name + '"><img src="images/z-1217.png"/></a><span>电话:</span><a href="tel:' + datas[i].user_name + '"><span>' + datas[i].user_name + '</span></a></div><div class="right"><img src="images/z-1218.png"/><span>注册时间:' + getLocalTime(data.data[i].reg_time) + '</span></div></div>';
+//						var html = '<div class="con"><div class="left">' + datas[i].real_name + '</div><a href="tel:' + datas[i].user_name + '" class="right">' + datas[i].user_name + '</a><div class="center">' + getLocalTime(data.data[i].reg_time) + '</div></div>';
+						$(".memer li").append(html);
+					}
+					$('.zleft').error(function() {
+						$(this).attr('src', 'images/z-logo.png');
+					});
+					sl();
+				},
+				error: function(data) {}
+			});
+			//搜索会员ajax开始
+			$(".searcher span").on("click", function() {
+				xia = false;
+				var intxt = $(".search input").val();
+				//				console.log(intxt);
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=user&f=myteam",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"user_value": intxt,
+						"type": "1",
+					},
+					success: function(data) {
+						// console.log(data);
+						$(".memer li").html(" ");
+						$(".num span").html(data.arr);
+						var datas = data.data;
+						var n;
+						numm = data.totalpage;
+						for(var j = 0; j < 10000000; j++) {
+							if(!data.data[j]) {
+								n = j;
+								break;
+							}
+						};
+						for(var i = 0; i < n; i++) {
+							var html = '<div class="con"><div class="left"><img src="images/z-1216.png"/><span>姓名:</span><span>' + datas[i].real_name + '</span></div><div class="left"><a href="tel:' + datas[i].user_name + '"><img src="images/z-1217.png"/></a><span>电话:</span><a href="tel:' + datas[i].user_name + '"><span>' + datas[i].user_name + '</span></a></div><div class="right"><img src="images/z-1218.png"/><span>注册时间:' + getLocalTime(data.data[i].reg_time) + '</span></div></div>';
+							$(".memer li").append(html);
+						}
+						$('.zleft').error(function() {
+							$(this).attr('src', 'images/z-logo.png');
+						});
+						if($(".memer li .con").length >= 1) {
+							$(".none").css("display", "none");
+						}
+						// $(".memer li .con").length
+						sl();
+					},
+					error: function(data) {}
+				});
+
+			});
+
+			function sl() {
+				if($(".num").find("span").html() < 1) {
+					$(".num").css("display", "none");
+					$(".none").css("display", "block");
+				} else {
+					$(".none").css("display", "none");
+					$(".num").css("display", "block");
+				}
+			}
+			// sl();
+			var pages = 1; //当前页的页码
+			var allpage = numm; //总页码，会从后台获取
+			var sc = true;
+
+			function showAjax() {
+				$(".ldtt").css("display", "block");
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=user&f=myteam",
+					data: {
+						token: tokens,
+						page: pages,
+						"type": types,
+					},
+					success: function(data) {
+						// console.log(data);
+						var datas = data.data;
+						var n;
+						for(var j = 0; j < 10000000; j++) {
+							if(!data.data[j]) {
+								n = j;
+								break;
+							}
+						};
+						var html = "";
+						for(var i = 0; i < n; i++) {
+							html += '<div class="con"><div class="left"><img src="images/z-1216.png"/><span>姓名:</span><span>' + datas[i].real_name + '</span></div><div class="left"><a href="tel:' + datas[i].user_name + '"><img src="images/z-1217.png"/></a><span>电话:</span><a href="tel:' + datas[i].user_name + '"><span>' + datas[i].user_name + '</span></a></div><div class="right"><img src="images/z-1218.png"/><span>注册时间:' + getLocalTime(data.data[i].reg_time) + '</span></div></div>';
+							sc = true;
+						};
+						$(".memer li").append(html);
+						$('.zleft').error(function() {
+							$(this).attr('src', 'images/z-logo.png');
+						});
+						sl();
+						// 分页加载/
+						setTimeout(function() {
+							$(".ldtt").css("display", "none");
+						}, 300)
+					}
+				})
+			}
+
+			function scrollFn() {
+
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 100) { //如果满足触发条件，执行
+					if(sc) {
+						// alert(2);
+						// alert(pages+":"+allpage)
+						sc = false;
+						pages++;
+						if(pages <= numm) {
+							if(xia) {
+								// console.log(pages);
+								showAjax();
+								// alert(0);
+							}
+
+							// alert(1);
+						}
+
+					}
+				}
+			}
+			$(window).bind("scroll", scrollFn); //绑定滚动事件
+		})
+	</script>
+
+</html>

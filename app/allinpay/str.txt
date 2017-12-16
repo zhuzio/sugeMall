@@ -1,0 +1,1 @@
+signMsg=A20165D6C1D5F93C7B7AC76B06BEDE10&signType=0&merchantId=008411353990035&partnerUserId=37448;https://cashier.allinpay.com/usercenter/merchant/UserInfo/reg.do

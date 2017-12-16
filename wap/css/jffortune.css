@@ -1,0 +1,321 @@
+.d_header{
+	height: 8.8rem;
+	background-color: transparent;
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+	top: 0;
+}
+.d_header .h_a1{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.d_header .p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3rem;
+	color: #fff;
+	/*font-family: Microsoft YaHei;*/
+}
+.d_header .p1 img{
+	vertical-align: middle;
+	height: 4rem;
+	width: 4rem;
+}
+.d_header .p2{
+	width: 30rem;
+	height: 6rem;
+	margin: 1.6rem auto 1.2rem;
+	background-color: #b18042;
+	border-radius: 1rem;
+	border: 1px solid #fff;
+	/*text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;*/
+	/*font-family: Microsoft YaHei;*/
+	/*position: relative;
+	height: 8.8rem;
+	width: 100%;*/
+}
+.d_header .p2 span{
+	float: left;
+	width: 50%;
+	line-height: 6rem;
+	text-align: center;
+	color: #fff;
+	font-size: 3.4rem;
+	border-radius:0 1rem 1rem 0;
+	/*background-color: #b18042;*/
+}
+.d_header .p2 .hps2{
+	color: #434343;
+}
+.hps2{
+	background-color: #f1e2d0;
+}
+.d_header .h_a2{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	line-height: 8.8rem;
+	width:11rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3rem;
+	color: #fff;
+	text-align: right;
+	background-color: transparent;
+}
+.d_header .h_a2 img{
+	width: 4rem;
+	height: 3.8rem;
+	vertical-align: middle;
+}
+.f-bar{
+	width: 92.0%;
+	height: 8.8rem;
+	/*border: 1px solid red;*/
+	position: fixed;
+	top: 2.2rem;
+	left: 3.9%;
+	z-index: 100;
+	/*margin: 0 auto;*/
+}
+.f-bill {
+	width: 4.4rem;
+	/*margin-left: 3.0rem;*/
+	position: absolute;
+	left: 0;
+	top: 0;}
+.f-shop ,.f-income{
+	font-size:3.4rem;
+	color: #333;
+	padding: 0.4rem 0.3rem;
+	/*border: 1px solid red;*/
+	/*margin-left: 24.8rem;*/
+	/*position: relative;
+	 * top: -0.8rem;*/
+	}
+	.f-shop{
+	background-color: #3fd9bf;
+	border: 1px solid #fff;
+	border-top-left-radius: 0.8rem;
+	border-bottom-left-radius: 0.8rem;
+	box-sizing:border-box;
+	color: #fff;
+	}
+.f-income{
+	background-color: #fff;
+	border-top-right-radius: 0.8rem;
+	border-bottom-right-radius: 0.8rem;
+	}
+.f-news {
+	width:4.4rem;
+	/*margin-left: 22.8rem;*/
+	position: absolute;
+	right: 0;
+	top: 0;
+	}
+.f-si{
+	width: 42.7%;
+	height: 6rem;
+	/*border: 1px solid red;*/
+	margin: -0.5rem auto 0;
+	line-height: 6rem;
+	}
+.f-banner{
+	width: 100%;
+	height:37.0rem;
+	/*background: url("../images/z-1.png") no-repeat;
+	background-size:100% 100%;
+	position: absolute;*/
+	/*background-position: 100% 100%;*/
+	/*background-color: #3fd9bf;*/
+	/*background-color: #20293f;*/
+	/*background-color: #fdae52;*/
+	background: url(../images/cfbj.png) 0 0 no-repeat;
+	background-size: 100% 100%;
+	position: absolute;
+}
+.f-middle{
+	/*width: 44.0%;*/
+	/*border: 1px solid red;*/
+	margin: 12.5rem 3rem 0;
+}
+.f-score {
+	font-size: 9rem;
+	color:#fff;
+	line-height: 10rem;
+	/*text-align: center;*/
+	}
+.f-use {
+	font-size:2.8rem;
+	color: #fff;
+	/*margin-left: 2.8rem;*/
+	line-height: 3rem;
+	/*text-align: center;*/
+	}
+.f-bottom {
+	width:50%;
+	margin:3.0rem 0 0 0rem;
+	/*border: 1px solid red;*/
+	}
+.f-bottoms {
+	font-size: 2.4rem;
+	color: #fff;}
+.f-bottom-i {
+	width: 2.8rem;
+	vertical-align: middle;
+	margin-top: -1rem;
+	}
+.f-bottomr {
+	width:50%;
+	margin:-2.2rem 3rem 0 50%;
+	/*border: 1px solid red;*/
+	text-align: right;
+	}
+	.quan{
+		/*margin: 0 4rem 0 3rem;*/
+		/*margin-top: */
+		/*margin: 4rem 0 3rem 0;*/
+		margin: 6rem 3rem 0rem;
+	}
+.f-w {
+	font-size: 2.6rem;
+	color: #fff;
+	}
+.f-x {
+	font-size: 2.4rem;
+	color: #fff;
+	}
+	.f-point{
+		width: 92%;
+		height: 8.8rem;
+		/*border: 1px solid red;*/
+		position: absolute;
+	    top: 42.5rem;
+	    left:4%;
+	}
+	.f-point a{
+		float: left;
+		width: 22%;
+		 margin-left: 3.0%;
+	}
+	.f-point li {
+		width: 100%;
+		/*height: 16.0rem;*/
+	    display: inline-block;
+	    /*margin-top: 42.5rem;*/
+	   margin-left: 3.0%;
+	   text-align: center;
+	    
+	}
+	.f-point a:nth-child(1){
+		margin-left: 0;
+	}
+	.f-point li:nth-child(1){
+		margin-left: 0;
+	}
+	.f-point li img {
+	   width: 90%;
+	}
+	.f-point span {
+	  display: inline-block;
+	  font-size: 3.0rem;
+	  color: #333333; 
+	position: relative;
+	top: 2.5rem;
+	}
+	
+/*财富样式结束*/
+
+/*结余积分界面样式开始*/
+.cash-wp,.cash-p{
+	width: 100%;
+	height: 100%;
+	background:rgba(0,0,0,0.3);
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1000;
+}
+.cash-b{
+	width:84.3%;
+	height:55.4rem;
+	background-color: #fff;
+	margin: 23.6rem auto 0;
+	border: 1px solid #ccc;
+	position: relative;
+}
+.cash-a,.cash-d{
+	font-size:3.0rem;
+	color: #333;
+	position: absolute;
+}
+.cash-a{
+	left: 3.0rem;
+	top: 3.3rem;
+}
+.cash-e,.cash-c{
+	width:57.0rem;
+	font-size: 2.4rem;
+	line-height: 3.8rem;
+}
+.cash-c{
+	width:90%;
+	/*border: 1px solid red;*/
+	margin: 8.5rem auto 0;
+	
+}
+.cash-d{
+	top: 33.4rem;
+	left: 3.0rem;
+}
+.cash-e{
+	width: 90%;
+	/*border: 1px solid red;*/
+	margin: 12.4rem auto 0;
+}
+.cash-f{
+	width: 100%;
+	text-align: center;
+	font-size: 3.0rem;
+	margin-top:3.4rem;
+}
+.cash-g{
+	width: 100%;
+	text-align: center;
+	font-size: 3.0rem;
+	margin-top: 34.1rem;
+}
+.fokong{
+	height: 9.8rem;
+	width: 100%;
+}
+.footer{
+	height: 9.8rem;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	background-color: #fff;
+}
+.footer a{
+	float: left;
+	width: 20%;
+	height: 9.8rem;
+	text-align: center;
+	line-height: 9.8rem;
+
+}
+.footer a img{
+	vertical-align: middle;
+	height: 7.2rem;
+}

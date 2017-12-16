@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>代理</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/daili.css">
+	<link rel="stylesheet" href="css/a.css">
+	<meta name="format-detection" content="telephone=no" />
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">代理</p>
+	</div>
+	<div class="searcher">
+	<p class="search">
+		<i><img src="images/l_search.png" alt=""></i>
+		<input type="text" placeholder="搜索姓名或手机号查看团队成员">
+	</p><span>搜索</span></div>
+	<div class="kong"></div>
+	<ul class="memer">
+		<li>
+			<ul class="ul0">
+				<div class="co">
+					<p>销售经理</p>
+				</div>
+				
+			</ul>
+			
+			<ul class="ul1">
+				<div class="co">
+					<p>社区代理</p>
+				</div>
+				
+			</ul>
+			
+			
+			<ul class="ul2">
+				<div class="coo">
+					<p>县代理</p>
+				</div>
+			
+			</ul>
+			
+			<ul class="ul3">
+				<div class="coo">
+					<p>市代理</p>
+				</div>
+			
+			</ul>
+			
+			<ul class="ul4">
+				<div class="coo">
+					<p>省代理</p>
+				</div>
+			
+			</ul>
+			<div class="bai"></div>
+		</li>
+		
+	</ul>
+	<div class="none">
+		<img src="images/none.png" alt="">
+	</div>
+	<div class="numk"></div>
+	<div class="num">当前人数（<span></span>）</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script>
+	$(function(){
+		var numm;
+		function getLocalTime(timestamp){
+		    	var d = new Date(timestamp * 1000);    //根据时间戳生成的时间对象
+			var date = (d.getFullYear()) + "-" + 
+			           (d.getMonth() + 1) + "-" +
+			           (d.getDate()) ;
+			           // + " " + 
+			           // (d.getHours()) + ":" + 
+			           // (d.getMinutes()) + ":" + 
+			           // (d.getSeconds());
+			          return date; 
+		    }
+		var tokens=localStorage.getItem ("token");
+  		var types=localStorage.getItem ("type");  
+  		types=4;
+  		function sl(){
+  			if ($(".num").find("span").html()<1) {
+			$(".num").css("display","none");
+			$(".none").css("display","block");
+			}else{
+				$(".num").css("display","block");
+				$(".none").css("display","none");
+			}
+  		}		
+		$.ajax({
+			 type: 'POST',
+			 dataType: "json",
+			 url:Url+"api/index.php?n=user&f=myteamagent",
+			 data: {
+			     	token:tokens,
+			     	"type":types,
+			     },
+			success:function(data){
+				// console.log(data);
+			    	$(".num span").html(data.totalpage);
+			    	 var datas = data.data;
+		                   	var k;
+		                   	// var count;
+		                    	for (var j = 0; j < 10000000; j++) {
+				                if (!data.data[j]) {
+				                  k=j;
+				                  break;
+				                }
+				              };
+		                  	 
+						    	
+			    	for (var i = 0; i < k; i++) {
+			    		var s;
+
+			    		for (var  m= 0; m < 10000000; m++) {
+				                if (!data.data[i].user[m]) {
+				                  s=m;
+				                  break;
+				                }
+				             };
+				       
+ 					   var datas = data.data[i].user;
+				       for (var n = 0; n < m; n++) {
+				              	var ltypes=datas[n].type;
+				              	var html='<div class="con"><div class="left"><img class="zleft" src="'+Url+''+datas[n].portrait+'" alt=""></div><div class="right"><p class="rp1"><span>姓名：'+datas[n].real_name+'</span></p><p class="rp2"><span>电话：'+datas[n].user_name+'</span></p><p class="rp3"><span>注册时间：'+getLocalTime(datas[n].reg_time)+'</span></p></div><a href="tel:'+datas[n].user_name+' "><img src="images/mmtel.png" alt=""></a></div>';
+				              	$(".memer li ul").eq(ltypes-3).append(html);
+				              // };
+			    		}
+
+				    $('.zleft').error(function() {
+						$(this).attr('src', 'images/z-logo.png');
+					});         		
+			    	};
+			    	 sl();
+			    hide();					
+			}
+		});
+		
+		//代理搜索开始
+		$(".searcher span").on("click" , function(){
+			var ztxt = $(".searcher input").val();
+			$.ajax({
+			 type: 'POST',
+			 dataType: "json",
+			 url:Url+"api/index.php?n=user&f=myteamagent",
+			 data: {
+			     	token:tokens,
+			     	"type":types,
+			     	"select_value":ztxt
+			     },
+			success:function(data){
+			    	$(".num span").html(data.totalpage);
+			    	$(".memer li ul").find(".con").remove();
+			    	 var datas = data.data;
+		                   	var k;
+		                   	// var count;
+		                    	for (var j = 0; j < 10000000; j++) {
+				                if (!data.data[j]) {
+				                  k=j;
+				                  break;
+				                }
+				              };						    	
+			    	for (var i = 0; i < k; i++) {
+			    		var s;
+
+			    		for (var  m= 0; m < 10000000; m++) {
+				                if (!data.data[i].user[m]) {
+				                  s=m;
+				                  break;
+				                }
+				             };
+ 					   var datas = data.data[i].user;
+				              for (var n = 0; n < m; n++) {
+				              	var ltypes=datas[n].type;
+				              	var html='<div class="con"><div class="left"><img class="zleft" src="'+Url+''+datas[n].portrait+'" alt=""></div><div class="right"><p class="rp1"><span>姓名：'+datas[n].real_name+'</span></p><p class="rp2"><span>电话：'+datas[n].user_name+'</span></p><p class="rp3"><span>注册时间：'+getLocalTime(datas[n].reg_time)+'</span></p></div><a href="tel:'+datas[n].user_name+' "><img src="images/mmtel.png" alt=""></a></div>';
+				              	$(".memer li ul").eq(ltypes-3).append(html);
+			    		}
+				    $('.zleft').error(function() {
+						$(this).attr('src', 'images/z-logo.png');
+					});     
+			    };
+			    	 
+			    hide();	
+				
+			}
+		})
+			
+		})
+		//代理搜索结束
+		
+		// 把代理为空的ul隐藏
+		function hide(){
+			$(".memer ul").each(function(){
+				if ($(this).find($(".con")).length==0) {
+					$(this).css("display","none");
+				}
+				$(this).find($(".con")).length
+			})
+		}
+		
+	})
+</script>
+
+</html>

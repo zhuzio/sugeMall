@@ -1,0 +1,183 @@
+@import url(reset.css);
+.box(@mao){
+    display: -webkit-box;
+    -webkit-box-orient: @mao;
+}
+.full(@w,@h){
+    width: @w;
+    height: @h;
+}
+html{
+    font-size: 62.5%;
+}
+html,body,.wrap{
+    .full(100%,100%);
+    background: #e7e7e7;
+}
+.wrap{
+    .box(vertical);
+    background: #efeff4;
+}
+header{
+    .full(100%,8.8rem);
+    .box(horizontal);
+    img{
+       padding-left: 2.5rem;
+       padding-top: 2.5rem;
+    }
+    p{
+        font-size: 3rem;
+        line-height: 8.8rem;
+        -webkit-box-flex: 1;
+        text-align: center;
+        color: #333333;
+    }
+}
+section{
+    -webkit-box-flex: 1;
+    background: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    .main{
+        .full(100%,12rem);
+        .box(horizontal);
+        line-height: 12rem;
+        .left{
+            width: 40%;
+            margin-left: 5%;
+            height: 5rem;
+            // position: relative;
+            input{
+                width: 80%;
+                height: 100%;
+                text-align: center;
+                font-size: 3rem;
+            }
+
+        }
+         b{
+                // position: absolute;
+                font-weight: normal;
+                font-size: 3.0rem;
+                color: #333;
+                margin-left:-4rem;
+                // left: 1rem;
+            }
+        .right{
+            width: 40%;
+            height: 5rem;
+            input{
+                width: 80%;
+                height: 100%;
+                font-size: 3rem;
+                text-align: center;
+            }
+        }
+        span{
+            display: block;
+            margin-top: 4rem;
+            width: 6rem;
+            height: 4rem;
+            text-align: center;
+            line-height: 4rem;
+            font-size: 3rem;
+            background: #ffc600;
+            color: #fff;
+        }
+    }
+    
+    .sel{
+        margin-bottom: 5rem;
+    width: 14rem;
+    height: 5rem;
+     border-radius: 1rem;
+     border: 1px solid #000; 
+     background: #fff; 
+     position: relative;
+     
+    }
+    .sel input{
+         display: inline-block; width: 8rem;
+         line-height: 5rem;
+         float: left;
+    }
+    .sel button{
+         display: inline-block;
+          border: none;
+          height: 5rem;
+         width: 6rem;
+         float: right; 
+         background:url(images/select-btn.png) no-repeat;
+          background-size: 100% 100%;
+    }
+    .sel ul{ 
+        
+        border: 1px solid #000; 
+        position:absolute; 
+        top: 5rem; 
+        left: 0; 
+        width:12rem ; 
+        height: auto;
+        background:#fff;
+        display: none;
+        li{
+            .full(16rem,5rem);
+            line-height: 5rem;
+        }
+    }
+    .main1{
+        .full(100%,29rem);
+        position: relative;
+        table{
+               .full(90%,27rem);
+               padding-left: 5%;
+                margin: 0 auto;
+                border: 1px solid #000;
+                text-align: center;
+                font-size: 2.6rem;
+            }
+            .a{
+                background: #efeff5;
+            }
+            
+            tr{
+                height: 52px;
+                border-color: #000000;
+            }
+            i{
+                    visibility: hidden;
+                }
+            td a{
+                width: 25%;
+                text-align: center;
+                
+            }
+            tr td{
+                border: 1px solid #000;
+            }
+            
+            ul{
+                display: none;
+                .full(17%,18.2rem);
+                position: absolute;
+                z-index:999;
+                right: 15.6%;
+                bottom: -5rem;
+                font-size: 3rem;
+                border: solid 0.1rem #000;
+                -webkit-box-sizing: border-box;
+                li{
+                    .full(100%,6rem);
+                    line-height: 6rem;
+                    padding-left: 2rem;
+                    -webkit-box-sizing: border-box;
+                    border-bottom: solid 0.1rem #d5d5d5;
+                    background: #fff;
+                }
+                li:first-child{
+                    background: #ffc700;
+
+                }
+            }
+    }
+}

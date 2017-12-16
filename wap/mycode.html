@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的二维码</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" href="css/mycode.css">
+		<link rel="stylesheet" href="css/a.css">
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">我的二维码</p>
+		</div>
+		<div class="codewrap">
+			<li class="cwli1">
+				<p class="cwp1">
+					<img src="images/headerf.png" alt="">
+				</p>
+				<p class="cwp2">
+					<span class="cwsp1"></span><br>
+					<span class="cwsp2"></span>
+				</p>
+			</li>
+			<li class="cwli2">
+				<img src="">
+			</li>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script>
+		var tokens = localStorage.getItem("token");
+//		console.log(tokens);
+		 $(".cwli2 img").attr("src",Url + "api/index.php?n=shop_center&f=register_qrc&token="+tokens);
+		var html = "";
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=user&f=recodeinfo",
+			dataType: "json",
+			data: {
+				token: tokens
+			},
+			success: function(data) {
+//				console.log(data)
+				var xian = data.data.area;
+				var shi = data.data.city;
+				var tx = data.data.portrait;
+				var sheng = data.data.province;
+				var name = data.data.real_name;
+				$('.cwsp2').html(sheng + " " + shi + " " + xian);
+				$('.cwp1').find("img").attr("src", Url + tx);
+				$('.cwsp1').html(name);
+			},
+			error: function(data) {
+			}
+		})
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=user&f=userinfo",
+			dataType: "json",
+			data: {
+				token: tokens
+			},
+			success: function(data) {
+//			 console.log(data);
+//				var ewm = data.data.recode;
+//				$(".cwli2 img").attr("src", Url + ewm);
+			},
+			error: function(data) {
+				console.log(data);
+			}
+		})
+	</script>
+
+</html>

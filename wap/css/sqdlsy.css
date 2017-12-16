@@ -1,0 +1,212 @@
+.d_header{
+	height: 8.8rem;
+	background-color: transparent;
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+	top: 0;
+}
+.d_header .h_a1{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.d_header .p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 3rem;
+	color: #fff;
+	/*font-family: Microsoft YaHei;*/
+}
+.d_header .p1 img{
+	vertical-align: middle;
+	height: 4rem;
+	width: 4rem;
+}
+.d_header .p2{
+	width: 30rem;
+	height: 6rem;
+	margin: 1.6rem auto 1.2rem;
+	background-color: #38956e;
+	border-radius: 1rem;
+	border: 1px solid #fff;
+	/*text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	color: #333;*/
+	/*font-family: Microsoft YaHei;*/
+	/*position: relative;
+	height: 8.8rem;
+	width: 100%;*/
+}
+.d_header .p2 span{
+	float: left;
+	width: 50%;
+	line-height: 6rem;
+	text-align: center;
+	color: #fff;
+	font-size: 3.4rem;
+}
+.d_header .p2 .hps2{
+	color: #505050;
+	border-radius: 1rem 0 0 1rem;
+
+}
+.hps2{
+	background-color: #d2e9dd;
+}
+.d_header .h_a2{
+	position: absolute;
+	right: 3rem;
+	height: 8.8rem;
+	line-height: 8.8rem;
+	width:11rem;
+	z-index: 1;
+	top: 0;
+	font-size: 3rem;
+	color: #fff;
+	text-align: right;
+	background-color: transparent;
+}
+.d_header .h_a2 img{
+	width: 4rem;
+	height: 4rem;
+	vertical-align: middle;
+}
+.top{
+	height: 37rem;
+	position: absolute;
+	width: 100%;
+	background: url(../images/syjl_bj.png) no-repeat 0 0;
+	background-size: 100% 100%;
+	/*background-color: #54ceee;*/
+	overflow: hidden;
+	top: 0;
+}
+.t_p1{
+	margin: 10.8rem 3rem 0;
+	/*width:100% ;*/
+	height: 7rem;
+	line-height: 7rem;
+	/*text-align: center;*/
+	/*border:1px red solid;*/
+	/*font-size: 2.4rem;*/
+	color: #fff;
+}
+.t1p1{
+	float: left;
+	width: 50%;
+	height: 7rem;
+	line-height: 7rem;
+	font-size: 3rem;
+	color: #fff;
+}
+.t1p2{
+	
+	float: right;
+	width: 50%;
+	height: 7rem;
+	line-height: 7rem;
+	text-align: right;
+	font-size: 2.4rem;
+	color: #fff;
+	display: none;
+}
+.t_p2{
+	margin: 0rem 3rem 0;
+	/*width:49% ;*/
+	height: 10rem;
+	/*line-height: 5rem;*/
+	/*text-align: right;*/
+	/*border:1px red solid;*/
+	
+}
+.t2p1{
+	float: left;
+	width: 50%;
+	height: 10rem;
+	line-height: 8rem;
+	font-size: 8rem;
+	color: #fff;
+}
+.t2p2{
+	
+	float: right;
+	width: 50%;
+	height: 13rem;
+	line-height: 13rem;
+	text-align: right;
+	font-size: 5rem;
+	color: #fff;
+	display: none;
+}
+.t_p3{
+	height: 9rem;
+	line-height: 9rem;
+	margin: 0 3rem;
+	color: #fff;
+	font-size: 3rem;
+}
+.t_p3 .t3s2{
+	font-size: 3rem;
+}
+.con{
+	margin: 42rem 3rem 0;
+	/*position: absolute;*/
+	/*height: 58.5rem;*/
+	height: 40rem;
+
+}
+.con li{
+	/*width: 12rem;*/
+	width: 30%;
+	height: 17rem;
+	float: left;
+	/*margin-right: 7rem;*/
+	text-align: center;
+}
+.con li a{
+	float: left;;
+	width: 100%;
+	height: 100%;
+}
+.con li img{
+	width: 12rem;
+	height: 12rem;
+	/*border-radius: 50%;*/
+}
+.con li span{
+	line-height: 5rem;
+	font-size: 3rem;
+	color: #333;
+}
+.cli2{
+	margin-left: 5%;
+}
+.cli3{
+	margin-left: 5%;
+}
+.tx{
+	height: 8.5rem;
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+}
+.tixian{
+	width: 76%;
+	height: 7.5rem;
+	background-color: #13c7b4;
+	border-radius: 1rem;
+	/*margin: 0 auto;*/
+	line-height: 7.5rem;
+	text-align: center;
+	color: #fff;
+	font-size: 3.4rem;
+	outline: none;
+}

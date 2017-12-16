@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>代理奖励</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/a.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<link rel="stylesheet" href="css/dailijiangli.css">
+		<style>
+			.ldtt {
+				position: fixed;
+				z-index: 1000;
+				height: 3.2rem;
+				text-align: center;
+				bottom: 3rem;
+				left: 0;
+				width: 100%;
+				display: none;
+			}
+			
+			.ldtt img {
+				width: 3.2rem;
+			}
+			.zp2{
+			left: 55%;
+			text-align: right;
+		}
+		</style>
+	</head>
+	</head>
+
+	<body>
+		<!--<div class="ldtt"><img src="images/add.gif" alt=""></div>-->
+		<div class="d_header">
+			<a href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/back.png" alt="返回首页">
+				</p>
+			</a>
+			<p class="p2">代理奖励</p>
+			<!-- <span>批量操作</span> -->
+		</div>
+		<div class="zdaili"></div>
+		<div class="z-liwp">
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script>
+		$(function() {
+			var num;
+			var tokens = localStorage.getItem("token");
+			var time = localStorage.getItem("times");
+			var html = "";
+			$.ajax({
+				type: 'POST',
+				dataType: "json",
+				url: Url + "api/index.php?n=profit&f=commissionMonth_info",
+				data: {
+					"token":tokens,
+					"time":time,
+				},
+				success: function(data) {
+					 console.log(data);
+					 num=data.totalpage;
+					 var html = "";
+					 for (var i = 0; i < data.data.length; i++) {
+					 	html += '<ul><li><span>您推荐'+data.data[i].from_real_name+'注册为'+data.data[i].type+'，为您增加收益</span><span><img src="images/xqjia.png"/></span><span class="jifen">'+data.data[i].money+'</span><span>积分</span></li><li><img src="images/z-df.png"/><span class="z-time">'+data.data[i].createtime+'</span></li></ul>';
+					 	
+					 }
+					$(".z-liwp").html(html);
+					// bl();
+				},
+				error: function(data) {
+					// console.log(data);
+				}
+			});
+			var pages = 1; //当前页的页码
+			var allpage = num; //总页码，会从后台获取
+			var sc = true;
+			function showAjax() {
+				$.ajax({
+				type: 'POST',
+				dataType: "json",
+				url: Url + "api/index.php?n=profit&f=commissionMonth_info",
+				data: {
+					"token":tokens,
+					"time":time,
+					page:pages,
+				},
+				success: function(data) {
+					 console.log(data);
+					 for (var i = 0; i < data.data.length; i++) {
+					 	var html = '<ul><li><span>您推荐'+data.data[i].from_username+'注册为'+data.data[i].fromid+'，为您增加收益</span><span><img src="images/xqjia.png"/></span><span class="jifen">'+data.data[i].money+'</span><span>积分</span></li><li><img src="images/z-df.png"/><span class="z-time">'+data.data[i].createtime+'</span></li></ul>'
+					 	sc = true;
+					 	$(".z-liwp").append(html);
+					 	// bl();
+					 }
+					
+				},
+				error: function(data) {
+					// console.log(data);
+				}
+			});
+			}
+
+			function scrollFn() {
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+					if(sc) {
+						// alert(2);
+						// alert(pages+":"+allpage)
+						sc = false;
+						pages++;
+						if(pages <= num) {
+							// console.log(pages);
+							showAjax();
+							// alert(1);
+						}
+
+					}
+				}
+			}
+			$(window).bind("scroll", scrollFn); //绑定滚动事件
+		// 	function bl(){
+		// 	$(".zdul li").each(function(){
+		// 		console.log($(this).find(".zp2").find("span").html());
+		// 		if ($(this).find(".zp2").find("span").text()=="0") {
+		// 			$(this).find(".zp2").css("display","none");
+		// 		}
+				
+		// 	})
+		// }
+		})
+	</script>
+
+</html>

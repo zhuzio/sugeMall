@@ -1,0 +1,129 @@
+/*s-about页面*/
+body{
+	background: #EEEEEE;
+	/*background: #f1f1f1;*/
+}
+.s_top {
+	width: 100%;
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.4rem;
+	background: #3F3F3F;
+	color: #E5E5E5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	/*color: #333;*/
+}
+.s_top .span1{
+	display: inline-block;
+	float: left;
+	padding-left: 5%;
+}
+.s_top .span1 a{
+	/*color: #fff;*/
+	font-size: 6.4rem;
+}
+.s_top .span2{
+	display: inline-block;
+	margin-left: -5%;
+}
+.s_logo{
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 10rem;
+}
+.s_logo img{
+	width: 100%;
+	margin: 5rem 0;
+}
+.s_contant{
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 5rem;
+	padding: 1.5rem;
+	border: 2px solid #B9B9B9;
+	box-sizing: border-box;
+	color: #666;
+	font-size: 1.5rem;
+	line-height: 3rem;
+	/*background: #fff;*/
+}
+.s_contant p{
+	text-indent: 2em;
+}
+.s_list{
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 5rem;
+	font-size: 2rem;
+}
+.s_list li{
+	border-bottom: 1px solid #B9B9B9;
+	padding: 3.5rem 0 3.5rem 1.5rem;
+	/*background: #fff;*/
+}
+.s_list li:last-child{
+	border-bottom: none;
+}
+.s_list ul li a{
+	display: inline-block;
+	float: right;
+	font-size: 3.5rem;
+	padding: 0 1.5rem;
+}
+
+/*s-welcome页面*/
+.s_contant h4{
+	font-size: 3.5rem;
+	line-height: 5rem;
+	position: relative;
+}
+.s_contant h4:after{
+	position: absolute;
+	content: "";
+	background: #666;
+	border-width: 2px 0 0;
+	width: 64%;
+	height: 1px;
+	top: 3rem;
+	left: 33%;
+}
+/*s-copyright页面*/
+.s_right{
+	width: 60%;
+	margin: 0 auto;
+	margin-bottom: 5rem;
+	text-align: center;
+	font-size: 2.5rem;
+	line-height: 3.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /><!--公用css-->
+		<link rel="stylesheet" href="{res file=css/business-integral.css}" /><!--商家积分明细-->
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.go(-1);" class="back"></a>
+			<h1 class="tit">积分</h1>
+		</header>
+		<div class="content mtop44">
+			<div class="profit-top">
+				<div class="profit-pic">
+					<span>
+						<img src="{res file=images/business-integral/Gold.png}">
+					</span>
+				</div>
+				<div class="profit-cont">
+					<p class="pro-current">当前积分<span><!--{$point[currentPoint]}--></span></p>
+					<div class="pro-td">
+						<a href="#" class="pro-ifi">
+								已送
+							<span>{$point[sendPoint]}</span>
+						</a>
+						<a href="#" class="pro-cum">
+							 累计积分
+							<span>{$point[allPoint]}</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--
+            	时间：2016-06-16
+            	描述：收益top
+            -->
+            <div class="int-switch">
+            	<div class="switch">
+                    {if $action eq "send"}
+            		<a href ="{url app=point&act=shopSendPointList&action=send}" ><span  class="on activ">送出积分</span></a>
+                    <a href ="{url app=point&act=shopSendPointList&action=pay}" ><span  class="off">购入积分</span></a>
+                    {elseif $action eq "pay"}
+                    <a href ="{url app=point&act=shopSendPointList&action=send}" ><span  class="on ">送出积分</span></a>
+            		<a href ="{url app=point&act=shopSendPointList&action=pay}" ><span  class="off  activ">购入积分</span></a>
+                    {/if}
+            	</div>
+            </div>
+            <div class="refine-details">
+            {if $action eq "send"}
+            	<ul id="bean" class="bean">
+                {foreach from=$pointList item=points}
+            		<li class="bean-list">
+            			<div class="refine-reduce">
+            				<span></span>
+            			</div>
+            			<div class="refine-re">
+            				<div class="integral">
+            					<p>赠送<span>{$points[point]}</span>积分</p>
+            					<p>商家赠送<span>{$points[shops_point]}</span>积分</p>
+            					<p>苏格联盟<span>{$points[system_point]}</span>积分</p>
+            				</div>
+            				<div class="Buyers">
+            					<span class="buyname">用户：{$points[getname]}</span>
+            					<!--<p>联系电话<span>15248954845</span></p>-->
+            				</div>
+                            <div class="mall-list">
+                            {if $points[oto] eq "offline"}
+                                    <span>线下订单：</span>
+                                    <span>{$points[order_id]}</span>
+                                    <!-- <em></em> -->
+                            {elseif $points[oto] eq "online"}
+                                    <span>线上订单：</span>
+                                    <span>{$points[order_id]}</span>
+                                    <!-- <em></em> -->
+                            {/if}
+
+                                </div>
+            				<div class="number">
+            					<p>&nbsp;</p>
+            					<p class="time">
+            						<span>{$points[createtime]}</span>
+            						
+            					</p>
+            				</div>
+            			</div>
+            		</li>
+            	{/foreach}
+            	</ul>
+                <div id="pager">
+                    
+                    {$showpage}
+
+                </div>
+            {elseif $action eq "pay"}
+            	<ul id="bean" class="integral">
+                {foreach from=$orderList item=order}
+            		<li>
+            			<div class="int-list">
+            				<p>订单号：<span>{$order[orderid]}</span></p>
+                            {if $order.paytype eq balance}
+            				<p>货款支付</p>
+                            {elseif $order.paytype eq wx}
+                            <p>微信支付</p>
+                            {/if}
+            			</div>
+            			<div class="int-list">
+            				<p>购入<span>{$order[num]}</span>积分</p>
+            				<p>每积分<span>{$order[price]}</span>元</p>
+            			</div>
+            			<div class="int-list">
+            				<p>共计<span>￥{$order[amount]}</span></p>
+            				<p><span>{$order[pay_createtime]}</span></p>
+            			</div>
+            		</li>
+            	{/foreach}
+            	</ul>
+                <div id="pager">
+                    
+                    {$showpage}
+
+                </div>
+            {/if}
+            </div> 
+           
+		</div>
+        {include file="footer.html"}
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/business-integral.js}"></script>
+</html>

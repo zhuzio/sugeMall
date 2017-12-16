@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>设置</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/information.css">
+	<link rel="stylesheet" href="css/a.css">
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;" class="ha1">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">设置</p>
+		<!-- <button>
+			<a href=""><img src="images/set.png" alt=""></a>
+			
+		</button> -->
+	</div>
+	<ul>
+		<li>
+			<p>
+				<a href="newsset.html">
+					<span>新消息管理</span>
+					<img src="images/back2.png" alt="">
+				</a>
+			</p>
+		</li>
+		<li>
+			<p>
+				<a  class="banks">
+					<span>管理银行卡</span>
+					<img src="images/back2.png" alt="">
+				</a>
+			</p>
+		</li>
+		<!--<li>
+			<p>
+				<a href="s-about.html">
+					<span>关于我们</span>
+					<img src="images/back2.png" alt="">
+				</a>
+			</p>
+		</li>-->
+		<div class="kong"></div>
+		<li class="feedback">
+			<p>
+				<a href="shezhi.html">
+					<span>反馈与意见</span>
+					<img src="images/feedback.png" alt="">
+				</a>
+			</p>
+		</li>
+		<li class="feedback">
+			<p>
+				<a href="connection_us.html">
+					<span>联系我们</span>
+					<img src="images/phone.png" alt="">
+				</a>
+			</p>
+		</li>
+		<li class="feedback">
+			<p>
+				<a href="suge_aboutus.html">
+					<span>关于我们</span>
+					<img src="images/phone.png" alt="">
+				</a>
+			</p>
+		</li>
+		<div class="kong"></div>
+		<li class="feedback">
+			<p>
+				<a href="ggdlmm.html">
+					<span>更改登录密码</span>
+					<img src="images/post.png" alt="">
+				</a>
+			</p>
+		</li>
+		<li class="feedback">
+			<p>
+				<a href="czzfmm.html">
+					<span>更改支付密码</span>
+					<img src="images/post.png" alt="">
+				</a>
+			</p>
+		</li>
+	</ul>
+	<div class="tchu">退出当前账号</div>
+</body>
+<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script>
+$(".banks").on("click",function(){
+	localStorage.setItem('bank_tf', "");
+	location.href="bank.html";
+	
+})
+$(".tchu").on("click",function(){
+	var tokens=localStorage.getItem ("token");
+		$.ajax({
+			     type: 'POST',
+			      dataType: "json",
+			      url:Url + "api/index.php?n=user&f=logout",
+			     data: {
+			     	token:tokens,
+			     	},
+			    success: function(data){
+			    	console.log(data);
+			    	localStorage.setItem('token', "");
+			    	var myphones=localStorage.getItem("myphone");
+			    	localStorage.clear();
+			    	 localStorage.setItem('myphone', "");
+			    	location.href="denglu.html";
+			    	
+			    },
+			    error:function(data){
+					    	console.log(data);
+					    }
+					})
+})
+	
+</script>
+</html>

@@ -1,0 +1,168 @@
+.d_header{
+	height: 8.8rem;
+	background-color: #f0f0f0;
+	
+}
+.d_header a{
+	color: #333 !important;
+	position: absolute;
+	height: 8.8rem;
+	width:11rem;
+	left: 3rem;
+	z-index: 1;
+}
+.p1{
+	
+	height: 8.8rem;
+	width:11rem;
+	/*left: 0.3rem;*/
+	line-height: 8.8rem;
+	font-size: 2.8rem;
+	color: #333;
+	font-family: Microsoft YaHei;
+}
+.p1 img{
+	vertical-align: middle;
+	height: 3.7rem;
+	width: 2rem;
+}
+.p2{
+	text-align: center;
+	line-height: 8.8rem;
+	font-size: 3.2rem;
+	color: #333;
+	font-family: Microsoft YaHei;
+	position: relative;
+	height: 8.8rem;
+	width: 100%;
+}
+.head_set{
+	height: 13rem;
+	margin: 0 3rem;
+}
+.head_set span{
+	float: left;
+	line-height: 13rem;
+	font-size: 2.8rem;
+	color: #333;
+}
+.head_set p{
+	float: right;
+	margin-right: 1rem;
+	line-height: 13rem;
+}
+.hs_img1{
+	width: 10rem;
+	height: 10rem;
+	vertical-align: middle;
+	margin-right: 3rem;
+	margin-top: 1.5rem;
+}
+.hs_img2{
+	width: 1.7rem;
+	height: 3rem;
+	vertical-align: middle;
+}
+.no_change li{
+	height: 9rem;
+	border-top: 1px solid #d5d5d5;
+}
+.avatorUpload{
+	margin: 1.5rem 1rem 0 0 !important;
+}
+.no_change li p{
+	margin: 0 9.4rem 0 3rem;
+	height: 9rem;
+	line-height: 9rem;
+	font-size: 2.8rem;
+	color: #333;
+}
+.no_change li p span{
+	float: right;
+}
+.kong{
+	height: 2rem;
+	background-color: #f1f1f1;
+}
+.change li{
+	height: 9rem;
+	border-bottom: 1px solid #d5d5d5;
+}
+.change .cli1{
+	height: 11.5rem;
+	/*border-bottom: 1px solid #d5d5d5;*/
+}
+.change .cli1 p{
+	/*margin: 0 3rem 0 9.6rem;*/
+	line-height: 11.5rem;
+	/*font-size: 2.8rem;
+	color: #333;*/
+}
+.change .cli1 p a{
+	/*float: right;*/
+	line-height: 11.5rem;
+
+}
+.change li p{
+	margin: 0 3rem 0 9.6rem;
+	line-height: 9rem;
+	font-size: 2.8rem;
+	color: #333;
+}
+.change li p a{
+	float: right;
+	line-height: 9rem;
+	width: 10rem;
+	text-align: right;
+}
+.change li p a img{
+	width: 1.7rem;
+	height: 3rem;
+	vertical-align: middle;
+}
+.cli1{
+	background: url(../images/pdcode.png) 3.2rem 4.5rem no-repeat;
+	background-size: 3.3rem 3.4rem;
+}
+.cli2{
+	background: url(../images/sexual.png) 3.2rem 2.6rem no-repeat;
+	background-size: 2.8rem 3.9rem;
+	position: relative;
+}
+.cli3{
+	background: url(../images/birthday.png) 3.2rem 2.9rem no-repeat;
+	background-size: 3.4rem 3.3rem;
+}
+.cli4{
+	background: url(../images/email.png) 3.2rem 3rem no-repeat;
+	background-size: 3.8rem 3rem;
+}
+.cli5{
+	background: url(../images/psqq.png) 3.2rem 2.3rem no-repeat;
+	background-size: 3.9rem 4.4rem;
+}
+.cli2 .nv{
+	float: right;
+	display: none;
+}
+.cli2 .nv img{
+	vertical-align: middle;
+	width: 2.5rem;
+	height: 2.5rem;
+}
+.i1{
+	margin-right: 5rem;
+}
+.bm{
+	position: absolute;
+	height: 9rem;
+	top: 0;
+	right: 3rem;
+	width: 14rem;
+	background-color: #ffa442;
+	text-align: center;
+	color: #fff;
+	line-height: 9rem;
+	font-size: 3rem;
+	z-index: 10;
+}

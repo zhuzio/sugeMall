@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /> <!--公用css-->
+		<link rel="stylesheet" href="{res file=css/password.css}" />
+		<script type="text/javascript" src="{res file=js/jquery.min.js}"></script>
+		<style type="text/css">
+		.password-input .info{
+			font-size:10px;
+			color:red;
+			position:relative;
+				top:-53px;
+				left:3px;
+		}
+
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<a class="back" href="javascript:history.back(-1)"></a>
+			<h1 class="tit">修改支付密码</h1>
+		</header>
+		<div class="content mtop44">
+			<div class="password-Back">
+				<form action="{url app=account_manage&act=save_paypass}" method="post">
+					<ul>
+						<li class="password-input">
+							<label>设置密码</label>
+							<input placeholder="请输入6-15字母或数字" type="password" id="pwd" name="passwd" onblur="return checkpwd()">
+							<span class="info"></span>
+						</li>
+						<li class="password-input">
+							<label>重复密码</label>
+		<script type="text/javascript" src="{res file=js/jquery.min.js}"></script>
+							<input placeholder="请再次输入密码" type="password" id="rpwd" onblur="return checkpwd_equal()">
+						</li>
+						
+					</ul>
+					<p class="password-next"><button onclick="return submit_button()">提交</button></p>
+				</form>
+			</div>
+		</div>
+		{include file="footer.html"}
+		
+	</body>
+	<script type="text/javascript">
+		//检测密码
+		function checkpwd(){
+			var pwd =$('#pwd').val();
+			var reg =/^[A-Za-z0-9]{6,15}$/;
+			if(!reg.test(pwd)){
+				$('.info').text('请输入6-15字母或数字!');
+				return false;
+			}else{
+				$('info').text('');
+				return true;
+			}	
+		}
+
+		//检测密码是否一致
+		function checkpwd_equal(){
+			var rpwd =$('#rpwd').val();
+			var pwd =$('#pwd').val();
+			if(rpwd != pwd){
+				$('.info').text('两次密码输入不一致！');
+				return false;
+			}else{
+				$('.info').text('');
+				return true;
+			}
+		}
+
+		//提交验证
+		function submit_button(){
+			if(!checkpwd()){
+				return false;
+			}else if(!checkpwd_equal()){
+				return false;
+			}else{
+				return true;
+			}
+		}
+
+	</script>	
+</html>

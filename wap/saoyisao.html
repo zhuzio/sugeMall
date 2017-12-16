@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>扫一扫</title>
+		<link rel="stylesheet" href="css/saoyisao.css">
+	</head>
+	<body>
+		<div class="container">
+			<!-- 头部 -->
+			<header>
+				<div class="left">
+					<a href="javascript:history.go(-1)"><img src="images/fanhui.png" alt="返回首页"></a>
+				</div>
+				<div class="center">
+					<p>付款详情</p>
+				</div>
+			</header>
+			<!-- 主体部分 -->
+			<section>
+				<div class="w-num">
+					<p>可用积分：</p>
+					<span id="point"></span>
+				</div>
+				<div class="w-tel">
+					<p>商家信息：</p>
+					<span id="store_name"></span>
+				</div>
+				<div class="w-sjgive">
+					<p>订单金额：</p>
+					<input type="text" class='num' placeholder="请输入使用积分数量">
+				</div>
+				<div class="w-goodsname">
+					<ul>
+						<li id="huikuam">
+							<p>商品名称：</p>
+							<h1 class="z-shangpin">选择商品名称</h1>
+							<span><img src="images/w-fjf1.png" alt=""></span>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<footer>
+				<span>确认</span>
+			</footer>
+			<div class="z-tan">
+				<div class="confirm-tan">订单已提交成功</div>
+			</div>
+			<div class="cd-popup">
+				<div class="cd-popup-container">
+					<div class="tanchu">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/box.js"></script>
+	<script src="js/url.js"></script>
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="js/me.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var tokens = localStorage.getItem("token");
+		//可用积分开始
+		$.ajax({
+				type: 'POST',
+				dataType: "json",
+				url: Url + "api/index.php?n=member_wealth&f=pointTop",
+				data: {
+					token: tokens,
+				},
+				success: function(data) {
+					if(data.msg == "请先登录") {
+						window.location.href = "denglu.html";
+					}
+					if(data.msg == "身份错误，请重新登录") {
+						window.location.href = "denglu.html";
+					}
+					$("#point").html(data.data.current);
+				},
+				error: function(data) {}
+		});
+			//可用积分结束
+		function popup(listData, callback, defaultValue) {
+			var popupOptions = $('#popupOptions');
+			if(popupOptions.length == 0) {
+				popupOptions = $('' +
+					'<div class="cd-reason" id="popupOptions">' +
+					'<div class="cd-reason-container">' +
+					'<div class="reason">' +
+					'<ul>' +
+					'</ul>' +
+					'</div>' +
+					'</div>' +
+					'</div>'
+				).appendTo(document.body);
+			}
+			var $ul = popupOptions.find('ul');
+			$ul.empty();
+			$.each(listData, function() {
+				$ul.append($('' +
+					'<li class="li1" typeid="' + this.value + '">' +
+					'<p class="zclass">' + this.text + '</p>' +
+					'<h5><span' + (defaultValue == this.value ? ' class="spans"' : '') + '></span></h5>' +
+					'</li>'));
+			});
+			$ul.children('li').on('click', function() {
+				popupOptions.removeClass('is-visible');
+				callback.call(this, {
+					text: $(this).find('p').text(),
+					value: $(this).attr('typeid')
+				});
+				var shangpin = $(this).find('p').text();
+				var zclassid = $(this).attr('typeid');
+				localStorage.setItem('shangpins', shangpin);
+				localStorage.setItem('classid', zclassid);
+			});
+			popupOptions.on('click', function(e) {
+				if($(e.target).is('ul')) {
+					return;
+				}
+				popupOptions.removeClass('is-visible');
+			});
+
+			setTimeout(function() {
+				popupOptions.addClass('is-visible');
+			}, 30);
+		}
+		$(function() {
+			sys_data = JSON.parse(localStorage.getItem('sys_data'));
+			$("#store_name").html(sys_data.store_name);
+			$('.w-goodsname li').on('click', function() {
+				var options = [];
+				for(i = 0; i < sys_data.class_goods.length; i++) {
+					cg = sys_data.class_goods[i];
+					item = {};
+					item.text = cg.name;
+					item.value = cg.class_id;
+					options.push(item);
+				}				
+				var $span = $(this).find('h1');
+				popup(options, function(data) {
+					$span.attr('typeid', data.value).text(data.text);
+				}, $span.attr('typeid'));
+			});
+			$('footer').on('click', function() {
+					var num = $('.num').val();
+					if(num == '' || parseFloat(num) <= 0) {
+						tc();
+						$(".tanchu").html("请输入正确积分");
+					} else if(parseFloat($('.w-num span').html()) < parseFloat($('.num').val())) {
+						// alert('你没有足够的积分');
+						tc();
+						$(".tanchu").html("你没有足够的积分");
+					} else {
+						localStorage.setItem('point', num);
+						location.href = "confirm_oder1.html";
+					}
+				});
+				//遮罩层
+				// $('.tianjia').on('click',function(){
+			function tc() {
+				jQuery(document).ready(function($) {
+					//打开窗口
+					event.preventDefault();
+					$('.cd-popup').addClass('is-visible');
+
+					//关闭窗口
+					$('.cd-popup').on('click', function(event) {
+						if($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup')) {
+							event.preventDefault();
+							$('.cd-popup').removeClass('is-visible');
+						}
+					})
+					$('.li1').on('click', function(event) {
+						event.preventDefault();
+						$('.cd-popup').removeClass('is-visible');
+					})
+					$('.li2').on('click', function(event) {
+						event.preventDefault();
+						$('.cd-popup').removeClass('is-visible');
+					})
+				})
+			}
+			// });
+
+		});
+	</script>
+	<script>
+	</script>
+
+</html>

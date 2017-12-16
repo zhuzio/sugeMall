@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>收益奖励</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/area-business1.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.d_header{
+			border-bottom: 1px solid #dcdcdc;
+		}
+		body{
+			background-color: #efeff4;
+		}
+		.zzsy{
+			width: 100%;
+			border-top: 1px solid #efeff4;
+			text-align: right;
+		}
+		.lp1{
+			/*width: 75%;*/
+			/*line-height: 3.0rem !important;*/
+			/*border: 1px solid red;*/
+		}
+		/*.z-souyi{
+			height:16.0rem !important;
+		}*/
+		
+	</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">收益奖励</p>
+		<!-- <span>批量操作</span> -->
+	</div>
+	<ul class="zdul">
+		 <!--<div>
+			<li>
+				<p class="lp1"><img src="images/sjsytb.png"> 商家名：李家豪</p>
+				<p class="lp2">
+					<img src="images/jlbz.png"> 区域下会员提成
+				</p>
+				<p class="lp3">订单号：123456</p>
+				<p class="lp4"><img src="images/xqtime.png">2016-08-09</p>
+				<p class="lp5"><img src="images/xqjia.png"><span>95</span> <font>收益</font></p>
+			</li>
+		</div>
+		<div class="z-souyi">
+			<li>
+				<p class="lp1">您推荐李四注册为销售经理，为您增加收益</p>
+				<p class="lp4 zzsy"><img src="images/xqtime.png">2016-08-09</p>
+				<p class="lp5"><img src="images/xqjia.png"><span>95</span> <font>收益</font></p>
+			</li>
+		</div>
+		<div class="z-souyi">
+			<li>
+				<p class="lp1">收益提现</p>
+				<p class="lp4 zzsy"><img src="images/xqtime.png">2016-08-09</p>
+				<p class="lp5"><img src="images/z-336.png"><span>95</span> <font>收益</font></p>
+			</li>
+		</div>-->
+	</ul>
+</body>
+<script src="js/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/box.js"></script>
+<script src="js/url.js"></script>
+<script>
+	 var tokens=localStorage.getItem ("token");
+	 var times=localStorage.getItem ("times");
+	 var num;
+	 $.ajax({
+		     type: 'POST',
+		      dataType: "json",
+		      url:Url + "api/index.php?n=profit&f=profitMonth_info",
+		     data: {
+		     	token:tokens,
+
+		     	time:times,
+		     	},
+		    success: function(data){
+		    	console.log(data);
+				    	var count;
+				    	var type;
+				    	num=data.totalpage;
+				    	var html = "";
+				    	for (var i = 0; i < data.data.length; i++) {
+				    		type = data.data[i].type;
+				    		console.log(type)
+				    		if(type == 4){
+				    			html += '<div><li><p class="lp1"><img src="images/sjsytb.png"> 商家名：'+data.data[i].from_username+'</p><p class="lp2"><img src="images/jlbz.png">'+data.data[i].title+'</p><p class="lp3">订单号：'+data.data[i].order_sn+'</p><p class="lp4"><img src="images/xqtime.png">'+data.data[i].createtime+'</p><p class="lp5"><img src="images/xqjia.png"><span>'+data.data[i].money+'</span> <font>收益</font></p></li></div>';
+				    		}
+				    		if(type == 5){
+				    			html += '<div><li><p class="lp1"><img src="images/sjsytb.png">商家名：'+data.data[i].from_username+'</p><p class="lp2"><img src="images/jlbz.png">'+data.data[i].title+'</p><p class="lp3">订单号：'+data.data[i].order_sn+'</p><p class="lp4"><img src="images/xqtime.png">'+data.data[i].createtime+'</p><p class="lp5"><img src="images/xqjia.png"><span>'+data.data[i].money+'</span> <font>收益</font></p></li></div>';
+				    		}
+				    		if(type == 6){
+				    			html += '<div><li><p class="lp1"><img src="images/sjsytb.png">商家名：'+data.data[i].from_username+'</p><p class="lp2"><img src="images/jlbz.png">'+data.data[i].title+'</p><p class="lp3">订单号：'+data.data[i].order_sn+'</p><p class="lp4"><img src="images/xqtime.png">'+data.data[i].createtime+'</p><p class="lp5"><img src="images/xqjia.png"><span>'+data.data[i].money+'</span> <font>收益</font></p></li></div>';
+				    		}
+				    		if(type == 7){
+				    			html += '<div><li><p class="lp1"><img src="images/sjsytb.png">商家名：'+data.data[i].from_username+'</p><p class="lp2"><img src="images/jlbz.png">'+data.data[i].title+'</p><p class="lp3">订单号：'+data.data[i].order_sn+'</p><p class="lp4"><img src="images/xqtime.png">'+data.data[i].createtime+'</p><p class="lp5"><img src="images/xqjia.png"><span>'+data.data[i].money+'</span> <font>收益</font></p></li></div>';
+				    		}
+				    		if(type == 8){
+				    			html += '<div class="z-souyi"><li><p class="lp1">'+data.data[i].from_username+'</p><p class="lp2"><img src="images/jlbz.png">'+data.data[i].title+'</p><p class="lp4 zzsy"><img src="images/xqtime.png">'+data.data[i].createtime+'</p><p class="lp5"><img src="images/xqjia.png"><span>'+data.data[i].money+'</span> <font>收益</font></p></li></div>';
+				    		}
+				    		if(type == 9){
+				    			html += '<div class="z-souyi"><li><p class="lp1">收益提现</p><p class="lp4 zzsy"><img src="images/xqtime.png">'+data.data[i].createtime+'</p><p class="lp5"><img src="images/z-336.png"><span>'+data.data[i].money+'</span> <font>收益</font></p></li></div>';
+				    		}
+				    	}
+				    $(".zdul").html(html)
+				       word(16)
+
+		    } ,
+		    error:function(data){
+		    }
+		});
+		function word(len) {
+				$(".lp1").each(function() {
+					var counter = $(this).text().length; //获取文本域的字符串长度
+					var txt = $(this).text();
+					if(counter >= len) {
+						var num = $(this).text().substr(0, len);
+						$(this).text(num + '....');
+					} else {
+						$(this).text(txt);
+					}
+				});
+			}
+</script>
+</script>
+</html>

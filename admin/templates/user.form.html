@@ -1,0 +1,366 @@
+{include file="header.html"}
+<script type="text/javascript">
+    var user_name = '{$user.user_name}';
+$(function(){
+    $('#user_form').validate({
+        errorPlacement: function(error, element){
+            $(element).next('.field_notice').hide();
+            $(element).after(error);
+        },
+        success       : function(label){
+            label.addClass('right').text('OK!');
+        },
+        onkeyup    : false,
+        rules : {
+            user_name : {
+                required : true,
+                byteRange: [11,11,'{$charset}'],
+                remote   : {
+                    url :'index.php?app=user&act=check_user',
+                    type:'get',
+                    data:{
+                        user_name : function(){
+                            return $('#user_name').val();
+                        },
+                        id : '{$user.user_id}'
+                    }
+                }
+            },
+
+	    grade_id  : {
+                required : true
+            },
+            password: {
+                <!--{if $smarty.get.act eq 'add'}-->
+                required : true,
+                <!--{/if}-->
+                maxlength: 20,
+                minlength: 6
+            },
+            tuijian : {
+                required : true,
+                byteRange: [11,11,'{$charset}'],
+                remote   : {
+                    url :'index.php?app=user&act=check_tuijian',
+                    type:'get',
+                    data:{
+                        tuijian : function(){
+                            return $('#tuijian').val();
+                        }
+                    }
+                }
+            },
+            email   : {
+                required : true,
+                email : true
+            }
+            {if !$set_avatar}
+            ,
+            portrait : {
+                accept : 'png|gif|jpe?g'
+            }
+            {/if}
+        },
+        messages : {
+            user_name : {
+                required : '{$lang.user_not_empty}',
+                byteRange: '手机号不合法',
+                remote   : '{$lang.name_exist}'
+            },
+            grade_id: {
+                required : '{$lang.grade_empty}',
+            },
+            password : {
+                <!--{if $smarty.get.act eq 'add'}-->
+                required : '{$lang.password_empty}',
+                <!--{/if}-->
+                maxlength: '{$lang.password_limit}',
+                minlength: '{$lang.password_limit}'
+            },
+            email  : {
+                required : '{$lang.email_not_empty}',
+                email   : '{$lang.currect_email}'
+            },
+            tuijian  : {
+                required : '推荐人不能为空',
+                byteRange: '手机号不合法',
+                remote   : '推荐人不存在'
+            }
+
+            {if !$set_avatar}
+            ,
+            portrait : {
+                accept : '{$lang.note_portrait}'
+            }
+            {/if}
+        }
+    });
+	$('.edit_grade').click(function(){
+		$(this).next('select').show();
+		$(this).parent('td').children('.ugrade').remove();
+		$(this).parent('td').children('span').remove();
+		$(this).remove();
+	})
+});
+</script>
+<div id="rightTop">
+  <p>{$lang.user}</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=user">{$lang.manage}</a></li>
+    <li>
+      <!-- {if $user.user_id} -->
+      <a class="btn1" href="index.php?app=user&amp;act=add">{$lang.add}</a>
+      <!-- {else} -->
+      <span>{$lang.add}</span>
+      <!-- {/if} -->
+    </li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data" id="user_form">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"> 登录手机号:</th>
+        <td class="paddingT15 wordSpacing5">
+          <!-- {if $user.user_id} -->
+            <input class="infoTableInput2" id="user_name" type="text" name="user_name" value="{$user.user_name|escape}" />
+            <label class="field_notice">{$lang.user_name}</label>
+          <!-- {else} -->
+          <input class="infoTableInput2" id="user_name" type="text" name="user_name" value="{$user.user_name|escape}" />
+          <label class="field_notice">{$lang.user_name}</label>
+          <!-- {/if} -->        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.password}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="password" type="text" id="password" />
+          <!--{if $user.user_id} -->
+          <span class="grey">{$lang.note_password}</span>
+          <!-- {/if} -->        </td>
+      </tr>
+        <!--{if $action != 'edit'}-->
+        <tr>
+            <th class="paddingT15"> 推荐人手机号:</th>
+            <td class="paddingT15 wordSpacing5">
+                <input class="infoTableInput2" name="tuijian" type="text" id="tuijian" />
+                <!--{if $user.pid} -->
+                <span class="grey">* 请填写推荐人的手机号</span>
+                <!-- {/if} -->        </td>
+        </tr>
+        <!--{/if}-->
+        <!--
+        <tr>
+            <th class="paddingT15">手机号:</th>
+            <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="phone_mob" value="{$user.phone_mob}" type="text" id="phone_mob" /></td>
+        </tr>
+        -->
+      <tr>
+        <th class="paddingT15"> {$lang.ugrade}:</th>
+        <td class="paddingT15 wordSpacing5"><span>{$user.type_cn|escape}</span>
+            <!--
+        	<input type="hidden" value="{$user.ugrade}" name="grade_id" class="ugrade"/>
+            <input type="button" value="{$lang.edit}" class="edit_grade" />
+            <select style="display:none" name="grade_id" id="grade_id">
+              <option value=''>{$lang.select_pls}</option>
+              {html_options options=$ugrades selected=$user.ugrade}
+            </select></td>
+            -->
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.growth}:</th>
+        <td class="paddingT15 wordSpacing5"> {$user.growth}</td>
+      </tr>
+            <!--{if $smarty.get.act eq 'edit'}-->
+            <tr>
+                <th class="paddingT15">每日定返购物积分:</th>
+                <td class="paddingT15 wordSpacing5">{$income.each_day_return}</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">收到的积分:</th>
+                <td class="paddingT15 wordSpacing5">{$income.get_point}</td>
+            </tr>
+            <tr>
+                <th class="paddingT15">使用的积分:</th>
+                <td class="paddingT15 wordSpacing5">{$income.use_point}</td>
+            </tr>
+            <!--{if $user.type > 2}-->
+            <!--{if $user.type == 2}-->
+        <tr>
+            <th class="paddingT15">货款购买的积分:</th>
+            <td class="paddingT15 wordSpacing5">{$income.buy_point}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">微信支付购买的积分:</th>
+            <td class="paddingT15 wordSpacing5">{$income.wx_buy_point}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">发出的积分:</th>
+            <td class="paddingT15 wordSpacing5">{$income.send_point}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">收到用户支付的购物积分:</th>
+            <td class="paddingT15 wordSpacing5">{$income.pay_point}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">直推商家佣金:</th>
+            <td class="paddingT15 wordSpacing5">{$income.self_shop_commission}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">微信支付购买的积分:</th>
+            <td class="paddingT15 wordSpacing5">{$income.wx_buy_point}</td>
+        </tr>
+            <!--{/if}-->
+        <!--{if $user.type == 3}-->
+        <tr>
+            <th class="paddingT15">代理费定返:</th>
+            <td class="paddingT15 wordSpacing5">{$income.each_day_agent_return}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">三级关系定返提成:</th>
+            <td class="paddingT15 wordSpacing5">{$income.team_commission}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">直推佣金:</th>
+            <td class="paddingT15 wordSpacing5">{$income.self_commission}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $user.type == 4}-->
+        <tr>
+            <th class="paddingT15">代理费定返:</th>
+            <td class="paddingT15 wordSpacing5">{$income.each_day_agent_return}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">三级关系定返提成:</th>
+            <td class="paddingT15 wordSpacing5">{$income.team_commission}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">直推佣金:</th>
+            <td class="paddingT15 wordSpacing5">{$income.self_commission}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">区域商家发积分提成:</th>
+            <td class="paddingT15 wordSpacing5">{$income.area_shop_send_point_return}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">直推商家佣金:</th>
+            <td class="paddingT15 wordSpacing5">{$income.self_shop_profit}</td>
+        </tr>
+        <!--{/if}-->
+        <!--{if $user.type == 5}-->
+        <tr>
+            <th class="paddingT15">代理费定返:</th>
+            <td class="paddingT15 wordSpacing5">{$income.each_day_agent_return}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">三级关系定返提成:</th>
+            <td class="paddingT15 wordSpacing5">{$income.team_commission}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">直推佣金:</th>
+            <td class="paddingT15 wordSpacing5">{$income.self_commission}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">区域商家发积分提成:</th>
+            <td class="paddingT15 wordSpacing5">{$income.area_shop_send_point_return}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">直推商家佣金:</th>
+            <td class="paddingT15 wordSpacing5">{$income.self_shop_profit}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">区域会员收积分提成:</th>
+            <td class="paddingT15 wordSpacing5">{$income.self_shop_profit}</td>
+        </tr>
+        <tr>
+            <th class="paddingT15">直推县级代理商家发积分提成:</th>
+            <td class="paddingT15 wordSpacing5">{$income.self_shop_profit}</td>
+        </tr>
+        <!--{/if}-->
+            <tr>
+                <th class="paddingT15">赠送积分:</th>
+                <td class="paddingT15 wordSpacing5">
+                    <p class="select">
+                        <!--
+                        <select name="point_change">
+                            <option value="0">不变</option>
+                            <option value="inc_by">增加</option>
+                            <option value="dec_by">减少</option>
+                        </select>
+                        -->
+                        <input name="point" type="text" class="text" />
+                    </p>
+                </td>
+            </tr>
+            <!--{/if}-->
+            <!--{/if}-->
+        <!--
+      <tr>
+        <th class="paddingT15"> {$lang.email}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="email" type="text" id="email" value="{$user.email|escape}" />
+            <label class="field_notice">{$lang.email}</label>        </td>
+      </tr>
+      -->
+      <tr>
+        <th class="paddingT15"> {$lang.real_name}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="real_name" type="text" id="real_name" value="{$user.real_name|escape}" />        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.gender}:</th>
+        <td class="paddingT15 wordSpacing5"><p>
+            <label>
+            <input name="gender" type="radio" value="0" {if $user.gender eq 0}checked="checked"{/if} />
+            {$lang.unknown}</label>
+            <label>
+            <input type="radio" name="gender" value="1" {if $user.gender eq 1}checked="checked"{/if} />
+            {$lang.male}</label>
+            <label>
+            <input type="radio" name="gender" value="2" {if $user.gender eq 2}checked="checked"{/if} />
+            {$lang.female}</label>
+          </p></td>
+      </tr>
+      <!--<tr>
+        <th class="paddingT15"> <label for="phone_tel">{$lang.phone_tel}:</label></th>
+        <td class="paddingT15 wordSpacing5"><input name="phone_tel[]" id="phone_tel" type="text" size="4" value="{$phone_tel.0}" />
+          -
+          <input class="infoTableInput2" name="phone_tel[]" type="text" value="{$phone_tel.1}" />
+          -
+          <input name="phone_tel[]" type="text" size="4" value="{$phone_tel.2}" />
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.phone_mob}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="phone_mob" type="text" id="phone_mob" value="{$user.phone_mob|escape}" />
+        </td>
+      </tr>-->
+      <tr>
+        <th class="paddingT15"> {$lang.im_qq}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="im_qq" type="text" id="im_qq" value="{$user.im_qq|escape}" />        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"> {$lang.im_msn}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableInput2" name="im_msn" type="text" id="im_msn" value="{$user.im_msn|escape}" />        </td>
+      </tr>
+
+     {if !$set_avatar}
+      <tr>
+        <th class="paddingT15">{$lang.portrait}:</th>
+        <td class="paddingT15 wordSpacing5"><input class="infoTableFile2" type="file" name="portrait" id="portrait" />
+          <label class="field_notice">{$lang.note_portrait}</label>
+          {if $user.portrait}<br /><img src="../{$user.portrait}" alt="" width="100" height="100" />{/if}           </td>
+      </tr>
+     {else}
+        <!--{if $smarty.get.act eq 'edit'}-->
+      <tr>
+        <th class="paddingT15">{$lang.portrait}:</th>
+        <td class="paddingT15 wordSpacing5">{$set_avatar}</td>
+      </tr>
+        <!--{/if}-->
+     {/if}
+      <tr>
+        <th></th>
+        <td class="ptb20"><input class="formbtn" type="submit" name="Submit" value="{$lang.submit}" />
+          <input class="formbtn" type="reset" name="Reset" value="{$lang.reset}" />        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>商家-会员</title>
+	<link rel="stylesheet" href="css/xiandai.css">
+	<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+	<style>
+		.w_member{
+			margin-left: 3rem;
+		}
+		.w_xqhy{
+			margin-left: 2rem;
+		}	
+		.w_daili{
+			margin-left: 3rem;
+		}	
+		.w_shangjia{
+			margin-left: 3rem;
+		}
+		section .sec1{
+			height: 20rem;
+		}
+		section .secs{
+			/*display: none;*/
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<header>
+			<a href="javascript:history.go(-1)" onclick="self.location=document.referrer;">
+			<p class="p1"><img src="images/back.png" alt="返回首页"></p>
+		</a>
+		<p class="p2">我的会员</p>
+		</header>
+		<section>
+			<div class="sec1">
+				<dl class="w_member">
+					<dt><img src="images/my_hy.png"/></dt>
+					<dd>会员</dd>
+				</dl>
+				<dl class="w_daili">
+					<dt><img src="images/my_dl.png"/></dt>
+					<dd>代理</dd>
+				</dl>
+				<dl class="w_shangjia">
+					<dt><img src="images/my_sj.png"/></dt>
+					<dd>商家</dd>
+				</dl>
+				
+			</div>
+			<div class="sec1 secs">
+				<dl class="w_xqhy">
+					<dt><img src="images/xqhysy.jpg"/></dt>
+					<dd>辖区会员</dd>
+				</dl>
+				<dl class="w_xqsj">
+					<dt><img src="images/xqsjsy.jpg"/></dt>
+					<dd>辖区商家</dd>
+				</dl>
+				<dl>
+					<dt></dt>
+					<dd></dd>
+				</dl>
+			</div>
+		</section>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script>
+		var types=localStorage.getItem ("type");
+		console.log(types);
+		if (types=="4"){
+			$(".secs").show();
+		}else if (types=="5") {
+			$(".secs").show();
+		}else{
+			$(".secs").hide();
+		}
+		$(".w_member").click(function(){
+			location.href = "my_member1.html";
+		});
+		$(".w_daili").click(function(){
+			location.href = "daili.html";
+		});
+		$(".w_shangjia").click(function(){
+			location.href = "shangjia.html";
+		});
+		$(".w_xqhy").click(function(){
+			location.href = "xqhy.html";
+		});
+		$(".w_xqsj").click(function(){
+			location.href = "xqsj.html";
+		});
+	</script>
+</html>

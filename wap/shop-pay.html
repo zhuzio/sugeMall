@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<link rel="stylesheet" type="text/css" href="css/shop-pay.css" />
+		<style>
+			.ltan {
+				position: fixed;
+				z-index: 100000； left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.3);
+				display: none;
+			}
+			
+			.ltan p {
+				width: 70%;
+				height: 20rem;
+				margin-top: 60%;
+				margin-left: 15%;
+				line-height: 20rem;
+				font-size: 3.4rem;
+				color: #333;
+				text-align: center;
+				background-color: #fff;
+				border-radius: 1rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="d_header">
+			<a class="black" href="javascript:history.go(-1)">
+				<p class="p1">
+					<img src="images/z-120.png" alt="返回首页" />
+				</p>
+			</a>
+			<p class="p2">收银台</p>
+		</div>
+		<div class="sp-price">
+			<div class="sp-price1">
+				<span>订单金额</span>
+				<span class="z-payw"></span>
+			</div>
+		</div>
+		<ul class="sp-price-type">
+			<li><img src="images/z-121.png" /></li>
+			<li>
+				<ul class="sp-price-type1">
+					<li>购物积分支付</li>
+					<li><span>当前可用购物积分:</span><span class="sp-price-type5"></span></li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="sp-consume">
+			<li>
+				<span>消费金额:</span>
+				<span class="zpayd"></span>
+			</li>
+		</ul>
+		<!--键盘html-->
+		<div class="key" style="display: none;">
+			<div class="k-header">
+				<div class="k-left"><img src="images/wk-x.png" alt="返回首页"></div>
+				<div class="k-right">
+					<p>输入支付密码</p>
+				</div>
+			</div>
+			<div class="k-center">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li class="kc-last"></li>
+				</ul>
+			</div>
+			<div class="forget">
+				<a href="czzfmm.html">忘记密码?</a>
+			</div>
+			<div class="k-footer">
+				<ul class="fistline">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+				<ul class="fistline">
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+				</ul>
+				<ul class="fistline">
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+				</ul>
+				<ul>
+					<li class="k-lastline"></li>
+					<li class="fistlines">0</li>
+					<li class="k-lastline"><img src="images/wk-12_03.png" alt=""></li>
+				</ul>
+			</div>
+		</div>
+		<div class="sp-confirm">确认支付</div>
+		<div class="pay-success" style="display: none;">支付成功!</div>
+		<div class="pay-success1" style="display: none;">积分不足，支付失败</div>
+		<div class="pay-success2" style="display: none;">密码错误！</div>
+		<div class="ltan"><p></p></div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var tokens = localStorage.getItem("token");
+			var dmoneyss = localStorage.getItem("dmoneys");
+			var dsums = localStorage.getItem("dsum");
+			var order_sns = localStorage.getItem("order_sn");
+			var money;
+			var moneys1;
+			$.ajax({
+			     type: 'POST',
+			      dataType: "json",
+			      url:Url + "api/index.php?n=wendy&f=order_money",
+			     data: {
+			     	token:tokens,
+			     	order_sn:order_sns,
+			     	},
+			    success: function(data){
+			    	 console.log(data);
+			    	 $(".z-payw").html('￥' + data.data.total_money + '元');
+			    	 $(".sp-price-type5").html(data.data.user_money);
+			    	 $(".zpayd").text(data.data.total_money)
+			    	 money=data.data.total_money;
+			    	 moneys1=data.data.total_money;
+			    	 // console.log(data.data.user_money);
+			    	 // 	console.log(data.data.total_money);
+			    	 if(data.data.user_money*1 >= data.data.total_money*1) {
+			    	 		console.log(1);
+					$(".sp-confirm").css({
+						"background-color": "#ffc600",
+						"color": "#fff"
+					});
+				} else {
+					console.log(2);
+					$(".sp-confirm").css({
+						"background-color": "#e5e5e5",
+						"color": "#999",
+						"pointer-events": "none"
+					});
+				}
+			    },
+			    error:function(data){
+					    	console.log(data);
+					    }
+			})
+			// $(".sp-price-type5").html(dmoneyss);
+			// $(".z-payw").html('￥' + dsums + '元');
+			//键盘点击事件
+			$('.btn').on('click', function() {
+				$('.key').show();
+			})
+			$('.k-left').on('click', function() {
+				$('.key').hide();
+			})
+			var arr = [];
+			var pas;
+			$('.fistline li').on('touchend', function() {
+				// $(this).html();
+				if(arr.length < 6) {
+					arr.push($(this).html());
+					for(var i = 0; i < arr.length; i++) {
+						$(".k-center li").eq(i).html("*");
+					};
+					pas = arr.join("");
+					// console.log(pas);
+					if(arr.length == 6) {
+						pas = arr.join("");
+						aj();
+					}
+				};
+				
+			})
+			$('.fistlines').on('touchend', function() {
+				// $(this).html();
+				if(arr.length < 6) {
+					arr.push($(this).html());
+					for(var i = 0; i < arr.length; i++) {
+						$(".k-center li").eq(i).html("*");
+					};
+					if(arr.length == 6) {
+						// $(".key").hide();
+						pas = arr.join("");
+						aj();
+					}
+				};
+				
+			})
+			$('.k-lastline').on('touchend', function() {
+					arr.pop();
+					for(var i = 0; i < $(".k-center li").length; i++) {
+						$(".k-center li").eq(i).html("");
+					};
+					for(var i = 0; i < arr.length; i++) {
+						$(".k-center li").eq(i).html("*");
+					};
+				})
+				//弹框提示
+			$('.tianjia').on('click', function() {
+				jQuery(document).ready(function($) {
+					//打开窗口
+					event.preventDefault();
+					$('.cd-popup').addClass('is-visible');
+					//关闭窗口
+					$('.cd-popup').on('click', function(event) {
+						if($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup')) {
+							event.preventDefault();
+							$('.cd-popup').removeClass('is-visible');
+						}
+					})
+					$('.li1').on('click', function(event) {
+						event.preventDefault();
+						$('.cd-popup').removeClass('is-visible');
+					})
+					$('.li2').off().on('click', function(event) {
+						event.preventDefault();
+						$('.cd-popup').removeClass('is-visible');
+						names = $(".tanchu input").val();
+						tj_name();
+					})
+				})
+			});
+			//点击事件
+			// var money = $(".z-payw").text();
+			// var moneys = money.substr(0, money.length - 1);
+			// var moneys1 = moneys.substr(1, moneys.length - 1);
+			// var moneys2 = Number(moneys1);
+			// $(".zpayd").html(moneys2);
+			// var point = $(".sp-price-type5").text();
+			// var points = Number(point);
+			// if(points >= moneys2) {
+			// 	$(".sp-confirm").css({
+			// 		"background-color": "#ffc600",
+			// 		"color": "#fff"
+			// 	});
+			// } else {
+			// 	$(".sp-confirm").css({
+			// 		"background-color": "#e5e5e5",
+			// 		"color": "#999",
+			// 		"pointer-events": "none"
+			// 	});
+			// }
+			var moneys1
+			//点击确认支付
+			$(".sp-confirm").click(function() {
+					arr = [];
+					$(".key").show();
+					$(".k-center>ul>li").html(" ");
+				})
+			$(".ltan").on("click",function(){
+				$(this).hide();
+			})
+				//接口
+			function aj() {
+				pas = arr.join("");
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=goods&f=pointpay",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"zf_pass": pas,
+						"money": moneys1,
+						"order_sn": order_sns,
+					},
+					success: function(data) {
+//						console.log(data);
+						if(data.ret == "ok") {
+							//用户支付回调开始
+							$.ajax({
+								type: 'POST',
+								url: Url + "api/index.php?n=goods&f=goodspayback",
+								dataType: "json",
+								data: {
+									"token": tokens,
+									"type": "余额支付",
+									"order_sn": order_sns,
+								},
+								success: function(data) {
+									if(data.ret == "ok") {
+										$(".key").hide();
+										$(".pay-success").show();
+										var zftzs = localStorage.getItem("zftz");
+										// if (zftzs=="1") {
+										// 	setTimeout(function() {
+										// 		window.location.href = "order_on.html";
+										// 	}, 1500);
+										// }else{
+										// 	setTimeout(function() {
+										// 		window.location.href = "orderinformation.html";
+										// 	}, 1500);
+										// }
+										setTimeout(function() {
+												window.location.href = "order_on.html";
+											}, 1500);
+										
+									}else{
+										$(".ltan p").html(data.msg);
+										$(".ltan").show();
+									}
+
+								},
+								error: function(data) {
+									// console.log(data);
+									$(".ltan p").html(data.msg);
+									$(".ltan").show();
+								}
+							});
+							//用户支付回调结束
+
+						}else{
+							$(".ltan p").html(data.msg);
+							$(".ltan").show();
+						}
+						// if(data.msg == "积分不足") {
+						// 	$(".key").hide();
+						// 	$(".pay-success1").show();
+						// }
+						// if(data.msg == "支付密码输入错误") {
+						// 	$(".key").hide();
+						// 	$(".pay-success2").show();
+						// }
+						// setTimeout(function() {
+						// 	$(".pay-success").hide();
+						// }, 1000);
+						// setTimeout(function() {
+						// 	$(".pay-success1").hide();
+						// }, 1000);
+						// setTimeout(function() {
+						// 	$(".pay-success2").hide();
+						// }, 1000);
+					},
+					error: function(data) {
+						// console.log(data);
+						$(".ltan p").html(data.msg);
+						$(".ltan").show();
+					}
+				});
+			}
+
+		});
+	</script>
+
+</html>

@@ -1,0 +1,327 @@
+@import url(m_reset.css);
+.r {
+  position: relative;
+}
+.a {
+  position: absolute;
+}
+html,
+body,
+.container {
+  width: 100%;
+  height: 100%;
+  background: #f1f2f6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 62.5%;
+}
+header {
+  width: 100%;
+  height: 8.8rem;
+  background: #ffffff;
+  border-bottom: 0.1rem solid #d5d5d5;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+header .left {
+  width: 2.2rem;
+  margin-left: 3rem;
+  margin-top: 2.5rem;
+}
+header .left img {
+  width: 2.2rem;
+  height: 3.8rem;
+}
+header .center {
+  -webkit-box-flex: 1;
+}
+header .center p {
+  line-height: 8.8rem;
+  font-size: 3.4rem;
+  color: #333333;
+  text-align: center;
+  padding-right: 10%;
+}
+section {
+  width: 100%;
+  height: auto;
+  background: none;
+  border-top: 0.1rem solid #d5d5d5;
+  margin-top: 1.9rem;
+}
+section .jifen {
+  width: 100%;
+  height: 25rem;
+  background: #fafafc;
+}
+section .jifen .jifen_top {
+  width: 100%;
+  height: 18.5rem;
+  background: 0;
+  text-align: center;
+  line-height: 18.5rem;
+}
+section .jifen .jifen_top .p1 {
+  width: 16.7rem;
+  height: 5rem;
+  background: 0;
+  font-size: 5rem;
+}
+section .jifen .jifen_top .p2 {
+  width: 5.7rem;
+  height: 3rem;
+  background: 0;
+  font-size: 3rem;
+}
+section .jifen .jifen_bottom {
+  width: 100%;
+  height: 6.5rem;
+  background: 0;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .jifen .jifen_bottom p {
+  -webkit-box-flex: 1;
+  text-align: center;
+  font-size: 2.6rem;
+}
+section .goods_pri {
+  width: 100%;
+  height: 9.8rem;
+  background: #ffffff;
+  border-top: 0.1rem solid #d5d5d5;
+  border-bottom: 0.1rem solid #d5d5d5;
+}
+section .goods_pri p {
+  line-height: 9.8rem;
+  font-size: 3rem;
+  color: 0;
+  padding-left: 3rem;
+}
+section .goods_id {
+  width: 100%;
+  height: 9.8rem;
+  background: #ffffff;
+  border-top: 0.1rem solid #d5d5d5;
+  border-bottom: 0.1rem solid #d5d5d5;
+}
+section .goods_id p {
+  line-height: 9.8rem;
+  font-size: 3rem;
+  color: 0;
+  padding-left: 3rem;
+}
+section .goods_name {
+  width: 100%;
+  height: 9.8rem;
+  background: #ffffff;
+  border-top: 0.1rem solid #d5d5d5;
+  border-bottom: 0.1rem solid #d5d5d5;
+}
+section .goods_name p {
+  line-height: 9.8rem;
+  font-size: 3rem;
+  color: 0;
+  padding-left: 3rem;
+}
+section .beizhu {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  width: 100%;
+  height: 9.8rem;
+  background: #ffffff;
+  border-top: 0.1rem solid #d5d5d5;
+  border-bottom: 0.1rem solid #d5d5d5;
+  margin-top: 2.4rem;
+}
+section .beizhu p {
+  line-height: 9.6rem;
+  font-size: 2.8rem;
+  color: #333333;
+  padding-left: 3rem;
+  -webkit-box-sizing: border-box;
+}
+section .beizhu input {
+  display: block;
+  height: 9.6rem;
+  line-height: 8.6rem;
+  -webkit-box-flex: 1;
+  font-size: 2.8rem;
+  padding-left: 5rem;
+  outline: none;
+  border: none;
+}
+footer {
+  width: 100%;
+  height: 12.2rem;
+  background: none;
+}
+footer p {
+  position: relative;
+}
+footer p span {
+  display: block;
+  width: 80%;
+  height: 7.5rem;
+  background: #ffc600;
+  margin-left: 10%;
+  margin-top: 4.7rem;
+  border-radius: 1rem;
+  text-align: center;
+  line-height: 7.5rem;
+  font-size: 3rem;
+  color: #ffffff;
+}
+.key {
+  width: 100%;
+  height: 70.7rem;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+}
+.key .k-header {
+  width: 100%;
+  height: 9.3rem;
+  background: none;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+.key .k-header .k-left {
+  width: 1.9rem;
+  margin-left: 3.6rem;
+  margin-top: 3.2rem;
+}
+.key .k-header .k-left img {
+  width: 1.9rem;
+  height: 1.8rem;
+}
+.key .k-header .k-right {
+  -webkit-box-flex: 1;
+}
+.key .k-header .k-right p {
+  line-height: 9.3rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+  padding-right: 10%;
+}
+.key .k-center {
+  width: 100%;
+  height: 9rem;
+  background: none;
+}
+.key .k-center ul {
+  width: 80%;
+  height: 9rem;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  margin-left: 10%;
+  border-radius: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+.key .k-center ul li {
+  border-right: 1px solid #e2e2e2;
+  width: 16.6%;
+  height: 9rem;
+  line-height: 9rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+}
+.key .k-center ul .kc-last {
+  border-right: none;
+}
+.key .forget {
+  width: 100%;
+  height: 6.8rem;
+  background: none;
+}
+.key .forget a {
+  line-height: 6.8rem;
+  font-size: 2.6rem;
+  color: #ffc600;
+  margin-left: 75%;
+}
+.key .k-footer {
+  width: 100%;
+  height: 45.6rem;
+  background: #e2e7ed;
+}
+.key .k-footer ul {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  width: 100%;
+  height: 11.3rem;
+  background: none;
+  border-top: 1px solid #e2e7ed;
+}
+.key .k-footer ul li {
+  width: 100%;
+  -webkit-box-flex: 1;
+  background: #fff;
+  text-align: center;
+  line-height: 11.3rem;
+  font-size: 4.4rem;
+  color: #414141;
+  margin-right: 0.1rem;
+}
+.key .k-footer .k-lastline {
+  background: none;
+}
+.key .k-footer .k-lastline img {
+  width: 4.1rem;
+  height: 3.8rem;
+  background: none;
+}
+.cd-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+  z-index: 9999;
+}
+.cd-popup.is-visible {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+.cd-popup-container {
+  position: relative;
+  width: 70%;
+  margin: 40% auto;
+  height: 20rem;
+  background: #FFF;
+  border-radius: .4rem .4rem .4rem .4rem;
+  text-align: center;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(1.2);
+  -webkit-backface-visibility: hidden;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 0.3s;
+}
+.is-visible .cd-popup-container {
+  -webkit-transform: scale(1);
+}
+.tanchu {
+  width: 100%;
+  height: 100%;
+  background: none;
+  padding: 0 15%;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+  border-radius: 5rem;
+}
+.tanchu p {
+  line-height: 40rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+}

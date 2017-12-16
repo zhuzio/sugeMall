@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>店铺-商品搜索</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/z-store.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+	</head>
+
+	<body>
+		<header class="z-location-a">
+			<div class="z-location-h">
+				<a class="black" href="javascript:;">
+					<img class="z-location-b" src="images/z-88.png" />
+				</a>
+				<div class="z-location-input">
+					<img src="images/z-89.png" />
+					<input type="" name="" value="" placeholder="搜索店铺内商品" />
+				</div>
+				<span class="z-location-c">搜索</span>
+			</div>
+		</header>
+		<div class="z-sta">
+			<span class="z-sta1"></span>
+			<span class="z-sta2">收 藏</span>
+		</div>
+		<div class="z-stb">全部商品</div>
+		<div class="z-stall">
+			<ul class="z-stc">
+			</ul>
+		</div>
+		<div class="z-store-f">
+			<div class="z-store-f1">
+				<img src="images/z-173.png" />
+				<span>商品分类</span>
+			</div>
+			<div class="z-store-f2">
+				<img src="images/z-176.png" />
+				<span>联系商家</span>
+			</div>
+		</div>
+		<ul class="z-store-d" style="display: none;">
+		</ul>
+		<div class="z-sj" style="display: none;"></div>
+		<div class="z-load"><img src="images/add.gif" /></div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript">
+	function GetQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值		
+	}
+		$(function() {
+			$(".black").on('click',function(){
+				if(GetQueryString('from') != null){
+					location.href = 'index.html';
+				}else{
+					history.back(-1);
+				}
+			});
+			$(".z-store-f1").click(function() {
+				$(".z-store-d").toggle("show");
+				$(".z-sj").toggle("show");
+			});
+			$(".z-store-f2").click(function() {
+				window.location.href = "z-storeinfo.html";
+			})
+			var tokens = localStorage.getItem("token");
+			var stoids = 0;
+			if(GetQueryString('storeid') != null) {
+				stoids = GetQueryString('storeid');
+			} else {
+				stoids = localStorage.getItem("stoids");
+			}
+			var num;
+			var add_time;
+			var address;
+			var owner_name;
+			var region_name;
+			var store_name;
+			var store_tel;
+			var storeid;
+			//定义一个商品数组
+			var goodArr = [];
+			//店铺接口
+			function StoreFn() {
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=store&f=storegoods",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"store_id": stoids,
+						"page": 1,
+						"cate_name": txt
+					},
+					success: function(data) {
+//						console.log(data);
+						$(".z-sta").css("background-image","url('"+Url+data.data[0].store_logo+"')");
+						$(".z-load").show();
+						var datas = data.data;
+						num = data.totalpage;
+						if(data.msg == "请先登录") {
+							window.location.href = "denglu.html";
+						}
+						if(data.msg == "身份错误，请重新登录") {
+							window.location.href = "denglu.html";
+						}
+						var colls = data.arr;
+//						console.log(colls);
+						if(colls == "1") {
+							$(".z-sta2").html("已收藏");
+							$(".z-sta2").click(function() {
+								$(".z-sta2").html("收藏");
+//								txt1 = $(".z-sta2").text();
+//								localStorage.setItem('txts', txt1);
+								$.ajax({
+									type: 'POST',
+									url: Url + "api/index.php?n=collection&f=uncollectstore",
+									dataType: "json",
+									data: {
+										"token": tokens,
+										"type": "store",
+										"store_id": stoids,
+									},
+									success: function(data) {
+//										console.log(data);
+										window.location.reload();										
+										var datas = data.data;
+									},
+									error: function(data) {}
+								});
+							});
+							
+						}
+						if(colls == "0") {
+							$(".z-sta2").html("收藏");
+							$(".z-sta2").click(function() {
+								$(".z-sta2").html("已收藏");
+								$.ajax({
+									type: 'POST',
+									url: Url + "api/index.php?n=goods&f=shopcollect",
+									dataType: "json",
+									data: {
+										"token": tokens,
+										"type": "store",
+										"store_id": stoids,
+									},
+									success: function(data) {
+//										console.log(data);
+										window.location.reload();										
+										var datas = data.data;
+									},
+									error: function(data) {　　　　}
+								});
+							});
+						}
+						add_time = datas[0].add_time;
+						address = datas[0].address;
+						owner_name = datas[0].owner_name;
+						region_name = datas[0].region_name;
+						store_name = datas[0].store_name;
+						store_tel = datas[0].tel;
+						storeid = datas[0].store_id;
+						$(".z-sta1").html(store_name);
+						localStorage.setItem('zcolls', colls);
+						localStorage.setItem('storeids', storeid);
+						localStorage.setItem('addtime', add_time);
+						localStorage.setItem('address', address);
+						localStorage.setItem('ownername', owner_name);
+						localStorage.setItem('regionname', region_name);
+						localStorage.setItem('storename', store_name);
+						localStorage.setItem('storetel', store_tel);
+						var html = "";
+						for(var j = 0; j < datas[0].goods.length; j++) {
+							html += '<li><img class="storimg" src="' + Url + '' + datas[0].goods[j].default_image + '"/><span class="z-stc1">' + datas[0].goods[j].goods_name + '</span></br><span class="z-stc2">￥' + datas[0].goods[j].price + '</span></li>';
+							goodArr.push(datas[0].goods[j].goods_id)
+						}
+						$(".z-stc").html(html);
+						$('.storimg').error(function() {
+							$(this).attr('src', 'images/z-logo.png');
+						});
+						word(25);
+						StoreFnd();
+						setTimeout(function() {
+							$(".z-load").hide();
+						}, 300)
+					},
+					error: function(data) {},
+				});
+			}
+			StoreFn();
+
+			//			$(".z-stc").click(function(){
+			//				$(".z-store-d").hide();
+			//				$(".z-sj").hide();
+			//			})
+			//  预加载
+			var pages = 1; //当前页的页码
+			var allpage = num; //总页码，会从后台获取
+			var sc = true;
+
+			function showAjax() {
+				$(".z-load").show();
+				$.ajax({
+					type: 'POST',
+					dataType: "json",
+					url: Url + "api/index.php?n=store&f=storegoods",
+					data: {
+						"token": tokens,
+						"store_id": stoids,
+						"page": pages,
+						"cate_name": txt
+					},
+					success: function(data) {
+						//console.log(data);
+						var datas = data.data;
+						var htmls = "";
+						for(var j = 0; j < datas[0].goods.length; j++) {
+							htmls = '<li><img class="storimg" src="' + Url + '' + datas[0].goods[j].default_image + '"/><span class="z-stc1">' + datas[0].goods[j].goods_name + '</span></br><span class="z-stc2">￥' + datas[0].goods[j].price + '</span></li>';
+							sc = true;
+							goodArr.push(datas[0].goods[j].goods_id)
+							$(".z-stc").append(htmls);
+						}
+						$('.storimg').error(function() {
+							$(this).attr('src', 'images/z-logo.png');
+						});
+						word(25);
+						StoreFnd();
+						setTimeout(function() {
+							$(".z-load").hide();
+						}, 300)
+					}
+
+				})
+			}
+
+			function scrollFn() {
+				//真实内容的高度
+				var pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+				//视窗的高度
+				// console.log(pageHeight);
+				var viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
+				// console.log(viewportHeight);
+				//隐藏的高度
+				var scrollHeight = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+				// console.log(scrollHeight);
+				if(pageHeight - viewportHeight - scrollHeight < 10) { //如果满足触发条件，执行
+					if(sc) {
+						sc = false;
+						pages++;
+						if(pages <= num) {
+							showAjax();
+						}
+					}
+				}
+				$(".z-store-d").hide();
+				$(".z-sj").hide();
+			}
+			$(window).bind("scroll", scrollFn); //绑定滚动事件
+			//店铺点击接口
+			function StoreFnd() {
+				$(".z-stc li").click(function() {
+					var a = $(this).index();
+					localStorage.setItem('good', goodArr[a]);
+					location.href = "goods-order.html";
+				});
+			}
+			//店铺分类接口
+			$.ajax({
+				type: 'POST',
+				url: Url + "api/index.php?n=store&f=classinfo",
+				dataType: "json",
+				data: {store_id:stoids},
+				success: function(data) {
+					var datas = data.data;
+					var html = "";
+					for(var i = 0; i < datas.length; i++) {
+						html += '<li>' + datas[i].cate_name + '</li>';
+					}
+					$(".z-store-d").html(html);
+					StdFn();
+				},
+				error: function(data) {},
+			});
+
+			//点击事件分类
+			var txt;
+
+			function StdFn() {
+				$(".z-store-d").on("click", "li", function() {
+					var txt = $(this).text();
+					index = $(this).index();
+					StoreFn();
+					$(".z-store-d").hide();
+					$(".z-sj").hide();
+				});
+			}
+			var storeidss = localStorage.getItem("storeids");
+			var txtss = localStorage.getItem("txts");
+			//收藏店铺
+			//			var txt1 = $(".z-sta2").text();
+			//			localStorage.setItem('txts', txt1);
+			//			$(".z-sta2").html(txtss);
+			//点击搜索
+			$(".z-location-input").click(function() {
+				window.location.href = "history-seach.html";
+			})
+		});
+
+		//限制字数方法
+		function word(len) {
+			$(".z-stc1").each(function() {
+				var counter = $(this).text().length; //获取文本域的字符串长度
+				var txt = $(this).text();
+				if(counter >= len) {
+					var num = $(this).text().substr(0, len);
+					$(this).text(num + '....');
+				} else {
+					$(this).text(txt);
+				}
+			});
+		}
+	</script>
+
+</html>

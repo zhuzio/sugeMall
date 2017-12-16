@@ -1,0 +1,218 @@
+.page-group .bar{
+	height: 8.8rem;
+}
+.back img{
+	width: 2rem;
+	height: 3.7rem;
+	vertical-align: middle;
+}
+.back{
+	height: 8.8rem;
+	width: 7rem;
+	line-height: 8.8rem;
+	margin-left: 3rem;
+}
+.title{
+	margin: 0;
+	font-weight: normal;
+	font-size: 3.4rem;
+	line-height: 8.8rem;
+}
+#con{
+	top: 8.8rem;
+}
+.data{
+	/*margin: 1rem 3rem 0;*/
+}
+.tel{
+	height: 6rem;
+	width: 100%;
+	/*margin: 0 3rem;*/
+	/*border-bottom: 1px solid #d5d5d5;*/
+	margin: 0;
+	background-color: #fff;
+	position: relative;
+}
+.tel input{
+	border: none;
+	width: 70%;
+	height: 100%;
+	font-size: 3.4rem;
+	color: #000;
+	font-weight: normal;
+	background-color: transparent;
+	position: absolute;
+	z-index: 3;
+}
+.tel .tel_sp1{
+	float: left;
+	height: 6rem;
+	/*width: 9rem;*/
+	width: 20%;
+	margin-left: 3rem;
+	font-size: 3.4rem;
+	color: #000;
+	line-height: 6rem;
+}
+.tel .tel_sp2{
+	position: absolute;
+	height: 6rem;
+	width: 30%;
+	right: 0;
+	font-size: 2.8rem;
+	color: #666;
+	line-height: 6rem;
+	text-align: right;
+	z-index: 1;
+}
+.tel .tel_sp2 img{
+	vertical-align: middle;
+	width: 1.9rem;
+	height: 1.1rem;
+	margin-right: 3rem;
+}
+.detailaddr{
+	height: 20rem;
+	width: 100%;
+	border-bottom: 1px solid #d5d5d5;
+	margin: 0;
+}
+/*.detailaddr textarea{
+	border: none;
+	height: 20rem;
+	width: 100%;
+	font-size: 3rem;
+	color: #666;
+	resize: none;
+	font-weight: normal;
+	line-height: 4rem;
+}*/
+/*.save{
+	margin: 5rem 2rem;
+	height: 10rem;
+	/*border: 1px solid red;*/
+/*}*/
+/*.save button{
+	float: left;
+	width: 100%;
+	height: 100%;
+	background-color: #ffc600;
+	border:none;
+	font-size: 3.7rem;
+	color: #fff;
+	text-align: center;
+	line-height: 10rem;
+	font-weight: normal;
+}*/
+.picker-columns .bar{
+	height: 8.8rem;
+}
+.picker-columns{
+	height: 26rem;
+}
+.picker-columns .bar .button{
+	font-size: 3rem;
+	line-height: 8.8rem;
+	height: 8.8rem;
+	right: 1rem;
+}
+.picker-columns .picker-modal-inner {
+	height: 17rem;
+}
+.city-picker .col-province{
+	width: 10rem;
+}
+.picker-item{
+	height: 3.6rem;
+	line-height: 3.6rem;
+	font-size: 2.6rem;
+}
+.picker-center-highlight{
+	height: 3.6rem;
+	margin-top: -1.8rem;
+}
+.city-picker .col-city{
+	width: 12rem;
+	/*right: 1rem;*/
+}
+.city-picker .col-district{
+	width: 10rem;
+}
+.picker-item{
+	padding: 0 1rem;
+}
+body{
+	background-color: #efeff4;
+}
+.page, .page-group{
+	background-color: transparent;
+}
+.xzcs{
+	height: 9rem;
+	background-color: #fff;
+	width: 100%;
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+}
+.xzcs p{
+	height: 6rem;
+	margin: 1.5rem 3rem;
+	background-color: #efeff4;
+}
+.xzcs p img{
+	width: 3.2rem;
+	height: 3.2rem;
+	margin: 1.4em 2.1rem;
+	float: left;
+}
+.xzcs p input{
+	width: 60%;
+	height: 6rem;
+	/*margin: 1.4em 2.1rem;/*/
+	float: left;
+	background-color: transparent;
+	font-size: 3rem;
+	color: #666;
+}
+.comment{
+	height: 7.8rem;
+	line-height: 7.8rem;
+	color: #666;
+	font-size: 3rem;
+	text-indent: 3rem;
+}
+.lis{
+	height: 6.5rem;
+	width: 26%;
+	border:1px solid #bfbfc3;
+	background-color: #fff;
+	
+	list-style: none;
+	line-height: 6.5rem;
+	text-align: center;
+	font-size: 3.4rem;
+	color: #333;
+}
+.dq{
+	/*margin-left: 3rem;*/
+}
+.zj,.rm{
+	margin: 0 3rem;
+	height: 6.5rem;
+
+}
+.rm{
+	position: relative;
+	margin-top: 1.5rem;
+}
+.lis1{
+	float: left;
+}
+.lis3{
+	float: right;
+}
+.lis2{
+	position: absolute;
+	left: 50%;
+	margin-left: -13%;
+}

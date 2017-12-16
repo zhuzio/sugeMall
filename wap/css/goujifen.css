@@ -1,0 +1,476 @@
+@import url(m_reset.css);
+.r {
+  position: relative;
+}
+.a {
+  position: absolute;
+}
+html,
+body,
+.wrap {
+  width: 100%;
+  height: 100%;
+  background: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 62.5%;
+}
+header {
+  width: 100%;
+  height: 10rem;
+  background: #efeff4;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  border-bottom: 0.1rem solid #bfbfc3;
+}
+header .p1 {
+  width: 9rem;
+  height: 10rem;
+  background: 0;
+  line-height: 10rem;
+  text-align: center;
+}
+header .p1 img {
+  width: 2rem;
+  height: 4rem;
+  margin-top: 3rem;
+}
+header .p2 {
+  -webkit-box-flex: 1;
+  font-size: 3.8rem;
+  text-align: center;
+  line-height: 10rem;
+}
+header .p3 {
+  width: 10rem;
+  height: 10rem;
+  background: 0;
+  font-size: 3rem;
+  line-height: 10rem;
+  color: #ffc600;
+}
+section {
+  width: 100%;
+  height: 100%;
+  background: #efeff4;
+}
+section .num {
+  width: 100%;
+  height: 12rem;
+  background: #ffffff;
+  padding-left: 2.6rem;
+  -webkit-box-sizing: border-box;
+  line-height: 12rem;
+}
+
+section  .allinpay {
+  width: 100%;
+  height: 13rem;
+  background: #ffffff;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  border-bottom: 0.1rem solid #cccccc;
+}
+section  .allinpay p {
+  width: 3rem;
+  height: 3rem;
+  background: 0;
+  border: 0.1rem solid #ffc600;
+  border-radius: 50%;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  position: relative;
+}
+section  .allinpay p span {
+  width: 2rem;
+  height: 2rem;
+  background: #ffc600;
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  display: block;
+}
+section  .allinpay dl {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-left: 4rem;
+}
+section  .allinpay dl dt {
+  margin-top: 1.5rem;
+}
+section  .allinpay dl dt img {
+  width: 9.5rem;
+  height: 9.5rem;
+}
+section  .allinpay dl dd {
+  margin-left: 8rem;
+  font-size: 3rem;
+  line-height: 13rem;
+}
+
+section .num p {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  font-size: 3rem;
+}
+section .num p input {
+  display: block;
+  width: 26rem;
+  height: 7rem;
+  background: 0;
+  border: none;
+  border-bottom: 1px dashed #7a7a7a;
+  margin-left: 2rem;
+  outline: none;
+  font-size: 3rem;
+  margin-top: 2.5rem;
+}
+section .way {
+  width: 100%;
+  height: 11.6rem;
+  background: #ffffff;
+  margin-top: 1rem;
+  padding-left: 2.6rem;
+  -webkit-box-sizing: border-box;
+  line-height: 11.6rem;
+  border-bottom: 0.2rem solid #eee;
+}
+section .way p {
+  font-size: 3rem;
+}
+section .lianlian {
+  width: 100%;
+  height: 13rem;
+  background: #ffffff;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  border-bottom: 0.2rem solid #eee;
+}
+section .lianlian p {
+  width: 3rem;
+  height: 3rem;
+  background: 0;
+  border: 0.2rem solid #ffc600;
+  border-radius: 50%;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  position: relative;
+}
+section .lianlian p span {
+  width: 2rem;
+  height: 2rem;
+  background: #ffc600;
+  border-radius: 50%;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+}
+section .lianlian dl {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-left: 4rem;
+}
+section .lianlian dl dt {
+  margin-top: 1.5rem;
+}
+section .lianlian dl dt img {
+  width: 9.5rem;
+  height: 9.5rem;
+}
+section .lianlian dl dd {
+  margin-left: 8rem;
+  font-size: 3rem;
+  line-height: 13rem;
+}
+section .huokuan {
+  width: 100%;
+  height: 13rem;
+  background: #ffffff;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  border-bottom: 0.2rem solid #eee;
+}
+section .huokuan p {
+  width: 3rem;
+  height: 3rem;
+  background: 0;
+  border: 0.1rem solid #ffc600;
+  border-radius: 50%;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  position: relative;
+}
+section .huokuan p span {
+  width: 2rem;
+  height: 2rem;
+  background: #ffc600;
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  display: none;
+}
+section .huokuan dl {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-left: 4rem;
+}
+section .huokuan dl dt {
+  margin-top: 1.5rem;
+}
+section .huokuan dl dt img {
+  width: 9.5rem;
+  height: 9.5rem;
+}
+section .huokuan dl dd {
+  margin-left: 8rem;
+  font-size: 3rem;
+  line-height: 13rem;
+}
+section .choice {
+  width: 100%;
+  height: 6.5rem;
+  background: #ffffff;
+  padding-left: 12rem;
+  -webkit-box-sizing: border-box;
+  line-height: 6.5rem;
+  border-bottom: 0.2rem solid #cccccc;
+}
+section .choice p {
+  font-size: 2.6rem;
+  color: #7dbce8;
+}
+section .show {
+  width: 100%;
+  height: 26rem;
+  background: 0;
+}
+section .show .weixin {
+  width: 100%;
+  height: 13rem;
+  background: #ffffff;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  border-bottom: 0.1rem solid #cccccc;
+}
+section .show .weixin p {
+  width: 3rem;
+  height: 3rem;
+  background: 0;
+  border: 0.1rem solid #ffc600;
+  border-radius: 50%;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  position: relative;
+}
+section .show .weixin p span {
+  width: 2rem;
+  height: 2rem;
+  background: #ffc600;
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  display: none;
+}
+section .show .weixin dl {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-left: 4rem;
+}
+section .show .weixin dl dt {
+  margin-top: 1.5rem;
+}
+section .show .weixin dl dt img {
+  width: 9.5rem;
+  height: 9.5rem;
+}
+section .show .weixin dl dd {
+  margin-left: 8rem;
+  font-size: 3rem;
+  line-height: 13rem;
+}
+section .show .zhifubao {
+  width: 100%;
+  height: 13rem;
+  background: #ffffff;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  border-bottom: 0.1rem solid #cccccc;
+}
+section .show .zhifubao p {
+  width: 3rem;
+  height: 3rem;
+  background: 0;
+  border: 0.1rem solid #ffc600;
+  border-radius: 50%;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  position: relative;
+}
+section .show .zhifubao p span {
+  width: 2rem;
+  height: 2rem;
+  background: #ffc600;
+  border-radius: 50%;
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  display: none;
+}
+section .show .zhifubao dl {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  margin-left: 4rem;
+}
+section .show .zhifubao dl dt {
+  margin-top: 1.5rem;
+}
+section .show .zhifubao dl dt img {
+  width: 9.5rem;
+  height: 9.5rem;
+}
+section .show .zhifubao dl dd {
+  margin-left: 8rem;
+  font-size: 3rem;
+  line-height: 13rem;
+}
+section .but {
+  width: 100%;
+  height: 10rem;
+  background: 0;
+  text-align: center;
+  margin-top: 7rem;
+}
+section .but button {
+  width: 90%;
+  height: 100%;
+  background: #ffc600;
+  font-size: 3rem;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+}
+section .but span {
+  width: 90%;
+  height: 100%;
+  background: #ffc600;
+  font-size: 3rem;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+  /*position: relative;*/
+  display: block;
+  margin-left: 5%;
+  line-height: 10rem;
+}
+section .key {
+  width: 100%;
+  height: 70.7rem;
+  background: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+}
+section .key .k-header {
+  width: 100%;
+  height: 9.3rem;
+  background: none;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .key .k-header .k-left {
+  width: 1.9rem;
+  margin-left: 3.6rem;
+  margin-top: 3.2rem;
+}
+section .key .k-header .k-left img {
+  width: 1.9rem;
+  height: 1.8rem;
+}
+section .key .k-header .k-right {
+  -webkit-box-flex: 1;
+}
+section .key .k-header .k-right p {
+  line-height: 9.3rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+  padding-right: 10%;
+}
+section .key .k-center {
+  width: 100%;
+  height: 9rem;
+  background: none;
+}
+section .key .k-center ul {
+  width: 80%;
+  height: 9rem;
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  box-sizing:border-box;
+  margin-left: 10%;
+  border-radius: 1rem;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+}
+section .key .k-center ul li {
+  border-right: 0.2rem solid #e2e2e2;
+  box-sizing:border-box;
+  width: 16.6%;
+  height: 9rem;
+  line-height: 9rem;
+  font-size: 3rem;
+  color: #333333;
+  text-align: center;
+}
+section .key .k-center ul .kc-last {
+  border-right: none;
+}
+section .key .forget {
+  width: 100%;
+  height: 6.8rem;
+  background: none;
+}
+section .key .forget a {
+  line-height: 6.8rem;
+  font-size: 2.6rem;
+  color: #ffc600;
+  margin-left: 75%;
+}
+section .key .k-footer {
+  width: 100%;
+  height: 45.6rem;
+  background: #e2e7ed;
+}
+section .key .k-footer ul {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  width: 100%;
+  height: 11.3rem;
+  background: none;
+  border-top: 1px solid #e2e7ed;
+  box-sizing:border-box;
+}
+section .key .k-footer ul li {
+  width: 100%;
+  -webkit-box-flex: 1;
+  background: #fff;
+  text-align: center;
+  line-height: 11.3rem;
+  font-size: 4.4rem;
+  color: #414141;
+  margin-right: 0.1rem;
+}
+section .key .k-footer .k-lastline {
+  background: none;
+}
+section .key .k-footer .k-lastline img {
+  width: 4.1rem;
+  height: 3.8rem;
+  background: none;
+}

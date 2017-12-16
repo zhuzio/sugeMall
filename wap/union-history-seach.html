@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>搜索</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css" />
+		<link rel="stylesheet" href="css/history-seach.css">
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+	</head>
+
+	<body>
+		<header class="z-location-a">
+			<div class="z-location-h">
+				<a class="black" href="javascript:history.go(-1)">
+					<img class="z-location-b" src="images/z-88.png" />
+				</a>
+				<div class="z-location-input">
+					<img src="images/z-89.png" />
+					<input class="z-loca z-location-k" name="" id="" value="" placeholder="100万商品线上抢购" />
+				</div>
+				<span class="z-location-c">搜索</span>
+			</div>
+		</header>
+		<div class="z-hot-seach all">
+			<ul class="z-hot-seach1 inner">
+				<span class="z-hot-a">热搜</span>
+			</ul>
+		</div>
+		<div class="z-hot-blank"></div>
+		<div class="z-hot-his">历史搜索</div>
+		<ul class="z-hot-record">
+			<!--<li>大脸鸡排</li>
+			<li>大脸鸡排</li>-->
+		</ul>
+		<div class="z-hot-remove">
+			<img src="images/z-91.png" />
+			<span>清空历史记录</span>
+		</div>
+		
+		<!--确定清空历史记录界面-->
+		<div class="z-clear-his" style="display: none;">
+			<div class="z-clear-his1">
+				<div class="z-clear-his2">
+					确定清空历史消息记录吗？
+				</div>
+				<div class="z-clear-w">
+					<span class="z-clear-q">取消</span>
+					<span class="z-clear-d">确定</span>
+				</div>
+			</div>
+		</div>
+		<div class="z-tan">请输入搜索内容</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/flipsnap.js"></script>
+	<script type="text/javascript" src="js/swiper-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/box.js"></script>
+	<script type="text/javascript" src="js/url.js"></script>
+	<script type="text/javascript" src="js/history.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(".z-hot-remove").click(function() {
+				$(".z-clear-his").show();
+			});
+			$(".z-clear-q").click(function() {
+				$(".z-clear-his").hide();
+			});
+			$(".z-clear-d").click(function() {
+				$(".z-hot-record").remove();
+				$(".z-clear-his").hide();
+			});
+			//		热搜轮播
+			var newWidth = document.body.scrollWidth;
+			Flipsnap('.inner', {
+				distance: newWidth / 10,
+				maxPoint: 1 //最多移动的次数
+			});
+			var wk;
+			//热搜接口开始
+			$.ajax({
+				//      	contentType:"application/x-www-form-urlencoded; charset=gb2312",
+				type: 'POST',
+				url: Url + "api/index.php?n=hotsearch&f=search",
+				dataType: "json",
+				data: {
+					"type": 2
+				},
+				success: function(data) {
+//					console.log(data);
+					var datas = data.data;
+					for(var i = 0; i < datas.length; i++) {
+						html = '';
+						var html = '<li>' + datas[i].content + '</li>';
+						$(".z-hot-seach1").append(html);
+					}
+					$(".z-hot-seach1 li").each(function() {
+						$(this).click(function() {
+							var wk = $(this).text();
+							localStorage.setItem('ss', wk);
+							location.href = "z-union-seach.html";
+						});
+					})
+				},
+				error: function(data) {
+					//　　　　        alert("出错啦！");
+					　　}
+			});
+			//热搜接口结束
+
+			//热搜商品收索跳转
+
+			//热搜商品跳转
+
+			$(".z-hot-record li").each(function() {
+				$(this).click(function() {
+					var wk = $(this).text();
+					localStorage.setItem('ss', wk);
+					location.href = "z-union-seach.html";
+				})
+			})
+
+			//搜索按钮的跳转
+			$(".z-location-c").click(function() {
+				wk = $(".z-location-input input").val();
+				if(!wk) {
+					wk = "请输入搜索内容";
+					$(".z-tan").show();
+					setTimeout(function() {
+						$(".z-tan").hide();
+					}, 1000);
+				} else {
+					localStorage.setItem('ss', wk);
+					location.href = "z-union-seach.html";
+				}
+
+			});
+
+			//  历史搜索记录
+			if($.cookie("history")) {
+				var json = eval("(" + $.cookie("history") + ")");
+				var list = "";
+				$(json).each(function() {
+					list = "<li>" + this.title + "</li>" + list;
+				})
+				$(".z-hot-record").html(list);
+				$(".z-hot-record li").each(function() {
+					$(this).click(function() {
+						var wk = $(this).text();
+						localStorage.setItem('ss', wk);
+						location.href = "sy_flss.html";
+					})
+				})
+			}
+			//删除空的li开始
+			$(".z-hot-record li").each(function() {
+				var txts = $(this).text();
+				if(txts == ""){
+					$(this).remove();
+				}
+			});	
+			//删除空的li结束
+			
+			// 清空coolkie
+			//删除历史收索记录
+			$(".z-clear-d").click(function() {
+				$.cookie('history', null);
+				$(".z-hot-record").remove();
+				$(".z-clear-his").hide();
+			});
+
+		});
+	</script>
+
+</html>

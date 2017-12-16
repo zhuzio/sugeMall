@@ -1,0 +1,17 @@
+--卡BIN查询接口：
+--储蓄卡签约接口：debit
+--信用卡签约接口：credit
+--绑卡签约接口：bindcardportal
+--重发短信验证码接口：sms
+--确认支付接口:pay
+--支付结果查询接口:search
+--退款接口:refund
+--卡信息查询接口:bankcardlist
+--查询绑卡列表接口:bindcardlist
+--解绑卡接口:canclebindcard
+--鉴权接口:identify
+--卡密验证接口：certificate
+
+
+
+

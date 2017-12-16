@@ -1,0 +1,38 @@
+/*input多选样式*/
+$(".Multiselect").children("input").toggle(
+			function(){
+				$(this).prev("span").addClass("active");
+			},
+			function(){
+				$(this).prev("span").removeClass("active");
+			}
+	);
+/*显示隐藏*/
+$("#addclass").hide();
+$(".Multiselect").hide();
+$(".shopcar-Total").hide();
+$(".add-class button").click(function(){
+	$("#addclass").show();
+});
+$("#add").click(function(){
+	$("#addclass").hide();
+});
+$(".class-shop li img").click(function(){
+	$(this).parent("li").remove();
+});
+$("#all-edit").click(
+	function(){
+		$(this).hide();
+		$("#all-complete").show();
+		$(".Multiselect").show();
+		$(".shopcar-Total").show();
+	}
+);
+$("#all-complete").click(
+	function(){
+		$(this).hide();
+		$("#all-edit").show();
+		$(".Multiselect").hide();
+		$(".shopcar-Total").hide();
+	}
+);

@@ -1,0 +1,176 @@
+.d_bind{
+	width: 100%;
+	height:8.0rem;
+	font-size: 2.8rem;
+	color:#999;
+	background-color: #f5f5f9;
+	line-height: 8.0rem;
+	border-top: 2px solid #d5d5d5;
+	border-bottom: 2px solid #d5d5d5;
+	margin-top: 8.8rem;
+}
+.d_bind span{
+	margin-left: 3.0rem;
+}
+.d_cardholder{
+	width: 100%;
+	/*height:18.6rem;*/
+	border-bottom: 2px solid #d5d5d5;
+}
+.d_cardholder1{
+	width:95.0%;
+	height: 9.3rem;
+	border-bottom: 2px solid #D5D5D5;
+	/*margin-left: 3.0rem;*/
+	line-height: 9.3rem;
+	/*border: 1px solid red;*/
+	position: relative;
+	left: 3.0rem;
+}
+.d_person{
+	font-size: 2.6rem;
+	color: #333;
+}
+.d_input{
+	width:69.5%;
+	height: 8.0rem;
+	margin-top: -1.7rem;
+	margin-left: 3.6rem;
+	color: #333;
+	font-size: 2.6rem;
+	/*border: 1px solid red;*/
+}
+.d_img{
+	width:4.0rem;
+	position: absolute;
+	top: 2.6rem;
+	right: 4.2rem;
+}
+.d_cardholder2{
+	height: 9.3rem;
+	margin-left: 3.0rem;
+	line-height: 9.3rem;
+}
+.d_person1{
+	font-size: 2.6rem;
+	color: #333;
+}
+.d_input1{
+	width: 68%;
+	height: 8.0rem;
+	margin-top: -1.7rem;
+	margin-left: 6.5rem;
+	color: #333;
+	font-size: 2.6rem;
+	/*border :1px solid red;*/
+}
+.d_next{
+	color: #FFFFFF !important;
+	background-color: #ffc600 !important;
+	/*border: 3.0rem solid #fff;*/
+}
+.d_next,.d_nexth{
+	width: 85.0%;
+	height: 9.5rem;
+	margin: 0 auto;
+	display: block;
+	border-radius: 0.8rem;
+	margin-top: 6.0rem;
+	line-height: 9.5rem;
+	text-align: center;
+	font-size: 3.4rem;
+	font-weight: bold;
+}
+.d_nexth{
+	color: #dfdfdf;
+	border: 0.3rem solid #dfdfdf;
+	/*background-color: #ffc600;*/
+}
+
+.d_card-p{
+	width: 56%;
+	height:18.0rem;
+	background: rgba(0,0,0,0.8);
+	border-radius: 1.5rem;
+	margin: 4.0rem auto 0;
+	display: none;
+}
+.d_card-p span{
+	display: inline-block;
+	width: 100%;
+	color: #f5f5f9;
+	font-size: 2.4rem;
+	line-height:4.9rem;
+	/*border: 1px solid red;*/
+	text-align: center;
+}
+.d_card-p p{
+	width: 83.8%;
+	color: #f5f5f9;
+	font-size: 2.2rem;
+	/*border: 1px solid red;*/
+	margin-left: 8.2%;
+	margin-top: 1.5rem;
+	line-height: 3.0rem;
+}
+.d_success{
+	width: 77.6%;
+	height:24.8rem;
+	background: rgba(0,0,0,0.8);
+	border-radius: 1.5rem;
+	margin: 0.7rem auto 0;
+	color: #f5f5f9;
+	font-size: 3.0rem;
+	text-align: center;
+	line-height: 24.8rem;
+	display: none;
+}
+.d_cardholder3{
+	width: 96%;
+	height:9.4rem;
+	border-bottom: 1px solid #d5d5d5;
+	margin-left: 3.9%;
+	position: relative;
+}
+.d_cardholder3 >li{
+	width: 94.0%;
+	line-height:9.4rem;
+	margin-left: 0.8%;
+}
+.d_cardholder3 >li span{
+	font-size: 3.0rem;
+	color: #333;
+}
+.d_cardholder3 >li img{
+	width:2.9rem;
+	/*height:2.0rem;*/
+	position: absolute;
+	top: 3.5rem;
+	right: 7.6%;
+}
+.cardblank{
+	display: inline-block;
+	width: 66%;
+	padding-left: 8%;
+	font-size: 3.0rem !important;
+	margin-left: 2.3%;
+}
+
+.d_cardholder31 {
+	width: 69%;
+	height: 73.0rem;
+	border: 1px solid #d5d5d5;
+	position: absolute;
+	left: 15.9%;
+	background-color: #fff;
+	overflow: scroll;
+	display: none;
+}
+.d_cardholder31 li{
+	width: 90%;
+	line-height: 8.0rem !important;
+	padding-left: 10%;
+	border-bottom: 1px solid #d5d5d5;
+	/*border: 1px solid #d5d5d5;*/
+	font-size: 3.0rem;
+}

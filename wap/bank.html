@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>我的银行卡</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/lbank.css">
+	<link rel="stylesheet" href="css/a.css">
+	<style>
+		.tan{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.3);
+			top: 0;
+			left: 0;
+			z-index: 10;
+			display: none;
+		}
+		.tan p{
+			width: 70%;
+			height: 20rem;
+			margin: 60% 0 0 015%;
+			background-color: #eee;
+			color: #333;
+			font-size: 3.4rem;
+			line-height: 10rem;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="d_header">
+		<a href="javascript:history.go(-1)"  class="ha1">
+			<p class="p1">
+			<img src="images/back.png" alt="返回首页">
+			</p>
+		</a>
+		<p class="p2">我的银行卡</p>
+		<button>
+			<a href="mycard.html"><img src="images/add.png" alt=""></a>
+			
+		</button>
+	</div>
+	<ul class="lpul">
+	</ul>
+	<div class="more">
+		<a href="mycard.html"><img src="images/add2.png" alt=""></a><br>
+		<span>添加银行卡</span>
+	</div>
+	<!-- <div class="deletek"></div> -->
+	<div class="delete">
+		<button class="de_btn1">删除</button>
+		<button>取消</button>
+	</div>
+	<div class="tan"><p></p></div>
+</body>
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/box.js"></script><script type="text/javascript" src="js/url.js"></script>
+<script src="js/lbank.js"></script>
+<script type="text/javascript">
+
+$(function(){
+var tokens = localStorage.getItem("token");
+var bank_tfs = localStorage.getItem("bank_tf");
+// console.log(bank_tfs);
+
+//		添加银行卡
+var blankId = [];
+var blanksid;
+		$.ajax({
+			type: 'POST',
+			url: Url + "api/index.php?n=userset&f=card",
+			dataType: "json",
+			data: {
+				"token": tokens,
+			},
+			success: function(data) {
+				console.log(data);
+				var datas = data.data;
+				for (var i = 0; i < datas.length; i++) {
+					   var carl=data.data[i].bank_num.length;
+		               var card= "**** **** ****"+data.data[i].bank_num.substr(carl-4,4);
+					if (data.data[i].status==0) {
+						var imgsrc="images/bkpass2.png";
+					}else{
+						var imgsrc="images/bkpass1.png";
+					}
+					// console.log(card);
+					var html = '<li class="lpli"><font>'+datas[i].bank_id+'</font><p class="lp0"><span><img src="'+imgsrc+'" alt="">设置为默认</span><button><img class="l-delete" src="images/bkdelete.png" alt=""></button></p><p class="lp1"><span>'+datas[i].bank_name+'<br>储蓄卡</span></p><p class="lp2"><span class="lp11">'+card+'</span></p></li>'
+					$(".lpul").append(html);
+					blankId.push(datas[i].bank_id);
+				}
+//				
+
+//				设置默认银行卡ajax开始
+		$(".lp0 span").on("click",function(){
+		        	$(".lp0 span img").attr("src","images/bkpass1.png");
+					$(this).find("img").attr("src","images/bkpass2.png");
+					var a = $(this).parents(".lpli").index();
+					blanksid = blankId[a];
+					var lbank_ids=$(this).parents(".lpli").find("font").html();
+					// console.log(lbank_ids);
+					$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=userset&f=setcard",
+						dataType: "json",
+						data: {
+							"token": tokens,
+							"bank_id":lbank_ids,
+							},
+					  success: function(data) {
+							// console.log(data);
+							if (data.ret=="ok") {
+								$(".tan").css("display","block");
+								$(".tan p").html(data.msg);
+								setTimeout(function(){
+									$(".tan").css("display","none");
+								},1000);
+							}
+											
+						},
+					error: function(data) {　　　　
+							alert("出错啦！");　
+							// console.log(data)　
+					}
+				});		
+					
+			 });
+		$(".lpul").on("click",".lp1,.lp2",function(){
+			var lbank_ids=$(this).parent().find("font").html();
+			if (bank_tfs=="true") {
+				$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=userset&f=setcard",
+						dataType: "json",
+						data: {
+							"token": tokens,
+							"bank_id":lbank_ids,
+							},
+					  success: function(data) {
+							// console.log(data);
+							if (data.ret=="ok") {
+								// localStorage.setItem('bank_tf',  "");
+								// localStorage.setItem('bank_id',  $(this).parent().find("font").html());
+								location.href="hktx.html";
+							}			
+						},
+					error: function(data) {　　　　
+							alert("出错啦！");　
+							// console.log(data)　
+					}
+				});		
+				
+				
+			}else if(bank_tfs=="false"){
+				$.ajax({
+						type: 'POST',
+						url: Url + "api/index.php?n=userset&f=setcard",
+						dataType: "json",
+						data: {
+							"token": tokens,
+							"bank_id":lbank_ids,
+							},
+					  success: function(data) {
+							// console.log(data);
+							if (data.ret=="ok") {
+								
+								location.href="sytx.html";
+							}			
+						},
+					error: function(data) {　　　　
+							alert("出错啦！");　
+							// console.log(data)　
+					}
+				});		
+			}
+		})
+		
+//			 设置默认银行卡ajax结束
+            var count;
+//			删除银行卡ajax开始
+		$(".lp0 button").on("click",function(){
+			$(".delete").css("display","block");
+//			 alert($(this).parent().parent().index());
+			 // count=$(this).parent().parent().index();
+			 count=$(this).parents(".lpli").find("font").text();
+			 console.log(count);
+			})
+			$(".de_btn1").on("click",function(){
+				$(".lpli").eq(count).remove();
+				blanksid=$(this).parent().parent().find("font").html();
+				$.ajax({
+					type: 'POST',
+					url: Url + "api/index.php?n=userset&f=delcard",
+					dataType: "json",
+					data: {
+						"token": tokens,
+						"bank_id":count,
+					},
+					success: function(data) {
+						// console.log(data)
+		//				var datas = addresslist.data;
+		//				console.log(datas)
+						if (data.ret=="ok") {
+							window.location.reload();
+						}
+					},
+					error: function(data) {　　　　
+						alert("出错啦！");　
+						// console.log(data)　
+						}
+				});			
+				$(".delete").css("display","none");
+			})	
+//			删除银行卡ajax结束
+			},
+			error: function(data) {　　　　
+//				alert("出错啦！");　
+				// console.log(data)　
+				}
+			});			
+		
+	});	
+</script>
+</html>

@@ -1,0 +1,91 @@
+.one-team-icon{
+	background-image: url(../img/team/one-team.png);
+    background-size:100%;
+}
+.two-team-icon{
+	background-image: url(../img/team/two-team.png);
+    background-size:100%;
+}
+.three-team-icon{
+	background-image: url(../img/team/three-team.png);
+    background-size:100%;
+}
+/*团队折叠*/
+.team-fold{
+	overflow: hidden;
+}
+.team-fold li.team-one{
+	overflow: hidden;
+}
+.team-onenr{
+	overflow: hidden;
+	padding:15px 20px ;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #DDDDDD;
+}
+.team-onenr-active{
+	background-color: #F3F3F3;
+}
+.one-iconleft{
+	float: left;
+    border-radius: 12px;
+    width: 24px;
+    margin-top: 4px;
+    height: 24px;
+}
+.one-tit{
+	float: left;
+	margin-left: 20px;
+	line-height: 32px;
+	font-size: 16px;
+}
+.one-iconright{
+	 float: right;
+	 font-family: Muiicons;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 32px;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+}
+.one-iconright:before{
+	    content: '\e581';
+}
+.one-right-active:before{
+	    content: '\e580'
+}
+.team-one ul{ 
+	overflow: hidden;
+}
+.team-two{ 
+	overflow: hidden;
+	padding:15px 20px ;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #DDDDDD;
+}
+.two-name{
+	 color: #333333;
+	 font-size: 16px;
+	 margin-bottom: 5px;
+}
+.two-tit{ 
+	overflow: hidden;
+}
+.two-time{
+	 float: left;
+	 font-size: 14px;
+	  color: #666666;
+}
+.two-time span,.two-time time{ 
+	margin-left: 5px;
+}
+.two-recommend{
+	float: right;
+	font-size: 12px;
+	color: #666666;
+}
+.two-recommend span{
+	margin-left: 5px;
+}

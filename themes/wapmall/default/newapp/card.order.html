@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />	
+		<title></title>
+		<link rel="stylesheet" href="{res file=css/public.css}" /> <!--公用css-->
+		<link rel="stylesheet" href="{res file=css/business.css}" />
+	</head>
+	<body>
+		<header class="header">
+			<a href="javascript:history.back(-1)" class="back"></a>
+			<h1 class="tit">购积分</h1>
+		</header>
+         <form method="POST"  action="index.php?app=order_point&act=pointOrder" id="myform">
+    		<div class="content mtop44">
+    			<div class="business-main">
+    				
+    					<ul>
+
+    						<li>
+    							<em></em>
+    							<input placeholder="请输入购买积分数量" type="number" name="num">
+    						</li>
+    					</ul>
+    					<p class="determine"><a href="#" id="determine">确定</a></p>
+    				
+    			</div>
+    		</div>
+    		<!--发积分弹窗-->
+    		<div class="Popup2" id="buy-Popup">
+    			<div class="Popup2-box">
+    				<p class="prompt">是否确认购买？</p>
+    				<p class="buy-inf">
+    					<button type="button" class="buy-no" id="no">否</button>
+    					<button type="submit" class="buy-yes" id="yes">是</button>
+    				</p>
+    			</div>
+    			<div class="Popup2-bg"></div>
+    		</div>
+    </form>
+    {include file="footer.html"}
+	</body>
+	<script type="text/javascript" src="{res file=js/jquery-1.8.3.min.js}" ></script>
+	<script type="text/javascript" src="{res file=js/business-buyintegral.js}" ></script>
+    <script>
+        $(function(){
+            var status = 0;
+            $('#myform').submit(function(){
+                var moneymath = /^\d+(\.\d+)?$/;
+                var num = $('input[name="num"]').val();
+                if(num.length<=0 ){
+                    alert('购买积分不能小于0');
+                    return false;
+                }
+                return true;
+            });
+
+    </script> 
+    </script>
+</html>

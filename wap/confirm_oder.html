@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>确认订单信息</title>
+	<link rel="stylesheet" href="css/confirm_oder.css">
+</head>
+<body>
+	<div class="container">
+		<!-- 头部 -->
+		<header>
+			<div class="left"><a href="javascript:history.go(-1)"><img src="images/fanhui.png" alt=""></a></div>
+			<div class="center"><p>确认订单信息</p></div>
+		</header>
+		<section>
+			<div class="jifen">
+				<h5>
+					<span class="p1"></span><span class="p2">积分</span>
+				</h5>
+				
+			</div>
+			<div class="goods_pri">
+				<p>卖家信息：</p>
+			</div>
+			<div class="goods_id">
+				<p>卖家账号：</p>
+			</div>
+			<div class="goods_name">
+				<p>商品名称：</p>
+			</div>
+			<div class="beizhu">
+				<p>备注</p>
+				<input type="text" placeholder="选填">
+			</div>
+		</section>
+		<footer>
+			<p>
+				<span class="btn">确认</span>
+			</p>
+		</footer>
+		<div class="key">
+			<div class="k-header">
+				<div class="k-left"><img src="images/wk-x.png" alt="返回首页"></div>
+				<div class="k-right"><p>输入支付密码</p></div>
+			</div>
+			<div class="k-center">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li class="kc-last"></li>
+				</ul>
+			</div>
+			<div class="forget">
+				<a href="#">忘记密码?</a>
+			</div>
+			<div class="k-footer">
+				<ul class="fistline">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+				<ul class="fistline">
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+				</ul >
+				<ul class="fistline">
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+				</ul>
+				<ul>
+					<li class="k-lastline"></li>
+					<li class="fistlines">0</li>
+					<li class="k-lastline"><img src="images/wk-12_03.png" alt=""></li>
+				</ul>
+			</div>
+		</div>
+		<div class="cd-popup">
+			    <div class="cd-popup-container">
+			       <div class="tanchu">
+			   			<p>积分发放成功</p>
+			       </div>
+			    </div>
+			</div>
+	</div>
+</body>
+<script src="js/box.js"></script><script src="js/url.js"></script>
+<script src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+	var tokens=localStorage.getItem ("token");
+	var mobiles=localStorage.getItem ("mobile");
+	var points=localStorage.getItem ("point");
+	var classids=localStorage.getItem ("classid");
+//	var syspoints=localStorage.getItem ("point");
+	// console.log(tokens+";"+mobiles+";"+points+";"+classids);
+	var pas;
+	function nnn(){
+		$(".jifen .p1").html("买家"+mobiles);
+		$(".jifen .p2 span").html(points);
+		$(".goods_name p").html("商品名称："+classids); 
+	}
+	nnn();
+	$('.btn').on('click',function(){
+		$('.key').show();
+	})
+	$('.k-left').on('click',function(){
+		$('.key').hide();
+	})
+	var arr=[];
+	$('.fistline li').on('click',function(){
+		$(this).html();
+		if (arr.length<=6) {
+			arr.push($(this).html());
+			// console.log(arr);
+			// console.log(arr.length);
+			for (var i = 0; i < arr.length; i++) {
+				$(".k-center li").eq(i).html("*");
+			};
+			pas=arr.join("");
+			// console.log(pas);/
+		};
+		if (arr.length==6) {
+			pas=arr.join("");
+			aj();
+			$('.key').hide();
+		}
+		
+	})
+	$('.fistlines').on('click',function(){
+		$(this).html();
+		if (arr.length<=6) {
+			arr.push($(this).html());
+			// console.log(arr);
+			// console.log(arr.length);
+			for (var i = 0; i < arr.length; i++) {
+				$(".k-center li").eq(i).html("*");
+
+			};	
+		};
+		if (arr.length==6) {
+			aj();
+			
+		}
+	})
+	$('.k-lastline').on('click',function(){
+		arr.pop();
+		for (var i = 0; i < $(".k-center li").length; i++) {
+				$(".k-center li").eq(i).html(" ");
+			};
+		for (var i = 0; i < arr.length; i++) {
+				$(".k-center li").eq(i).html("*");
+			};
+		// console.log(arr);
+	})
+	//弹框提示
+	$('.tianjia').on('click',function(){
+		   jQuery(document).ready(function($){
+		        //打开窗口
+	            event.preventDefault();
+	            $('.cd-popup').addClass('is-visible');
+		       
+		        //关闭窗口
+		        $('.cd-popup').on('click', function(event){
+		            if( $(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') ) {
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+		            }
+	        	 }) 	
+		        $('.li1').on('click', function(event){
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+	         	 })
+		        $('.li2').off().on('click', function(event){
+		                event.preventDefault();
+		                $('.cd-popup').removeClass('is-visible');
+		                names=$(".tanchu input").val();
+		                tj_name();
+	         	})
+		    })
+	});
+	//接口
+	function aj(){
+		$.ajax({	
+		           type: 'POST',
+		           url: Url + "api/index.php?n=shop_center&f=send_point",
+		         	dataType: "json",
+		       	data: { 
+		       		token : tokens,
+		       		mobile:mobiles,
+		       		point:points,
+		       		passwd:pas,
+		       		classid:classids,
+		       	},
+		        	success: function(data){
+		                      // console.log(data);
+			      
+			} ,
+		            error:function(data){
+			                      	  // console.log(data);
+			                      }
+		})
+	}
+</script>
+</html>
